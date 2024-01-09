@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "proxy": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -11,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@storyblok/react": "^2.4.7",
     "@types/node": "20.5.2",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -20,14 +22,16 @@
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.5.0",
     "framer-motion": "^10.16.4",
+    "local-ssl-proxy": "^2.0.5",
+    "mkcert": "^3.0.0",
     "next": "13.4.19",
     "popmotion": "^11.0.5",
     "react": "18.2.0",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.15.0",
-    "swiper": "^11.0.4",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.6",

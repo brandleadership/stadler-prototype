@@ -1,4 +1,5 @@
-"use client";
+ "use client";
+ import { getStoryblokApi } from "@storyblok/react";
 
 import Video from "../components/sections/Video";
 import FactsAndFigures from "@/components/sections/FactsAndFigures";
@@ -100,8 +101,15 @@ const figures = [
   },
 ];
 
-export default function HomePage() {
-
+// export default async function HomePage() {
+  // const { data } = await fetchData();
+  // return (
+  //   <>
+  //     <h2>Story: {data.story.name}</h2>
+  //     <Hero />
+  //     <Stats />
+export default async function HomePage() {
+   const { data } = await fetchData();
   return (
     <>
     
@@ -118,4 +126,14 @@ export default function HomePage() {
       <Video></Video>
     </>
   );
+}
+
+ async function fetchData() {
+  type SBParams = {
+    version: "draft"; 
+  };
+  let sbParams: SBParams = { version: "draft" };
+
+  const storyblokApi = getStoryblokApi();
+  return storyblokApi.get(`cdn/stories/home`, sbParams);
 }
