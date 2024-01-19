@@ -1,5 +1,5 @@
 import { motion, useTransform } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 
 import { useScrollImageSequenceFramerCanvas } from "../../hooks";
 
@@ -36,7 +36,7 @@ const handleDrawCanvas = (
 const ImageSequence = () => {
   const keyframes = useMemo(
     () =>
-      [...new Array(215)].map((_, i) =>
+      [...new Array(299)].map((_, i) =>
         createImage(
           `/trainsequence-jpg/test_stadler_rail_train_carousel_0${i
             .toString()
@@ -47,27 +47,42 @@ const ImageSequence = () => {
   );
 
   const containerRef = useRef<HTMLElement>(null);
-  const [progress, canvasRef] = useScrollImageSequenceFramerCanvas({
+  const [categoryNumber, categoryNumberChange] = useState(0);
+  const [
+    progress,
+    canvasRef,
+    trainCategoryRef,
+    renderImage,
+  ] = useScrollImageSequenceFramerCanvas({
     onDraw: handleDrawCanvas,
     keyframes: keyframes,
     scrollOptions: {
       target: containerRef,
       offset: ["start", "end"],
     },
+    categoryNumber: categoryNumber,
   });
 
+  const handleClick = () => {
+    categoryNumberChange(0.5);
+    renderImage(0.5);
+    console.log(categoryNumber);
+  };
+  console.log(progress);
   // the animation goes across 4 screen height
   // try out to sequence text with 3 states
-  const opacity1 = useTransform(progress, [0, 0.5, 1], [1, 0, 0]);
-  const opacity2 = useTransform(progress, [0, 0.5, 1], [0, 1, 0]);
+  const opacity1 = useTransform(progress, [0, 0.33, 0.66, 1], [1, 0, 0, 0]);
+  const opacity2 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 1, 0, 0]);
+  const opacity3 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 1, 0]);
+  const opacity4 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 0, 1]);
 
   return (
     <section ref={containerRef} className="h-[400vh]">
       <div className="sticky top-0">
-        <motion.div
+        {/* <motion.div
           style={{ scaleX: progress }}
           className="absolute top-0 z-10 h-2 w-full origin-left bg-white"
-        />
+        /> */}
         <canvas ref={canvasRef} className="absolute inset-0 block" />
         <div className="mx-auto flex h-screen max-w-6xl items-center justify-center px-12">
           <motion.h1
@@ -82,7 +97,20 @@ const ImageSequence = () => {
           >
             Train 2
           </motion.h1>
+          <motion.h1
+            style={{ opacity: opacity3 }}
+            className="text-center text-4xl font-semibold text-black md:text-7xl"
+          >
+            Train 3
+          </motion.h1>
+          <motion.h1
+            style={{ opacity: opacity4 }}
+            className="text-center text-4xl font-semibold text-black md:text-7xl"
+          >
+            Train 4
+          </motion.h1>
         </div>
+        <div onClick={handleClick}>Jump to the last carousel element</div>
       </div>
     </section>
   );
