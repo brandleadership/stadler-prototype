@@ -5,14 +5,15 @@ import {
     useSpring,
   } from 'framer-motion';
   import { useCallback, useEffect, useRef } from 'react';
-  
+
   export interface UseScrollImageSequenceFramerCanvasProps {
     onDraw: (img: HTMLImageElement, ctx: CanvasRenderingContext2D) => void;
     keyframes: HTMLImageElement[];
     scrollOptions?: Parameters<typeof useScroll>[0];
     springConfig?: SpringOptions;
+    categoryNumber: Number
   }
-  
+
   const useScrollImageSequenceFramerCanvas = ({
     onDraw,
     keyframes,
@@ -23,20 +24,23 @@ import {
       restSpeed: 0.5,
       restDelta: 0.001,
     },
+    categoryNumber
   }: UseScrollImageSequenceFramerCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-  
+    const trainCategoryRef = useRef<HTMLDivElement>(null);
+
     const { scrollYProgress } = useScroll(scrollOptions);
     const progress = useSpring(scrollYProgress, springConfig);
-  
+
     const resizeCanvas = useCallback(() => {
       const canvas = canvasRef.current!;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }, []);
-  
+
     const renderImage = useCallback(
       (progress: number) => {
+        console.log("progress", progress, scrollYProgress, canvasRef.current)
         const constraint = (n: number, min = 0, max = keyframes.length - 1) =>
           Math.min(Math.max(n, min), max);
         onDraw(
@@ -46,7 +50,7 @@ import {
       },
       [keyframes, onDraw],
     );
-  
+
     useEffect(() => {
       resizeCanvas();
       const resizeCanvasAndRerender = () => {
@@ -58,16 +62,16 @@ import {
         window.removeEventListener('resize', resizeCanvasAndRerender);
       };
     }, [progress, renderImage, resizeCanvas]);
-  
+
     useEffect(() => {
       keyframes[0].onload = () => {
         onDraw(keyframes[0], canvasRef.current!.getContext('2d')!);
       };
     }, [keyframes, onDraw]);
-  
-    useMotionValueEvent(progress, 'change', renderImage);
-  
-    return [progress, canvasRef] as const;
+
+     useMotionValueEvent(progress, 'change', renderImage);
+
+    return [progress, canvasRef, trainCategoryRef, renderImage] as const;
   };
-  
+
   export default useScrollImageSequenceFramerCanvas;
