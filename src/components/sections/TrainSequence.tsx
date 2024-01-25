@@ -36,12 +36,8 @@ const handleDrawCanvas = (
 const ImageSequence = () => {
   const keyframes = useMemo(
     () =>
-      [...new Array(299)].map((_, i) =>
-        createImage(
-          `/trainsequence-jpg/test_stadler_rail_train_carousel_0${i
-            .toString()
-            .padStart(4, "0")}.jpg`
-        )
+      [...new Array(300)].map((_, i) =>
+        createImage(`/trainsequence/${i.toString().padStart(4, "0")}.png`)
       ),
     []
   );

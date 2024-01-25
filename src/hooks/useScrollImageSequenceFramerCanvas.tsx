@@ -69,7 +69,7 @@ import {
       };
     }, [keyframes, onDraw]);
 
-     useMotionValueEvent(progress, 'change', renderImage);
+    //  useMotionValueEvent(progress, 'change', renderImage);
 
     return [progress, canvasRef, trainCategoryRef, renderImage] as const;
   };
