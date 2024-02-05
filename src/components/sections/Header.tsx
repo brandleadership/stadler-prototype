@@ -7,10 +7,10 @@ import ContentWidth from "../layouts/ContentWidth";
 import { motion } from "framer-motion";
 const navigation = {
   topNav: [
-    { name: "Medien", href: "/medien" },
+    { name: "Medien", href: "/#" },
     { name: "Zulieferer", href: "/zulieferer" },
-    { name: "Kunden", href: "/kunden" },
-    { name: "Downloadcenter", href: "/downloadcenter" },
+    { name: "Kunden", href: "/#" },
+    { name: "Downloadcenter", href: "/#" },
   ],
 };
 
@@ -42,7 +42,7 @@ type NavItems = {
 
 const navigationMain: NavItems = {
   topNav: [
-    { title: "Unternehmen", href: "/unternehmen", icon: false },
+    { title: "Unternehmen", href: "/#", icon: false },
     {
       title: "Lösungen",
       href: "/solutions",
@@ -57,7 +57,7 @@ const navigationMain: NavItems = {
         { title: "Service", href: "/solutions/service" },
       ],
     },
-    { title: "Karriere", href: "/career", icon: false },
+    { title: "Karriere", href: "/#", icon: false },
     {
       title: "Investor Relations",
       href: "/investors",
