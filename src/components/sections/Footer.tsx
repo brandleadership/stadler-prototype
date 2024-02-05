@@ -6,7 +6,7 @@ const navigation = {
   legal: [
     { name: "Impressum", href: "/impressum" },
     { name: "Disclaimer", href: "/disclaimer" },
-    { name: "Compliance", href: "/#" },
+    { name: "Compliance", href: "/compliance" },
     { name: "Cookies", href: "/cookies" },
     { name: "Zertifizierung", href: "/zertifizierung" },
   ],

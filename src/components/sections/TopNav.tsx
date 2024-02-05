@@ -2,10 +2,10 @@ import ContentWidth from "../layouts/ContentWidth";
 import Link from "next/link";
 const navigation = {
   topNav: [
-    { name: "Medien", href: "/#" },
-    { name: "Zulieferer", href: "/#" },
-    { name: "Kunden", href: "/#" },
-    { name: "Downloadcenter", href: "/#" },
+    { name: "Medien", href: "/medien" },
+    { name: "Zulieferer", href: "/zulieferer" },
+    { name: "Kunden", href: "/kunden" },
+    { name: "Downloadcenter", href: "/downloadcenter" },
   ],
 };
 

@@ -41,22 +41,22 @@ type NavItems = {
 
 const navigationMain: NavItems = {
   topNav: [
-    { title: "Unternehmen", href: "/#", icon: false },
+    { title: "Unternehmen", href: "/unternehmen", icon: false },
     {
       title: "Lösungen",
-      href: "/##",
+      href: "/solutions",
       icon: <IconNav></IconNav>,
       submenu: true,
       submenuItems: [
         {
           title: "Schienenfahrzeuge",
-          href: "/#",
+          href: "/solutions/schienenfahrzeuge",
         },
-        { title: "Signalling", href: "/#" },
-        { title: "Service", href: "/#" },
+        { title: "Signalling", href: "/solutions/signalling" },
+        { title: "Service", href: "/solutions/service" },
       ],
     },
-    { title: "Karriere", href: "/#", icon: false },
+    { title: "Karriere", href: "/career", icon: false },
     {
       title: "Investor Relations",
       href: "/investors",
