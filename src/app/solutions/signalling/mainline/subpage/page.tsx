@@ -69,15 +69,23 @@ export default function SubPage() {
       <HeroText
         breadcrumbs={[
           { text: "Lösungen", link: "/solutions" },
-          { text: "Signalling", link: "/solutions/signalling" }
+          { text: "Signalling", link: "/solutions/signalling" },
         ]}
         title="Zugbeeinflussungssystem ETCS"
         leadText="Die steigenden Anforderungen im Zugverkehr zwingen die Betreiber sich auf spezifische strategische Ziele zu konzentrieren: Erhöhung der Reisegeschwindigkeit, Interoperabilität, Weiterverwendung der bestehenden Infrastruktur und Kosteneffizienz unter Beibehaltung des bestehenden Sicherheitsniveaus."
       />
 
       <ImageFullWidth imgSrc="/ETCS-pano.jpg" />
-     
-    <TextSection></TextSection>
+
+      <TextSection>
+        
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Text>
+      </TextSection>
       <Advantages items={advantageItems}></Advantages>
       <Contact></Contact>
     </>

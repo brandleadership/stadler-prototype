@@ -1,19 +1,19 @@
 import Button from "../elements/ButtonPrimary";
-import SuperSmallWidth from "../layouts/SuperSmallWidth";
+import ContentWidth from "../layouts/ContentWidth";
 import H2 from "../typography/H2";
 
 export default function Subscribe() {
   return (
     <section className="bg-white py-5 lg:py-24 ">
-      <SuperSmallWidth>
-        <div className="w-full">
+      <ContentWidth>
+        <div className="col-span-12">
           <H2 styles="mb-4">Sign up for our newsletter</H2>
           <p className="font-light sm:text-xl">
             Stay up to date with the roadmap progress, announcements and
             exclusive discounts feel free to sign up with your email.
           </p>
         </div>
-        <div className="mt-8 w-full">
+        <div className="col-span-12 mt-8 w-full">
           <form action="#">
             <div className="items-center space-y-4 flex-col">
               <div className="grid grid-cols-1 gap-8 lg:gap-4 lg:grid-cols-2 items-center">
@@ -84,7 +84,7 @@ export default function Subscribe() {
             </div>
           </form>
         </div>
-      </SuperSmallWidth>
+      </ContentWidth>
     </section>
   );
 }

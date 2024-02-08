@@ -5,7 +5,7 @@ export default function InvestorHero() {
     <section>
       <HeroText
         title="Investor Relations"
-        leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed enim convallis, bibendum augue vel, mollis lacus. Curabitur non vulputate risus. Suspendisse tellus orci, laoreet ac venenatis vitae, lacinia rhoncus neque."
+        leadText="Stadler pflegt einen offenen und transparenten Austausch mit Investoren, Analysten und anderen Anspruchsgruppen. Im Bereich Investor Relations finden Sie alle relevanten Informationen und Publikationen zur Geschäftsentwicklung, zur Corporate Governance sowie zur jährlichen Generalversammlung."
         withCTA={true}
         buttonText="Zu den Publikationen"
       />

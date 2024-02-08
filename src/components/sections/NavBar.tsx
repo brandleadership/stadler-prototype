@@ -6,10 +6,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 const navigation = {
   topNav: [
-    { name: "Medien", href: "/medien" },
+    { name: "Medien", href: "/#" },
     { name: "Zulieferer", href: "/zulieferer" },
     { name: "Kunden", href: "/kunden" },
-    { name: "Downloadcenter", href: "/downloadcenter" },
+    { name: "Downloads", href: "/downloadcenter" },
   ],
 };
 
@@ -41,19 +41,19 @@ type NavItems = {
 
 const navigationMain: NavItems = {
   topNav: [
-    { title: "Unternehmen", href: "/#", icon: false },
+    { title: "Unternehmen", href: "/unternehmen", icon: false },
     {
       title: "Lösungen",
-      href: "/##",
+      href: "/solutions",
       icon: <IconNav></IconNav>,
       submenu: true,
       submenuItems: [
         {
           title: "Schienenfahrzeuge",
-          href: "/#",
+          href: "/solutions/schienenfahrzeuge",
         },
-        { title: "Signalling", href: "/#" },
-        { title: "Service", href: "/#" },
+        { title: "Signalling", href: "/solutions/signalling" },
+        { title: "Service", href: "/solutions/service" },
       ],
     },
     { title: "Karriere", href: "/#", icon: false },
@@ -84,8 +84,6 @@ const NavBar = () => {
   const closeMainMenu = () => {
     setIsOpen(false);
   };
-
-
 
   let menuRef = useRef<HTMLDivElement>(null);
 

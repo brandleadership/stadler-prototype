@@ -29,12 +29,12 @@ export default function CTASection(props?: any) {
           alt="content gallery 1"
         />
         <img
-          className=" object-cover h-80 scale-100 hidden col-span-1 sm:block  "
+          className=" object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
           src={props.img2 ?? "https://www.stadlerrail.com/media/img/c/produktionsmechaniker_lernende.jpg"}
           alt="content gallery 2"
         />
         <img
-          className="object-cover h-80 scale-100 hidden col-span-1 sm:block  "
+          className="object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
           src={props.img3 ?? "https://www.stadlerrail.com/media/img/c/interne_transporte_berufserfahrene.jpg"}
           alt="content gallery 3"
         />

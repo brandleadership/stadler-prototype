@@ -2,35 +2,55 @@
 
 import HeroText from "@/components/sections/HeroText";
 import Contact from "@/components/sections/Contact";
-import TeaserMedienmitteilungen from "../../components/sections/TeaserMedienmitteilungen";
+import MedienmitteilungenShortSection from "../../components/sections/MedienmitteilungenShortSection";
+
 import MedienmitteilungenList from "@/components/sections/MedienmitteilungenList";
 import Features from "@/components/sections/Features";
-import ContentWidth from "@/components/layouts/ContentWidth";
 import Subscribe from "@/components/sections/Subscribe";
 
-const listMedienmitteilungen = [
+const shortlistMedienmitteilungen = [
   {
     link: "/medienmitteilungenSingle",
     date: "05.12.2023",
-    text:
+    title:
       "Stadler Prag feiert 15-jähriges Jubiläum und verzeichnet starkes Wachstum.",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }, { tag: "Corporate" }],
   },
   {
     link: "/medienmitteilungenSingle",
     date: "07.11.2023",
-    text:
+    title:
       "Stadler eröffnet neues Logistikzentrum für den Schienenverkehr in Berlin Pankow.",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }, { tag: "Corporate" }],
   },
   {
     link: "/medienmitteilungenSingle",
     date: "09.11.2023",
-    text:
+    title:
       "Stadler macht Lokomotiven für das ETCS fit und ermöglicht damit schnelleren ETCS-Roll-Out in Deutschland.",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }],
   },
   {
     link: "/medienmitteilungenSingle",
     date: "31.10.2023",
-    text: "TRAMLINK startet Linienverkehr in Bern.",
+    title: "TRAMLINK startet Linienverkehr in Bern.",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }, { tag: "Corporate" }],
   },
 ];
 
@@ -262,13 +282,12 @@ export default function Medienmitteilungen() {
         breadcrumbs={[{ text: "Medien", link: "/medien" }]}
         title="Medienmitteilungen"
         leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sem diam, volutpat tristique congue in, fermentum et arcu. Donec elementum ac dolor consectetur laoreet. Vestibulum augue elit, malesuada eu eros ut, consectetur placerat turpis. Aenean vel dapibus velit. Nulla dapibus sem est. Pellentesque nec lectus accumsan, rutrum ipsum ut, mattis quam. "
-        // withCTA={true}
-        // buttonText="CTA Button"
       />
-      <TeaserMedienmitteilungen
-        title="Ad-Hoc Medienmitteilungen"
-        listData={listMedienmitteilungen}
-      ></TeaserMedienmitteilungen>
+      <MedienmitteilungenShortSection
+        medienmitteilungenTitle="Ad-Hoc Medienmitteilungen"
+        medienmitteilungen={shortlistMedienmitteilungen}
+        showButton={false}
+      ></MedienmitteilungenShortSection>
 
       <MedienmitteilungenList
         mainTitle="Alle Medienmitteilungen"

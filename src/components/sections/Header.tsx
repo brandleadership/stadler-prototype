@@ -9,8 +9,7 @@ const navigation = {
   topNav: [
     { name: "Medien", href: "/#" },
     { name: "Zulieferer", href: "/zulieferer" },
-    { name: "Kunden", href: "/#" },
-    { name: "Downloadcenter", href: "/#" },
+    { name: "Downloads", href: "/downloadcenter" },
   ],
 };
 
@@ -42,7 +41,7 @@ type NavItems = {
 
 const navigationMain: NavItems = {
   topNav: [
-    { title: "Unternehmen", href: "/#", icon: false },
+    { title: "Unternehmen", href: "/unternehmen", icon: false },
     {
       title: "Lösungen",
       href: "/solutions",
@@ -193,15 +192,6 @@ const Header = () => {
                   </ul>
                   <div className="border-b lg:border-none"></div>
                   <ul className="flex flex-col lg:flex lg:flex-row lg:items-center gap-8 mb-10 lg:mb-0 lg:gap-4">
-                    <li className="flex flex-row lg:flex lg:items-center gap-2">
-                      <img src="/icons/country.svg" alt="Country Icon" />
-                      <a
-                        className="text-base leading-6 font-medium text-primarySolid-800 hover:text-primary"
-                        href="#"
-                      >
-                        Schweiz
-                      </a>
-                    </li>
                     <li className="flex flex-row lg:flex lg:items-center  gap-2">
                       <img src="/icons/country-name.svg" alt="Language Icon" />
                       <a
@@ -360,18 +350,11 @@ const Header = () => {
 
                     <li className="hidden lg:block">
                       <div className="block pt-6 pl-0 md:pl-12 md:pt-0">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M20 18.402L13.2637 11.6657C14.1502 10.4517 14.681 8.96104 14.681 7.34049C14.681 3.28628 11.3947 0 7.34049 0C3.28628 0 0 3.28628 0 7.34049C0 11.3947 3.28628 14.681 7.34049 14.681C8.96104 14.681 10.4517 14.1502 11.6657 13.2637L18.402 20L20 18.402ZM7.34613 12.4111C4.5511 12.4111 2.28119 10.1355 2.28119 7.34613C2.28119 4.55675 4.55674 2.2812 7.34613 2.2812C10.1355 2.2812 12.4111 4.55675 12.4111 7.34613C12.4111 10.1355 10.1355 12.4111 7.34613 12.4111Z"
-                            fill="#B3B3B3"
-                          />
-                        </svg>
+                        <img
+                          className="w-5 h-5"
+                          src="/icons/ohne-box/search_FILL0_wght400_GRAD0_opsz24_blue.svg"
+                          alt=""
+                        />
                       </div>
                     </li>
                   </ul>

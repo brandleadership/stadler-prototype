@@ -33,7 +33,7 @@ const TeaserMedienmitteilungen: React.FC<TeaserDownloadProps> = ({
             {listData.map((item, index) => (
               <>
                 <li
-                  className="text-xl flex md:flex-row flex justify-start md:justify-between items-center"
+                  className="text-xl flex md:flex-row justify-start md:justify-between items-center"
                   key={index}
                 >
                   <a href={item.link} className="mb-6 w-full md:w-auto flex">

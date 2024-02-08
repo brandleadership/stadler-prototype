@@ -3,6 +3,9 @@
 import H2 from "@/components/typography/H2";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import ContentWidth from "@/components/layouts/ContentWidth";
+import Text from "@/components/typography/Text";
+import H3 from "@/components/typography/H3";
+import H4 from "@/components/typography/H4";
 
 interface SectonProps {
   title: string;
@@ -23,67 +26,41 @@ const SustainableProcurement:React.FC<SectonProps> = ({title, showButton}) => {
             <div className=" sm:text-lg">
               {/* Nachhaltigkeit in der Lieferkette */}
               <H2>{title}</H2>
-              <p className="my-4 font-normal lg:text-xl">
+              <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse sit amet eros pulvinar, commodo augue ac, viverra
                 justo. Vivamus a ultricies elit. Interdum et malesuada fames ac
                 ante ipsum primis in faucibus. Phasellus a dapibus dolor.
-              </p>
-              <div className="py-8 border-t border-gray-200 dark:border-gray-700">
+              </Text>
+              <div className="mt-4 py-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex">
-                  <div className="flex justify-center items-center mr-4 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 shrink-0">
-                    <svg
-                      className="w-5 h-5 text-primary-600 dark:text-primary-300"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
+                <div className="flex justify-center items-center pt-2 mr-4 w-6 h-6 shrink-0">
+                    <img src="/icons/ohne-box/globe_FILL0_wght400_GRAD0_opsz24_blue.svg" />
                   </div>
                   <div>
-                    <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                      Lorem ipsum
-                    </h3>
-                    <p className="mb-2 font-normal text-gray-500 dark:text-gray-400">
-                      Ut fringilla auctor dui, in vestibulum enim tempor ac.
-                      Nullam et velit eu ante tincidunt fringilla nec id tortor.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex pt-8">
-                  <div className="flex justify-center items-center mr-4 w-8 h-8 bg-purple-100 rounded-full dark:bg-purple-900 shrink-0">
-                    <svg
-                      className="w-5 h-5 text-purple-600 dark:text-purple-300"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                      Lorem ipsum
-                    </h3>
-                    <p className="mb-2 font-normal text-gray-500 dark:text-gray-400">
+                    <H4>Lorem ipsum</H4>
+                    <Text>
                       Vestibulum sit amet libero ut tellus finibus lacinia. Sed
                       luctus libero eu fringilla finibus.
-                    </p>
+                    </Text>
+                  </div>
+                </div>
+                <div className="flex py-8">
+                  <div className="flex justify-center items-center pt-2 mr-4 w-6 h-6 shrink-0">
+                    <img src="/icons/ohne-box/footprint_FILL0_wght400_GRAD0_opsz24_blue.svg" />
+                  </div>
+                  <div>
+                    <H4>Lorem ipsum</H4>
+                    <Text>
+                      Vestibulum sit amet libero ut tellus finibus lacinia. Sed
+                      luctus libero eu fringilla finibus.
+                    </Text>
                   </div>
                 </div>
               </div>
               {showButton && (
                 <ButtonPrimary position="left" href="/nachhaltigkeit">
-                  Nachhaltigkeit
+                  Mehr zu Nachhaltigkeit
                   <svg
                     width="15"
                     height="15"

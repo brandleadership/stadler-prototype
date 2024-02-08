@@ -5,16 +5,16 @@ export default function Hero() {
   return (
     <section className="bg-white pb-5 lg:pb-24">
       <SmallWidth>
-        <div className="col-span-12 text-center  ">
-          <video
-            className="-mt-[1%] -mb-[1%]"
+     
+          <video 
             controls={true}
             autoPlay={true}
             muted={true}
-             src={"/videos/Movie-Stadler-Kurz-People-Focus-no-frame-1080.mp4"}
+            src={
+              "https://brand-stadler.com/uploads/Stadler%20Entrepreneurship%20Movie%20V14%20DE%20Heavy%20Compression_2.mp4"
+            }
             loop={true}
           />
-        </div>
       </SmallWidth>
     </section>
   );

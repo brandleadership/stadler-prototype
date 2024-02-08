@@ -247,10 +247,17 @@ export default function Mainline() {
         // buttonText="CTA Button"
       />
       <ImageFullWidth imgSrc="/hero-mainline.jpg" />
-      <TextSection></TextSection>
- 
+      <TextSection>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Text>
+      </TextSection>
+
       <ServiceTeasers
-         mainTitle="Relevante Lösungen"
+        mainTitle="Relevante Lösungen"
         services={teaserData}
         imageStyles="w-full "
       ></ServiceTeasers>

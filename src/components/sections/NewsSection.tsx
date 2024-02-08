@@ -1,4 +1,3 @@
-import CardSimple from "../elements/CardSimple";
 import ContentWidth from "@/components/layouts/ContentWidth";
 import Text from "@/components/typography/Text";
 
@@ -152,14 +151,6 @@ export default function NewsSection() {
   return (
     <ContentWidth>
       <div className="col-span-12 w-full">
-        {/* <div className="">
-          <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-gray-900 md:text-4xl dark:text-white">
-            From the blog
-          </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Learn how to grow your business with our expert advice.
-          </p>
-        </div> */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {news.map((item, index) => (
             <a
@@ -167,10 +158,10 @@ export default function NewsSection() {
               className="group mb-6 transition-all"
               key={index}
             >
-              <div className="overflow-hidden">
+              <div className="overflow-hidden h-52">
                 <img
                   src={item.image}
-                  className="group-hover:scale-110 transition-all"
+                  className="object-cover w-full h-full group-hover:scale-110 transition-all"
                   alt="Image 1"
                 />
               </div>

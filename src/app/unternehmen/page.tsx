@@ -11,7 +11,51 @@ import Map from "@/components/sections/Map";
 import EventCalendar from "@/components/sections/EventCalendar";
 import Hero from "./Hero";
 import History_Proposal from "./History_Proposal";
+import NewsShortSection from "@/components/sections/NewsShortSection";
 
+const newsSection = [
+  {
+    link: "/singleNews",
+    title: "Stadler bleibt Premium Partner der Eisbären",
+    date: "28.11.2023",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }, { tag: "Corporate" }],
+  },
+  {
+    link: "/singleNews",
+    title:
+      "Stadler eröffnet neues Logistikzentrum für den Schienenverkehr in Berlin Pankow",
+    date: "07.11.2023",
+    lead:
+      "Gemeinsam mit Berlins Regierendem Bürgermeister, Kai Wegner, sowie der Senatorin für Wirtschaft, Energie und Betriebe, Franzisk...",
+    image: "/pressefoto-einweihung.jpg",
+    tags: [{ tag: "Corporate" }],
+  },
+  {
+    link: "/singleNews",
+    title:
+      "Neue Akkuzüge sind jetzt auch zwischen Kiel, Lübeck und Lüneburg unterwegs",
+    date: "23.10.2023",
+    lead:
+      "In Schleswig-Holstein ist die weltweit erste batterieelektrische Zugflotte im regelmäßigen Linienbetrieb unterwegs. Damit ha...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/mwe_0920%20-%20cropped.jpg",
+    tags: [{ tag: "Ad-Hoc" }],
+  },
+  {
+    link: "/singleNews",
+    title: "Weitere neue Wasserstoffzüge für Kalifornien",
+    date: "16.10.2023",
+    lead:
+      "Der Bundesstaat Kalifornien und Stadler haben am 12. Oktober 2023 eine wegweisende Vereinbarung unterzeichnet, die einen bedeutenden Schr...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/caltrans-coastline-16-9.jpg",
+    tags: [{ tag: "Ad-Hoc" }],
+  },
+];
 const cards = [
   {
     title: "FLIRT bewegt die Welt",
@@ -174,7 +218,6 @@ export default function Unternehmen() {
       />
       <Hero></Hero>
       <DNA />
-      {/* <WertePrinzipen /> */}
       <FactsAndFigures
         data1={statistics}
         data2={daten}
@@ -185,8 +228,29 @@ export default function Unternehmen() {
         showThirdCard={false}
         numberOfColumns={2}
       />
-      <Map title="Global präsent – lokal verankert" />
-
+      <section>
+      <div className="gap-4 mt-8 sm:grid sm:grid-cols-4 sm:mt-12">
+        <img
+          className="object-cover h-80 w-full scale-100 col-span-2 mb-4 sm:block  "
+          src="https://www.stadlerrail.com/media/img/800x/mwe_0920%20-%20cropped.jpg"
+          alt="content gallery 1"
+        />
+        <img
+          className=" object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
+          src="https://www.stadlerrail.com/media/img/744x606/drohnenaufnahme_star_quadratisch.jpg"
+          alt="content gallery 2"
+        />
+        <img
+          className="object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
+          src="https://www.stadlerrail.com/media/img/744x606/jet_7487_quadratisch.jpg"
+          alt="content gallery 3"
+        />
+      </div>
+      </section>
+      <div className="lg:py-24">
+        {" "}
+        <Map title="Global präsent – lokal verankert" />
+      </div>
       <SustainableProcurement title="Nachhaltigkeit" showButton={true} />
       <History_Proposal />
       <HomePageCarousel
@@ -200,13 +264,20 @@ export default function Unternehmen() {
         eventsData={customEventData}
         withoutEventLink={true}
       ></EventCalendar>
-      <HomePageCarousel
+      <NewsShortSection
+        news={newsSection}
+        newsTitle="News"
+        showDate={true}
+        showButton={true}
+        h2Styles="flex justify-left items-left"
+      ></NewsShortSection>
+      {/* <HomePageCarousel
         items={newsCards}
         carouselTitle="News"
         showDate={true}
         showButton={true}
         h2Styles="flex justify-left items-left"
-      ></HomePageCarousel>
+      ></HomePageCarousel> */}
     </>
   );
 }

@@ -74,7 +74,6 @@ export default function Karriere() {
     <>
       <CareerHero></CareerHero>
       <Intro title="Unsere Kultur" />
-    
       <ContentWidth>
         <div className="mt-20 col-span-12 max-w-full">
           <img

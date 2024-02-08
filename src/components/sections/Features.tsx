@@ -27,18 +27,11 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
         className="flex items-center gap-2 text-2xl font-bold mt-4"
       >
         {title}
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 21"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.72573e-07 11.6804L16.338 11.6804L10.9296 19.1222L12.7324 20.5176L20 10.5176L12.7324 0.517577L10.9296 1.91293L16.338 9.35479L9.75882e-07 9.35479L7.72573e-07 11.6804Z"
-            fill="#005893"
-          />
-        </svg>
+        <img
+          className="w-5 h-5"
+          src="/icons/ohne-box/arrow_forward_FILL0_wght400_GRAD0_opsz24_blue.svg"
+          alt=""
+        />
       </a>
     </li>
   );

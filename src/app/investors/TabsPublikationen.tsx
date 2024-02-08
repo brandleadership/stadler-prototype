@@ -39,10 +39,7 @@ export default function TabsPublikationen() {
 
 
   return (
-    <section className="py-24">
-    <ContentWidth>
-        <div className="col-span-12 max-w-full">
-            <H2>Alle Publikationen nach Jahr</H2>
+    <>
       <nav
         className="mx-auto grid grid-cols-2 gap-2 sm:grid-cols-6 sm:gap-4"
         aria-label="Tabs"
@@ -97,8 +94,6 @@ export default function TabsPublikationen() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
-    </ContentWidth>
-    </section>
+      </>
   );
 }

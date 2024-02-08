@@ -5,6 +5,7 @@ interface Train {
   name: string;
   img: string;
   category: string;
+  href: string
 }
 
 interface TrainCardListProps {
@@ -32,7 +33,7 @@ export default function TrainCardList({
                 </small>
                 <div className="flex flex-row items-center justify-between">
                   <H3 styles="mb-0">{item.name}</H3>
-                  <a href="#">
+                  <a href={item.href}>
                     <img src="/icons/arrow-blue.svg" alt="Arrow" />
                   </a>
                 </div>

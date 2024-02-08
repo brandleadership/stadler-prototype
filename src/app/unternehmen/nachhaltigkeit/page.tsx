@@ -42,29 +42,51 @@ export default function Nachhaltigkeit() {
   return (
     <>
       <HeroText
-        breadcrumbs={[
-          { text: "Unternehmen", link: "/unternehmen" },
-        ]}
+        breadcrumbs={[{ text: "Unternehmen", link: "/unternehmen" }]}
         title="Nachhaltigkeit ist in unserer DNA."
         leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       />
       <ImageFullWidth imgSrc="https://www.stadlerrail.com/media/img/c/mwe_0920.jpg" />
-      <TextSection />
+      <TextSection>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Text>
+      </TextSection>
       <ProductCarousel />
       <section className="text-white bg-stadlergradient">
         <ContentWidth>
-            <div className="col-span-12 flex flex-col py-24">
+          <div className="col-span-12 flex flex-col py-24">
             <H2>Umwelt und Kreislaufwirtschaft</H2>
-            <Text>Umwelt Netto-Null und Kreislaufwirtschaft, Supply Chain Management ist nachhaltig, Ziele in Nachhaltigkeit, nachhaltige Produktion, etc. <br /> <br />
+            <Text>
+              Umwelt Netto-Null und Kreislaufwirtschaft, Supply Chain Management
+              ist nachhaltig, Ziele in Nachhaltigkeit, nachhaltige Produktion,
+              etc. <br /> <br />
             </Text>
             <Text>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo duo
+              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+              invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet.
             </Text>
-            </div>
+          </div>
         </ContentWidth>
       </section>
       <Intro title="Wir arbeiten nachhaltig" />
-      <CTASection title="Lorem ipsum" img='https://www.stadlerrail.com/media/img/800x/caltrans-coastline-16-9.jpg' img2='https://www.stadlerrail.com/media/img/c/heag-mobilo_stadler-tina_aussen.jpg' img3='https://www.stadlerrail.com/media/img/800x/01_flirt%20akku_aspire_small.jpg' />
+      <CTASection
+        title="Lorem ipsum"
+        img="https://www.stadlerrail.com/media/img/800x/caltrans-coastline-16-9.jpg"
+        img2="https://www.stadlerrail.com/media/img/c/heag-mobilo_stadler-tina_aussen.jpg"
+        img3="https://www.stadlerrail.com/media/img/800x/01_flirt%20akku_aspire_small.jpg"
+      />
       <CorporateGorvernance
         mainTitle="Corporate Governance"
         showThirdCard={true}
@@ -72,23 +94,32 @@ export default function Nachhaltigkeit() {
       />
       <ContentWidth>
         <div className="col-span-12 mt-24">
-        <H2>Zertifizierungen</H2>
-        <Text>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Text>
+          <H2>Zertifizierungen</H2>
+          <Text>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+            Lorem ipsum dolor sit amet.
+          </Text>
         </div>
-        </ContentWidth>
+      </ContentWidth>
       <TeaserDownload
-            buttonLink="/downloadcenter"
-            buttonText="Alle Medienmitteilungen"
-            showList={true}
-            showButton={false}
-            listData={listDatenschutz}
-          ></TeaserDownload>
-          <ContentWidth>
-            <div className="col-span-12 mb-14 flex justify-between align-baseline">
-              <Text>Im Downloadcenter finden Sie alle Zertifizierungen in allen Sprachen.</Text>
-              <ButtonPrimary buttonText="Zum Downloadcenter" />
-            </div>
-          </ContentWidth>
+        buttonLink="/downloadcenter"
+        buttonText="Alle Medienmitteilungen"
+        showList={true}
+        showButton={false}
+        listData={listDatenschutz}
+      ></TeaserDownload>
+      <ContentWidth>
+        <div className="col-span-12 mb-14 flex justify-between align-baseline">
+          <Text>
+            Im Downloadcenter finden Sie alle Zertifizierungen in allen
+            Sprachen.
+          </Text>
+          <ButtonPrimary buttonText="Zum Downloadcenter" />
+        </div>
+      </ContentWidth>
     </>
   );
 }

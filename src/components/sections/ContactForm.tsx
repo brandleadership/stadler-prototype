@@ -24,7 +24,7 @@ export default function ContactForm(props?: any) {
                 name="betreff"
                 id="betreff"
                 className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                placeholder="Betreff *"
+                placeholder=""
                 required
               />
             </div>
@@ -74,7 +74,7 @@ export default function ContactForm(props?: any) {
                   name="floating_first_name"
                   id="floating_first_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Vorname *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -90,7 +90,7 @@ export default function ContactForm(props?: any) {
                   name="floating_last_name"
                   id="floating_last_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Nachname *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -108,7 +108,7 @@ export default function ContactForm(props?: any) {
                   name="floating_first_name"
                   id="floating_first_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Strasse *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -124,7 +124,7 @@ export default function ContactForm(props?: any) {
                   name="floating_last_name"
                   id="floating_last_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Nr. *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -142,7 +142,7 @@ export default function ContactForm(props?: any) {
                   name="floating_first_name"
                   id="floating_first_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="PLZ *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -158,7 +158,7 @@ export default function ContactForm(props?: any) {
                   name="floating_last_name"
                   id="floating_last_name"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Ort *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -178,7 +178,7 @@ export default function ContactForm(props?: any) {
                   name="floating_phone"
                   id="floating_phone"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Email *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -194,7 +194,7 @@ export default function ContactForm(props?: any) {
                   name="floating_company"
                   id="floating_company"
                   className="block p-3  w-full text-sm text-gray-900 bg-white  border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                  placeholder="Telefon *"
+                  placeholder=""
                   required
                 />
               </div>
@@ -210,7 +210,7 @@ export default function ContactForm(props?: any) {
                 rows={6}
                 id="message"
                 className="block p-2.5 w-full text-sm text-gray-900 bg-white border border-gray-300 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
-                placeholder="Bemerkung *"
+                placeholder=""
               ></textarea>
             </div>
             <div className="flex items-start mb-8">

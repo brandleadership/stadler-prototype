@@ -9,20 +9,20 @@ const data = [
   {
     id: 1,
     image: "/image1product.jpg",
-    titleH3: "Ergonomie am Arbeitsplatz sorgt für Sicherheit",
+    titleH3: "1Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
-      "Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei",
+      "Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei. Unsere Detailorientierung garantiert somit höchste Sicherheitsstandards für alle.",
   },
   {
     id: 2,
-    image: "/image1product.jpg",
+    image: "/hero-full-service.jpg",
     titleH3: "2Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
-      "2Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei",
+      "2Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei.",
   },
   {
     id: 3,
-    image: "/image1product.jpg",
+    image: "/hero-snow-train.jpg",
     titleH3: "3Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
       "3Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell,",
@@ -68,77 +68,49 @@ const ProductCarousel = () => {
 
   return (
     <>
-      <div className="w-full mx-auto min-h-[120vh] md:min-h-[130vh] lg:min-h-[690px]  overflow-hidden relative flex justify-center items-center">
+      <div className="bg-primarySolid-50 w-full mx-auto min-h-[120vh] md:min-h-[130vh] lg:min-h-[690px] overflow-hidden relative flex justify-center items-center">
         <AnimatePresence initial={false}>
           <motion.div
-            className="flex xl:flex-row flex-col items-center justify-center absolute top-0 max-w-full"
+            className="grid grid-cols-3 items-center justify-center absolute top-0 max-w-full"
             key={imageIndex}
             variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              scale: { type: "ease-in", duration: 0.5 },
-              opacity: { duration: 0.3 },
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
-
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
           >
             <img
-              className="block max-w-full h-auto"
+              className="min-h-[690px] grid col-span-2 object-cover w-full h-full"
               src={data[imageIndex].image}
               alt="Carousel Image"
             />
-
-            <div className="p-24 mx-w-full md:w-auto">
-              <H3>{data[imageIndex].titleH3}</H3>
-              <Text styles="mb-6 mt-8 md:mb-6 mt-4 md:mt-8">
-                {data[imageIndex].text}
-              </Text>
-              <button
-                className="w-10 h-10 md:w-10 md:h-10"
-                onClick={() => paginate(-1)}
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+            <div className="grid col-span-1 justify-start items-start grid-rows-4 grid-flow-col gap-4 p-16 h-full">
+              <div className="row-span-3 pt-10">
+                <H3>{data[imageIndex].titleH3}</H3>
+                <Text styles="mb-6 mt-8 md:mb-6 mt-4 md:mt-8">
+                  {data[imageIndex].text}
+                </Text>
+              </div>
+              <div className="row-span-1 grid grid-flow-col justify-start content-end">
+                <button
+                  className="w-10 h-10 md:w-10 md:h-10"
+                  onClick={() => paginate(-1)}
+                  disabled={page === 0}
                 >
-                  <path
-                    d="M14.8586 20L4 10L14.8586 0L16.4099 1.68288L7.38294 10L16.4099 18.3171L14.8586 20Z"
-                    fill="#005893"
+                  <img
+                    className="w-5 h-5"
+                    src="/icons/ohne-box/chevron_left_FILL0_wght400_GRAD0_opsz24_blue.svg"
+                    alt=""
                   />
-                </svg>
-              </button>
-              <button
-                className="w-10 h-10 md:w-10 md:h-10"
-                onClick={() => paginate(1)}
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                </button>
+                <button
+                  className="w-10 h-10 md:w-10 md:h-10"
+                  onClick={() => paginate(1)}
+                  disabled={page === data.length - 1}
                 >
-                  <path
-                    d="M5.55124 20L4 18.3171L13.0269 10L4 1.68288L5.55124 0L16.4099 10L5.55124 20Z"
-                    fill="#005893"
+                  <img
+                    className="w-5 h-5"
+                    src="/icons/ohne-box/chevron_right_FILL0_wght400_GRAD0_opsz24_blue.svg"
+                    alt=""
                   />
-                </svg>
-              </button>
+                </button>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

@@ -13,11 +13,56 @@ import Text from "@/components/typography/Text";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import EventCalendar from "@/components/sections/EventCalendar";
 import NewsTeaser from "../unternehmen/NewsTeaser";
+import NewsShortSection from "@/components/sections/NewsShortSection";
 import HomePageCaroucel from "@/components/sections/HomePageCaroucel";
 import TabsPublikationen from "./TabsPublikationen";
 import Features from "@/components/sections/Features";
 import TabsGeneralversammlung from "./TabsGeneralversammlung";
+import H2 from "@/components/typography/H2";
 
+const newsSection = [
+  {
+    link: "/singleNews",
+    title: "Stadler bleibt Premium Partner der Eisbären",
+    date: "28.11.2023",
+    lead:
+      "Die Eisbären Berlin freuen sich, den Schienenfahrzeughersteller Stadler weiterhin zu ihren Premium Partnern zu zählen. Stadler ...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/gruppenfoto%202%20nah-sh-optimiert.jpg",
+    tags: [{ tag: "Ad-Hoc" }, { tag: "Corporate" }],
+  },
+  {
+    link: "/singleNews",
+    title:
+      "Stadler eröffnet neues Logistikzentrum für den Schienenverkehr in Berlin Pankow",
+    date: "07.11.2023",
+    lead:
+      "Gemeinsam mit Berlins Regierendem Bürgermeister, Kai Wegner, sowie der Senatorin für Wirtschaft, Energie und Betriebe, Franzisk...",
+    image: "/pressefoto-einweihung.jpg",
+    tags: [{ tag: "Corporate" }],
+  },
+  {
+    link: "/singleNews",
+    title:
+      "Neue Akkuzüge sind jetzt auch zwischen Kiel, Lübeck und Lüneburg unterwegs",
+    date: "23.10.2023",
+    lead:
+      "In Schleswig-Holstein ist die weltweit erste batterieelektrische Zugflotte im regelmäßigen Linienbetrieb unterwegs. Damit ha...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/mwe_0920%20-%20cropped.jpg",
+    tags: [{ tag: "Ad-Hoc" }],
+  },
+  {
+    link: "/singleNews",
+    title: "Weitere neue Wasserstoffzüge für Kalifornien",
+    date: "16.10.2023",
+    lead:
+      "Der Bundesstaat Kalifornien und Stadler haben am 12. Oktober 2023 eine wegweisende Vereinbarung unterzeichnet, die einen bedeutenden Schr...",
+    image:
+      "https://www.stadlerrail.com/media/img/800x/caltrans-coastline-16-9.jpg",
+    tags: [{ tag: "Ad-Hoc" }],
+  },
+];
 const publications = [
   {
     img: "/publications/publ-card-1.png",
@@ -239,7 +284,6 @@ const newsCards = [
   },
 ];
 
-
 const featuresData = [
   {
     imageSrc: "/teaser_signalling-2.jpg",
@@ -258,13 +302,39 @@ export default function Investors() {
     <section>
       <InvestorHero />
       <FactsAndFigures data1={facts} data2={figures} title="Daten & Fakten" />
-      <HomePageCaroucel
+      <NewsShortSection
+        news={newsSection}
+        newsTitle="News"
+        showDate={true}
+        showButton={true}
+        h2Styles="flex justify-left items-left"
+      ></NewsShortSection>
+      <section>
+      <div className="gap-4 mb-24 sm:grid sm:grid-cols-4 sm:mt-12">
+        <img
+          className="object-cover h-80 w-full scale-100 col-span-2 mb-4 sm:block  "
+          src="https://www.stadlerrail.com/media/img/c/stasa_200520.jpg"
+          alt="content gallery 1"
+        />
+        <img
+          className=" object-cover h-80 w-full scale-100 hidden col-span-1 sm:block"
+          src="https://www.stadlerrail.com/media/img/744x606/2019_1111_milestones%202019%20for%20website_ipo%20(2).jpg"
+          alt="content gallery 2"
+        />
+        <img
+          className="object-cover h-80 w-full scale-100 hidden col-span-1 sm:block"
+          src="https://www.stadlerrail.com/media/img/800x/01_flirt%20nordic%20express.jpg"
+          alt="content gallery 3"
+        />
+      </div>
+      </section>
+      {/* <HomePageCaroucel
         items={newsCards}
         carouselTitle="News"
         showDate={true}
         showButton={true}
         h2Styles="flex justify-left items-left"
-      ></HomePageCaroucel>
+      ></HomePageCaroucel> */}
       <EventCalendar
         mainTitle="Events"
         eventsData={customEventData}
@@ -276,15 +346,29 @@ export default function Investors() {
         title="Neuste Berichte"
         showTable={false}
       ></Publikationen>
-      <TabsPublikationen></TabsPublikationen>
-      <ContentWidth>
-          <div className="col-span-12 mb-14 flex justify-between align-baseline">
-            <Text>Alle Publikationen und Präsentationen finden Sie im Downloadcenter</Text>
-            <ButtonPrimary buttonText="Zum Downloadcenter" />
+      <section className="py-24">
+        <ContentWidth>
+        <div className="col-span-12 max-w-full">
+            <H2>Alle Publikationen nach Jahr</H2>
+            <TabsPublikationen></TabsPublikationen>
           </div>
+          </ContentWidth>
+      </section>
+      <ContentWidth>
+        <div className="col-span-12 mb-14 flex justify-between align-baseline">
+          <Text>
+            Alle Publikationen und Präsentationen finden Sie im Downloadcenter
+          </Text>
+          <ButtonPrimary buttonText="Zum Downloadcenter" />
+        </div>
         <hr className="col-span-12 h-px bg-gray-200 border-0 dark:bg-gray-700" />
       </ContentWidth>
-      <TabsGeneralversammlung />
+      <ContentWidth>
+        <div className="py-24 col-span-12 max-w-full">
+          <H2>Generalversammlung</H2>
+          <TabsGeneralversammlung />
+        </div>
+      </ContentWidth>
       <TextBlock />
       <CorporateGorvernance
         mainTitle="Corporate Governance"
@@ -299,7 +383,10 @@ export default function Investors() {
       {/* <ContentWidth>
         <div className="col-span-12 flex flex-col mb-20"></div>
       </ContentWidth> */}
-      <Features mainTitle="Möchten Sie gerne mehr über uns erfahren?" featuresData={featuresData} />
+      <Features
+        mainTitle="Möchten Sie gerne mehr über uns erfahren?"
+        featuresData={featuresData}
+      />
     </section>
   );
 }

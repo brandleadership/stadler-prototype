@@ -40,10 +40,8 @@ export default function TabsGeneralversammlung() {
 
 
   return (
-    <ContentWidth>
-        <div className="py-24 col-span-12 max-w-full">
-            <H2>Generalversammlung</H2>
-      <nav
+    <>
+        <nav
         className="mx-auto grid grid-cols-2 gap-2 sm:grid-cols-6 sm:gap-4"
         aria-label="Tabs"
         id="myTab"
@@ -74,9 +72,9 @@ export default function TabsGeneralversammlung() {
             </span>
           </button>
         ))}
-      </nav>
+        </nav>
 
-      <div className="mt-12 md:mt-16" id="myTabContent">
+        <div className="mt-12 md:mt-16" id="myTabContent">
         <AnimatePresence mode="wait">
           <motion.div
             role="tabpanel"
@@ -96,8 +94,7 @@ export default function TabsGeneralversammlung() {
             </div>
           </motion.div>
         </AnimatePresence>
-      </div>
-    </div>
-    </ContentWidth>
+        </div>
+    </>
   );
 }
