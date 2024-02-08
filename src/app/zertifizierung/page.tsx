@@ -12,7 +12,8 @@ import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import AccordionItem from "@/components/sections/AccordionItem";
 const schweizItems = [
   {
-    text: "Stadler Rail AG, Stadler Bussnang AG, Stadler Rheintal AG, Stadler Winterthur AG, Stadler Signalling AG",
+    text:
+      "Stadler Rail AG, Stadler Bussnang AG, Stadler Rheintal AG, Stadler Winterthur AG, Stadler Signalling AG",
     iso: "ISO9001, ISO14001, ISO45001",
     href: "/downloadcenter",
   },
@@ -24,7 +25,8 @@ const schweizItems = [
 ];
 const deutschlandItems = [
   {
-    text: "Stadler Deutschland GmbH, Stadler Chemnitz GmbH, Stadler Mannheim GmbH",
+    text:
+      "Stadler Deutschland GmbH, Stadler Chemnitz GmbH, Stadler Mannheim GmbH",
     iso: "ISO9001, ISO14001, ISO50001",
     href: "/downloadcenter",
   },
@@ -48,26 +50,24 @@ const spanienItems = [
 ];
 
 export default function Zertifizierung() {
+  type Section = "rollingStock" | "signalling" | "service";
 
-    type Section = "rollingStock" | "signalling" | "service";
+  const initialSectionsState: Record<Section, boolean> = {
+    rollingStock: false,
+    signalling: false,
+    service: false,
+  };
+  const [sectionsState, setSectionsState] = useState(initialSectionsState);
 
-    const initialSectionsState: Record<Section, boolean> = {
-      rollingStock: false,
-      signalling: false,
-      service: false,
-    };
-        const [sectionsState, setSectionsState] =
-          useState(initialSectionsState);
-
-        const toggleVisibility = (section: Section) => {
-          setSectionsState((prevState: Record<Section, boolean>) => ({
-            ...prevState,
-            [section]: !prevState[section],
-          }));
-        };
+  const toggleVisibility = (section: Section) => {
+    setSectionsState((prevState: Record<Section, boolean>) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
+  };
   return (
     <>
-    <HeroText title="Zertifizierungen" />
+      <HeroText title="Zertifizierungen" />
       <SmallWidth>
         <section>
           <AccordionItem title="Rolling Stock">
@@ -83,9 +83,14 @@ export default function Zertifizierung() {
           </AccordionItem>
         </section>
         <section>
-        <div className="col-span-12 my-14 flex justify-between align-baseline">
-          <Text>Im Downloadcenter finden Sie alle Dokumente in allen Sprachen.</Text>
-          <ButtonPrimary buttonText="Zum Downloadcenter" />
+          <div className="col-span-12 my-14 flex justify-between align-baseline">
+            <Text>
+              Im Downloadcenter finden Sie alle Dokumente in allen Sprachen.
+            </Text>
+            <ButtonPrimary
+              href="/downloadcenter"
+              buttonText="Zum Downloadcenter"
+            />
           </div>
         </section>
       </SmallWidth>

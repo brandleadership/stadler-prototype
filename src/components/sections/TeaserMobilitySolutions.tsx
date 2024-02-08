@@ -18,6 +18,7 @@ export default function TeaserMobilitySolutions(props?: any) {
             einem integrierten Service-Konzept komplementiert.
           </Text>
           <Button
+            href="/solutions"
             position="center"
             textColorClass="text-white"
             styles="mb-12"

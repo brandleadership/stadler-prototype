@@ -35,7 +35,7 @@ const listDatenschutz: listDatenschutz[] = [
   },
   {
     text: "Zertifizierung Nachhaltigkeit",
-  }
+  },
 ];
 
 export default function Nachhaltigkeit() {
@@ -117,7 +117,10 @@ export default function Nachhaltigkeit() {
             Im Downloadcenter finden Sie alle Zertifizierungen in allen
             Sprachen.
           </Text>
-          <ButtonPrimary buttonText="Zum Downloadcenter" />
+          <ButtonPrimary
+            href="/downloadcenter"
+            buttonText="Zum Downloadcenter"
+          />
         </div>
       </ContentWidth>
     </>

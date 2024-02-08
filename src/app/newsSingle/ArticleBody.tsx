@@ -18,7 +18,7 @@ export default function ArticleBody() {
     <>
       <ArticleHero
         breadcrumbs={[
-          { text: "Medien", link: "/medien" },
+          { text: "Medien", link: "/#" },
           { text: "News", link: "/news" },
         ]}
         title="EURO9000 erhält grünes Licht für den Betrieb in Belgien und den Niederlanden"

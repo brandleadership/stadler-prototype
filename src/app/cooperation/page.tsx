@@ -66,7 +66,10 @@ export default function Cooperation() {
             Alle weiteren Dokumente und Downloads für Cooperation finden Sie in
             unserem Downloadcenter
           </Text>
-          <ButtonPrimary buttonText="Zum Downloadcenter" />
+          <ButtonPrimary
+            href="/downloadcenter"
+            buttonText="Zum Downloadcenter"
+          />
         </div>
       </ContentWidth>
       <Contact />

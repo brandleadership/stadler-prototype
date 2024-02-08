@@ -11,7 +11,7 @@ const featuresData = [
   {
     imageSrc: "/teaser_signalling-2.jpg",
     title: "Medien",
-    href: "/medien",
+    href: "/#",
   },
   {
     imageSrc: "/teaser_service.jpeg",
@@ -24,7 +24,7 @@ export default function News() {
   return (
     <div>
       <HeroText
-        breadcrumbs={[{ text: "Medien", link: "/medien" }]}
+        breadcrumbs={[{ text: "Medien", link: "/#" }]}
         title="News"
         leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tincidunt diam. Donec ac est in mi luctus elementum. Etiam eu tincidunt diam. Donec ac est in mi luctus elementum."
         // withCTA={true}

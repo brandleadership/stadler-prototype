@@ -24,56 +24,52 @@ interface listDatenschutz {
   text: string;
 }
 
- const accordionData: Data[] = [
-   {
-     title: "Website",
-     innerTitle: "Datenschutzerklärung",
-     textFirst:
-       "Website Stadlerrail.com Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').",
-     titleInner2: "Verantwortlicher und Datenschutzbeauftragte",
-     textSecond:
-       "Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de",
-   },
-   {
-     title: "Job Abo",
-     innerTitle: "Datenschutzerklärung",
-     textFirst:
-       "Einschreibung für das Job Abo Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').",
-     titleInner2: "Verantwortlicher und Datenschutzbeauftragte",
-     textSecond:
-       "Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de",
-   },
- ];
+const accordionData: Data[] = [
+  {
+    title: "Website",
+    innerTitle: "Datenschutzerklärung",
+    textFirst:
+      "Website Stadlerrail.com Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').",
+    titleInner2: "Verantwortlicher und Datenschutzbeauftragte",
+    textSecond:
+      "Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de",
+  },
+  {
+    title: "Job Abo",
+    innerTitle: "Datenschutzerklärung",
+    textFirst:
+      "Einschreibung für das Job Abo Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').",
+    titleInner2: "Verantwortlicher und Datenschutzbeauftragte",
+    textSecond:
+      "Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de",
+  },
+];
 
- const listDatenschutz: listDatenschutz[] = [
-   {
-     text: "Stadler Bussnang - Kunden und Lieferanten",
-   },
-   {
-     text: "Stadler Signalling Deutschland GmbH – Kunden und Lieferanten",
-   },
-   {
-     text: "Medienmitteilungen und News",
-   },
-   {
-     text: "Videoüberwachung Werksgelände Bussnang und Erlen",
-   },
-   {
-     text: "Videoüberwachung Werksgelände Biel",
-   },
-   {
-     text: "Videoüberwachung Werksgelände St. Margrethen",
-   },
-   {
-     text: "Compliance Meldestelle",
-   },
- ];
+const listDatenschutz: listDatenschutz[] = [
+  {
+    text: "Stadler Bussnang - Kunden und Lieferanten",
+  },
+  {
+    text: "Stadler Signalling Deutschland GmbH – Kunden und Lieferanten",
+  },
+  {
+    text: "Medienmitteilungen und News",
+  },
+  {
+    text: "Videoüberwachung Werksgelände Bussnang und Erlen",
+  },
+  {
+    text: "Videoüberwachung Werksgelände Biel",
+  },
+  {
+    text: "Videoüberwachung Werksgelände St. Margrethen",
+  },
+  {
+    text: "Compliance Meldestelle",
+  },
+];
 
 export default function Datenschutz() {
-
-
- 
-
   return (
     <>
       <div className="mt-20">
@@ -90,38 +86,64 @@ export default function Datenschutz() {
             <div className="pt-8  sm:pt-16 ">
               <div className="z-1000">
                 <div id="accordion-flush">
-                    <AccordionItem title="Website">
-                      <div className="py-5 border-b border-gray-200 dark:border-gray-700">
-                        <H4 styles="mb-2 text-black dark:text-gray-400">
-                        Datenschutzerklärung
-                        </H4>
-                        <p className="mb-2 text-black dark:text-gray-400">
-                          Website Stadlerrail.com Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').
-                        </p>
-                        <H4 styles="mb-2 text-black dark:text-gray-400">
-                          Verantwortlicher und Datenschutzbeauftragte
-                        </H4>
-                        <p className="mb-2 text-black dark:text-gray-400">
-                          Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de
-                        </p>
-                      </div>
-                    </AccordionItem>
-                    <AccordionItem title="Job Abo">
-                      <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <AccordionItem title="Website">
+                    <div className="py-5 border-b border-gray-200 dark:border-gray-700">
                       <H4 styles="mb-2 text-black dark:text-gray-400">
                         Datenschutzerklärung
-                        </H4>
-                        <p className="mb-2 text-black dark:text-gray-400">
-                          Website Stadlerrail.com Stadler ist ein Systemanbieter von Mobilitätslösungen in Schienenfahrzeugbau, Service und Signaltechnik. Mit dieser Datenschutzerklärung informieren wir Sie über die Bearbeitung von Personendaten im Rahmen der Website-Nutzung durch das unten aufgeführte Unternehmen der Stadler-Gruppe (nachfolgend alle gemeinsam 'Stadler', 'wir' oder 'uns').
-                        </p>
-                        <H4 styles="mb-2 text-black dark:text-gray-400">
-                          Verantwortlicher und Datenschutzbeauftragte
-                        </H4>
-                        <p className="mb-2 text-black dark:text-gray-400">
-                          Verantwortlich für die Datenbearbeitung ist: Stadler Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41 71 626 21 20 stadler.rail@stadlerrail.com Unsere Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja Krapf compliance@stadlerrail.com Für folgende Standorte in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank Jander, fjander@kedua.de
-                        </p>
-                      </div>
-                    </AccordionItem>
+                      </H4>
+                      <p className="mb-2 text-black dark:text-gray-400">
+                        Website Stadlerrail.com Stadler ist ein Systemanbieter
+                        von Mobilitätslösungen in Schienenfahrzeugbau, Service
+                        und Signaltechnik. Mit dieser Datenschutzerklärung
+                        informieren wir Sie über die Bearbeitung von
+                        Personendaten im Rahmen der Website-Nutzung durch das
+                        unten aufgeführte Unternehmen der Stadler-Gruppe
+                        (nachfolgend alle gemeinsam 'Stadler', 'wir' oder
+                        'uns').
+                      </p>
+                      <H4 styles="mb-2 text-black dark:text-gray-400">
+                        Verantwortlicher und Datenschutzbeauftragte
+                      </H4>
+                      <p className="mb-2 text-black dark:text-gray-400">
+                        Verantwortlich für die Datenbearbeitung ist: Stadler
+                        Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41
+                        71 626 21 20 stadler.rail@stadlerrail.com Unsere
+                        Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja
+                        Krapf compliance@stadlerrail.com Für folgende Standorte
+                        in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank
+                        Jander, fjander@kedua.de
+                      </p>
+                    </div>
+                  </AccordionItem>
+                  <AccordionItem title="Job Abo">
+                    <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                      <H4 styles="mb-2 text-black dark:text-gray-400">
+                        Datenschutzerklärung
+                      </H4>
+                      <p className="mb-2 text-black dark:text-gray-400">
+                        Website Stadlerrail.com Stadler ist ein Systemanbieter
+                        von Mobilitätslösungen in Schienenfahrzeugbau, Service
+                        und Signaltechnik. Mit dieser Datenschutzerklärung
+                        informieren wir Sie über die Bearbeitung von
+                        Personendaten im Rahmen der Website-Nutzung durch das
+                        unten aufgeführte Unternehmen der Stadler-Gruppe
+                        (nachfolgend alle gemeinsam 'Stadler', 'wir' oder
+                        'uns').
+                      </p>
+                      <H4 styles="mb-2 text-black dark:text-gray-400">
+                        Verantwortlicher und Datenschutzbeauftragte
+                      </H4>
+                      <p className="mb-2 text-black dark:text-gray-400">
+                        Verantwortlich für die Datenbearbeitung ist: Stadler
+                        Rail AG Ernst-Stadler-Strasse 1 9565 Bussnang Tel: +41
+                        71 626 21 20 stadler.rail@stadlerrail.com Unsere
+                        Datenschutzbeauftragte für die Stadler-Gruppe ist: Maja
+                        Krapf compliance@stadlerrail.com Für folgende Standorte
+                        in DE: Berlin, Chemnitz, Mannheim: Kedua GmbH, Frank
+                        Jander, fjander@kedua.de
+                      </p>
+                    </div>
+                  </AccordionItem>
                 </div>
               </div>
             </div>
@@ -139,7 +161,10 @@ export default function Datenschutz() {
             <Text>
               Im Downloadcenter finden Sie alle Dokumente in allen Sprachen.
             </Text>
-            <ButtonPrimary buttonText="Zum Downloadcenter" />
+            <ButtonPrimary
+              href="/downloadcenter"
+              buttonText="Zum Downloadcenter"
+            />
           </div>
         </ContentWidth>
       </div>

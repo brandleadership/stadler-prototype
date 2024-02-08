@@ -47,7 +47,6 @@ const statsData = [
 interface MapProps {
   title?: string;
   props?: any;
-
 }
 
 const Map: React.FC<MapProps> = ({ props, title }) => {
@@ -81,7 +80,7 @@ const Map: React.FC<MapProps> = ({ props, title }) => {
             </div>
 
             <div className="mt-8">
-              <ButtonPrimary position="left" href="/standorte">
+              <ButtonPrimary position="left" href="/#">
                 Alle Standorte
               </ButtonPrimary>
             </div>

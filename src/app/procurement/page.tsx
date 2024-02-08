@@ -46,7 +46,10 @@ export default function Procurement() {
           <Text>
             Please find all documents in all languages in the downloadcenter.
           </Text>
-          <ButtonPrimary buttonText="Zum Downloadcenter" />
+          <ButtonPrimary
+            href="/downloadcenter"
+            buttonText="Zum Downloadcenter"
+          />
         </div>
       </ContentWidth>
       <Contact></Contact>
