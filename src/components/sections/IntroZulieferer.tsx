@@ -1,15 +1,26 @@
 import ContentWidth from "../layouts/ContentWidth";
 import H2 from "../typography/H2";
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
+import React from "react";
 
-export default function IntroZulieferer(props?: any) {
+interface ListProps {
+  title: string;
+  buttonLink?: string;
+  buttonTitle?: string;
+}
+
+const IntroZulieferer: React.FC<ListProps> = ({
+  title,
+  buttonLink,
+  buttonTitle,
+}) => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <ContentWidth>
         <div className="col-span-12">
           <div className="gap-16 items-center mb-8 lg:grid lg:grid-cols-2 lg:mb-24">
             <div className="font-normal sm:text-lg">
-              <H2>Cooperation</H2>
+              <H2>{title}</H2>
               <p className="mb-4 mt-6">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                 diam nonumy eirmod tempor. Lorem ipsum dolor sit amet,
@@ -24,8 +35,8 @@ export default function IntroZulieferer(props?: any) {
               </p>
               <ButtonPrimary
                 position="left"
-                buttonText="Jetzt Partner werden"
-                href="/cooperation"
+                buttonText={buttonTitle}
+                href={buttonLink}
               />
             </div>
             <div className="grid grid-cols-2 gap-4 mt-8">
@@ -45,4 +56,6 @@ export default function IntroZulieferer(props?: any) {
       </ContentWidth>
     </section>
   );
-}
+};
+
+export default IntroZulieferer;

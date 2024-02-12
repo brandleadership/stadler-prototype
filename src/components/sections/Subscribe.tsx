@@ -45,7 +45,7 @@ export default function Subscribe() {
                   type="text"
                 />
               </div>
-              <div className="relative w-full">
+              <div className="relative w-full mb-12">
                 <label className=" mb-2 text-sm font-medium">
                   Email address
                 </label>
@@ -56,28 +56,25 @@ export default function Subscribe() {
                   type="email"
                 />
               </div>
-              <div className="flex items-center">
+              <div className="flex items-start mb-16">
                 <input
-                  className="
-        peer relative appearance-none shrink-0 w-6 h-6 border-2 border-white  bg-white
-        focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-primary
-        checked:bg-white checked:border-white
-        disabled:border-steel-400 disabled:bg-steel-400
-      "
+                  className="relative shrink-0 w-4 h-4 border-2 border-primary checked:bg-primary checked:border-primary"
                   type="checkbox"
                 />
                 <label
                   htmlFor="checkbox-1"
-                  className="ms-2 text-sm font-medium text-white dark:text-gray-300"
+                  className="ms-2 text-sm text-gray-500 dark:text-gray-300"
                 >
-                  I agree to the{" "}
+                  Mit dem Absenden dieses Formulars erklären Sie sich damit
+                  einverstanden, dass Stadler Ihre personenbezogenen Daten für
+                  den internen Gebrauch in Übereinstimmung mit unserer{" "}
                   <a
                     href="#"
-                    className="text-white hover:underline cursor-pointer"
+                    className="text-gray-500 hover:underline cursor-pointer break-words"
                   >
-                    terms and conditions
-                  </a>
-                  .
+                    Datenschutzerklärung
+                  </a>{" "}
+                  und mit sicheren technischen Mitteln sammelt und verarbeitet.
                 </label>
               </div>
               <Button position="center">Subscribe</Button>

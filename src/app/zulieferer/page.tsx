@@ -7,11 +7,6 @@ import FactsAndFigures from "@/components/sections/FactsAndFigures";
 import Quote from "@/components/sections/Quote";
 
 import QualityFeatures from "@/components/sections/QualityFeatures";
-import TeaserImageLeft from "@/components/sections/TeaserImageLeft";
-import TeaserImageRight from "@/components/sections/TeaserImageright";
-import Text from "@/components/typography/Text";
-import H2 from "@/components/typography/H2";
-import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import IntroZulieferer from "@/components/sections/IntroZulieferer";
 
 const facts = [
@@ -270,7 +265,11 @@ export default function Lieferanten() {
   return (
     <>
       <Hero />
-      <IntroZulieferer />
+      <IntroZulieferer
+        title="Cooperation"
+        buttonTitle="Jetzt Partner werden"
+        buttonLink="/cooperation"
+      />
       <SustainableProcurement
         title="Nachhaltigkeit in der Lieferkette"
         showButton={false}

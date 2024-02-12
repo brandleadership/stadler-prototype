@@ -4,12 +4,41 @@ import Contact from "@/components/sections/Contact";
 import Subscribe from "@/components/sections/Subscribe";
 import Publikationen from "@/components/sections/Publikationen";
 import HeroText from "@/components/sections/HeroText";
-import HomePageCaroucel from "@/components/sections/HomePageCaroucel";
+import ContentWidth from "@/components/layouts/ContentWidth";
+import H2 from "@/components/typography/H2";
+import Text from "@/components/typography/Text";
+import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import TeaserDownload from "../../components/sections/TeaserDownload";
+import TabsPublikationen from "../investors/TabsPublikationen";
 import EventCalendar from "@/components/sections/EventCalendar";
 import NewsShortSection from "@/components/sections/NewsShortSection";
 import TeaserGeneral from "@/components/sections/TeaserGeneral";
+import IntroZulieferer from "@/components/sections/IntroZulieferer";
+import MedienMedienmitteilungList from "./MedienMedienmitteilungList";
 
+// const publications = [
+//   {
+//     img: "/publications/publ-card-1.png",
+//     title: "Halbjahresbericht 2023",
+//     text: "Unser Erfolgsmodell FLIRT bewegt täglich Menschen und Länder. ",
+//     href:
+//       "https://www.stadlerrail.com/media/pdf/stadler_halbjahresbericht%202023_de_final.pdf",
+//   },
+//   {
+//     img: "/publications/publ-card-2.png",
+//     title: "Geschäftsbericht 2022",
+//     text: "Unser Erfolgsmodell FLIRT bewegt täglich Menschen und Länder. ",
+//     href:
+//       "https://www.stadlerrail.com/media/pdf/stadler_halbjahresbericht%202023_de_final.pdf",
+//   },
+//   {
+//     img: "/publications/publ-card-4.png",
+//     title: "Nachhaltigkeitsbericht 2021",
+//     text: "Unser Erfolgsmodell FLIRT bewegt täglich.",
+//     href:
+//       "https://www.stadlerrail.com/media/pdf/stadler_nachhaltigkeitsbericht_2022_de_web_v5.pdf",
+//   },
+// ];
 const publications = [
   {
     img: "/publications/publ-card-1.png",
@@ -32,8 +61,25 @@ const publications = [
     href:
       "https://www.stadlerrail.com/media/pdf/stadler_nachhaltigkeitsbericht_2022_de_web_v5.pdf",
   },
+  {
+    img: "/presentation.png",
+    title: "Präsentation Halbjahresergebnisse 2023",
+    href:
+      "https://www.stadlerrail.com/media/pdf/stadler%20rail%20-%20half-year%202023%20presentation_f_de.pdf",
+  },
+  {
+    img: "/presentation.png",
+    title: "Presentation Full Year Results 2022",
+    href:
+      "https://www.stadlerrail.com/media/pdf/stadler%20rail%20-%20half-year%202023%20presentation_f_de.pdf",
+  },
+  {
+    img: "/presentation.png",
+    title: "Präsentation Capital Markets Day 2022",
+    href:
+      "https://www.stadlerrail.com/media/pdf/stadler%20rail%20-%20half-year%202023%20presentation_f_de.pdf",
+  },
 ];
-
 const tableData = [
   {
     publication: "Geschäftsbericht 2021",
@@ -78,19 +124,38 @@ const tableData = [
 
 const listMedienmitteilungen = [
   {
-    text:
-      "05.12.2023 Stadler Prag feiert 15-jähriges Jubiläum und verzeichnet starkes Wachstum.",
+    time: "05.12.2023",
+    link: "/medienmitteilungenSingle",
+    text: "FdC bestellt drei weitere Schmalspur-Wasserstoffzüge bei Stadler.",
   },
   {
+    time: "07.11.2023",
+    link: "/medienmitteilungenSingle",
     text:
-      "07.11.2023 Stadler eröffnet neues Logistikzentrum für den Schienenverkehr in Berlin Pankow.",
+      "Offizielle Übergabe des Premierenfahrzeugs der nächsten Berliner U-Bahngeneration",
   },
   {
+    time: "09.11.2023",
+    link: "/medienmitteilungenSingle",
     text:
-      "09.11.2023 Stadler macht Lokomotiven für das ETCS fit und ermöglicht damit schnelleren ETCS-Roll-Out in Deutschland.",
+      "EURO9000 erhält grünes Licht für den Betrieb in Belgien und den Niederlanden",
   },
   {
-    text: "31.10.2023 TRAMLINK startet Linienverkehr in Bern.",
+    time: "31.10.2023",
+    link: "/medienmitteilungenSingle",
+    text:
+      "Neuer Reisekomfort für Fahrgäste und Personal im Fernverkehr der Deutschen Bahn",
+  },
+  {
+    time: "05.12.2023",
+    link: "/medienmitteilungenSingle",
+    text: "FdC bestellt drei weitere Schmalspur-Wasserstoffzüge bei Stadler.",
+  },
+  {
+    time: "07.11.2023",
+    link: "/medienmitteilungenSingle",
+    text:
+      "Offizielle Übergabe des Premierenfahrzeugs der nächsten Berliner U-Bahngeneration",
   },
 ];
 
@@ -209,7 +274,62 @@ const customEventData = [
     link: "#",
   },
 ];
+const customMedienmitteilungen = [
+  {
+    title: "Download PDF",
+    links: [
+      {
+        text: "DE",
+        link: "#",
+      },
+      {
+        text: "EN",
+        link: "#",
+      },
+      {
+        text: "IT",
+        link: "#",
+      },
+      {
+        text: "PX",
+        link: "#",
+      },
+    ],
+  },
 
+  {
+    title: "Download Medien",
+    links: [
+      {
+        text: "ZIP",
+        link: "#",
+      },
+    ],
+  },
+];
+
+const downloads = [
+  {
+    text: "Code of Conduct",
+  },
+  {
+    text: "Geschäftsbedingungen",
+  },
+  {
+    text:
+      "Allgemeine Einkaufsbedingungen Stadler Bussnang AG / Stadler Rheintal AG / Stadler Winterthur AG / Stadler Signalling AG / Stadler Service AG",
+  },
+  {
+    text:
+      "Ergänzende Einkaufsbedingungen für EU-Zulassungsprozesse Stadler Rheintal AG",
+  },
+  {
+    text: "Kurzanleitung Zeitfensterbuchung",
+  },
+  {
+    text: "Stadler Bussnang AG & Stadler Service AG Logistikspezifikation",
+  },
+];
 export default function Medien() {
   return (
     <div>
@@ -219,6 +339,19 @@ export default function Medien() {
         // withCTA={true}
         // buttonText="CTA Button"
       />
+      <MedienMedienmitteilungList
+        mainTitle="Medienmitteilungen"
+        medienmitteilungenList={listMedienmitteilungen}
+      />
+      {/* <TeaserDownload
+        title="Medienmitteilungen"
+        leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        buttonLink="/medienmitteilungen"
+        buttonText="Alle Medienmitteilungen"
+        showList={true}
+        showButton={true}
+        listData={listMedienmitteilungen}
+      ></TeaserDownload> */}
       <NewsShortSection
         news={newsSection}
         newsTitle="News"
@@ -234,29 +367,46 @@ export default function Medien() {
         showButton={true}
         h2Styles="flex justify-left items-left"
       ></HomePageCaroucel> */}
-
-      <TeaserDownload
-        title="Medienmitteilungen"
-        leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        buttonLink="/medienmitteilungen"
-        buttonText="Alle Medienmitteilungen"
-        showList={true}
-        showButton={true}
-        listData={listMedienmitteilungen}
-      ></TeaserDownload>
-      <Publikationen
+      {/* <Publikationen
         tableData={tableData}
         publications={publications}
         title="Publikationen"
+      ></Publikationen> */}
+      <Publikationen
+        tableData={tableData}
+        publications={publications}
+        title="Neuste Berichte"
+        showTable={false}
       ></Publikationen>
+      <section className="py-24">
+        <ContentWidth>
+          <div className="col-span-12 max-w-full">
+            <H2>Alle Publikationen nach Jahr</H2>
+            <TabsPublikationen></TabsPublikationen>
+          </div>
+        </ContentWidth>
+      </section>
+      <ContentWidth>
+        <div className="col-span-12 mb-14 flex justify-between align-baseline">
+          <Text>
+            Alle Publikationen und Präsentationen finden Sie im Downloadcenter
+          </Text>
+          <ButtonPrimary
+            href="/downloadcenter"
+            buttonText="Zum Downloadcenter"
+          />
+        </div>
+        <hr className="col-span-12 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+      </ContentWidth>
       <EventCalendar
         mainTitle="Events"
         eventsData={customEventData}
       ></EventCalendar>
-      <TeaserGeneral
+      <IntroZulieferer
         title="Mediathek"
-        ctaText="Download center"
-      ></TeaserGeneral>
+        buttonTitle="Zur Mediathek"
+        buttonLink="/downloadcenter"
+      />
       <Contact></Contact>
 
       <Subscribe />
