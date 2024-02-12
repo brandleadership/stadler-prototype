@@ -56,7 +56,7 @@ const MedienMedienmitteilungList: React.FC<MedienmitteilungenCustomProps> = ({
           </ul>
           <Button
             position="left"
-            href="/medienMitteilungen"
+            href="/medienmitteilungen"
             buttonText="Alle Medienmitteilungen"
           />
         </div>

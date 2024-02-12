@@ -343,15 +343,7 @@ export default function Medien() {
         mainTitle="Medienmitteilungen"
         medienmitteilungenList={listMedienmitteilungen}
       />
-      {/* <TeaserDownload
-        title="Medienmitteilungen"
-        leadText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        buttonLink="/medienmitteilungen"
-        buttonText="Alle Medienmitteilungen"
-        showList={true}
-        showButton={true}
-        listData={listMedienmitteilungen}
-      ></TeaserDownload> */}
+
       <NewsShortSection
         news={newsSection}
         newsTitle="News"
@@ -359,19 +351,7 @@ export default function Medien() {
         showButton={true}
         h2Styles="flex justify-left items-left"
       ></NewsShortSection>
-      {/*
-      <HomePageCaroucel
-        items={newsCards}
-        carouselTitle="News"
-        showDate={true}
-        showButton={true}
-        h2Styles="flex justify-left items-left"
-      ></HomePageCaroucel> */}
-      {/* <Publikationen
-        tableData={tableData}
-        publications={publications}
-        title="Publikationen"
-      ></Publikationen> */}
+
       <Publikationen
         tableData={tableData}
         publications={publications}
@@ -396,7 +376,7 @@ export default function Medien() {
             buttonText="Zum Downloadcenter"
           />
         </div>
-        <hr className="col-span-12 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+        <hr className="col-span-12 mb-12 h-px bg-gray-200 border-0 dark:bg-gray-700" />
       </ContentWidth>
       <EventCalendar
         mainTitle="Events"
