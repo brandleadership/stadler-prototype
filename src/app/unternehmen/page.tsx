@@ -214,7 +214,7 @@ export default function Unternehmen() {
     <>
       <HeroText
         title="Über uns"
-        leadText="Wir tun alles für besten Schienenfahrzeuge der Welt. In unseren drei Geschäftsbereichen Rolling Stock, Service und Signalling setzen wir täglich neue Massstäbe in Bezug auf die Qualität und Zuverlässigkeit unserer Lösungen. Und wir arbeiten gemeinsam mit Leidenschaft jeden Tag aufs Neue daran, Spitzenleistungen zu liefern, um Menschen weltweit eine nachhaltige Mobilität zu ermöglichen. "
+        leadText="Wir tun alles für die besten Schienenfahrzeuge der Welt. In unseren drei Geschäftsbereichen Rolling Stock, Service und Signalling setzen wir täglich neue Massstäbe in Bezug auf die Qualität und Zuverlässigkeit unserer Lösungen. Und wir arbeiten gemeinsam mit Leidenschaft jeden Tag aufs Neue daran, Spitzenleistungen zu liefern, um Menschen weltweit eine nachhaltige Mobilität zu ermöglichen. "
       />
       <Hero></Hero>
       <DNA />
@@ -229,23 +229,23 @@ export default function Unternehmen() {
         numberOfColumns={2}
       />
       <section>
-      <div className="gap-4 mt-8 sm:grid sm:grid-cols-4 sm:mt-12">
-        <img
-          className="object-cover h-80 w-full scale-100 col-span-2 mb-4 sm:block  "
-          src="https://www.stadlerrail.com/media/img/800x/mwe_0920%20-%20cropped.jpg"
-          alt="content gallery 1"
-        />
-        <img
-          className=" object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
-          src="https://www.stadlerrail.com/media/img/744x606/drohnenaufnahme_star_quadratisch.jpg"
-          alt="content gallery 2"
-        />
-        <img
-          className="object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
-          src="https://www.stadlerrail.com/media/img/744x606/jet_7487_quadratisch.jpg"
-          alt="content gallery 3"
-        />
-      </div>
+        <div className="gap-4 mt-8 sm:grid sm:grid-cols-4 sm:mt-12">
+          <img
+            className="object-cover h-80 w-full scale-100 col-span-2 mb-4 sm:block  "
+            src="https://www.stadlerrail.com/media/img/800x/mwe_0920%20-%20cropped.jpg"
+            alt="content gallery 1"
+          />
+          <img
+            className=" object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
+            src="https://www.stadlerrail.com/media/img/744x606/drohnenaufnahme_star_quadratisch.jpg"
+            alt="content gallery 2"
+          />
+          <img
+            className="object-cover h-80 w-full scale-100 hidden col-span-1 sm:block  "
+            src="https://www.stadlerrail.com/media/img/744x606/jet_7487_quadratisch.jpg"
+            alt="content gallery 3"
+          />
+        </div>
       </section>
       <div className="lg:py-24">
         {" "}

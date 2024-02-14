@@ -50,7 +50,7 @@ export default function DoubleCard() {
                     Service
                   </H2>
                   <Text styles="text-greyBrighten-800 mb-4">
-                    Regelmässige Service für Gesamtlösungen und
+                    Regelmässiger Service für Gesamtlösungen und
                     Schienenfahrzeuge garantieren zuverlässige Spitzenleistung.
                   </Text>
                   <img

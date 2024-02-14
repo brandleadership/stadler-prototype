@@ -9,23 +9,23 @@ const data = [
   {
     id: 1,
     image: "/image1product.jpg",
-    titleH3: "1Ergonomie am Arbeitsplatz sorgt für Sicherheit",
+    titleH3: "Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
       "Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei. Unsere Detailorientierung garantiert somit höchste Sicherheitsstandards für alle.",
   },
   {
     id: 2,
     image: "/hero-full-service.jpg",
-    titleH3: "2Ergonomie am Arbeitsplatz sorgt für Sicherheit",
+    titleH3: "Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
-      "2Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei.",
+      "Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell, sondern tragen auch entscheidend zur Sicherheit der Fahrgäste bei.",
   },
   {
     id: 3,
     image: "/hero-snow-train.jpg",
-    titleH3: "3Ergonomie am Arbeitsplatz sorgt für Sicherheit",
+    titleH3: "Ergonomie am Arbeitsplatz sorgt für Sicherheit",
     text:
-      "3Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell,",
+      "Für optimale Leistung setzen wir bei Stadler auf ergonomisch gestaltete Führerkabinen. Ein drehbarer, verstellbarer Sessel, gut erreichbare Funktionselemente und klare Sichtverhältnisse sind nicht nur für den Komfort des Zugführers essentiell,",
   },
 ];
 const variants = {
