@@ -55,7 +55,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
+
+      <body className={fontFamily.className + ' ' + 'overflow-x-hidden flex flex-col min-h-screen'}>
       <Script id="matomo-script">
        { `
        console.log("Matomo test")
@@ -67,10 +68,6 @@ export default function RootLayout({
         })();
         `}
       </Script>
-      </head>
-
-      <body className={fontFamily.className + ' ' + 'overflow-x-hidden flex flex-col min-h-screen'}>
-
         <Header />
         <main>{children}</main>
         <Footer />
