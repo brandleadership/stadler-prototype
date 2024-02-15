@@ -1,8 +1,10 @@
-"use client"; 
+"use client";
 
 import "./globals.css";
 
 import type { Metadata } from "next";
+import Head from "next/head";
+import Script from 'next/script'
 import { Montserrat } from "next/font/google";
 import NavBar from "../components/sections/NavBar";
 import Header from "@/components/sections/Header";
@@ -30,7 +32,7 @@ storyblokInit({
     title_h1: H1,
     subhero: SubHero
   }
- 
+
 });
 
 
@@ -49,17 +51,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
   }) {
-  
+
 
   return (
     <html lang="en">
+
       <body className={fontFamily.className + ' ' + 'overflow-x-hidden flex flex-col min-h-screen'}>
+      <Script>
+       { `
+       console.log("Matomo test")
+       var _mtm = window._mtm = window._mtm || [];
+        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+        (function() {
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src='https://matomo.gateb.com/js/container_9iU2twN3.js'; s.parentNode.insertBefore(g,s);
+        })();
+        `}
+      </Script>
         <Header />
         <main>{children}</main>
         <Footer />
         <script src="../../node_modules/flowbite/dist/flowbite.min.js" async />
       </body>
- 
+
     </html>
   );
 }
