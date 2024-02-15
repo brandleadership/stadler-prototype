@@ -57,7 +57,7 @@ export default function RootLayout({
     <html lang="en">
 
       <body className={fontFamily.className + ' ' + 'overflow-x-hidden flex flex-col min-h-screen'}>
-      <Script>
+      <Script id="matomo-script">
        { `
        console.log("Matomo test")
        var _mtm = window._mtm = window._mtm || [];
