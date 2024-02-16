@@ -1,4 +1,9 @@
-import { motion, useTransform } from "framer-motion";
+import {
+  motion,
+  useTransform,
+  useMotionValueEvent,
+  useMotionValue,
+} from "framer-motion";
 import { useState, useMemo, useRef } from "react";
 
 import { useScrollImageSequenceFramerCanvas } from "../../hooks";
@@ -38,9 +43,9 @@ const ImageSequence = () => {
     () =>
       [...new Array(299)].map((_, i) =>
         createImage(
-          `/trainsequence-jpg/test_stadler_rail_train_carousel_0${i
+          `/PNG_Sequenz_1920x1080/Stadler_Carousel_${i
             .toString()
-            .padStart(4, "0")}.jpg`
+            .padStart(3, "0")}.png`
         )
       ),
     []
@@ -48,43 +53,65 @@ const ImageSequence = () => {
 
   const containerRef = useRef<HTMLElement>(null);
   const [categoryNumber, categoryNumberChange] = useState(0);
-  const [
-    progress,
-    canvasRef,
-    trainCategoryRef,
-    renderImage,
-  ] = useScrollImageSequenceFramerCanvas({
-    onDraw: handleDrawCanvas,
-    keyframes: keyframes,
-    scrollOptions: {
-      target: containerRef,
-      offset: ["start", "end"],
-    },
-    categoryNumber: categoryNumber,
-  });
+  const [progress, canvasRef, renderImage] = useScrollImageSequenceFramerCanvas(
+    {
+      onDraw: handleDrawCanvas,
+      keyframes: keyframes,
+      // scrollOptions: {
+      //   target: containerRef,
+      //   offset: ["start", "end"],
+      // },
+      categoryNumber: categoryNumber,
+    }
+  );
+  // const x = useMotionValue(0);
+  const handleClick = (curState = 0, nextState = 1) => {
+    categoryNumberChange(nextState);
+    setInterval(
+      (function() {
+        let x = curState;
 
-  const handleClick = () => {
-    categoryNumberChange(0.5);
-    renderImage(0.5);
+        return function() {
+          // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          // ctx.drawImage(img, x, y);
+          if (curState < nextState) {
+            x += 0.005;
+            if (x <= nextState) {
+              renderImage(x);
+            }
+          }
+          if (curState > nextState) {
+            x -= 0.005;
+            if (x >= nextState) {
+              renderImage(x);
+            }
+          }
+        };
+      })(),
+      20
+    );
+    // x.set(0.5);
+    // useMotionValueEvent(0.5, "change", renderImage);
+    // categoryNumberChange(0.5);
+    // renderImage(0.5);
     console.log(categoryNumber);
   };
-  console.log(progress);
   // the animation goes across 4 screen height
   // try out to sequence text with 3 states
-  const opacity1 = useTransform(progress, [0, 0.33, 0.66, 1], [1, 0, 0, 0]);
-  const opacity2 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 1, 0, 0]);
-  const opacity3 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 1, 0]);
-  const opacity4 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 0, 1]);
+  // const opacity1 = useTransform(progress, [0, 0.33, 0.66, 1], [1, 0, 0, 0]);
+  // const opacity2 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 1, 0, 0]);
+  // const opacity3 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 1, 0]);
+  // const opacity4 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 0, 1]);
 
   return (
-    <section ref={containerRef} className="h-[400vh]">
-      <div className="sticky top-0">
+    <section>
+      <div>
         {/* <motion.div
           style={{ scaleX: progress }}
           className="absolute top-0 z-10 h-2 w-full origin-left bg-white"
         /> */}
-        <canvas ref={canvasRef} className="absolute inset-0 block" />
-        <div className="mx-auto flex h-screen max-w-6xl items-center justify-center px-12">
+        <canvas ref={canvasRef} className="block" />
+        {/* <div className="mx-auto flex h-screen max-w-6xl items-center justify-center px-12">
           <motion.h1
             style={{ opacity: opacity1 }}
             className="text-center text-4xl font-semibold text-black md:text-7xl"
@@ -109,8 +136,11 @@ const ImageSequence = () => {
           >
             Train 4
           </motion.h1>
-        </div>
-        <div onClick={handleClick}>Jump to the last carousel element</div>
+        </div> */}
+        <div onClick={() => handleClick(categoryNumber, 0)}>Category 1</div>
+        <div onClick={() => handleClick(categoryNumber, 0.33)}>Category 2</div>
+        <div onClick={() => handleClick(categoryNumber, 0.66)}>Category 3</div>
+        <div onClick={() => handleClick(categoryNumber, 1)}>Category 4</div>
       </div>
     </section>
   );

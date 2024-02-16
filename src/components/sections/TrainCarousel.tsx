@@ -218,14 +218,19 @@ const TrainCarousel = (props?: any) => {
           </a>
         </div>
       </ContentWidth>
-        {/* <img
+      {/* <img
           src={tabs.categories[selectedCategory].image}
           className="col-span-12 w-full"
         /> */}
-        {/* <div className="train-sequence">
+      {/* <div className="train-sequence">
           <canvas id="train-sequence" style={{height:'50vh', transform: 'translate(-50%, -50%)', maxWidth: '100vw', maxHeight: '50vh'}} className="fixed bottom-[50%] left-[50%]" />
       </div> */}
-        <TrainSequence></TrainSequence>
+      {/* <ContentWidth> */}
+      <div className="w-full">
+        <TrainSequence selectedCategory={selectedCategory}></TrainSequence>
+      </div>
+
+      {/* </ContentWidth> */}
       <ContentWidth>
         <div className="col-span-8 col-start-4 col-end-10 grid grid-cols-1 my-6">
           <div className="flex flex-row items-start justify-center">
@@ -267,7 +272,10 @@ const TrainCarousel = (props?: any) => {
           variants={variants}
         >
           {tabs.categories[selectedCategory].trains.map((item) => (
-            <div key={item.name} className="bg-white text-black flexflex-row lg:flex-col">
+            <div
+              key={item.name}
+              className="bg-white text-black flexflex-row lg:flex-col"
+            >
               <img className="w-full" src={item.img} />
               <div className="p-6">
                 <small className="text-greySolid-600 flex mb-2">

@@ -27,10 +27,10 @@ import {
     categoryNumber
   }: UseScrollImageSequenceFramerCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const trainCategoryRef = useRef<HTMLDivElement>(null);
 
-    const { scrollYProgress } = useScroll(scrollOptions);
-    const progress = useSpring(scrollYProgress, springConfig);
+
+    // const { scrollYProgress } = useScroll(scrollOptions);
+    const progress = 0;
 
     const resizeCanvas = useCallback(() => {
       const canvas = canvasRef.current!;
@@ -40,7 +40,7 @@ import {
 
     const renderImage = useCallback(
       (progress: number) => {
-        console.log("progress", progress, scrollYProgress, canvasRef.current)
+        // console.log("progress", progress, scrollYProgress, canvasRef.current)
         const constraint = (n: number, min = 0, max = keyframes.length - 1) =>
           Math.min(Math.max(n, min), max);
         onDraw(
@@ -55,7 +55,7 @@ import {
       resizeCanvas();
       const resizeCanvasAndRerender = () => {
         resizeCanvas();
-        renderImage(progress.get());
+        renderImage(progress);
       };
       window.addEventListener('resize', resizeCanvasAndRerender);
       return () => {
@@ -69,9 +69,9 @@ import {
       };
     }, [keyframes, onDraw]);
 
-     useMotionValueEvent(progress, 'change', renderImage);
+    //  useMotionValueEvent(progress, 'change', renderImage);
 
-    return [progress, canvasRef, trainCategoryRef, renderImage] as const;
+    return [progress, canvasRef, renderImage] as const;
   };
 
   export default useScrollImageSequenceFramerCanvas;
