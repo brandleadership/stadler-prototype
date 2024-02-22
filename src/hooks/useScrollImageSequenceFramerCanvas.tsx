@@ -11,7 +11,7 @@ import {
     keyframes: HTMLImageElement[];
     scrollOptions?: Parameters<typeof useScroll>[0];
     springConfig?: SpringOptions;
-    categoryNumber: Number
+
   }
 
   const useScrollImageSequenceFramerCanvas = ({
@@ -23,8 +23,7 @@ import {
       stiffness: 300,
       restSpeed: 0.5,
       restDelta: 0.001,
-    },
-    categoryNumber
+    }
   }: UseScrollImageSequenceFramerCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -41,6 +40,7 @@ import {
     const renderImage = useCallback(
       (progress: number) => {
         // console.log("progress", progress, scrollYProgress, canvasRef.current)
+        console.log("progress", progress)
         const constraint = (n: number, min = 0, max = keyframes.length - 1) =>
           Math.min(Math.max(n, min), max);
         onDraw(

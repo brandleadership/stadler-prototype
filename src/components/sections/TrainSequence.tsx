@@ -4,7 +4,7 @@ import {
   useMotionValueEvent,
   useMotionValue,
 } from "framer-motion";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 
 import { useScrollImageSequenceFramerCanvas } from "../../hooks";
 
@@ -38,7 +38,7 @@ const handleDrawCanvas = (
   );
 };
 
-const ImageSequence = () => {
+const ImageSequence = ({ category }: { category: Number }) => {
   const keyframes = useMemo(
     () =>
       [...new Array(299)].map((_, i) =>
@@ -52,103 +52,127 @@ const ImageSequence = () => {
   );
 
   const containerRef = useRef<HTMLElement>(null);
-  const [categoryNumber, categoryNumberChange] = useState(0);
+  const [prevCategoryNumber, categoryNumberChange] = useState(category);
+  const [animationProgress, animationProgressChange] = useState(false);
   const [progress, canvasRef, renderImage] = useScrollImageSequenceFramerCanvas(
     {
       onDraw: handleDrawCanvas,
       keyframes: keyframes,
-      // scrollOptions: {
-      //   target: containerRef,
-      //   offset: ["start", "end"],
-      // },
-      categoryNumber: categoryNumber,
     }
   );
-  // const x = useMotionValue(0);
-  const handleClick = (curState = 0, nextState = 1) => {
-    categoryNumberChange(nextState);
-    setInterval(
-      (function() {
-        let x = curState;
 
-        return function() {
-          // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-          // ctx.drawImage(img, x, y);
-          if (curState < nextState) {
-            x += 0.005;
-            if (x <= nextState) {
-              renderImage(x);
-            }
+  useEffect(() => {
+    // console.log(
+    //   "counter updated",
+    //   animationProgress,
+    //   category,
+    //   prevCategoryNumber
+    // );
+    if (!animationProgress) {
+      // console.log("first if 1");
+
+      let x = Number(prevCategoryNumber) / 3;
+      let c = Number(category) / 3;
+
+      if (x < c) {
+        animationProgressChange(true);
+        const t = setInterval(function() {
+          x += 0.015;
+          if (x <= c) {
+            renderImage(x);
+          } else {
+            // console.log("clear interval 1");
+            clearInterval(t);
+            animationProgressChange(false);
+            categoryNumberChange(category);
+            console.log("check c", c, category);
           }
-          if (curState > nextState) {
-            x -= 0.005;
-            if (x >= nextState) {
-              renderImage(x);
-            }
+        }, 16.7);
+      }
+      if (x > c) {
+        // console.log("second if", x, c);
+        animationProgressChange(true);
+        const t = setInterval(function() {
+          x -= 0.015;
+          if (x >= c) {
+            renderImage(x);
+          } else {
+            // console.log("clear interval 2");
+            clearInterval(t);
+            animationProgressChange(false);
+
+            categoryNumberChange(category);
+            console.log("check c", c, category);
           }
-        };
-      })(),
-      20
-    );
+        }, 16.7);
+      }
+    }
+  }, [category]);
+
+  const handleClick = (curState = 0, nextState = 1) => {
+    // console.log("selectedCategory", selectedCategory);
+    if (!animationProgress) {
+      animationProgressChange(true);
+      categoryNumberChange(nextState);
+
+      let x = curState;
+
+      if (curState < nextState) {
+        const t = setInterval(function() {
+          x += 0.015;
+          if (x <= nextState) {
+            renderImage(x);
+          } else {
+            console.log("clear interval 1");
+            clearInterval(t);
+            animationProgressChange(false);
+          }
+        }, 16.7);
+      }
+      if (curState > nextState) {
+        const t = setInterval(function() {
+          x -= 0.015;
+          if (x >= nextState) {
+            renderImage(x);
+          } else {
+            console.log("clear interval 2");
+            clearInterval(t);
+            animationProgressChange(false);
+          }
+        }, 16.7);
+      }
+    }
     // x.set(0.5);
     // useMotionValueEvent(0.5, "change", renderImage);
     // categoryNumberChange(0.5);
     // renderImage(0.5);
-    console.log(categoryNumber);
+    console.log(
+      "categoryNumber",
+      prevCategoryNumber,
+      typeof prevCategoryNumber
+    );
   };
-  // the animation goes across 4 screen height
-  // try out to sequence text with 3 states
-  // const opacity1 = useTransform(progress, [0, 0.33, 0.66, 1], [1, 0, 0, 0]);
-  // const opacity2 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 1, 0, 0]);
-  // const opacity3 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 1, 0]);
-  // const opacity4 = useTransform(progress, [0, 0.33, 0.66, 1], [0, 0, 0, 1]);
 
   return (
     <section>
       <div>
-        {/* <motion.div
-          style={{ scaleX: progress }}
-          className="absolute top-0 z-10 h-2 w-full origin-left bg-white"
-        /> */}
         <canvas ref={canvasRef} className="block" />
-        {/* <div className="mx-auto flex h-screen max-w-6xl items-center justify-center px-12">
-          <motion.h1
-            style={{ opacity: opacity1 }}
-            className="text-center text-4xl font-semibold text-black md:text-7xl"
-          >
-            Train 1
-          </motion.h1>
-          <motion.h1
-            style={{ opacity: opacity2 }}
-            className="text-center text-4xl font-semibold text-black md:text-7xl"
-          >
-            Train 2
-          </motion.h1>
-          <motion.h1
-            style={{ opacity: opacity3 }}
-            className="text-center text-4xl font-semibold text-black md:text-7xl"
-          >
-            Train 3
-          </motion.h1>
-          <motion.h1
-            style={{ opacity: opacity4 }}
-            className="text-center text-4xl font-semibold text-black md:text-7xl"
-          >
-            Train 4
-          </motion.h1>
-        </div> */}
-        <div onClick={() => handleClick(categoryNumber, 0)}>Category 1</div>
+
+        {/* <div onClick={() => handleClick(categoryNumber, 0)}>Category 1</div>
         <div onClick={() => handleClick(categoryNumber, 0.33)}>Category 2</div>
         <div onClick={() => handleClick(categoryNumber, 0.66)}>Category 3</div>
-        <div onClick={() => handleClick(categoryNumber, 1)}>Category 4</div>
+        <div onClick={() => handleClick(categoryNumber, 1)}>Category 4</div> */}
       </div>
+      {/* <div>
+        <img src="/STA0509_Carousel_Reframe_0100_NOS240220.png" alt="" />
+      </div> */}
     </section>
   );
 };
 
-const TrainSequence = () => (
+const TrainSequence = ({ selectedCategory }: { selectedCategory: Number }) => (
   <div className="overflow-clip">
-    <ImageSequence />
+    <ImageSequence category={selectedCategory} />
   </div>
 );
 
