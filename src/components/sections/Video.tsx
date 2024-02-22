@@ -35,7 +35,7 @@ export default function Video() {
             </div>
 
             <div className="mt-6">
-              <ButtonPrimary position="left">
+              <ButtonPrimary href="/career" position="left">
                 Jetzt bewerben
                 <img
                   className="w-4 h-4"

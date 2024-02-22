@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import ContentWidth from "../layouts/ContentWidth";
 import Text from "../typography/Text";
@@ -93,9 +93,53 @@ const Publicationen: React.FC<StatsProps> = ({
 }) => {
   const [showPublications, setShowPublications] = useState(false);
 
+  const publicationsRef = useRef<Array<HTMLAnchorElement | null>>([]);
+  const tablePublicationsRef = useRef<Array<HTMLAnchorElement | null>>([]);
+
   const toggleTrainsVisibility = () => {
     setShowPublications(!showPublications);
   };
+
+  useEffect(() => {
+    // let publicationEl = publicationRef.current;
+    console.log(publicationsRef);
+    publicationsRef.current.forEach((item) => {
+      item?.addEventListener("click", () => {
+        console.log("publicationEl", item, item.dataset.key);
+        var _paq = (window._paq = window._paq || []);
+        _paq.push([
+          "trackEvent",
+          "Publications",
+          "Publication Download",
+          item.dataset.key,
+        ]);
+      });
+    });
+
+    tablePublicationsRef.current.forEach((item) => {
+      item?.addEventListener("click", () => {
+        console.log("publicationEl", item, item.dataset.key);
+        var _paq = (window._paq = window._paq || []);
+        _paq.push([
+          "trackEvent",
+          "Publications 2",
+          "Publication Download 2",
+          item.dataset.key,
+        ]);
+      });
+    });
+
+    // publicationEl?.addEventListener("click", () => {
+    //   console.log("publicationEl", publicationEl, publicationRef);
+    //   var _paq = (window._paq = window._paq || []);
+    //   _paq.push([
+    //     "trackEvent",
+    //     "Publication",
+    //     "Download Publication",
+    //     "TestValue",
+    //   ]);
+    // });
+  });
 
   return (
     <section className="bg-primarySolid-50 py-5 lg:py-24 ">
@@ -103,52 +147,54 @@ const Publicationen: React.FC<StatsProps> = ({
         <div className="col-span-12">
           <div className="text-start mb-8">
             <H2>{title}</H2>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </Text>
           </div>
           <div className="w-full mx-auto justify-center  items-stretch grid grid-cols-1 gap-x-10 gap-y-10 lg:grid-cols-3">
-            {publications.map((publication) => (
+            {publications.map((publication, i) => (
               <div
                 key={publication.title}
                 className="max-w-sm bg-white border border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700"
               >
-                <a href={publication.href}>
+                <a
+                  ref={(el) => (publicationsRef.current[i] = el)}
+                  href={publication.href}
+                  // href="#"
+                  data-key={publication.title}
+                >
                   <img
                     className="object-contain max-h-auto w-full"
                     src={publication.img}
                     alt={publication.title}
                   />
-                </a>
-                <div className="p-5">
-                  <a href={publication.href}>
+                  <div className="p-5">
                     <H3>{publication.title}</H3>
-                  </a>
-                  <a
-                    href={publication.href}
-                    target="_blank"
-                    className="inline-flex items-center pt-2 text-sm font-medium text-center"
-                  >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clipPath="url(#clip0_4995_6662)">
-                        <path
-                          d="M7.72573e-07 11.1628L16.338 11.1628L10.9296 18.6047L12.7324 20L20 10L12.7324 -6.35355e-07L10.9296 1.39535L16.338 8.83721L9.75882e-07 8.83721L7.72573e-07 11.1628Z"
-                          fill="#005893"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_4995_6662">
-                          <rect width="20" height="20" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </a>
-                </div>
+
+                    <span className="inline-flex items-center pt-2 text-sm font-medium text-center">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clipPath="url(#clip0_4995_6662)">
+                          <path
+                            d="M7.72573e-07 11.1628L16.338 11.1628L10.9296 18.6047L12.7324 20L20 10L12.7324 -6.35355e-07L10.9296 1.39535L16.338 8.83721L9.75882e-07 8.83721L7.72573e-07 11.1628Z"
+                            fill="#005893"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_4995_6662">
+                            <rect width="20" height="20" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </span>
+                  </div>
+                </a>
               </div>
             ))}
           </div>
@@ -228,7 +274,12 @@ const Publicationen: React.FC<StatsProps> = ({
                     </th>
                     <td className="px-6 py-4">{item.date}</td>
                     <td className="px-6 py-4 text-primary">
-                      <a href={item.link} target="_blank">
+                      <a
+                        ref={(el) => (tablePublicationsRef.current[index] = el)}
+                        data-key={item.publication}
+                        href={item.link}
+                        target="_blank"
+                      >
                         PDF
                       </a>
                     </td>

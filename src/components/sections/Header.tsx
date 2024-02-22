@@ -25,6 +25,7 @@ const variantsSub = {
 type NavItem = {
   title: string;
   href: string;
+  ref?: boolean;
   icon?: React.ReactNode;
   submenu?: boolean;
   submenuItems?: SubNavItem[];
@@ -56,7 +57,7 @@ const navigationMain: NavItems = {
         { title: "Service", href: "/solutions/service" },
       ],
     },
-    { title: "Karriere", href: "/#", icon: false },
+    { title: "Karriere", href: "/career", icon: false, ref: true },
     {
       title: "Investor Relations",
       href: "/investors",
@@ -94,8 +95,16 @@ const Header = () => {
   };
 
   let menuRef = useRef<HTMLDivElement>(null);
+  const careerRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
+    let carrerEl = careerRef.current;
+
+    carrerEl?.addEventListener("click", () => {
+      console.log("carrerEl", carrerEl);
+      var _paq = (window._paq = window._paq || []);
+      _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
+    });
     let handler = (e: any) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsOpen(false);
@@ -259,9 +268,7 @@ const Header = () => {
                               closeMobileNav();
                             }}
                             href={item.href}
-                            data-track-content
-                            data-content-name={item.title}
-                            data-content-piece={item.title}
+                            {...(item.ref && { ref: careerRef })}
                             className="flex gap-2 justify-center items-start pr-4 text-primarySolid-800 font-semibold rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                           >
                             {item.title}
@@ -316,9 +323,6 @@ const Header = () => {
                                     closeMobileNav();
                                     setIsOpen((isOpen) => !isOpen);
                                   }}
-                                  data-track-content
-                                  data-content-name="Solutions"
-                                  data-content-piece="Solutions"
                                 >
                                   <p className="lg:text-lg">Übersicht</p>
                                   <p className="hidden lg:block lg:font-semibold lg:text-xl">
@@ -338,9 +342,6 @@ const Header = () => {
                                           closeMobileNav();
                                           setIsOpen((isOpen) => !isOpen);
                                         }}
-                                        data-track-content
-                                        data-content-name={subItem.title}
-                                        data-content-piece={subItem.title}
                                       >
                                         <p>{subItem.title}</p>
                                         <span className="hidden lg:block">

@@ -1,8 +1,21 @@
 import ButtonPrimary from "@/components/elements/ButtonPrimary";
 import H2 from "@/components/typography/H2";
 import ContentWidth from "../layouts/ContentWidth";
+import React, { useRef, useEffect } from "react";
 
 export default function Career() {
+  const careerRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    let carrerEl = careerRef.current;
+
+    carrerEl?.addEventListener("click", () => {
+      console.log("carrerEl", carrerEl);
+      var _paq = (window._paq = window._paq || []);
+      _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
+    });
+  });
+
   return (
     <section className="bg-white py-5 lg:py-16">
       <ContentWidth>
@@ -15,7 +28,7 @@ export default function Career() {
             <br /> braucht die besten Fachkräfte der Welt.
           </p>
           <div className="flex justify-center">
-            <ButtonPrimary />
+            <ButtonPrimary ref={careerRef} href="/career" />
           </div>
         </div>
       </ContentWidth>
