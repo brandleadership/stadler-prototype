@@ -9,9 +9,11 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { useScrollImageSequenceFramerCanvas } from "../../hooks";
 
 const createImage = (src: string) => {
-  const img = document.createElement("img");
-  img.src = src;
-  return img;
+  if (typeof document !== "undefined") {
+    const img = document.createElement("img");
+    img.src = src;
+    return img;
+  }
 };
 
 const handleDrawCanvas = (
