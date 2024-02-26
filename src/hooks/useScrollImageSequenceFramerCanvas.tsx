@@ -8,7 +8,7 @@ import {
 
   export interface UseScrollImageSequenceFramerCanvasProps {
     onDraw: (img: HTMLImageElement, ctx: CanvasRenderingContext2D) => void;
-    keyframes: (HTMLImageElement | undefined)[];
+    keyframes: HTMLImageElement[];
     scrollOptions?: Parameters<typeof useScroll>[0];
     springConfig?: SpringOptions;
 

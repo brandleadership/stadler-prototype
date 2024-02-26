@@ -60,6 +60,7 @@ const ImageSequence = ({ category }: { category: Number }) => {
   const [progress, canvasRef, renderImage] = useScrollImageSequenceFramerCanvas(
     {
       onDraw: handleDrawCanvas,
+      // @ts-ignore
       keyframes: keyframes,
     }
   );
