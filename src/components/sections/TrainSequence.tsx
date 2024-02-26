@@ -24,6 +24,7 @@ const handleDrawCanvas = (
   const ratio = Math.max(widthRatio, heightRatio);
   const centerX = (canvas.width - img.width * ratio) / 2;
   const centerY = (canvas.height - img.height * ratio) / 2;
+  console.log(widthRatio, heightRatio);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(
     img,
@@ -43,7 +44,7 @@ const ImageSequence = ({ category }: { category: Number }) => {
     () =>
       [...new Array(299)].map((_, i) =>
         createImage(
-          `/PNG_Sequenz_1920x1080/Stadler_Carousel_${i
+          `/png-trains-carousel/Stadler_Carousel_${i
             .toString()
             .padStart(3, "0")}.png`
         )

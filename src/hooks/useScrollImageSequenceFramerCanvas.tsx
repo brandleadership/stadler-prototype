@@ -34,7 +34,7 @@ import {
     const resizeCanvas = useCallback(() => {
       const canvas = canvasRef.current!;
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = window.innerHeight - 300;
     }, []);
 
     const renderImage = useCallback(
