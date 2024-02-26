@@ -54,7 +54,7 @@ const ImageSequence = ({ category }: { category: Number }) => {
     []
   );
 
-  const containerRef = useRef<HTMLElement>(null);
+  // const containerRef = useRef<HTMLElement>(null);
   const [prevCategoryNumber, categoryNumberChange] = useState(category);
   const [animationProgress, animationProgressChange] = useState(false);
   const [progress, canvasRef, renderImage] = useScrollImageSequenceFramerCanvas(
