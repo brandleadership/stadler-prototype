@@ -28,7 +28,7 @@ export default function Career() {
             <br /> braucht die besten Fachkräfte der Welt.
           </p>
           <div className="flex justify-center">
-            <ButtonPrimary ref={careerRef} href="/career" />
+            <ButtonPrimary href="/career" />
           </div>
         </div>
       </ContentWidth>
