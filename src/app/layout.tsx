@@ -57,17 +57,7 @@ export default function RootLayout({
     <html lang="en">
 
       <body className={fontFamily.className + ' ' + 'overflow-x-hidden flex flex-col min-h-screen'}>
-      <Script id="matomo-script">
-       { `
-       console.log("Matomo test")
-       var _mtm = window._mtm = window._mtm || [];
-        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
-        (function() {
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.async=true; g.src='https://matomo.gateb.com/js/container_9iU2twN3.js'; s.parentNode.insertBefore(g,s);
-        })();
-        `}
-      </Script>
+    
         <Header />
         <main>{children}</main>
         <Footer />
