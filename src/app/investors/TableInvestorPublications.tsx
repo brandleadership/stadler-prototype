@@ -3,15 +3,15 @@ import { useEffect, useRef } from "react";
 export default function TableInvestorPublications(props?: any) {
   const publicationRef = useRef<HTMLAnchorElement>(null);
 
-  useEffect(() => {
-    let publicationEl = publicationRef.current;
+  // useEffect(() => {
+  //   let publicationEl = publicationRef.current;
 
-    publicationEl?.addEventListener("click", () => {
-      console.log("publicationEl", publicationEl);
-      var _paq = (window._paq = window._paq || []);
-      _paq.push(["trackEvent", "Publication", "Old Publication Download"]);
-    });
-  });
+  //   publicationEl?.addEventListener("click", () => {
+  //     console.log("publicationEl", publicationEl);
+  //     var _paq = (window._paq = window._paq || []);
+  //     _paq.push(["trackEvent", "Publication", "Old Publication Download"]);
+  //   });
+  // });
 
   return (
     <div className="max-w-full col-span-12">

@@ -6,15 +6,15 @@ import React, { useRef, useEffect } from "react";
 export default function Career() {
   const careerRef = useRef<HTMLAnchorElement>(null);
 
-  useEffect(() => {
-    let carrerEl = careerRef.current;
+  // useEffect(() => {
+  //   let carrerEl = careerRef.current;
 
-    carrerEl?.addEventListener("click", () => {
-      console.log("carrerEl", carrerEl);
-      var _paq = (window._paq = window._paq || []);
-      _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
-    });
-  });
+  //   carrerEl?.addEventListener("click", () => {
+  //     console.log("carrerEl", carrerEl);
+  //     var _paq = (window._paq = window._paq || []);
+  //     _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
+  //   });
+  // });
 
   return (
     <section className="bg-white py-5 lg:py-16">

@@ -98,13 +98,13 @@ const Header = () => {
   const careerRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    let carrerEl = careerRef.current;
+    // let carrerEl = careerRef.current;
 
-    carrerEl?.addEventListener("click", () => {
-      console.log("carrerEl", carrerEl);
-      var _paq = (window._paq = window._paq || []);
-      _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
-    });
+    // carrerEl?.addEventListener("click", () => {
+    //   console.log("carrerEl", carrerEl);
+    //   var _paq = (window._paq = window._paq || []);
+    //   _paq.push(["trackEvent", "Career", "Visit Career Page", "TestValue"]);
+    // });
     let handler = (e: any) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsOpen(false);

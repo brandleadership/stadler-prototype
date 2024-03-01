@@ -101,33 +101,33 @@ const Publicationen: React.FC<StatsProps> = ({
   };
 
   useEffect(() => {
-    // let publicationEl = publicationRef.current;
-    console.log(publicationsRef);
-    publicationsRef.current.forEach((item) => {
-      item?.addEventListener("click", () => {
-        console.log("publicationEl", item, item.dataset.key);
-        var _paq = (window._paq = window._paq || []);
-        _paq.push([
-          "trackEvent",
-          "Publications",
-          "Publication Download",
-          item.dataset.key,
-        ]);
-      });
-    });
+    // // let publicationEl = publicationRef.current;
+    // console.log(publicationsRef);
+    // publicationsRef.current.forEach((item) => {
+    //   item?.addEventListener("click", () => {
+    //     console.log("publicationEl", item, item.dataset.key);
+    //     var _paq = (window._paq = window._paq || []);
+    //     _paq.push([
+    //       "trackEvent",
+    //       "Publications",
+    //       "Publication Download",
+    //       item.dataset.key,
+    //     ]);
+    //   });
+    // });
 
-    tablePublicationsRef.current.forEach((item) => {
-      item?.addEventListener("click", () => {
-        console.log("publicationEl", item, item.dataset.key);
-        var _paq = (window._paq = window._paq || []);
-        _paq.push([
-          "trackEvent",
-          "Publications 2",
-          "Publication Download 2",
-          item.dataset.key,
-        ]);
-      });
-    });
+    // tablePublicationsRef.current.forEach((item) => {
+    //   item?.addEventListener("click", () => {
+    //     console.log("publicationEl", item, item.dataset.key);
+    //     var _paq = (window._paq = window._paq || []);
+    //     _paq.push([
+    //       "trackEvent",
+    //       "Publications 2",
+    //       "Publication Download 2",
+    //       item.dataset.key,
+    //     ]);
+    //   });
+    // });
 
     // publicationEl?.addEventListener("click", () => {
     //   console.log("publicationEl", publicationEl, publicationRef);
