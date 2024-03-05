@@ -10,7 +10,7 @@ export default function ContactForm(props?: any) {
     <section className="pb-5 lg:pb-24 bg-white">
       <SmallWidth>
         <div className="col-span-12">
-          <form className="max-w-lg">
+          <form className="">
             <H2>Kontaktformular</H2>
             <div className="relative z-0 w-full mb-5 group">
               <label

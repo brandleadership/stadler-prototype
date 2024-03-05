@@ -129,7 +129,7 @@ const Header = () => {
   return (
     <header
       className={`bg-white z-20 ${isMobileNavOpen ? "mobile-nav-open" : ""} ${
-        isMobileNavOpen && isNarrowScreen ? "fixed w-full h-full" : ""
+        isMobileNavOpen && isNarrowScreen ? "fixed w-screen h-screen" : ""
       }`}
     >
       <ContentWidth>
@@ -168,11 +168,11 @@ const Header = () => {
         <>
           <section className="bg-white">
             <ContentWidth>
-              <div className="col-span-12 ">
-                <div className="pt-5 flex flex-col sm:justify-between lg:justify-end lg:flex-row lg:flex lg:items-center  gap-8 lg:gap-4">
+              <div className="col-span-12 px-4 lg:px-0">
+                <div className="pt-5 flex flex-col sm:justify-between lg:justify-end lg:flex-row lg:flex lg:items-center gap-8 lg:gap-4">
                   <ul
                     role="list"
-                    className=" flex lg:flex flex-col lg:flex-row justify-between lg:justify-end gap-8 lg:gap-4"
+                    className=" flex lg:flex flex-col lg:flex-row justify-between lg:justify-end gap-6"
                   >
                     {navigation.topNav.map((item) => (
                       <li key={item.name}>
@@ -208,7 +208,7 @@ const Header = () => {
           </section>
           <nav className="border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 relative">
             <ContentWidth>
-              <div className="bg-white col-span-12 w-full flex flex-col items-start justify-center lg:justify-between lg:flex-row py-5  lg:min-h-fit lg:w-auto left-0 top-[10%] absolut lg:static">
+              <div className="bg-white col-span-12 w-full flex flex-col items-start justify-center lg:justify-between lg:flex-row py-5 px-4 lg:px-0 lg:min-h-fit lg:w-auto left-0 top-[10%] absolut lg:static">
                 <div className="hidden lg:block">
                   <Link
                     href="/"
@@ -228,7 +228,7 @@ const Header = () => {
                 >
                   <ul className="mb-10 lg:mb-0 flex flex-col gap-8 lg:gap-0 items-start justify-center  lg:flex-row font-medium mt-4 rounded-lg bg-white  lg:items-center lg:mt-0 md:border-0 lg:bg-transparent">
                     {navigationMain.topNav.map((item) => (
-                      <li key={item.title} className="lg:px-5 ">
+                      <li key={item.title} className="lg:px-3 xl:px-5">
                         {item.href == "/solutions" ? (
                           <motion.div
                             onClick={() => {
@@ -281,7 +281,7 @@ const Header = () => {
                             className="fixed lg:absolute bg-white h-screen lg:h-auto lg:bg-greySolid-50"
                           >
                             <ContentWidth>
-                              <div className="w-full grid col-span-6 lg:col-start-5 grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:p-8">
+                              <div className="w-full grid col-span-12 lg:col-span-6 lg:col-start-5 grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:p-8 px-4 lg:px-0 mt-6 lg:mt-0">
                                 <div className="border-b lg:border-none lg:hidden">
                                   <Link
                                     href="#"
@@ -308,7 +308,7 @@ const Header = () => {
                                 </div>
                                 <Link
                                   href="/solutions"
-                                  className="text-primarySolid-800 lg:bg-primaryTrans-100 lg:text-primary px-0 py-4 lg:px-8 lg:py-24 lg:text-center"
+                                  className="text-primarySolid-800 lg:bg-primaryTrans-100 lg:text-primary px-0 py-4 pt-8 lg:px-8 lg:py-24 lg:text-center"
                                   onClick={() => {
                                     closeMobileNav();
                                     setIsOpen((isOpen) => !isOpen);

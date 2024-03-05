@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
+import FullWidth from "../layouts/FullWidth";
 
 const data = [
   {
@@ -67,43 +68,43 @@ const ProductCarousel = () => {
   };
 
   return (
-    <>
-      <div className="bg-primarySolid-50 w-full mx-auto min-h-[120vh] md:min-h-[130vh] lg:min-h-[690px] overflow-hidden relative flex justify-center items-center">
+    <section className="relative">
+    <FullWidth>
+    <div className="col-span-12 bg-primarySolid-50 w-full mx-auto min-h-[120vh] md:min-h-[80vh] lg:h-[80vh] overflow-hidden relative flex justify-center items-center">
         <AnimatePresence initial={false}>
           <motion.div
-            className="grid grid-cols-3 items-center justify-center absolute top-0 max-w-full"
+            className="flex flex-col items-center justify-center lg:grid grid-cols-3 absolute top-0 max-w-full h-full "
             key={imageIndex}
             variants={variants}
+            /* initial="enter"
+            animate="center"
+            exit="exit" */
+            /* transition={{
+              scale: { type: "ease-in", duration: 0.5 },
+              opacity: { duration: 0.3 },
+            }} */
           >
             <img
-              className="min-h-[690px] grid col-span-2 object-cover w-full h-full"
+              className="grid col-span-2 object-cover w-full h-full max-h-full overflow-hidden"
               src={data[imageIndex].image}
               alt="Carousel Image"
             />
-            <div className="grid col-span-1 justify-start items-start grid-rows-4 grid-flow-col gap-4 p-16 h-full">
-              <div className="row-span-3 pt-10">
+            <div className="grid col-span-1 grid-rows-4 grid-flow-col gap-4 p-6 h-full lg:p-16 overflow-hidden">
+              <div className="row-span-3 xl:pt-10">
                 <H3>{data[imageIndex].titleH3}</H3>
-                <Text styles="mb-6 mt-8 md:mb-6 mt-4 md:mt-8">
+                <Text styles="mb-6 mt-8 lg:mb-6 mt-4 lg:mt-8">
                   {data[imageIndex].text}
                 </Text>
               </div>
               <div className="row-span-1 grid grid-flow-col justify-start content-end">
-                <button
-                  className="w-10 h-10 md:w-10 md:h-10"
-                  onClick={() => paginate(-1)}
-                  disabled={page === 0}
-                >
+                <button className="w-10 h-10 lg:w-10 lg:h-10" onClick={() => paginate(-1)}>
                   <img
                     className="w-5 h-5"
                     src="/icons/ohne-box/chevron_left_FILL0_wght400_GRAD0_opsz24_blue.svg"
                     alt=""
                   />
                 </button>
-                <button
-                  className="w-10 h-10 md:w-10 md:h-10"
-                  onClick={() => paginate(1)}
-                  disabled={page === data.length - 1}
-                >
+                <button className="w-10 h-10 lg:w-10 lg:h-10" onClick={() => paginate(1)}>
                   <img
                     className="w-5 h-5"
                     src="/icons/ohne-box/chevron_right_FILL0_wght400_GRAD0_opsz24_blue.svg"
@@ -115,7 +116,8 @@ const ProductCarousel = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-    </>
+    </FullWidth>
+    </section>
   );
 };
 
