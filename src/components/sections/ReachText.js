@@ -1,13 +1,13 @@
 const RichTextRenderer = ({ text }) => {
     return (
-      <>
-        {render(text, {
-          defaultBlokResolver: (name, props) => (
-            <StoryblokComponent blok={{ component: name, ...props }} />
-          ),
-        })}
-      </>
+        <>
+            {render(text, {
+                defaultBlokResolver: (name, props) => (
+                    <StoryblokComponent blok={{ component: name, ...props }} />
+                ),
+            })}
+        </>
     );
-  };
-  
-  export default RichTextRenderer;
+};
+
+export default RichTextRenderer;

@@ -1,15 +1,9 @@
-
-import { renderRichText } from "@storyblok/react";
-
+import { renderRichText } from '@storyblok/react';
 
 const RichTextRenderer = (richText) => {
-  const renderedRichText = renderRichText(richText);
+    const renderedRichText = renderRichText(richText);
 
-  return (
-    <>
- 
-    </>
-  );
+    return <></>;
 };
 
 export default RichTextRenderer;

@@ -1,11 +1,11 @@
-import ContentWidth from "../layouts/ContentWidth";
-import Text from "../typography/Text";
+import ContentWidth from '../layouts/ContentWidth';
+import Text from '../typography/Text';
 
 function NewsItem() {
-  return (
-    <ContentWidth>
-      <div className="col-span-12 w-full">
-        {/* <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    return (
+        <ContentWidth>
+            <div className="col-span-12 w-full">
+                {/* <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {news.map((item, index) => (
             <a
               href={item.link}
@@ -37,9 +37,9 @@ function NewsItem() {
             </a>
           ))}
         </div> */}
-      </div>
-    </ContentWidth>
-  );
+            </div>
+        </ContentWidth>
+    );
 }
 
 export default NewsItem;
