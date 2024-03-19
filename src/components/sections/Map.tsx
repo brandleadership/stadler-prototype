@@ -12,13 +12,10 @@ const countries = [
   "Polen",
   "Ungarn",
   "USA",
-  "Weissrussland",
+  "Belarus",
   "Österreich",
   "Kazachstan",
-  "Tschechien",
-  "Vereinigtes Königsreich",
-  "Schweden",
-  "Norwegen",
+  "...",
 ];
 const statsData = [
   {
@@ -64,33 +61,33 @@ const Map: React.FC<MapProps> = ({ props, title }) => {
           </div>
         </SmallWidth>
         <Stats data={statsData} backgroundColor="bg-white" />
-        <div className="relative flex flex-col-reverse lg:flex-none">
-          <div className="pl-6 lg:pl-20 py-8 relative w-full lg:w-[24%] z-10">
-            <div className="relative">
-              <ul className="text-primary grid grid-cols-2 lg:grid-cols-1 ">
-                {countries.map((country, index) => (
-                  <li
-                    className="mb-3 whitespace-no-wrap mr-16 lg:mr-0"
-                    key={index}
-                  >
-                    <a href="#">{country}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8">
-              <ButtonPrimary position="left" href="/#">
-                Alle Standorte
-              </ButtonPrimary>
-            </div>
-          </div>
-          <div className="pl-6 static lg:absolute top-0 w-[84%] left-[16%] h-full">
+        <div className="relative">
+         
+          <div className="pl-6 relative w-full">
             <img
               className="w-full h-auto"
               src="/stadler-world-map-home.svg"
               alt=""
             />
+          </div>
+          <div className="pl-6 lg:pl-20 md:flex flex-column py-8 static w-full">
+            
+            <div className="md:w-1/3 w-full mb-8 flex-column justify-start items-start">
+              <div className="flex justify-start items-center">
+                <div className="mr-3 w-3 h-3 bg-map-dark rounded-full"></div>
+                <div>Stadler vor Ort</div>
+              </div>
+              <div className="flex justify-start items-center">
+                <div className="mr-3 w-3 h-3 bg-map-light rounded-full"></div>
+                <div>Stadler im Einsatz</div>
+              </div>
+            </div>
+
+            <div className="md:w-1/3 w-full">
+              <ButtonPrimary position="center" href="/#">
+                Alle Standorte
+              </ButtonPrimary>
+            </div>
           </div>
         </div>
       </div>
