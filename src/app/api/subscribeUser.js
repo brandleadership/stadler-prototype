@@ -1,43 +1,75 @@
-export default async (req, res) => {
-    const { email } = req.body;
+import axios from "axios";
+import { NextApiRequest, NextApiResponse } from "next";
+// import { z } from "zod";
 
-    console.log({ email });
+// Define response data type
+// type Data = { message?: ""; error?: string; };
 
-    if (!email) {
-        return res.status(400).json({ error: 'Email is required' });
-    }
+// Email validation schema
+// const EmailSchema = z
+//     .string()
+//     .email({ message: "Please enter a valid email address" });
 
+// Subscription handler function
+const subscribeHandler = async (
+    req,
+    res
+) => {
+    // 1. Validate email address
+    // const emailValidation = EmailSchema.safeParse(req.body.email);
+    // if (!emailValidation.success) {
+    //     return res.status(400).json({ error: "Please enter a valid email address" });
+    // }
+
+    // 2. Retrieve Mailchimp credentials from environment variables
+    const API_KEY = process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY;
+    const API_SERVER = process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER;
+    const AUDIENCE_ID = process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID;
+
+    // 3. Construct Mailchimp API request URL
+    const url = `https://${API_SERVER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`;
+
+    // 4. Prepare request data
+    const data = {
+        email_address: req.body.email,
+        status: "subscribed",
+    };
+
+    // 5. Set request headers
+    const options = {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `api_key ${API_KEY}`,
+        },
+    };
+
+    // 6. Send POST request to Mailchimp API
     try {
-        const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
-        const API_KEY = process.env.MAILCHIMP_API_KEY;
-        const DATACENTER = process.env.MAILCHIMP_API_SERVER;
-        const data = {
-            email_address: email,
-            status: 'subscribed',
-        };
+        const response = await axios.post(url, data, options);
+        if (response.status == 200) {
+            return res.status(201).json({ message: "Awesome! You have successfully subscribed!" });
+        }
+    } catch (error) {
 
-        const response = await fetch(
-            `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}/members`,
+        if (axios.isAxiosError(error)) {
+            console.error(
+                `${error.response?.status}`,
+                `${error.response?.data.title}`,
+                `${error.response?.data.detail}`
+            );
 
-            {
-                body: JSON.stringify(data),
-                headers: {
-                    Authorization: `apikey ${API_KEY}`,
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
+            if (error.response?.data.title == "Member Exists") {
+                return res.status(400).json({
+                    error: "Uh oh, it looks like this email's already subscribed🧐",
+                });
             }
-        );
-        console.log("response")
-        if (response.status >= 400) {
-            return res.status(400).json({
-                error: `There was an error subscribing to the newsletter.
-        Hit me up peter@peterlunch.com and I'll add you the old fashioned way :(.`,
-            });
         }
 
-        return res.status(201).json({ error: '' });
-    } catch (error) {
-        return res.status(500).json({ error: error.message || error.toString() });
+        return res.status(500).json({
+            error:
+                "Oops! There was an error subscribing you to the newsletter. Please email me at ogbonnakell@gmail.com and I'll add you to the list.",
+        });
     }
 };
+
+export default subscribeHandler;

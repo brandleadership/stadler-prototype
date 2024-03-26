@@ -3,6 +3,7 @@ import { useRef } from 'react';
 
 export default function NewsLetterSignUpForm() {
     const inputRef = useRef(null);
+    console.log("process.env.MAILCHIMP_AUDIENCE_ID", process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID, process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY)
 
     const subscribeUser = async (e) => {
         e.preventDefault();
@@ -10,12 +11,13 @@ export default function NewsLetterSignUpForm() {
         // this is where your mailchimp request is made
 
         try {
-            const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
-            const API_KEY = process.env.MAILCHIMP_API_KEY;
-            const DATACENTER = process.env.MAILCHIMP_API_SERVER;
+            const AUDIENCE_ID = process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID;
+            const API_KEY = process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY;
+            const DATACENTER = process.env.NEXT_PUBLIC_MAILCHIMP_API_SERVER;
             const data = {
-                email_address: email,
+                email_address: "email@com.com",
                 status: 'subscribed',
+                "merge_fields": { "FNAME": "TEST", "LNAME": "TEST", "COMPANY": "TEST" }
             };
 
             const response = await fetch(
@@ -24,13 +26,16 @@ export default function NewsLetterSignUpForm() {
                 {
                     body: JSON.stringify(data),
                     headers: {
-                        Authorization: `apikey ${API_KEY}`,
+                        Authorization: `Bearer ${API_KEY}`,
                         'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        "Access-Control-Allow-Methods": "POST",
+                        'Access-Control-Allow-Credentials': 'true'
                     },
                     method: 'POST',
                 }
             );
-            console.log("response")
+            console.log("response", response)
             if (response.status >= 400) {
                 return response.status(400).json({
                     error: `There was an error subscribing to the newsletter.
@@ -39,8 +44,9 @@ export default function NewsLetterSignUpForm() {
             }
 
             return response.status(201).json({ error: '' });
-        } catch (error) {
-            return response.status(500).json({ error: error.message || error.toString() });
+        }
+        catch (error) {
+            return console.log(error)
         }
     };
 
