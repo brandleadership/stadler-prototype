@@ -23,6 +23,9 @@ const HeaderNew = ({ blok }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const buttonRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showBorderAndShadow, setShowBorderAndShadow] = useState(false);
     const tabs = ['company', 'solutions'];
     const [activeTab, setActiveTab] = useState(null);
     const canToggleRef = useRef(true);
@@ -85,9 +88,35 @@ const HeaderNew = ({ blok }) => {
         }, 300);
     }, []);
 
+    const handleScroll = useCallback(() => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            setShowHeader(false);
+        } else if (currentScrollY < lastScrollY) {
+            setShowHeader(true);
+        }
+
+        if (currentScrollY > 0) {
+            setShowBorderAndShadow(true);
+        } else {
+            setShowBorderAndShadow(false);
+        }
+
+        setLastScrollY(currentScrollY);
+    }, [lastScrollY]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
+
     return (
         <motion.header
-            className="py-4 lg:h-40"
+            className={`fixed z-50 w-full bg-white py-4 transition-all duration-500 ease-in-out lg:h-40 ${showHeader ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-full opacity-0'} ${showBorderAndShadow ? 'shadow-md' : 'shadow-none'}`}
             initial="closed"
             animate={isOpen ? 'open' : 'closed'}
         >
@@ -121,6 +150,7 @@ const HeaderNew = ({ blok }) => {
                                         fill="#005893"
                                         strokeWidth="2"
                                         stroke="#005893"
+                                        initial="closed"
                                         animate={isOpen ? 'open' : 'closed'}
                                         variants={{
                                             closed: { d: 'M 2 6 L 20 6' },
@@ -143,12 +173,15 @@ const HeaderNew = ({ blok }) => {
                                         fill="#005893"
                                         strokeWidth="2"
                                         stroke="#005893"
+                                        initial="closed"
                                         animate={isOpen ? 'open' : 'closed'}
                                         variants={{
                                             closed: {
                                                 d: 'M 2 16 L 20 16',
                                             },
-                                            open: { d: 'M 3 2.5 L 17 16.346' },
+                                            open: {
+                                                d: 'M 3 2.5 L 17 16',
+                                            },
                                         }}
                                     />
                                 </svg>
@@ -171,7 +204,7 @@ const HeaderNew = ({ blok }) => {
                                     paddingTop: 0,
                                 },
                             }}
-                            className="flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-min-height:0px] [--responsive-opacity:0%] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-min-height:80px] lg:[--responsive-opacity:100%]"
+                            className="flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-opacity:0%] [--responsive-min-height:0px] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-opacity:100%] lg:[--responsive-min-height:80px]"
                         >
                             <ul className="flex flex-col lg:flex-row">
                                 {tabs.map((item) => (
@@ -179,7 +212,7 @@ const HeaderNew = ({ blok }) => {
                                         <div
                                             tabIndex="1"
                                             onClick={() => handleTabClick(item)}
-                                            className="py-2 hover:cursor-pointer lg:px-2 lg:py-0"
+                                            className="py-2 hover:cursor-pointer lg:px-4 lg:py-0"
                                         >
                                             {item === 'company'
                                                 ? blok.main_link_1_text
@@ -251,14 +284,14 @@ const HeaderNew = ({ blok }) => {
                             </ul>
                             <Link
                                 tabIndex="1"
-                                className="py-2 lg:px-2 lg:py-0"
+                                className="py-2 lg:px-4 lg:py-0"
                                 href={ButtonUrlRenderer(blok.main_link_3_link)}
                             >
                                 {blok.main_link_3_text}
                             </Link>
                             <Link
                                 tabIndex="1"
-                                className="py-2 lg:px-2 lg:py-0"
+                                className="py-2 lg:px-4 lg:py-0"
                                 href={ButtonUrlRenderer(blok.main_link_4_link)}
                             >
                                 {blok.main_link_4_text}
