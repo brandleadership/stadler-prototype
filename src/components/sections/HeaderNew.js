@@ -53,6 +53,8 @@ const HeaderNew = ({ blok }) => {
         (event) => {
             if (event.key === 'Enter' && activeTab !== null) {
                 setActiveTab(null);
+            } else if (event.key === 'Escape' && activeTab !== null) {
+                setActiveTab(null);
             }
         },
         [activeTab]
@@ -84,6 +86,12 @@ const HeaderNew = ({ blok }) => {
             canToggleRef.current = true;
         }, 300);
     }, []);
+
+    const handleKeyDown = (event, item) => {
+        if (event.key === 'Enter') {
+            handleTabClick(item);
+        }
+    };
 
     return (
         <motion.header
@@ -171,7 +179,7 @@ const HeaderNew = ({ blok }) => {
                                     paddingTop: 0,
                                 },
                             }}
-                            className="flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-min-height:0px] [--responsive-opacity:0%] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-min-height:80px] lg:[--responsive-opacity:100%]"
+                            className="flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-opacity:0%] [--responsive-min-height:0px] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-opacity:100%] lg:[--responsive-min-height:80px]"
                         >
                             <ul className="flex flex-col lg:flex-row">
                                 {tabs.map((item) => (
@@ -179,6 +187,9 @@ const HeaderNew = ({ blok }) => {
                                         <div
                                             tabIndex="1"
                                             onClick={() => handleTabClick(item)}
+                                            onKeyDown={(e) =>
+                                                handleKeyDown(e, item)
+                                            }
                                             className="py-2 hover:cursor-pointer lg:px-2 lg:py-0"
                                         >
                                             {item === 'company'

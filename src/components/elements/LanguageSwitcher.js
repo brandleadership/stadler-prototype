@@ -46,11 +46,20 @@ const LanguageSwitcher = () => {
             }
         };
 
+        const handleEscapeKey = (event) => {
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+            }
+        };
+
         document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleEscapeKey);
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscapeKey);
         };
-    }, [dropdownRef]);
+    }, []);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -63,10 +72,11 @@ const LanguageSwitcher = () => {
         <div ref={dropdownRef}>
             <button
                 tabIndex="1"
+                aria-expanded={isOpen}
                 type="button"
                 onClick={() => setIsOpen((isOpen) => !isOpen)}
                 onKeyDown={handleKeyDown}
-                className="inline-flex items-center rounded-lg py-2.5 text-base font-medium text-primarySolid-800 hover:bg-greySolid-30 hover:text-primary focus:outline-none  lg:px-5"
+                className="inline-flex items-center rounded-lg py-2.5 text-base font-medium text-primarySolid-800 hover:bg-greySolid-30 hover:text-primary lg:px-5"
             >
                 {currentLocale === 'en' ? 'English' : 'Deutsch'}
                 <svg
@@ -99,7 +109,13 @@ const LanguageSwitcher = () => {
                             tabIndex="1"
                             role="menuitem"
                             onClick={handleChange}
-                            className="block px-4 py-2 text-sm text-greySolid-600 hover:bg-greySolid-100 "
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ')
+                                    handleChange();
+                            }}
+                            className="block px-4 py-2 text-sm text-greySolid-600 hover:bg-greySolid-100 dark:text-greySolid-400 dark:hover:bg-greySolid-600 dark:hover:text-white"
+
+
                         >
                             <div className="inline-flex items-center">
                                 {currentLocale === 'en' ? 'German' : 'Englisch'}
