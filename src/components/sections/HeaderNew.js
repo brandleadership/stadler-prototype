@@ -95,7 +95,7 @@ const HeaderNew = ({ blok }) => {
 
     return (
         <motion.header
-            className="py-4 lg:h-40"
+            // className="lg:h-32"
             initial="closed"
             animate={isOpen ? 'open' : 'closed'}
         >
@@ -105,13 +105,13 @@ const HeaderNew = ({ blok }) => {
                         initial="closed"
                         animate={isOpen ? 'open' : 'closed'}
                         variants={variants}
-                        className="[--responsive-height:0px] [--responsive-opacity:0%] lg:[--responsive-height:80px] lg:[--responsive-opacity:100%]"
+                        className="[--responsive-height:0px] [--responsive-opacity:0%] lg:[--responsive-height:48px] lg:[--responsive-opacity:100%]"
                     >
                         <hr className="bg-grey h-1 lg:hidden" />
                         <TopNav blok={blok} />
                     </motion.div>
                     <div className="py-2 lg:flex lg:justify-between">
-                        <div className="flex justify-between">
+                        <div className="flex items-center justify-between">
                             <Logo blok={blok} />
                             <motion.button
                                 tabIndex="1"
@@ -179,7 +179,7 @@ const HeaderNew = ({ blok }) => {
                                     paddingTop: 0,
                                 },
                             }}
-                            className="flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-opacity:0%] [--responsive-min-height:0px] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-opacity:100%] lg:[--responsive-min-height:80px]"
+                            className="flex flex-col items-center justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-min-height:0px] [--responsive-opacity:0%] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:48px] lg:[--responsive-min-height:48px] lg:[--responsive-opacity:100%]"
                         >
                             <ul className="flex flex-col lg:flex-row">
                                 {tabs.map((item) => (
@@ -274,7 +274,7 @@ const HeaderNew = ({ blok }) => {
                             >
                                 {blok.main_link_4_text}
                             </Link>
-                            <div className="relative">
+                            <div className="relative flex items-center">
                                 <button
                                     tabIndex="1"
                                     ref={buttonRef}

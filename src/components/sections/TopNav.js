@@ -14,7 +14,7 @@ export default function TopNav({ blok }) {
     };
     return (
         <div className="">
-            <div className="flex flex-col gap-2 pt-5 sm:justify-between lg:flex lg:flex-row lg:items-center lg:justify-end lg:gap-4">
+            <div className="flex flex-col gap-2 pt-3 sm:justify-between lg:flex lg:flex-row lg:items-center lg:justify-end lg:gap-4">
                 <ul
                     role="list"
                     className="flex flex-col justify-between gap-4 lg:flex lg:flex-row lg:justify-end lg:gap-8"
