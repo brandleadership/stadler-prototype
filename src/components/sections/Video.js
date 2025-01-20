@@ -7,6 +7,18 @@ import FullWidth from '../layouts/FullWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function Video({ blok }) {
+    const [videoLoaded, setVideoLoaded] = useState(true);
+
+    useEffect(() => {
+        const videoEl = document.querySelector('.video-element');
+
+        if (videoEl) {
+            videoEl.setAttribute('muted', true);
+            // if you want to set controls attribute you can use
+            videoEl.setAttribute('controls', true);
+        }
+        setVideoLoaded(!videoLoaded);
+    }, [videoLoaded]);
     return (
         <div
             {...storyblokEditable(blok)}
@@ -17,11 +29,9 @@ export default function Video({ blok }) {
                     <div className="w-full overflow-hidden lg:w-2/3">
                         <video
                             loading="lazy"
-                            className="-mb-[1%] -mt-[1%]"
+                            className="video-element -mb-[1%] -mt-[1%]"
                             autoplay
                             playsinline
-                            muted
-                            controls
                             src={blok.video.filename}
                             loop={true}
                             webkit-playsinline
