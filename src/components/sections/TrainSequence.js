@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 const images = [
@@ -231,7 +231,6 @@ const onDraw = (img, ctx) => {
 
 const ImageSequence = ({ category }) => {
     const [prevCategoryNumber, categoryNumberChange] = useState(category);
-    const [windowSize, setWindowSize] = useState(window.innerWidth);
     const canvasRef = useRef(null);
     let progress;
 
@@ -245,25 +244,11 @@ const ImageSequence = ({ category }) => {
 
     const keyframes = useMemo(() => {
         return [...new Array(100)].map((_, i) => {
-            // if (typeof window !== 'undefined') {
-            //     imageWidth =
-            //         window?.innerWidth > 1740
-            //             ? 'carousel_final_1728_webp'
-            //             : window?.innerWidth > 600
-            //               ? 'carousel_final_1440_webp'
-            //               : 'carousel_final_600_png';
-
-            //     if (i === 0 || i === 34 || i === 67 || i === 99) {
-            //         imageFormat = 'webp';
-            //     } else {
-            //         imageFormat = 'webp';
-            //     }
-            // } else {
-            //     imageWidth = 'carousel_final_1728_webp';
-            //     imageFormat = 'webp';
-            // }
-
-            return createImage(windowSize < 786 ? imagesMobile[i] : images[i]);
+            return createImage(
+                typeof window !== 'undefined' && window?.innerWidth < 786
+                    ? imagesMobile[i]
+                    : images[i]
+            );
         });
     }, []);
 
@@ -290,7 +275,6 @@ const ImageSequence = ({ category }) => {
     );
 
     useEffect(() => {
-        setWindowSize(window.innerWidth);
         resizeCanvas();
         progress = Number(category) / 3;
         const resizeCanvasAndRerender = () => {
@@ -320,8 +304,6 @@ const ImageSequence = ({ category }) => {
             img.src = image;
         });
     }, []);
-
-    console.log('windowwidthINIT', windowSize)
 
     const [animationProgress, animationProgressChange] = useState(false);
 

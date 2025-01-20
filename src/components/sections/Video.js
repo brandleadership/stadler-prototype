@@ -27,6 +27,7 @@ export default function Video({ blok }) {
                             className="-mb-[1%] -mt-[1%]"
                             autoplay
                             playsinline
+
                             muted
                             controls
                             src={blok.video.filename}
