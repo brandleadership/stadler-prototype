@@ -21,7 +21,7 @@ export default function ButtonPrimary(props) {
                 animate="rest"
                 className="flex cursor-pointer items-center gap-2 rounded bg-stadlergradient px-5 py-2.5 text-sm font-medium leading-6 text-white"
                 href={props.href}
-                target={props?.target ?? false}
+                target={props?.target ?? '_self'}
             >
                 <p>{props.buttonText}</p>
                 <motion.span
