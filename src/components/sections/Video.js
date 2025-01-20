@@ -18,6 +18,7 @@ export default function Video({ blok }) {
                         <video
                             loading="lazy"
                             className="-mb-[1%] -mt-[1%]"
+                            controls={false}
                             autoplay
                             playsinline
                             muted

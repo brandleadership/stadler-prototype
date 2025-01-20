@@ -45,9 +45,9 @@ export default function VideoFullWidth({ blok }) {
                 <video
                     loading="lazy"
                     ref={videoRef}
+                    controls={false}
                     autoPlay={true}
                     playsInline={true}
-                    controls
                     muted={true}
                     src={blok?.video.filename}
                     loop={true}
