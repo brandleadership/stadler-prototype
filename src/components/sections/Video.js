@@ -21,6 +21,7 @@ export default function Video({ blok }) {
                             autoplay
                             playsinline
                             muted
+                            controls
                             src={blok.video.filename}
                             loop={true}
                             webkit-playsinline
