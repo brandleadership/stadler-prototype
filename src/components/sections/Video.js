@@ -18,10 +18,9 @@ export default function Video({ blok }) {
                         <video
                             loading="lazy"
                             className="-mb-[1%] -mt-[1%]"
-
                             controls={false}
-                            autoPlay
-                            playsInline
+                            autoplay
+                            playsinline
 
                             muted
                             src={blok.video.filename}
