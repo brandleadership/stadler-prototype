@@ -91,15 +91,19 @@ export async function generateMetadata({ params }) {
     }
 
     const metatags = story.content.metatags || {};
-    const title = metatags.title || 'Default Title';
-    const description = metatags.description || 'Default Description';
-    const og_description = metatags.og_description || 'Default OG Description';
-    const og_title = metatags.og_title || 'Default OG Title';
+    const title = metatags.title || 'Stadler';
+    const description =
+        metatags.description ||
+        `Welcome to Stadler's website. Discover our wide range of innovative solutions in the fields of Rolling Stock, Signalling and Service.`;
+    const og_description =
+        metatags.og_description || `Welcome to Stadler's website.`;
+    const og_title = metatags.og_title || 'Stadler';
     const og_image = metatags.og_image || 'Default OG Image url';
     const twitter_image = metatags.twitter_image || 'Default Image url';
-    const twitter_title = metatags.twitter_title || 'Default Twitter Title';
+    const twitter_title = metatags.twitter_title || 'Stadler';
     const twitter_description =
-        metatags.twitter_description || 'Default Twitter Description';
+        metatags.twitter_description ||
+        `Welcome to Stadler's website. Discover our wide range of innovative solutions in the fields of Rolling Stock, Signalling and Service.`;
 
     const metadata = {
         title: title,
