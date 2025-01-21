@@ -1,5 +1,6 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
+import { useEffect, useRef } from 'react';
 import H2 from '../typography/H2';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import Text from '../typography/Text';
@@ -7,6 +8,11 @@ import FullWidth from '../layouts/FullWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function Video({ blok }) {
+    const videoRef = useRef();
+
+    useEffect(() => {
+        videoRef.current.play();
+    }, [videoRef]);
     return (
         <div
             {...storyblokEditable(blok)}
@@ -16,15 +22,18 @@ export default function Video({ blok }) {
                 <div className="col-span-12 flex flex-col items-center justify-between lg:flex-row">
                     <div className="w-full overflow-hidden lg:w-2/3">
                         <video
+                            ref={videoRef}
                             loading="lazy"
                             className="-mb-[1%] -mt-[1%]"
-                            controls={false}
-                            autoplay 
-                            playsinline 
+                            autoplay
+                            playsinline
+
                             muted
+                            controls
                             src={blok.video.filename}
                             loop={true}
                             webkit-playsinline
+                            preload
                         />
                     </div>
                     <div className="m-auto w-[90%] lg:w-1/3 lg:px-4 xl:px-20">

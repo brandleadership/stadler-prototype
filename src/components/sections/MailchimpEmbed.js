@@ -34,7 +34,7 @@ export default function MailchimpEmbed({ blok }) {
         formData.append('email', email);
         formData.append('firma', company);
         formData.append('firstName', firstName);
-        formData.append('lastName', 'lastName');
+        formData.append('lastName', lastName);
 
         try {
             const checkConnection = await fetch(
@@ -46,7 +46,10 @@ export default function MailchimpEmbed({ blok }) {
             );
             const attributes = await checkConnection.json();
 
-            if (attributes.status == 'subscribed') {
+            if (
+                attributes.status == 'subscribed' ||
+                attributes.status == 'pending'
+            ) {
                 setValidationSuccess(true);
                 setValidationError(false);
                 setValidationSubscribedError(false);
