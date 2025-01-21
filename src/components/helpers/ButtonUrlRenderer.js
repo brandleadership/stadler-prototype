@@ -10,7 +10,12 @@ const ButtonUrlRenderer = (data) => {
     }
     if (data.linktype && data.linktype == 'asset') {
         if (data.url) {
-            return data?.url.replace('https://a.storyblok.com/f/269997/', `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadler-prototyping-git-next-no-typescript-stadler-rail.vercel.app'}/api/docs/`) || '/';
+            return (
+                data?.url.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                ) || '/'
+            );
         }
         if (data.fieldtype) {
             return data?.filename || '/';
@@ -19,7 +24,12 @@ const ButtonUrlRenderer = (data) => {
     }
     if (data.fieldtype && data.fieldtype == 'asset') {
         if (data.filename) {
-            return data?.filename.replace('https://a.storyblok.com/f/269997/', `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadler-prototyping-git-next-no-typescript-stadler-rail.vercel.app'}/api/docs/`) || '/';
+            return (
+                data?.filename.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                ) || '/'
+            );
         }
         return '/';
     }
