@@ -83,7 +83,7 @@ const Testimonials = ({ blok }) => {
                                     <figure className="relative z-[1] mx-auto ml-auto h-auto max-w-full rounded-b-lg lg:w-8/12">
                                         <div className="rounded-b-lg bg-white">
                                             <blockquote className="my-2 border-l-4 border-greySolid-300 p-4">
-                                                <p className="text-xl font-medium italic leading-relaxed text-greySolid-800">
+                                                <p className="break-words text-xl font-medium italic leading-relaxed text-greySolid-800">
                                                     "{selectedTab.quote}"
                                                 </p>
                                             </blockquote>
