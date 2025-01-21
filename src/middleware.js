@@ -114,7 +114,7 @@ export function middleware(request) {
                 }
                 return NextResponse.redirect(request.nextUrl);
             case 'SE':
-                if (userLocale.includes('se')) {
+                if (userLocale.includes('sv')) {
                     request.nextUrl.pathname = '/en/se/karriaer';
                 } else {
                     request.nextUrl.pathname = '/en/se/careers';
