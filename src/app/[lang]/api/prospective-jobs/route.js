@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET(request) {
     // Call an external API endpoint to get posts
     const accessToken = process.env.PROSPECTIVE_API_TOKEN;
-    let url = `${process.env.PROSPECTIVE_API_BASE_URL}/jobs/?offset=0&limit=100&lang=de`;
+    let url = `${process.env.PROSPECTIVE_API_BASE_URL}/jobs/?offset=0&limit=500&lang=de`;
     if (request.nextUrl.searchParams.get('filter')) {
         url += `&f=${request.nextUrl.searchParams.get('filter')}`;
     }
