@@ -344,7 +344,7 @@ const HeroCareer = ({ blok }) => {
             style={{
                 backgroundImage: `url(${blok?.background_image.filename})`,
             }}
-            className="h-[70vh] min-h-min bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply lg:h-auto lg:max-h-[60vh]"
+            className="h-[70vh] min-h-min bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply lg:h-auto"
         >
             <SmallWidth>
                 <div className="z-1 relative col-span-12 mx-auto max-w-screen-xl py-8 text-white lg:py-24 lg:pb-12 lg:pt-80 xl:px-0">
