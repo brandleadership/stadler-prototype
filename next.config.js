@@ -3832,10 +3832,25 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: '/de/karriere/:path*',
+                source: '/de/karriere/berufserfahrene/:path*',
                 destination: '/de/karriere/offene-stellen',
                 permanent: true,
             },
+             {
+                source: '/de/karriere/auszubildende/:path*',
+                destination: '/de/karriere/offene-stellen',
+                permanent: true,
+            },
+            {
+                source: '/de/karriere/studierende/:path*',
+                destination: '/de/karriere/offene-stellen',
+                permanent: true,
+            },
+            // {
+            //     source: '/de/karriere/:path*',
+            //     destination: '/de/karriere/offene-stellen',
+            //     permanent: true,
+            // },
             {
                 source: '/de/medien/article/stadler-investiert-in-die-zukunft-und-baut-ein-neues-inbetriebsetzungszentrum-fuer-zuege-in-hennigsdorf/1629/',
                 destination: '/de/medien/medienmitteilungen',
