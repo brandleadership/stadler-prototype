@@ -1,5 +1,5 @@
 'use client';
-import H2 from '../../components/typography/H2';
+import H3 from '../../components/typography/H3';
 import Text from '../../components/typography/Text';
 import ContentWidth from '../layouts/ContentWidth';
 import Button from '../elements/ButtonSecondary';
@@ -12,7 +12,7 @@ export default function TeaserMobilitySolutions({ blok }) {
             <ContentWidth>
                 <div className="col-span-12 max-w-4xl lg:mx-auto">
                     <div className="break-words text-center leading-tight text-white">
-                        <H2>{blok.title}</H2>
+                        <H3>{blok.title}</H3>
                     </div>
                     <div className="my-8 break-words text-center text-xl text-white">
                         <Text>{blok.lead}</Text>

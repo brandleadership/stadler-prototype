@@ -119,6 +119,7 @@ https://consent.cookiebot.com/uc.js"
                         data-blockingmode="auto"
                         type="text/javascript"
                     ></Script>
+                    {/* <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://www.juicer.io/" /> */}
 
                     {/* <Script
                         id="CookieDeclaration"

@@ -7,6 +7,8 @@ function MedienmitteilungDownloadLink({ blok }) {
         <a
             tabIndex="1"
             {...storyblokEditable(blok)}
+            target="_blank"
+            rel="noreferrer"
             className="mr-4 w-6 text-primary"
             href={ButtonUrlRenderer(blok?.download_link)}
         >

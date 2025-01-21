@@ -161,3 +161,27 @@ h4 {
         transform: scaleY(-1) rotate(-135deg);
     }
 }
+
+/* .swiper-slide-next,
+.swiper-slide-prev {
+    opacity: 0.3 !important;
+} */
+
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pagination-bullet {
+    background: #0000001a;
+    /* opacity: 1; */
+    width: 32px;
+    height: 4px;
+    display: block;
+    cursor: pointer;
+}
+
+.pagination-bullet-active {
+    background: rgb(0 88 147);
+}

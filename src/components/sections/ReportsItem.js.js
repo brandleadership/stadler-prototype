@@ -1,6 +1,7 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { useEffect, useRef } from 'react';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 import H3 from '../typography/H3';
 import { ArrowForward } from '../icons/ArrowForward';
@@ -39,7 +40,7 @@ const ReportsItem = ({ blok }) => {
                 <a
                     tabIndex="1"
                     ref={investorsReference}
-                    href={blok?.cta_link.url ?? ''}
+                    href={ButtonUrlRenderer(blok?.cta_link)}
                     target="_blank"
                     className="inline-flex items-center text-center text-sm font-medium"
                     rel="noreferrer"

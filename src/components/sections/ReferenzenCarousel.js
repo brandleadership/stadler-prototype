@@ -3,8 +3,10 @@ import H3 from '../typography/H3';
 import Text from '../typography/Text';
 import H2 from '../typography/H2';
 import Link from 'next/link';
-import { MotionConfig, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+// import { motion } from 'framer-motion';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useState, useEffect, useRef } from 'react';
 import ContentWidth from '../layouts/ContentWidth';
 import H4 from '../typography/H4';
 import { ChevronLeft } from '../icons/ChevronLeft';
@@ -12,59 +14,17 @@ import { ChevronRight } from '../icons/ChevronRight';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import i18nConfig from '/i18nConfig';
 import { useCurrentLocale } from 'next-i18n-router/client';
-
-const TestimonialMotionDiv = motion.div;
-
-const Pagination = ({ total, current }) => {
-    return (
-        <div className="flex justify-center text-sm font-medium text-greySolid-400">
-            <p className="flex flex-row gap-2 text-sm font-medium">
-                <span> {current + 1}</span>
-                <span>|</span>
-                <span>{total}</span>
-            </p>
-        </div>
-    );
-};
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const TestimonialsCarousel = ({ blok }) => {
     const currentLocale = useCurrentLocale(i18nConfig) || 'en';
-    const [current, setCurrent] = useState(0);
     const [showTrains, setShowTrains] = useState(false);
-    const [highlightsCategory, setHighlightsCategory] = useState([]);
     const [referenceSlider, setReferenceSlider] = useState([]);
     const [remainingReferences, setRemainingReferences] = useState([]);
     const apiURL = currentLocale == 'en' ? 'solutions/' : 'loesungen/';
-
-    useEffect(() => {
-        const getArticles = async () => {
-            const arrayHighlight = [];
-            blok.highlight_reference.map((item) => {
-                arrayHighlight.push(item.uuid);
-            });
-
-            const highlightReference = arrayHighlight.join(',');
-
-            const storyblokApi = getStoryblokApi();
-            const { data } = await storyblokApi.get(`cdn/stories`, {
-                version: 'published',
-                starts_with: apiURL,
-                is_startpage: false,
-                'filter_query[categories][any_in_array]': highlightReference,
-                per_page: 5,
-                language: currentLocale,
-            });
-
-            setHighlightsCategory(() =>
-                data.stories.map((article) => {
-                    article.content.slug = article.slug;
-
-                    return article;
-                })
-            );
-        };
-        getArticles();
-    }, [blok.highlight_reference, currentLocale]);
+    const swiperRef = useRef();
 
     useEffect(() => {
         const getArticles = async () => {
@@ -90,18 +50,6 @@ const TestimonialsCarousel = ({ blok }) => {
         getArticles();
     }, [blok.reference, currentLocale]);
 
-    const onPrevClick = () => {
-        if (current > 0) {
-            setCurrent((prev) => prev - 1);
-        }
-    };
-
-    const onNextClick = () => {
-        if (current < highlightsCategory.length - 1) {
-            setCurrent((prev) => prev + 1);
-        }
-    };
-
     const toggleTrainsVisibility = () => {
         setShowTrains(!showTrains);
     };
@@ -116,98 +64,104 @@ const TestimonialsCarousel = ({ blok }) => {
                     <div className="mb-4 flex items-center justify-center">
                         <H2>{blok?.title}</H2>
                     </div>
-                    <div className="flex flex-col items-center justify-between overflow-hidden">
-                        <MotionConfig
-                            transition={{
-                                duration: 0.7,
-                                ease: [0.32, 0.72, 0, 1],
+                    <div className="slider-new">
+                        <Swiper
+                            modules={[Navigation, Pagination]}
+                            onBeforeInit={(swiper) => {
+                                swiperRef.current = swiper;
+                            }}
+                            pagination={{
+                                el: ".slider-pagination", // Use a valid DOM element here
+                                type: 'fraction',
+                            }}
+                            spaceBetween={20}
+                            autoHeight={true}
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 1,
+                                },
+                                1024: {
+                                    slidesPerView: 1.2,
+                                },
                             }}
                         >
-                            <div className="relative flex w-full max-w-[100%] items-center">
-                                <motion.div className="flex max-w-[100%] flex-nowrap gap-6 overflow-hidden lg:mx-[-10px] lg:my-[-10px] lg:px-[10px] lg:py-[10px]">
-                                    {referenceSlider.map((article, idx) => (
-                                        <TestimonialMotionDiv
-                                            key={article.uuid}
-                                            className="grid min-w-[100%] grid-cols-1 bg-white shadow lg:min-w-[90%] lg:grid-cols-2 lg:flex-row"
-                                            animate={{
-                                                translateX: `calc(-${current * 100}% - ${
-                                                    current * 1.5
-                                                }rem)`,
-                                                opacity:
-                                                    idx === current ? 1 : 0.3,
-                                            }}
+                            {referenceSlider.map((article) => {
+                                return (
+                                    <SwiperSlide
+                                        key={article.uuid}
+                                        className="cursor-pointer bg-white shadow lg:grid lg:grid-cols-2 h-fit my-1"
+                                    >
+                                        <a
+                                            tabIndex="1"
+                                            href={`/${article.full_slug}`}
+                                            className="inline-block"
                                         >
-                                            <a
+                                            <img
+                                                src={
+                                                    article.content?.image?.filename
+                                                }
+                                                alt={
+                                                    article.content?.image
+                                                        ?.filename?.alt ??
+                                                    `Image for ${blok?.title}`
+                                                }
+                                                className="w-full h-auto object-cover"
+                                            />
+                                        </a>
+                                        <div className="pt-4 p-10 lg:pt-10 leading-normal">
+                                            <Text styles="mb-6 lg:mb-10">
+                                                {article.name}
+                                            </Text>
+                                            <div className="">
+                                                <H3>
+                                                    {
+                                                        article?.content
+                                                            ?.title
+                                                    }
+                                                </H3>
+                                                <RichTextRenderer
+                                                    text={
+                                                        article?.content
+                                                            ?.lead
+                                                    }
+                                                    styles="mb-6 mt-8 md:mb-10 mt-4 md:mt-8"
+                                                ></RichTextRenderer>
+                                            </div>
+                                            <Link
                                                 tabIndex="1"
                                                 href={`/${article.full_slug}`}
+                                                className="inline-flex items-center py-2 pt-4 text-center text-sm font-medium"
                                             >
-                                                <img
-                                                    src={
-                                                        article.content?.image
-                                                            ?.filename
-                                                    }
-                                                    alt={
-                                                        article.content?.image
-                                                            ?.filename?.alt ??
-                                                        `Image for ${blok?.title}`
-                                                    }
-                                                    className="h-full w-full object-cover"
-                                                />
-                                            </a>
-                                            <div className="flex flex-col justify-between p-10 leading-normal">
-                                                <Text styles="mb-6 md:mb-10">
-                                                    {article.name}
-                                                </Text>
-                                                <div className="">
-                                                    <H3>
-                                                        {
-                                                            article?.content
-                                                                ?.title
-                                                        }
-                                                    </H3>
-                                                    <RichTextRenderer
-                                                        text={
-                                                            article?.content
-                                                                ?.lead
-                                                        }
-                                                        styles="mb-6 mt-8 md:mb-10 mt-4 md:mt-8"
-                                                    ></RichTextRenderer>
-                                                </div>
-                                                <Link
-                                                    tabIndex="1"
-                                                    href={`/${article.full_slug}`}
-                                                    className="inline-flex items-center py-2 text-center text-sm font-medium"
+                                                <svg
+                                                    width="20"
+                                                    height="20"
+                                                    viewBox="0 0 20 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
                                                 >
-                                                    <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <g clipPath="url(#clip0_4995_6662)">
-                                                            <path
-                                                                d="M7.72573e-07 11.1628L16.338 11.1628L10.9296 18.6047L12.7324 20L20 10L12.7324 -6.35355e-07L10.9296 1.39535L16.338 8.83721L9.75882e-07 8.83721L7.72573e-07 11.1628Z"
-                                                                fill="#005893"
+                                                    <g clipPath="url(#clip0_4995_6662)">
+                                                        <path
+                                                            d="M7.72573e-07 11.1628L16.338 11.1628L10.9296 18.6047L12.7324 20L20 10L12.7324 -6.35355e-07L10.9296 1.39535L16.338 8.83721L9.75882e-07 8.83721L7.72573e-07 11.1628Z"
+                                                            fill="#005893"
+                                                        />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_4995_6662">
+                                                            <rect
+                                                                width="20"
+                                                                height="20"
+                                                                fill="white"
                                                             />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4995_6662">
-                                                                <rect
-                                                                    width="20"
-                                                                    height="20"
-                                                                    fill="white"
-                                                                />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                </Link>
-                                            </div>
-                                        </TestimonialMotionDiv>
-                                    ))}
-                                </motion.div>
-                            </div>
-                        </MotionConfig>
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </Link>
+                                        </div>
+                                    </SwiperSlide>
+                                    )
+                                }
+                            )}
+                        </Swiper>
                     </div>
                     <div className="justify-beetween relative col-span-12 mt-8 flex w-full flex-row items-center">
                         <button
@@ -257,24 +211,22 @@ const TestimonialsCarousel = ({ blok }) => {
                             {blok?.collapse_text}
                         </button>
 
-                        <div className="flex w-full flex-row items-center justify-end gap-4 py-4">
-                            <Pagination
-                                total={highlightsCategory.length}
-                                current={current}
-                            />
-                            <motion.div
-                                className="z-10 flex flex-row gap-4"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <button tabIndex="1" onClick={onPrevClick}>
+                        <div className="flex w-full items-center justify-end gap-4 py-4">
+                            <div className="slider-pagination w-fit text-sm font-medium text-greySolid-400"></div>
+                            <div className="md:flex relative justify-end gap-4">
+                                <button
+                                    onClick={() => swiperRef.current?.slidePrev()}
+                                    aria-label='button-prev'
+                                >
                                     <ChevronLeft styles="w-5 h-5 fill-primary" />
                                 </button>
-                                <button tabIndex="1" onClick={onNextClick}>
+                                <button
+                                    onClick={() => swiperRef.current?.slideNext()}
+                                    aria-label='button-next'
+                                >
                                     <ChevronRight styles="w-5 h-5 fill-primary" />
                                 </button>
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-span-12 max-w-full">

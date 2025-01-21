@@ -18,32 +18,37 @@ const AccordionYearWrapper = ({ blok, isActive }) => {
                         <div
                             className={`col-span-12 mt-10 max-w-full overflow-x-auto ${isActive ? '' : 'hidden'} w-full text-left text-sm text-greySolid-600 rtl:text-right`}
                         >
-                            <table className="w-full">
-                                <thead className="whitespace-nowrap bg-primarySolid-50 text-xs font-bold uppercase text-black">
-                                    <tr>
-                                        <th className="px-6 py-3">
+                            <div className="w-full">
+                                <div className="whitespace-nowrap bg-primarySolid-50 text-xs font-bold uppercase text-black">
+                                    <div className="grid md:grid-cols-[1fr_3fr]">
+                                        <div className="px-2 md:px-6 py-3 text-center md:text-left">
                                             {blok?.headline_title}
-                                        </th>
-                                        <th className="px-6 py-3">
-                                            {blok?.headline_date}
-                                        </th>
-                                        <th className="px-6 py-3 text-center">
-                                            {blok?.headline_berichte}
-                                        </th>
-                                        <th className="px-6 py-3 text-center">
-                                            {blok?.headline_presentation}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                        </div>
+                                        <div className="grid grid-cols-2 md:grid-cols-[1fr_2fr]">
+                                            <div className="px-2 md:px-6 py-3">
+                                                {blok?.headline_date}
+                                            </div>
+                                            <div className="md:hidden px-2 md:px-6 py-3 text-end">Download</div>
+                                            <div className="hidden md:grid md:grid-cols-2">
+                                                <div className="px-6 py-3 text-center">
+                                                    {blok?.headline_berichte}
+                                                </div>
+                                                <div className="px-6 py-3 text-center">
+                                                    {blok?.headline_presentation}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
                                     {blok.year_wrapper.map((nestedBlok) => (
                                         <StoryblokComponent
                                             blok={nestedBlok}
                                             key={nestedBlok?._uid}
                                         />
                                     ))}
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </AnimatePresence>

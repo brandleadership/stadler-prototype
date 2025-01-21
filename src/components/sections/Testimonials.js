@@ -6,6 +6,15 @@ import SmallWidth from '../layouts/SmallWidth';
 
 const Testimonials = ({ blok }) => {
     const [selectedTab, setSelectedTab] = useState(blok.testimonial[0]);
+    function optimizeImage(image) {
+        if (!image.filename) return null;
+
+        let imageSource = image.filename + `/m/332x250`;
+
+        if (image.focus) imageSource += `/filters:focal(${image.focus})`;
+
+        return imageSource;
+    }
 
     return (
         <section>
@@ -39,7 +48,7 @@ const Testimonials = ({ blok }) => {
                                 <span className="flex items-center justify-around lg:flex-col">
                                     <img
                                         className="aspect-[4/3] w-1/3 object-cover lg:w-full"
-                                        src={item?.image?.filename}
+                                        src={optimizeImage(item?.image)}
                                         alt={
                                             item?.image?.filename?.alt ??
                                             'profile picture'
@@ -74,7 +83,7 @@ const Testimonials = ({ blok }) => {
                                     <figure className="relative z-[1] mx-auto ml-auto h-auto max-w-full rounded-b-lg lg:w-8/12">
                                         <div className="rounded-b-lg bg-white">
                                             <blockquote className="my-2 border-l-4 border-greySolid-300 p-4">
-                                                <p className="text-xl font-medium italic leading-relaxed text-greySolid-800">
+                                                <p className="break-words text-xl font-medium italic leading-relaxed text-greySolid-800">
                                                     "{selectedTab.quote}"
                                                 </p>
                                             </blockquote>

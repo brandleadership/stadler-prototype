@@ -28,9 +28,9 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                 />
                             ))}
                         </div>
-                        <div className="grid grid-cols-1 gap-16 pt-24 sm:gap-12 lg:grid-cols-2 lg:gap-24">
+                        <div className="grid grid-cols-1 gap-4 pt-12 lg:pt-24 md:grid-cols-2 md:gap-12 lg:gap-24">
                             <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-5">
-                                <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div>
+                                {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                                 <div>
                                     <div className="text-white">
                                         <H4>
@@ -56,8 +56,8 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col items-start gap-4 pt-24 sm:flex-row sm:gap-5">
-                            <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div>
+                        <div className="flex flex-col items-start gap-4 pt-12 lg:pt-24 sm:flex-row sm:gap-5">
+                            {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                             <div>
                                 <div className="text-white">
                                     <H4>
@@ -73,8 +73,8 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col items-start gap-4 pt-14 sm:flex-row sm:gap-5">
-                            <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div>
+                        <div className="flex flex-col items-start gap-4 pt-4 sm:flex-row sm:gap-5">
+                            {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                             <div>
                                 <img
                                     src={blok?.imageGIF.filename}

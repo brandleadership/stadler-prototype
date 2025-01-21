@@ -1,11 +1,25 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import DateFormatter from '../helpers/DateFormatter';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
+const MOBILE_WIDTH = 768;
+
 const AccordionTextDateDownloadItem = ({ blok }) => {
+    const [windowSize, setWindowSize] = useState(0);
     const investorsDE = useRef();
     const investorsEN = useRef();
+
+    const onResize = () => { 
+     setWindowSize(window.innerWidth);
+    }
+    useLayoutEffect(() => { 
+     onResize();
+   }, []);
+    useLayoutEffect(() => { 
+     window.addEventListener('resize', onResize) 
+     return () => window.removeEventListener('resize', onResize) 
+   }, []); 
 
     useEffect(() => {
         let investorsDEreference = investorsDE.current;
@@ -39,37 +53,39 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
         });
     });
     return (
-        <tr
+        <div
             {...storyblokEditable(blok)}
-            className="whitespace-nowrap border-b bg-white text-base text-black last:mb-4 last:border-b-0"
+            className="border-b md:border-0 grid md:grid-cols-[1fr_3fr] bg-white text-base text-black last:mb-4 last:border-b-0"
         >
-            <td className="px-6 py-4 font-medium">{blok?.title}</td>
-            <td className="px-6 py-4">{DateFormatter(blok?.text_date)}</td>
-            <td className="px-6 py-4 text-center">
-                <a
-                    tabIndex="1"
-                    target="_blank"
-                    ref={investorsDE}
-                    className="font-medium text-primary"
-                    href={ButtonUrlRenderer(blok?.download_bericht)}
-                    rel="noreferrer"
-                >
-                    {blok?.CTA_download_bericht}
-                </a>
-            </td>
-            <td className="px-6 py-4 text-center">
-                <a
-                    tabIndex="1"
-                    target="_blank"
-                    ref={investorsEN}
-                    className="font-medium text-primary"
-                    href={ButtonUrlRenderer(blok?.download_presentation)}
-                    rel="noreferrer"
-                >
-                    {blok?.CTA_download_presentation}
-                </a>
-            </td>
-        </tr>
+            <div className="px-2 md:px-6 py-4 font-medium text-center md:text-left">{blok?.title}</div>
+            <div className="grid grid-cols-[2fr_1fr_1fr] md:grid-cols-3 items-center">
+                <div className="px-2 md:px-6 py-4">{DateFormatter(blok?.text_date)}</div>
+                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+                    <a
+                        tabIndex="1"
+                        target="_blank"
+                        ref={investorsDE}
+                        className="font-medium text-primary"
+                        href={ButtonUrlRenderer(blok?.download_bericht)}
+                        rel="noreferrer"
+                    >
+                        {windowSize < MOBILE_WIDTH ? "DE" : blok?.CTA_download_bericht}
+                    </a>
+                </div>
+                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+                    <a
+                        tabIndex="1"
+                        target="_blank"
+                        ref={investorsEN}
+                        className="font-medium text-primary"
+                        href={ButtonUrlRenderer(blok?.download_presentation)}
+                        rel="noreferrer"
+                    >
+                        {windowSize < MOBILE_WIDTH ? "EN" : blok?.CTA_download_presentation}
+                    </a>
+                </div>
+            </div>
+        </div>
     );
 };
 

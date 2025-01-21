@@ -56,7 +56,7 @@ const Features = ({ blok }) => {
                                     blok?.image_1.filename?.alt ??
                                     'Feature Image'
                                 }
-                                className="h-[320px] w-full object-cover md:w-auto"
+                                className="aspect-[16/9] w-full object-cover md:w-auto"
                             />
                             <a
                                 tabIndex="1"
@@ -87,7 +87,7 @@ const Features = ({ blok }) => {
                                     blok?.image_2?.filename?.alt ??
                                     'Feature Image'
                                 }
-                                className="h-[320px] w-full object-cover md:w-auto"
+                                className="aspect-[16/9] w-full object-cover md:w-auto"
                             />
                             <a
                                 tabIndex="1"

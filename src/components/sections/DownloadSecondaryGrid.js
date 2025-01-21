@@ -9,14 +9,14 @@ const DownloadSecondaryGrid = ({ blok }) => {
             <ContentWidth>
                 <div className="justify-left col-span-12 flex max-w-full flex-col">
                     <H3>{blok.title}</H3>
-                    <ul className="mb-8" {...storyblokEditable(blok)}>
+                    <div className="mb-8" {...storyblokEditable(blok)}>
                         {blok?.download_grid?.map((nestedBlok) => (
                             <StoryblokComponent
                                 blok={nestedBlok}
                                 key={nestedBlok?._uid}
                             />
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </ContentWidth>
         </section>

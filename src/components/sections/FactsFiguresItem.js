@@ -2,11 +2,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import CountUp from 'react-countup';
+import { useCurrentLocale } from 'next-i18n-router/client';
+import i18nConfig from '/i18nConfig';
 
 const FactsAndFiguresItem = ({ blok }) => {
     const countUpRef = useRef(null);
     const [shouldStart, setShouldStart] = useState(false);
     const [key, setKey] = useState(0);
+    const currentLocale = useCurrentLocale(i18nConfig);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -53,7 +56,7 @@ const FactsAndFiguresItem = ({ blok }) => {
                         suffix={blok?.suffix ?? ' '}
                         prefix={blok?.prefix ?? ' '}
                         duration={0.8}
-                        separator="'"
+                        separator={`${currentLocale === 'en' ? "," : "'"}`}
                         decimals={blok?.decimals ?? 1}
                         decimal="."
                         useEasing={true}

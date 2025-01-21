@@ -9,7 +9,7 @@ const Layout = ({
     translatedSlugs,
 }) => {
     return (
-        <div>
+        <div className='flex flex-col h-screen justify-between'>
             <ConfigHeader
                 translatedSlugs={translatedSlugs}
                 blok={config_header.content}

@@ -9,7 +9,7 @@ const SolutionsGridItem = ({ blok }) => {
     return (
         <div
             {...storyblokEditable(blok)}
-            className="max-w-fit border border-greySolid-100 bg-white shadow"
+            className="w-full border border-greySolid-100 bg-white shadow"
         >
             <Link tabIndex="1" href={ButtonUrlRenderer(blok?.link)}>
                 <img

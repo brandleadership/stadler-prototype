@@ -93,7 +93,7 @@ const AccordionLocations = ({ blok }) => {
 
                                 <div className="mb-4 flex items-center justify-start">
                                     <MailIcon className="fill-blueDark" />
-                                    <span className="ml-4">{blok?.email}</span>
+                                    <span className="max-w-[calc(100%-48px)] ml-4 text-xs sm:text-sm md:text-base">{blok?.email}</span>
                                 </div>
 
                                 <div className="mb-2 flex items-center justify-start text-primary">
@@ -101,7 +101,7 @@ const AccordionLocations = ({ blok }) => {
                                     <a
                                         target={
                                             blok.link_google_maps?.target ??
-                                            false
+                                            '_blank'
                                         }
                                         tabIndex="1"
                                         className="cursor-pointer"

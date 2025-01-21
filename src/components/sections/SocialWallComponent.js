@@ -13,10 +13,11 @@ const SocialWallComponent = ({ blok }) => {
                     <H2>{blok?.title}</H2>
                     <iframe
                         src="https://www.juicer.io/api/feeds/stadler_rail/iframe"
-                        frameborder="0"
+                        frameBorder="0"
                         width="100%"
                         height="800"
                         style={{ display: 'block' }}
+                        sandbox="allow-scripts allow-same-origin" 
                     ></iframe>
                 </div>
             </ContentWidth>

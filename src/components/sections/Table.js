@@ -42,7 +42,7 @@ const TableGrid = ({ blok }) => {
                                         {tr.body.map((td, colIndex) => (
                                             <td
                                                 key={colIndex}
-                                                className="px-6 py-4 text-base text-black"
+                                                className="px-6 py-4 text-xs md:text-base text-black"
                                             >
                                                 {td.value}
                                             </td>

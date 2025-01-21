@@ -13,15 +13,15 @@ function ReferenzContent({ blok }) {
                     <Breadcrumbs />
                 </div>
                 <H1 styles="mb-8">{blok?.title}</H1>
-                <div className="mb-6 grid grid-cols-12 gap-6">
-                    <div className="col-span-6">
+                <div className="mb-6">
+                    <div className="flex flex-wrap w-full">
                         {blok?.categories?.map((category, index) => (
-                            <span
+                            <div
                                 key={index}
-                                className="mb-2 mr-4 inline whitespace-nowrap border border-greySolid-400 px-4 py-2 text-xs text-greySolid-600 last-of-type:mr-0"
+                                className="mb-2 mr-4 whitespace-nowrap border border-greySolid-400 px-4 py-2 text-xs text-greySolid-600 last-of-type:mr-0"
                             >
                                 {category.content.category}
-                            </span>
+                            </div>
                         ))}
                     </div>
                 </div>

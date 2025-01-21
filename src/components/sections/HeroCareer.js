@@ -344,11 +344,11 @@ const HeroCareer = ({ blok }) => {
             style={{
                 backgroundImage: `url(${blok?.background_image.filename})`,
             }}
-            className="bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply"
+            className="h-[70vh] min-h-min bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply lg:h-auto"
         >
             <SmallWidth>
                 <div className="z-1 relative col-span-12 mx-auto max-w-screen-xl py-8 text-white lg:py-24 lg:pb-12 lg:pt-80 xl:px-0">
-                    <div className="mb-6 max-w-screen-md text-white lg:mb-0">
+                    <div className="mb-6 mt-[25vh] max-w-screen-md text-white lg:mb-0 lg:mt-0">
                         <H1>{blok?.title}</H1>
                         <div className="my-8 lg:mb-8">
                             <Text>{blok?.subheading}</Text>
@@ -356,7 +356,7 @@ const HeroCareer = ({ blok }) => {
                     </div>
                     <form
                         action="#"
-                        className="mb-5 mt-16 flex w-full flex-col items-center justify-between gap-4 bg-white p-4 md:flex-row lg:mt-9 lg:grid-cols-5 lg:gap-x-4"
+                        className="mb-5 flex w-full flex-col items-center justify-between gap-4 bg-white p-4 md:flex-row lg:mt-9 lg:grid-cols-5 lg:gap-x-4"
                     >
                         <div className="w-full flex-grow gap-x-4 md:w-fit">
                             <div className="relative">

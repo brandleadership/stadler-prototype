@@ -1,7 +1,7 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ContentWidth from '../layouts/ContentWidth';
-import H2 from '../typography/H2';
+import H3 from '../typography/H3';
 import Text from '../typography/Text';
 import { ArrowForward } from '../icons/ArrowForward';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
@@ -38,9 +38,9 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                                     animate="rest"
                                 >
                                     <div className="text-4xl">
-                                        <H2 styles="!mb-0 lg:!mb-2">
+                                        <H3 styles="!mb-0 lg:!mb-2">
                                             {blok?.title_1}
-                                        </H2>
+                                        </H3>
                                     </div>
                                     <div className="">
                                         <Text>{blok?.text_1}</Text>
@@ -76,9 +76,9 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                                     animate="rest"
                                 >
                                     <div className="">
-                                        <H2 styles="!mb-0 lg:!mb-2">
+                                        <H3 styles="!mb-0 lg:!mb-2">
                                             {blok?.title_2}
-                                        </H2>
+                                        </H3>
                                     </div>
                                     <Text>{blok?.text_2}</Text>
                                     <motion.span

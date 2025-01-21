@@ -42,7 +42,7 @@ export default function Map({ blok }) {
                                 </div>
                             </div>
 
-                            <div className="flex w-full items-center justify-center md:w-1/3">
+                            <div className="flex w-full items-center justify-center md:w-1/3 mt-5 md:mt-0">
                                 <ButtonPrimary
                                     position="center"
                                     buttonText={blok.cta_title}

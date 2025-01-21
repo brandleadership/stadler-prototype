@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 const images = [
@@ -244,25 +244,11 @@ const ImageSequence = ({ category }) => {
 
     const keyframes = useMemo(() => {
         return [...new Array(100)].map((_, i) => {
-            // if (typeof window !== 'undefined') {
-            //     imageWidth =
-            //         window?.innerWidth > 1740
-            //             ? 'carousel_final_1728_webp'
-            //             : window?.innerWidth > 600
-            //               ? 'carousel_final_1440_webp'
-            //               : 'carousel_final_600_png';
-
-            //     if (i === 0 || i === 34 || i === 67 || i === 99) {
-            //         imageFormat = 'webp';
-            //     } else {
-            //         imageFormat = 'webp';
-            //     }
-            // } else {
-            //     imageWidth = 'carousel_final_1728_webp';
-            //     imageFormat = 'webp';
-            // }
-
-            return createImage((typeof window !== 'undefined' && window?.innerWidth < 786) ? imagesMobile[i] : images[i]);
+            return createImage(
+                typeof window !== 'undefined' && window?.innerWidth < 786
+                    ? imagesMobile[i]
+                    : images[i]
+            );
         });
     }, []);
 

@@ -15,7 +15,12 @@ import i18nConfig from '/i18nConfig';
 function NewsTeaser({ blok }) {
     const [articlesCategory, setArticlesCategory] = useState([]);
     const currentLocale = useCurrentLocale(i18nConfig) || 'en';
-    const apiURL = currentLocale == 'en' ? 'media/news/' : 'media/news/';
+    const apiURL =
+        currentLocale == 'en'
+            ? 'media/media-releases/'
+            : 'medien/medienmitteilungen/';
+    const categoryURL =
+        currentLocale == 'en' ? '/media-releases/' : '/medienmitteilungen/';
 
     useEffect(() => {
         const getArticles = async () => {
@@ -26,7 +31,7 @@ function NewsTeaser({ blok }) {
                 version: 'published',
                 starts_with: apiURL,
                 is_startpage: false,
-                resolve_relations: 'news.categories',
+                resolve_relations: 'medienmitteilungen.categories',
                 'filter_query[categories][any_in_array]': categories,
                 sort_by: 'content.date:desc',
                 per_page: 4,
@@ -59,12 +64,13 @@ function NewsTeaser({ blok }) {
                                     className="group mb-6 transition-all"
                                     key={article.uuid}
                                 >
-                                    <div className="h-52 overflow-hidden">
+                                    <div className="flex h-52 items-center justify-center overflow-hidden">
                                         <img
                                             src={
-                                                article.content.image?.filename
+                                                article.content.image
+                                                    ?.filename ?? '/logo.svg'
                                             }
-                                            className="h-full w-full object-cover transition-all group-hover:scale-110"
+                                            className={`${article.content?.image?.filename ? 'h-full w-full' : 'h-auto w-[90%]'} object-cover transition-all group-hover:scale-110`}
                                             alt={
                                                 article.content.image?.filename
                                                     ?.alt ?? 'NewsTeaser image'
@@ -72,10 +78,10 @@ function NewsTeaser({ blok }) {
                                         />
                                     </div>
                                     <div className="mb-1 mt-4 flex flex-wrap">
-                                        {article.content.categories.map(
+                                        {article.content?.categories?.map(
                                             (category, index) =>
                                                 category.full_slug.includes(
-                                                    '/news/'
+                                                    categoryURL
                                                 ) && (
                                                     <span
                                                         key={index}

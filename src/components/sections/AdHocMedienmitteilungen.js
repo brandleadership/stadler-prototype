@@ -57,10 +57,13 @@ function AdHocMedienmitteilungen({ blok }) {
                                 className="group mb-6 transition-all"
                                 key={article.uuid}
                             >
-                                <div className="h-52 overflow-hidden">
+                                <div className="flex h-52 items-center justify-center overflow-hidden">
                                     <img
-                                        src={article.content?.image?.filename}
-                                        className="h-full w-full object-cover transition-all group-hover:scale-110"
+                                        src={
+                                            article.content?.image?.filename ??
+                                            '/logo.svg'
+                                        }
+                                        className={`${article.content?.image?.filename ? 'h-full w-full' : 'h-auto w-[90%]'} object-cover transition-all group-hover:scale-110`}
                                         alt={
                                             article.content.image?.filename
                                                 ?.alt ??

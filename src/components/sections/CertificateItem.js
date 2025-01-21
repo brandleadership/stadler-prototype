@@ -9,6 +9,8 @@ function CertificateItem({ blok }) {
             {...storyblokEditable(blok)}
             className="ml-4 text-primary"
             href={ButtonUrlRenderer(blok?.button_link)}
+            target="_blank"
+            rel="noreferrer"
         >
             {blok?.button_text}
         </a>

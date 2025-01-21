@@ -15,6 +15,7 @@ const filters = { country: '', category: '', product: '', year: '' };
 function AlleMedienmitteilungen({ blok }) {
     const [medienmitteilungen, setMedienmitteilungen] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState(filters);
+    const [page, setPage] = useState(1);
     const [search, setSearch] = useState('');
     let router = usePathname();
     router = router.replace(/\s/g, '');
@@ -30,6 +31,7 @@ function AlleMedienmitteilungen({ blok }) {
         resolve_relations: ['medienmitteilungen.categories'],
         sort_by: 'content.date:desc',
         language: currentLocale,
+        per_page: 25,
     };
 
     const onSearchChange = (e) => {
@@ -45,30 +47,54 @@ function AlleMedienmitteilungen({ blok }) {
         }
         if (e.target.value.length > 2) {
             filterSearchParameters['search_term'] = e.target.value;
-            getMedienmitteilungen(filterSearchParameters);
+            getMedienmitteilungen(1, [], filterSearchParameters);
         } else {
-            getMedienmitteilungen(filterSearchParameters);
+            getMedienmitteilungen(1, [], filterSearchParameters);
         }
     };
-    const getMedienmitteilungen = async (filterSearchRequest = {}) => {
+    const getMedienmitteilungen = async (
+        curPage = 1,
+        curMedienmitteilungen = [],
+        filterSearchRequest = {}
+    ) => {
         const storyblokApi = getStoryblokApi();
         const { data } = await storyblokApi.get(`cdn/stories`, {
             ...apiRequest,
+            page: curPage,
             ...filterSearchRequest,
         });
 
-        setMedienmitteilungen(() =>
-            data.stories.map((article) => {
-                article.content.slug = article.slug;
-                return article;
-            })
-        );
+        const newMedienmitteilungen = data.stories.map((article) => {
+            article.content.slug = article.slug;
+            return article;
+        });
+
+        setMedienmitteilungen([
+            ...curMedienmitteilungen,
+            ...newMedienmitteilungen,
+        ]);
     };
     useEffect(() => {
-        getMedienmitteilungen();
-    }, []);
+        const categories = [];
+        Object.values(selectedOptions).forEach((value) => {
+            value.length && categories.push(value);
+        });
+
+        const filterSearchParameters = {};
+        if (categories.length > 0) {
+            filterSearchParameters['filter_query[categories][all_in_array]'] =
+                categories.join(',');
+        }
+        if (search.length > 2) {
+            filterSearchParameters['search_term'] = search;
+        }
+
+        getMedienmitteilungen(page, medienmitteilungen, filterSearchParameters);
+    }, [page]);
 
     const filterArticles = (e, typeFilter) => {
+        setPage(1);
+        setMedienmitteilungen([]);
         const newSelectedOptions = { ...selectedOptions };
         newSelectedOptions[typeFilter] = e.target.value;
         setSelectedOptions(newSelectedOptions);
@@ -86,7 +112,7 @@ function AlleMedienmitteilungen({ blok }) {
             filterSearchParameters['search_term'] = search;
         }
 
-        getMedienmitteilungen(filterSearchParameters);
+        getMedienmitteilungen(1, [], filterSearchParameters);
     };
 
     return (
@@ -240,7 +266,7 @@ function AlleMedienmitteilungen({ blok }) {
                                         </a>
                                     </div>
                                     <div className="col-span-1 bg-primarySolid-50 px-6 pb-3 pt-4 font-medium text-black lg:col-span-3 lg:bg-white">
-                                        {medienmitteilung.content.categories.map(
+                                        {medienmitteilung.content?.categories?.map(
                                             (category, index) =>
                                                 category.full_slug.includes(
                                                     'categories/medienmitteilungen'
@@ -269,6 +295,8 @@ function AlleMedienmitteilungen({ blok }) {
                                                                     href={ButtonUrlRenderer(
                                                                         item?.cta_asset
                                                                     )}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
                                                                     key={index}
                                                                     className="ml-3 inline-flex font-medium first-of-type:ml-0"
                                                                 >
@@ -284,6 +312,16 @@ function AlleMedienmitteilungen({ blok }) {
                                 </div>
                             </div>
                         ))}
+                </div>
+            </div>
+            <div className="col-span-12 flex w-full items-center justify-center pb-24">
+                <div
+                    onClick={() => {
+                        setPage(page + 1);
+                    }}
+                    className="flex cursor-pointer items-center gap-2 rounded bg-stadlergradient px-5 py-2.5 text-sm font-medium leading-6 text-white"
+                >
+                    {blok.load_more_button ?? 'Load More'}
                 </div>
             </div>
         </ContentWidth>
