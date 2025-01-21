@@ -10,7 +10,13 @@ const variantsLang = {
     closed: { scale: 0, zIndex: 1 },
 };
 
+const initSlugs = {
+    en: { lang: 'en', slug: 'not-found' },
+    de: { lang: 'de', slug: 'not-found' }
+}
+
 const LanguageSwitcher = ({ translatedSlugs }) => {
+    const [slugs, setSlugs] = useState();
     const router = useRouter();
 
     // const pathname = usePathname();
@@ -22,6 +28,10 @@ const LanguageSwitcher = ({ translatedSlugs }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+    useEffect(() => {
+        setSlugs(translatedSlugs ? translatedSlugs : initSlugs);
+    }, [translatedSlugs]);
+
     // const currentPathname = usePathname();
     const currentLocale = useCurrentLocale(i18nConfig);
     // console.log('router.asPath', pathname, translatedSlugs);
@@ -31,7 +41,7 @@ const LanguageSwitcher = ({ translatedSlugs }) => {
         const newLocale = currentLocale == 'en' ? 'de' : 'en';
 
         router.push(
-            `/${translatedSlugs[newLocale].lang}/${translatedSlugs[newLocale].slug}`,
+            `/${slugs[newLocale].lang}/${slugs[newLocale].slug !== 'not-found' ? slugs[newLocale].slug : ''}`,
             {
                 locale: newLocale,
             }
