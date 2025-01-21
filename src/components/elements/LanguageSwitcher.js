@@ -11,12 +11,12 @@ const variantsLang = {
 };
 
 const initSlugs = {
-    en: { lang: 'en', slug: 'not-found' },
-    de: { lang: 'de', slug: 'not-found' }
+    en: { lang: 'en', slug: '' },
+    de: { lang: 'de', slug: '' }
 }
 
 const LanguageSwitcher = ({ translatedSlugs }) => {
-    const [slugs, setSlugs] = useState();
+    const [slugs, setSlugs] = useState(initSlugs);
     const router = useRouter();
 
     // const pathname = usePathname();
@@ -41,7 +41,7 @@ const LanguageSwitcher = ({ translatedSlugs }) => {
         const newLocale = currentLocale == 'en' ? 'de' : 'en';
 
         router.push(
-            `/${slugs[newLocale].lang}/${slugs[newLocale].slug !== 'not-found' ? slugs[newLocale].slug : ''}`,
+            `/${slugs[newLocale].lang}/${slugs[newLocale].slug !== '' ? slugs[newLocale].slug : ''}`,
             {
                 locale: newLocale,
             }
