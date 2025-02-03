@@ -15,7 +15,7 @@ const SocialWallComponent = ({ blok }) => {
                         src="https://www.juicer.io/api/feeds/stadler_rail/iframe?per=3"
                         frameBorder="0"
                         width="100%"
-                        height="640"
+                        height="460"
                         style={{ display: 'block' }}
                         sandbox="allow-scripts allow-same-origin" 
                     ></iframe>
