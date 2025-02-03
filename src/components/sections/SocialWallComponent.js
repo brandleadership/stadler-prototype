@@ -12,10 +12,10 @@ const SocialWallComponent = ({ blok }) => {
                 <div className="col-span-12">
                     <H2>{blok?.title}</H2>
                     <iframe
-                        src="https://www.juicer.io/api/feeds/stadler_rail/iframe"
+                        src="https://www.juicer.io/api/feeds/stadler_rail/iframe?per=3"
                         frameBorder="0"
                         width="100%"
-                        height="800"
+                        height="640"
                         style={{ display: 'block' }}
                         sandbox="allow-scripts allow-same-origin" 
                     ></iframe>
