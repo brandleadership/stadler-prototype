@@ -12,6 +12,8 @@ export default function Submenu({
     subLinkTextTwo,
     subLinkThree,
     subLinkTextThree,
+    subLinkFour,
+    subLinkTextFour,
 }) {
     return (
         <motion.div
@@ -68,6 +70,21 @@ export default function Submenu({
                         href={ButtonUrlRenderer(subLinkThree)}
                     >
                         <p>{subLinkTextThree}</p>
+                        <img
+                            src="/icons/chevron-right-light.svg"
+                            className="hidden lg:block"
+                        />
+                    </a>
+                ) : (
+                    ''
+                )}
+                {subLinkFour ? (
+                    <a
+                        tabIndex="1"
+                        className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
+                        href={ButtonUrlRenderer(subLinkFour)}
+                    >
+                        <p>{subLinkTextFour}</p>
                         <img
                             src="/icons/chevron-right-light.svg"
                             className="hidden lg:block"
