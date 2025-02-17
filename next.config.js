@@ -65,7 +65,7 @@ const nextConfig = {
                 permanent: true,
             },
 
-// Specific media files redirects
+            // Specific media files redirects
             {
                 source: '/media/pdf/f3nsreiz0715p.pdf',
                 destination: '/en/solutions/rolling-stock',
@@ -136,7 +136,7 @@ const nextConfig = {
                 destination: '/en',
                 permanent: true,
             },
-             {
+            {
                 source: '/media/pdf/supplier%20guideline_invoices%20for%20accounting%20purposes_stadler%20deutschland%20gmbh_en.pdf',
                 destination: '/en/downloads',
                 permanent: true,
@@ -438,27 +438,32 @@ const nextConfig = {
             },
             {
                 source: '/media/pdf/política_conjunta_hse_s.pdf',
-                destination: '/f/269997/x/2ef3ab5a4f/publicidad-decreto-stadler-stav.pdf',
+                destination:
+                    '/f/269997/x/2ef3ab5a4f/publicidad-decreto-stadler-stav.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/valencia_konzession2022_es.pdf',
-                destination: '/f/269997/x/33819b6277/stav_concescion2022_es.pdf',
+                destination:
+                    '/f/269997/x/33819b6277/stav_concescion2022_es.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/valencia_konzession2019_es.pdf',
-                destination: '/f/269997/x/ea0ed357e6/valencia_consecsion_2019_es.pdf',
+                destination:
+                    '/f/269997/x/ea0ed357e6/valencia_consecsion_2019_es.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/publicidad-ayuda-nominativa-stadler.pdf',
-                destination: '/f/269997/x/a4dfedf56a/publicidad-ayuda-nominativa-stav.pdf',
+                destination:
+                    '/f/269997/x/a4dfedf56a/publicidad-ayuda-nominativa-stav.pdf',
                 permanent: true,
             },
-             {
+            {
                 source: '/media/pdf/fy%202025%20dbe%20goal%20notice%20stadler%20us.pdf',
-                destination: '/f/269997/x/8bb97bc070/fy-2025-dbe-goal-notice-stadler-us.pdf',
+                destination:
+                    '/f/269997/x/8bb97bc070/fy-2025-dbe-goal-notice-stadler-us.pdf',
                 permanent: true,
             },
             {
@@ -847,8 +852,6 @@ const nextConfig = {
                 permanent: true,
             },
 
-
-
             {
                 source: '/media/pdf/(.*privacy.*)',
                 destination: '/en/privacy',
@@ -879,9 +882,6 @@ const nextConfig = {
                 destination: '/en/privacy',
                 permanent: true,
             },
-
-
-
 
             {
                 source: '/media/pdf/(.*iso.*)',
@@ -2207,7 +2207,6 @@ const nextConfig = {
                 permanent: true,
             },
 
-
             // HU REDIRECTIONS
             {
                 source: '/hu/:path*',
@@ -2398,7 +2397,8 @@ const nextConfig = {
             },
             {
                 source: '/es/productos/detail-all/ng-rangierlokomotive/:path*',
-                destination: '/en/solutions/rolling-stock/locomotive-central-cab',
+                destination:
+                    '/en/solutions/rolling-stock/locomotive-central-cab',
                 permanent: true,
             },
             {
@@ -2423,12 +2423,14 @@ const nextConfig = {
             },
             {
                 source: '/es/productos/detail-all/cremalleras/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
                 permanent: true,
             },
             {
                 source: '/es/productos/detail-all/locomotoras/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-locomotives',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-locomotives',
                 permanent: true,
             },
             {
@@ -2438,7 +2440,8 @@ const nextConfig = {
             },
             {
                 source: '/es/productos/detail-all/trenes-automotor/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-multiple-units',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-multiple-units',
                 permanent: true,
             },
             {
@@ -2503,7 +2506,8 @@ const nextConfig = {
             },
             {
                 source: '/es/signalling/servicios',
-                destination: '/en/solutions/signalling/after-sales-and-services',
+                destination:
+                    '/en/solutions/signalling/after-sales-and-services',
                 permanent: true,
             },
             {
@@ -2547,15 +2551,11 @@ const nextConfig = {
                 permanent: true,
             },
 
-
-
-
             {
                 source: '/pl/:path*',
                 destination: '/en/',
                 permanent: true,
             },
-
 
             // NL REDIRECTS
             {
@@ -2747,7 +2747,8 @@ const nextConfig = {
             },
             {
                 source: '/fr/produits/detail-all/Zahnradbahnen/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
                 permanent: true,
             },
             {
@@ -2757,7 +2758,8 @@ const nextConfig = {
             },
             {
                 source: '/fr/produits/detail-all/triebzuege/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-multiple-units',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-multiple-units',
                 permanent: true,
             },
             {
@@ -2782,7 +2784,8 @@ const nextConfig = {
             },
             {
                 source: '/fr/produits/detail-all/ng-rangierlokomotive/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-locomotives',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-locomotives',
                 permanent: true,
             },
             {
@@ -2813,7 +2816,8 @@ const nextConfig = {
             },
             {
                 source: '/fr/signalling/prestations-de-service',
-                destination: '/en/solutions/signalling/after-sales-and-services',
+                destination:
+                    '/en/solutions/signalling/after-sales-and-services',
                 permanent: true,
             },
             {
@@ -2892,7 +2896,6 @@ const nextConfig = {
                 permanent: true,
             },
 
-
             // IT REDIRECTS
             {
                 source: '/it/chi-siamo/sedi/:path*',
@@ -2956,7 +2959,8 @@ const nextConfig = {
             },
             {
                 source: '/it/prodotti/detail-all/Zahnradbahnen/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
                 permanent: true,
             },
             {
@@ -2996,7 +3000,8 @@ const nextConfig = {
             },
             {
                 source: '/it/prodotti/detail-all/Lokomotiven/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-locomotives',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-locomotives',
                 permanent: true,
             },
             {
@@ -3036,17 +3041,20 @@ const nextConfig = {
             },
             {
                 source: '/it/prodotti/detail-all/ng-rangierlokomotive/:path*',
-                destination: '/en/solutions/rolling-stock/locomotive-central-cab',
+                destination:
+                    '/en/solutions/rolling-stock/locomotive-central-cab',
                 permanent: true,
             },
             {
                 source: '/it/prodotti/detail-all/triebzuege/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-multiple-units',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-multiple-units',
                 permanent: true,
             },
             {
                 source: '/it/prodotti/detail-all/triebzuege/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-multiple-units',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-multiple-units',
                 permanent: true,
             },
             {
@@ -3243,12 +3251,14 @@ const nextConfig = {
             },
             {
                 source: '/en/products/detail-all/Zahnradbahnen/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
                 permanent: true,
             },
             {
                 source: '/en/products/detail-all/Zahnradbahnen/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-rack-and-pinion-vehicles',
                 permanent: true,
             },
             {
@@ -3263,7 +3273,8 @@ const nextConfig = {
             },
             {
                 source: '/en/products/detail-all/ng-rangierlokomotive/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-locomotives',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-locomotives',
                 permanent: true,
             },
             {
@@ -3288,7 +3299,8 @@ const nextConfig = {
             },
             {
                 source: '/en/products/detail-all/triebzuege/:path*',
-                destination: '/en/solutions/rolling-stock/tailor-made-multiple-units',
+                destination:
+                    '/en/solutions/rolling-stock/tailor-made-multiple-units',
                 permanent: true,
             },
             {
@@ -3363,7 +3375,8 @@ const nextConfig = {
             },
             {
                 source: '/en/signalling/services',
-                destination: '/en/solutions/signalling/after-sales-and-services',
+                destination:
+                    '/en/solutions/signalling/after-sales-and-services',
                 permanent: true,
             },
             {
@@ -3463,7 +3476,8 @@ const nextConfig = {
             },
             {
                 source: '/en/returns',
-                destination: '/en/suppliers',
+                destination:
+                    '/en/solutions/signalling/after-sales-and-services/spare-parts-and-repair-services',
                 permanent: true,
             },
             {
@@ -3522,9 +3536,6 @@ const nextConfig = {
                 permanent: true,
             },
 
-
-
-
             // DE REDIRECTS
             {
                 source: '/de/ueber-uns/standorte/:path*',
@@ -3558,7 +3569,8 @@ const nextConfig = {
             },
             {
                 source: '/de/returns',
-                destination: '/de',
+                destination:
+                    '/de/loesungen/signaltechnik/after-sales-and-services/ersatzteil-und-reparaturservice',
                 permanent: true,
             },
             {
@@ -3596,9 +3608,10 @@ const nextConfig = {
                 destination: 'https://stadlerrail.shop/de',
                 permanent: true,
             },
-             {
+            {
                 source: '/de/medien/article/stadler-lab-ausbildungszentrum-fuer-eine-zukunftsorientierte-lehre/1565',
-                destination: '/de/erfolgsgesschichten/ausbildung-fuer-die-mobilitaet-fuer-morgen',
+                destination:
+                    '/de/erfolgsgesschichten/ausbildung-fuer-die-mobilitaet-fuer-morgen',
                 permanent: true,
             },
             {
@@ -3708,17 +3721,20 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/metro/5',
-                destination: '/de/loesungen/schienenfahrzeuge/stadtverkehr-metro',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/stadtverkehr-metro',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/euro6000/482',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-euro6000',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-euro6000',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/eurolight/17',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-eurolight',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-eurolight',
                 permanent: true,
             },
             {
@@ -3733,7 +3749,8 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/ng-rangierlokomotive/104',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-zentraler-fuehrerstand',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-zentraler-fuehrerstand',
                 permanent: true,
             },
             {
@@ -3748,7 +3765,8 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/tina/464',
-                destination: '/de/loesungen/schienenfahrzeuge/stadtverkehr-tina',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/stadtverkehr-tina',
                 permanent: true,
             },
             {
@@ -3758,12 +3776,14 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/eurodual/18',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-eurodual',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-eurodual',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/Zahnradbahnen/47',
-                destination: '/de/loesungen/schienenfahrzeuge/tailor-made-zahnradbahnen',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/tailor-made-zahnradbahnen',
                 permanent: true,
             },
             {
@@ -3778,22 +3798,26 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/Citylink/6',
-                destination: '/de/loesungen/schienenfahrzeuge/stadtverkehr-citylink',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/stadtverkehr-citylink',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/triebzuege/46',
-                destination: '/de/loesungen/schienenfahrzeuge/tailor-made-triebzuege',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/tailor-made-triebzuege',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/euro4001/491',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-euro4001',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-euro4001',
                 permanent: true,
             },
             {
                 source: '/de/produkte/detail-all/euro9000/473',
-                destination: '/de/loesungen/schienenfahrzeuge/lokomotive-euro9000',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/lokomotive-euro9000',
                 permanent: true,
             },
             {
@@ -3803,7 +3827,8 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/tailor-made-lokomotiven/48',
-                destination: '/de/loesungen/schienenfahrzeuge/tailor-made-lokomotiven',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/tailor-made-lokomotiven',
                 permanent: true,
             },
             {
@@ -3813,7 +3838,8 @@ const nextConfig = {
             },
             {
                 source: '/de/produkte/detail-all/tramlink/9',
-                destination: '/de/loesungen/schienenfahrzeuge/stadtverkehr-tramlink',
+                destination:
+                    '/de/loesungen/schienenfahrzeuge/stadtverkehr-tramlink',
                 permanent: true,
             },
             {
@@ -3836,7 +3862,7 @@ const nextConfig = {
                 destination: '/de/karriere/offene-stellen',
                 permanent: true,
             },
-             {
+            {
                 source: '/de/karriere/auszubildende/:path*',
                 destination: '/de/karriere/offene-stellen',
                 permanent: true,
