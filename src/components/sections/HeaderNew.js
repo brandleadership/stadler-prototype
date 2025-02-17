@@ -261,6 +261,18 @@ const HeaderNew = ({ blok, translatedSlugs }) => {
                                                                 subLinkTextTwo={
                                                                     blok.main_1_sublink_2_text
                                                                 }
+                                                                subLinkThree={
+                                                                    blok.main_1_sublink_3_link
+                                                                }
+                                                                subLinkTextThree={
+                                                                    blok.main_1_sublink_3_text
+                                                                }
+                                                                subLinkFour={
+                                                                    blok.main_1_sublink_4_link
+                                                                }
+                                                                subLinkTextFour={
+                                                                    blok.main_1_sublink_4_text
+                                                                }
                                                             />
                                                         ) : (
                                                             <Submenu

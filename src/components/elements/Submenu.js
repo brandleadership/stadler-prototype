@@ -12,6 +12,8 @@ export default function Submenu({
     subLinkTextTwo,
     subLinkThree,
     subLinkTextThree,
+    subLinkFour,
+    subLinkTextFour,
 }) {
     return (
         <motion.div
@@ -28,6 +30,7 @@ export default function Submenu({
                 <a
                     tabIndex="1"
                     href={ButtonUrlRenderer(mainLinkUrl)}
+                    target={mainLinkUrl?.target ?? '_self'}
                     className="lg:text-primary"
                 >
                     <p className="text-primarySolid py-1 pl-4 font-normal lg:py-0 lg:pl-0">
@@ -43,6 +46,7 @@ export default function Submenu({
                     tabIndex="1"
                     className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                     href={ButtonUrlRenderer(subLinkOne)}
+                    target={subLinkOne?.target ?? '_self'}
                 >
                     <p>{subLinkTextOne}</p>
                     <img
@@ -54,6 +58,7 @@ export default function Submenu({
                     tabIndex="1"
                     className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                     href={ButtonUrlRenderer(subLinkTwo)}
+                    target={subLinkTwo?.target ?? '_self'}
                 >
                     <p>{subLinkTextTwo}</p>
                     <img
@@ -66,8 +71,25 @@ export default function Submenu({
                         tabIndex="1"
                         className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                         href={ButtonUrlRenderer(subLinkThree)}
+                        target={subLinkThree?.target ?? '_self'}
                     >
                         <p>{subLinkTextThree}</p>
+                        <img
+                            src="/icons/chevron-right-light.svg"
+                            className="hidden lg:block"
+                        />
+                    </a>
+                ) : (
+                    ''
+                )}
+                {subLinkFour ? (
+                    <a
+                        tabIndex="1"
+                        className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
+                        href={ButtonUrlRenderer(subLinkFour)}
+                        target={subLinkFour?.target ?? '_self'}
+                    >
+                        <p>{subLinkTextFour}</p>
                         <img
                             src="/icons/chevron-right-light.svg"
                             className="hidden lg:block"
