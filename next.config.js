@@ -3570,7 +3570,7 @@ const nextConfig = {
             {
                 source: '/de/returns',
                 destination:
-                    '/de/loesungen/signaltechnik/after-sales-and-services/ersatzteil-und-reparaturservice ',
+                    '/de/loesungen/signaltechnik/after-sales-and-services/ersatzteil-und-reparaturservice',
                 permanent: true,
             },
             {
