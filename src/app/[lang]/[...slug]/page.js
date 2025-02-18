@@ -90,8 +90,7 @@ async function fetchData(slug, lang, search) {
     }
 }
 
-export async function generateStaticParams({ params }) {
-    console.log('generateStaticParams', params);
+export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
         version: 'draft',
@@ -116,7 +115,6 @@ export async function generateStaticParams({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-    console.log('async functional', params);
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const data = await fetchData(slug, lang);
