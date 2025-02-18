@@ -14,9 +14,9 @@ storyblokInit({
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
-const getVersion = (searchParams = undefined) => {
+const getVersion = (searchParams) => {
+    console.log('pathname 3', searchParams);
     if (searchParams) {
-        console.log('pathname 3', searchParams);
         if (JSON.stringify(searchParams).includes('_storyblok_published')) {
             return 'published';
         } else if (JSON.stringify(searchParams).includes('_storyblok')) {
@@ -32,7 +32,7 @@ const getVersion = (searchParams = undefined) => {
 async function fetchData(slug, lang, search) {
     const sbParams = {
         resolve_links: 'url',
-        version: getVersion(search),
+        version: search ? getVersion(search) : 'published',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
