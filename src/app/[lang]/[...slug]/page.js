@@ -26,7 +26,7 @@ const getVersion = (searchParams = undefined) => {
             return 'published';
         }
     } else {
-        return 'published';
+        return 'draft';
     }
 };
 
@@ -90,10 +90,11 @@ async function fetchData(slug, lang, search) {
     }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams({ params }) {
+    console.log('generateStaticParams', params);
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'published',
+        version: 'draft',
     });
 
     const paths = [];
@@ -115,6 +116,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
+    console.log('async functional', params);
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const data = await fetchData(slug, lang);

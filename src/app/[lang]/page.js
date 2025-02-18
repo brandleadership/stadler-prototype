@@ -16,6 +16,7 @@ const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
 const getVersion = (searchParams = undefined) => {
+    console.log('searchParams', searchParams);
     if (searchParams) {
         // const pathname = searchParams.get('x-search-paramethers-url') || '';
         console.log('pathname 3', searchParams);
@@ -27,7 +28,7 @@ const getVersion = (searchParams = undefined) => {
             return 'published';
         }
     } else {
-        return 'published';
+        return 'draft';
     }
 };
 
