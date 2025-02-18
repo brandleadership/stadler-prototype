@@ -22,7 +22,7 @@ export function middleware(request) {
         stringSearchParamethers += `${key}=${item}`;
     });
     requestHeaders.set('x-search-paramethers-url', stringSearchParamethers);
-    console.log('stringSearchParamethers', stringSearchParamethers);
+    // console.log('stringSearchParamethers', stringSearchParamethers);
 
     const userLocale = request.headers.get('accept-language')?.split(',')?.[0];
 
@@ -721,23 +721,16 @@ export function middleware(request) {
     //     }
     //     return NextResponse.redirect(request.nextUrl);
     // }
-    console.log(
-        '5',
-        NextResponse.next({
-            request: {
-                headers: requestHeaders,
-            },
-        })
-    );
+    // console.log(
+    //     '5',
+    //     NextResponse.next({
+    //         request: {
+    //             headers: requestHeaders,
+    //         },
+    //     })
+    // );
 
-    return (
-        NextResponse.next({
-            request: {
-                headers: requestHeaders,
-            },
-        }),
-        i18nRouter(request, i18nConfig)
-    );
+    return i18nRouter(request, i18nConfig);
 }
 
 // only applies this middleware to files in the app directory
