@@ -14,10 +14,25 @@ storyblokInit({
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
-async function fetchData(slug, lang) {
+const getVersion = (searchParams = undefined) => {
+    if (searchParams) {
+        console.log('pathname 3', searchParams);
+        if (JSON.stringify(searchParams).includes('_storyblok_published')) {
+            return 'published';
+        } else if (JSON.stringify(searchParams).includes('_storyblok')) {
+            return 'draft';
+        } else {
+            return 'published';
+        }
+    } else {
+        return 'draft';
+    }
+};
+
+async function fetchData(slug, lang, search) {
     const sbParams = {
         resolve_links: 'url',
-        version: 'published',
+        version: getVersion(search),
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -138,10 +153,10 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Detailpage({ params }) {
+export default async function Detailpage({ params, searchParams }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
-    const data = await fetchData(slug, lang);
+    const data = await fetchData(slug, lang, searchParams);
 
     if (!data || !data.story) {
         return redirect('/not-found');
