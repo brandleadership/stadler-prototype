@@ -6,8 +6,6 @@ import {
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
 import { redirect } from 'next/navigation';
-import { draftMode } from 'next/headers';
-import StoryblokBridge from '../../../components/StoryblokBridge';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -16,7 +14,7 @@ storyblokInit({
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
-async function fetchData(slug, lang, preview) {
+async function fetchData(slug, lang) {
     const sbParams = {
         resolve_links: 'url',
         version: 'draft',
@@ -140,13 +138,10 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Detailpage({ params, preview }) {
+export default async function Detailpage({ params }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
-    const data = await fetchData(slug, lang, preview);
-
-    const version = process.env.NEXT_PUBLIC_STORYBLOK_VERSION;
-    const { isEnabled } = draftMode();
+    const data = await fetchData(slug, lang);
 
     if (!data || !data.story) {
         return redirect('/not-found');
@@ -163,26 +158,13 @@ export default async function Detailpage({ params, preview }) {
     });
 
     return (
-        <>
-            {isEnabled || version === 'draft' ? (
-                <Layout
-                    translatedSlugs={translatedSlugs}
-                    lang={lang}
-                    config_footer={config_footer}
-                    config_header={config_header}
-                >
-                    <StoryblokBridge blok={story} />
-                </Layout>
-            ) : (
-                <Layout
-                    translatedSlugs={translatedSlugs}
-                    lang={lang}
-                    config_footer={config_footer}
-                    config_header={config_header}
-                >
-                    <StoryblokStory story={story} />
-                </Layout>
-            )}
-        </>
+        <Layout
+            translatedSlugs={translatedSlugs}
+            lang={lang}
+            config_footer={config_footer}
+            config_header={config_header}
+        >
+            <StoryblokStory story={story} />
+        </Layout>
     );
 }
