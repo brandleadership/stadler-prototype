@@ -6,6 +6,8 @@ import {
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
 import { redirect } from 'next/navigation';
+import { draftMode } from 'next/headers';
+import StoryblokBridge from '../../../components/StoryblokBridge';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -14,10 +16,10 @@ storyblokInit({
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
-async function fetchData(slug, lang) {
+async function fetchData(slug, lang, preview) {
     const sbParams = {
         resolve_links: 'url',
-        version: 'published',
+        version: 'draft',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -77,7 +79,7 @@ async function fetchData(slug, lang) {
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'published',
+        version: 'draft',
     });
 
     const paths = [];
@@ -138,10 +140,13 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Detailpage({ params }) {
+export default async function Detailpage({ params, preview }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
-    const data = await fetchData(slug, lang);
+    const data = await fetchData(slug, lang, preview);
+
+    const version = process.env.NEXT_PUBLIC_STORYBLOK_VERSION;
+    const { isEnabled } = draftMode();
 
     if (!data || !data.story) {
         return redirect('/not-found');
@@ -153,17 +158,31 @@ export default async function Detailpage({ params }) {
 
     translatedSlugs['en'] = { lang: 'en', slug: story.default_full_slug };
     story.translated_slugs.forEach((item) => {
+        console.log('item', item);
         translatedSlugs[item.lang] = { lang: item.lang, slug: item.path };
     });
 
     return (
-        <Layout
-            translatedSlugs={translatedSlugs}
-            lang={lang}
-            config_footer={config_footer}
-            config_header={config_header}
-        >
-            <StoryblokStory story={story} />
-        </Layout>
+        <>
+            {isEnabled || version === 'draft' ? (
+                <Layout
+                    translatedSlugs={translatedSlugs}
+                    lang={lang}
+                    config_footer={config_footer}
+                    config_header={config_header}
+                >
+                    <StoryblokBridge blok={story} />
+                </Layout>
+            ) : (
+                <Layout
+                    translatedSlugs={translatedSlugs}
+                    lang={lang}
+                    config_footer={config_footer}
+                    config_header={config_header}
+                >
+                    <StoryblokStory story={story} />
+                </Layout>
+            )}
+        </>
     );
 }
