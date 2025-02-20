@@ -14,25 +14,26 @@ storyblokInit({
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
-const getVersion = (searchParams) => {
-    console.log('pathname 3', searchParams);
-    if (searchParams) {
-        if (JSON.stringify(searchParams).includes('_storyblok_published')) {
-            return 'published';
-        } else if (JSON.stringify(searchParams).includes('_storyblok')) {
-            return 'draft';
-        } else {
-            return 'published';
-        }
-    } else {
-        return 'draft';
-    }
-};
+// const getVersion = (searchParams) => {
+//     console.log('pathname 3', searchParams);
+//     if (searchParams) {
+//         if (JSON.stringify(searchParams).includes('_storyblok_published')) {
+//             return 'published';
+//         } else if (JSON.stringify(searchParams).includes('_storyblok')) {
+//             return 'draft';
+//         } else {
+//             return 'published';
+//         }
+//     } else {
+//         return 'draft';
+//     }
+// };
 
 async function fetchData(slug, lang, search) {
+    console.log('fetchData', slug, lang, search);
     const sbParams = {
         resolve_links: 'url',
-        version: search ? getVersion(search) : 'published',
+        version: 'draft',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -92,7 +93,7 @@ async function fetchData(slug, lang, search) {
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'published',
+        version: 'draft',
     });
 
     const paths = [];
