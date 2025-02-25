@@ -3887,6 +3887,191 @@ const nextConfig = {
                 destination: '/de/kontakt',
                 permanent: true,
             },
+            {
+                source: '/media/pdf/FVDAEMU0923e.pdf',
+                destination: '/api/docs/x/9afb85db9e/fvdaemu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/FVDAEMU0923i.pdf',
+                destination: '/api/docs/x/6fa8e61468/fvdaemu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/feavdmu0923_en.pdf',
+                destination:
+                    '/api/docs/x/2c5e062faa/flirt-dmu-hybrid-eav_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/feavdmu0923_it.pdf',
+                destination:
+                    '/api/docs/x/1b67dc1499/flirt-dmu-hybrid-eav_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/ffnmdmu0823_en.pdf',
+                destination:
+                    '/api/docs/x/b1889184c4/flirt-dmu-hybrid-fnm_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/ffnmdmu0921_it.pdf',
+                destination:
+                    '/api/docs/x/724aa7122b/flirt-dmu-hybrid-fnm_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/FIVDMU0923e.pdf',
+                destination: '/api/docs/x/0151568085/fivdmu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/FIVDMU0923i.pdf',
+                destination: '/api/docs/x/81a2b2de2c/fivdmu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/sbbsmile_en.pdf',
+                destination: '/api/docs/x/a56791c29b/smile_sbb_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/sbbsmile_it.pdf',
+                destination: '/api/docs/x/cf84d5f359/smile_sbb_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/LEURO9000G0822e.pdf',
+                destination: '/api/docs/x/45f0a05abf/euro9000-en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/LEURO9000G0122i.pdf',
+                destination: '/api/docs/x/e1c947b2a2/euro9000_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/leurolightdualtrenitalia0423e.pdf',
+                destination:
+                    '/api/docs/x/7e17b39534/eurolight-dual-trenitalia-en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/leurolightdualtrenitalia0923i.pdf',
+                destination:
+                    '/api/docs/x/77cd2efedc/eurolight-dualtrenitalia-it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmssifemu0923_en.pdf',
+                destination: '/api/docs/x/228a30f45e/tmssifemu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmssifemu0923_it.pdf',
+                destination: '/api/docs/x/bbe9349293/tmssifemu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmarsthmu0923_en.pdf',
+                destination: '/api/docs/x/9946ac56db/flirt_arst_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmarsthmu0923_it.pdf',
+                destination: '/api/docs/x/7d32bd9702/flirt_arst_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmarstdmu0923_en.pdf',
+                destination: '/api/docs/x/248ed711d4/tmarsthmu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmarstdmu0923_it.pdf',
+                destination: '/api/docs/x/322a61d2ef/tmarsthmu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfaldmu0923_en.pdf',
+                destination: '/api/docs/x/b6b6a19e1a/tmfaldmu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfaldmu0923_it.pdf',
+                destination: '/api/docs/x/616b62c78c/tmfaldmu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfalbmu0923_en.pdf',
+                destination: '/api/docs/x/038bfad42a/tmfalbmu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfalbmu0923_it.pdf',
+                destination: '/api/docs/x/9580298389/tmfalbmu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfdc0823_en.pdf',
+                destination: '/api/docs/x/77e97f22c8/tmfdcdmu0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfdc0921_it.pdf',
+                destination: '/api/docs/x/6929c92d53/tmfdcdmu0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tmfdchmu0923_it.pdf',
+                destination:
+                    '/api/docs/x/fe980ef45f/tailor-made_wasserstoff-triebzug_fdc_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/emueav0923_en.pdf',
+                destination: '/api/docs/x/c5232cd2a7/metro_emu_eav_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/emueav0923_it.pdf',
+                destination: '/api/docs/x/71a119b7e1/metro_emu_eav_it.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tlatm0923_en.pdf',
+                destination: '/api/docs/x/d3bd61ce92/tlatm0923e.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/tlatm0923_it.pdf',
+                destination: '/api/docs/x/0209b3d1f6/tlatm0923i.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/Stadler_FLIRT_Broschuere_0621_EN_web.pdf',
+                destination:
+                    '/api/docs/x/6050515176/stadler_flirt_broschure_0621_en_web.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/Signalling_EN_2023_web.pdf',
+                destination: '/api/docs/x/40507f73cd/signalling2024_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/ServiceBro_2022_Gesamt_EN.pdf',
+                destination:
+                    '/api/docs/x/7f05f88893/servicebro_2022_gesamt_en.pdf',
+                permanent: true,
+            },
+            {
+                source: '/media/pdf/2022_Brochure%20locomotoras_EN_web.pdf',
+                destination:
+                    '/api/docs/x/ba439afb8c/2022_brochure-locomotoras-en-web.pdf',
+                permanent: true,
+            },
         ];
     },
 };
