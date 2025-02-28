@@ -2421,37 +2421,37 @@ const nextConfig = {
             {
                 source: '/en/media/pdf/tmarstdmu0923_en.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/248ed711d4/tmarsthmu0923e.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/3800b7adb2/tmarstdmu0923_en.pdf',
                 permanent: true,
             },
             {
                 source: '/de/media/pdf/tmarstdmu0923_en.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/248ed711d4/tmarsthmu0923e.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/3800b7adb2/tmarstdmu0923_en.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/tmarstdmu0923_en.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/248ed711d4/tmarsthmu0923e.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/3800b7adb2/tmarstdmu0923_en.pdf',
                 permanent: true,
             },
             {
                 source: '/en/media/pdf/tmarstdmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/322a61d2ef/tmarsthmu0923i.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/bade2beb81/tmarstdmu0923_it.pdf',
                 permanent: true,
             },
             {
                 source: '/de/media/pdf/tmarstdmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/322a61d2ef/tmarsthmu0923i.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/bade2beb81/tmarstdmu0923_it.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/tmarstdmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/322a61d2ef/tmarsthmu0923i.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/bade2beb81/tmarstdmu0923_it.pdf',
                 permanent: true,
             },
             {
@@ -2565,19 +2565,19 @@ const nextConfig = {
             {
                 source: '/en/media/pdf/tmfdchmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/fe980ef45f/tailor-made_wasserstoff-triebzug_fdc_it.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/584b236881/tailor-made_hydrogenpowered_fdc_en.pdf',
                 permanent: true,
             },
             {
                 source: '/de/media/pdf/tmfdchmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/fe980ef45f/tailor-made_wasserstoff-triebzug_fdc_it.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/584b236881/tailor-made_hydrogenpowered_fdc_en.pdf',
                 permanent: true,
             },
             {
                 source: '/media/pdf/tmfdchmu0923_it.pdf',
                 destination:
-                    'https://www.stadlerrail.com/api/docs/x/fe980ef45f/tailor-made_wasserstoff-triebzug_fdc_it.pdf',
+                    'https://www.stadlerrail.com/api/docs/x/584b236881/tailor-made_hydrogenpowered_fdc_en.pdf',
                 permanent: true,
             },
             {
