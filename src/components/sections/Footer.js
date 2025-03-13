@@ -12,6 +12,7 @@ const Footer = ({ blok }) => {
         >
             <li>
                 <a
+                    target={blok.link_1_url.story?.target ?? '_self'}
                     tabIndex="1"
                     href={`/${blok.link_1_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
@@ -22,6 +23,7 @@ const Footer = ({ blok }) => {
             <li>
                 <a
                     tabIndex="1"
+                    target={blok.link_2_url.story?.target ?? '_self'}
                     href={`/${blok.link_2_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -31,6 +33,7 @@ const Footer = ({ blok }) => {
             <li>
                 <a
                     tabIndex="1"
+                    target={blok.link_3_url.story?.target ?? '_self'}
                     href={`/${blok.link_3_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -40,6 +43,7 @@ const Footer = ({ blok }) => {
             <li>
                 <a
                     tabIndex="1"
+                    target={blok.link_4_url.story?.target ?? '_self'}
                     href={`/${blok.link_4_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -49,6 +53,7 @@ const Footer = ({ blok }) => {
             <li>
                 <a
                     tabIndex="1"
+                    target={blok.link_5_url.story?.target ?? '_self'}
                     href={`/${blok.link_5_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -62,6 +67,7 @@ const Footer = ({ blok }) => {
         <div className="flex space-x-4">
             <Link
                 tabIndex="1"
+                target={blok.social_media_link_2?.target ?? '_self'}
                 href={blok.social_media_link_2?.url}
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
@@ -74,6 +80,7 @@ const Footer = ({ blok }) => {
             </Link>
             <Link
                 tabIndex="1"
+                target={blok.social_media_link_3?.target ?? '_self'}
                 href={blok.social_media_link_3?.url}
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
@@ -86,6 +93,7 @@ const Footer = ({ blok }) => {
             </Link>
             <Link
                 tabIndex="1"
+                target={blok.social_media_link_4?.target ?? '_self'}
                 href={blok.social_media_link_4?.url}
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
@@ -98,6 +106,7 @@ const Footer = ({ blok }) => {
             </Link>
             <Link
                 tabIndex="1"
+                target={blok.social_media_link_1?.target ?? '_self'}
                 href={blok.social_media_link_1?.url}
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
