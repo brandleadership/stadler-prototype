@@ -19,7 +19,7 @@ const getVersion = (searchParams) => {
     } else if (searchParams && searchParams['_storyblok']) {
         return 'draft';
     } else {
-        return 'published';
+        return 'draft';
     }
 };
 
@@ -72,7 +72,7 @@ async function fetchData(slug, lang, searchParams) {
         );
         console.log('data', data);
 
-        // if (!data.story) return redirect('/not-found');
+        if (!data.story) return redirect('/not-found');
 
         return {
             story: data.story,
