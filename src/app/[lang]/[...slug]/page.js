@@ -81,59 +81,59 @@ async function fetchData(slug, lang, searchParams) {
         };
     } catch (error) {
         console.error('Error fetching data:', error);
-        return redirect('/not-found');
+        // return redirect('/not-found');
     }
 }
 
-export async function generateStaticParams({ params, searchParams }) {
-    console.log(params);
-    const storyblokApi = getStoryblokApi();
-    const { data } = await storyblokApi.get('cdn/links/', {
-        resolve_links: 'url',
-        version: getVersion(searchParams),
-        resolve_relations: [
-            'global_contact_reference.reference',
-            'success-story-grid.success_stories',
-            'news.categories',
-            'medienmitteilungen.categories',
-            'alle-medienmitteilungen.filter_years',
-            'alle-medienmitteilungen.filter_country',
-            'alle-medienmitteilungen.filter_medienmitteilungencategories',
-            'alle-medienmitteilungen.filter_products',
-            'all-news.filter_years',
-            'all-news.filter_country',
-            'all-news.filter_newscategories',
-            'all-news.filter_products',
-            'reference-grid.highlight_reference',
-            'reference-grid.reference',
-            'reference-page.categories',
-            'medienmitteilungen_teaser.categories',
-            'all-locations.filter_business_area',
-            'all-locations.filter_country',
-            'single-location-wrapper.tag_division',
-            'single-location-wrapper.tag_country',
-            'single-location-wrapper.tag_business_area',
-        ],
-    });
+// export async function generateStaticParams({ params, searchParams }) {
+//     console.log(params);
+//     const storyblokApi = getStoryblokApi();
+//     const { data } = await storyblokApi.get('cdn/links/', {
+//         resolve_links: 'url',
+//         version: getVersion(searchParams),
+//         resolve_relations: [
+//             'global_contact_reference.reference',
+//             'success-story-grid.success_stories',
+//             'news.categories',
+//             'medienmitteilungen.categories',
+//             'alle-medienmitteilungen.filter_years',
+//             'alle-medienmitteilungen.filter_country',
+//             'alle-medienmitteilungen.filter_medienmitteilungencategories',
+//             'alle-medienmitteilungen.filter_products',
+//             'all-news.filter_years',
+//             'all-news.filter_country',
+//             'all-news.filter_newscategories',
+//             'all-news.filter_products',
+//             'reference-grid.highlight_reference',
+//             'reference-grid.reference',
+//             'reference-page.categories',
+//             'medienmitteilungen_teaser.categories',
+//             'all-locations.filter_business_area',
+//             'all-locations.filter_country',
+//             'single-location-wrapper.tag_division',
+//             'single-location-wrapper.tag_country',
+//             'single-location-wrapper.tag_business_area',
+//         ],
+//     });
 
-    // console.log(Object.keys(data.links));
+//     // console.log(Object.keys(data.links));
 
-    const paths = Object.keys(data.links)
-        .filter(
-            (linkKey) =>
-                !data.links[linkKey].is_folder &&
-                data.links[linkKey].slug !== 'home'
-        )
-        .flatMap((linkKey) => {
-            const slug = data.links[linkKey].slug.split('/');
+//     const paths = Object.keys(data.links)
+//         .filter(
+//             (linkKey) =>
+//                 !data.links[linkKey].is_folder &&
+//                 data.links[linkKey].slug !== 'home'
+//         )
+//         .flatMap((linkKey) => {
+//             const slug = data.links[linkKey].slug.split('/');
 
-            return ['de', 'en'].map((lang) => ({ slug, lang }));
-        });
-    //
-    // console.log('paths', paths);
+//             return ['de', 'en'].map((lang) => ({ slug, lang }));
+//         });
+//     //
+//     // console.log('paths', paths);
 
-    return paths;
-}
+//     return paths;
+// }
 
 export async function generateMetadata({ params, searchParams }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
