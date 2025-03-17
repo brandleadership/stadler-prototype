@@ -6,6 +6,7 @@ import {
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
 import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -13,11 +14,21 @@ storyblokInit({
 });
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
+const getVersion = (searchParams) => {
+    if (searchParams && searchParams['_storyblok_published']) {
+        return 'published';
+    } else if (searchParams && searchParams['_storyblok']) {
+        return 'draft';
+    } else {
+        return 'published';
+    }
+};
 
-async function fetchData(slug, lang) {
+async function fetchData(slug, lang, searchParams) {
+    // console.log('fetchData', slug, getVersion(searchParams));
     const sbParams = {
         resolve_links: 'url',
-        version: 'published',
+        version: getVersion(searchParams),
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -77,7 +88,7 @@ async function fetchData(slug, lang) {
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'published',
+        version: getVersion(),
     });
 
     const paths = [];
@@ -98,10 +109,10 @@ export async function generateStaticParams() {
     return paths;
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
-    const data = await fetchData(slug, lang);
+    const data = await fetchData(slug, lang, searchParams);
     if (!data || !data.story) {
         return redirect('/not-found');
     }
@@ -138,10 +149,17 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function Detailpage({ params }) {
+export default async function Detailpage({ params, searchParams }) {
+    const headerList = headers();
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
-    const data = await fetchData(slug, lang);
+    const data = await fetchData(slug, lang, searchParams);
+    console.log(
+        'params',
+        headerList.get('x-search-paramethers-url'),
+        params,
+        searchParams
+    );
 
     if (!data || !data.story) {
         return redirect('/not-found');

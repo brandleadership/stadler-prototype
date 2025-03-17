@@ -14,15 +14,24 @@ storyblokInit({
 
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
+const getVersion = (searchParams) => {
+    if (searchParams && searchParams['_storyblok_published']) {
+        return 'published';
+    } else if (searchParams && searchParams['_storyblok']) {
+        return 'draft';
+    } else {
+        return 'published';
+    }
+};
 
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'de' }];
 }
 
-async function fetchData(slug, lang) {
+async function fetchData(slug, lang, searchParams) {
     const sbParams = {
         resolve_links: 'url',
-        version: 'published',
+        version: getVersion(searchParams),
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -75,7 +84,7 @@ async function fetchData(slug, lang) {
 
 let metadataCache = {};
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }) {
     const slug = params?.slug ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const cacheKey = `${lang}-${slug}`;
@@ -84,7 +93,7 @@ export async function generateMetadata({ params }) {
         return metadataCache[cacheKey];
     }
 
-    const { story } = await fetchData(slug, lang);
+    const { story } = await fetchData(slug, lang, searchParams);
 
     if (!story) {
         return redirect('/not-found');
@@ -129,10 +138,14 @@ export async function generateMetadata({ params }) {
     return metadata;
 }
 
-export default async function Homepage({ params }) {
+export default async function Homepage({ params, searchParams }) {
     const slug = 'home';
     const lang = params.lang || 'en';
-    const { story, config_footer, config_header } = await fetchData(slug, lang);
+    const { story, config_footer, config_header } = await fetchData(
+        slug,
+        lang,
+        searchParams
+    );
 
     if (!story) {
         return redirect('/not-found');
