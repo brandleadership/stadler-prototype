@@ -5,7 +5,7 @@ import {
     storyblokInit,
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -139,9 +139,9 @@ export async function generateMetadata({ params, searchParams }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const data = await fetchData(slug, lang, searchParams);
-    // if (!data || !data.story) {
-    //     return redirect('/not-found');
-    // }
+    if (!data || !data.story) {
+        return redirect('/not-found');
+    }
 
     const { story } = data;
     const metatags = story.content.metatags || {};
