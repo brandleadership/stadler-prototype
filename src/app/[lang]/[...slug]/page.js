@@ -85,27 +85,25 @@ async function fetchData(slug, lang, searchParams) {
     }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams({ params, searchParams }) {
+    console.log(params);
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: getVersion(),
+        version: getVersion(searchParams),
     });
 
-    const paths = [];
+    const paths = Object.keys(data.links)
+        .filter(
+            (linkKey) =>
+                !data.links[linkKey].is_folder &&
+                data.links[linkKey].slug !== 'home'
+        )
+        .flatMap((linkKey) => {
+            const slug = data.links[linkKey].slug.split('/');
 
-    Object.keys(data.links).forEach((linkKey) => {
-        if (
-            data.links[linkKey].is_folder ||
-            data.links[linkKey].slug === 'home'
-        ) {
-            return;
-        }
+            return ['de', 'fr', 'it', 'en'].map((lang) => ({ slug, lang }));
+        });
 
-        const slug = data.links[linkKey].slug;
-        let splittedSlug = slug.split('/');
-
-        paths.push({ slug: splittedSlug });
-    });
     return paths;
 }
 
