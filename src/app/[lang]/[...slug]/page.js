@@ -5,7 +5,7 @@ import {
     storyblokInit,
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
-// import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -72,7 +72,7 @@ async function fetchData(slug, lang, searchParams) {
         );
         console.log('data', data);
 
-        if (!data.story) return redirect('/not-found');
+        // if (!data.story) return redirect('/not-found');
 
         return {
             story: data.story,
