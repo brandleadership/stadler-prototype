@@ -559,26 +559,28 @@ const ProspectiveCareer = ({ blok }) => {
     }, []);
 
     const onSearchChange = (e) => {
-        setSearch(e.target.value);
+        setTimeout(() => {
+            setSearch(e.target.value);
 
-        let filtersString = '';
+            let filtersString = '';
 
-        Object.keys(selectedOptions).map((key) => {
-            if (selectedOptions[key]) {
-                if (selectedOptions[key] != 'none') {
-                    if (filtersString.length) {
-                        filtersString += `,`;
+            Object.keys(selectedOptions).map((key) => {
+                if (selectedOptions[key]) {
+                    if (selectedOptions[key] != 'none') {
+                        if (filtersString.length) {
+                            filtersString += `,`;
+                        }
+                        filtersString += `${key}:${selectedOptions[key]}`;
                     }
-                    filtersString += `${key}:${selectedOptions[key]}`;
                 }
-            }
-        });
+            });
 
-        if (e.target.value.length > 2) {
-            getJobs(filtersString, e.target.value);
-        } else {
-            getJobs(filtersString);
-        }
+            if (e.target.value.length > 2) {
+                getJobs(filtersString, e.target.value);
+            } else {
+                getJobs(filtersString);
+            }
+        }, 1000);
     };
 
     // Set dependent value on location filter, applicable only for Switzerland and Weitere
@@ -657,7 +659,7 @@ const ProspectiveCareer = ({ blok }) => {
             <SmallWidth>
                 <div className="col-span-12 grid">
                     <div
-                        className="grid grid-cols-4 justify-stretch gap-x-2 hover:cursor-pointer mt-20 lg:mt-0"
+                        className="mt-20 grid grid-cols-4 justify-stretch gap-x-2 hover:cursor-pointer lg:mt-0"
                         role="group"
                     >
                         <a
@@ -717,7 +719,9 @@ const ProspectiveCareer = ({ blok }) => {
                             id="search"
                             className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             placeholder=""
-                            onChange={(e) => onSearchChange(e)}
+                            onChange={(e) => {
+                                onSearchChange(e);
+                            }}
                         />
                     </div>
                     <div className="col-span-12 mt-4 grid grid-cols-12 gap-6">
