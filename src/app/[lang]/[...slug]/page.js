@@ -19,7 +19,7 @@ const getVersion = (searchParams) => {
     } else if (searchParams && searchParams['_storyblok']) {
         return 'draft';
     } else {
-        return 'draft';
+        return 'published';
     }
 };
 
