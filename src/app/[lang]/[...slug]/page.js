@@ -72,7 +72,7 @@ async function fetchData(slug, lang, searchParams) {
         );
         console.log('data', data);
 
-        // if (!data.story) return redirect('/not-found');
+        if (!data.story) return redirect('/not-found');
 
         return {
             story: data.story,
