@@ -81,7 +81,7 @@ async function fetchData(slug, lang, searchParams) {
         };
     } catch (error) {
         console.error('Error fetching data:', error);
-        // return redirect('/not-found');
+        return redirect('/not-found');
     }
 }
 
@@ -187,9 +187,9 @@ export default async function Detailpage({ params, searchParams }) {
     // );
     console.log('data', data);
 
-    // if (!data || !data.story) {
-    //     return redirect('/not-found');
-    // }
+    if (!data) {
+        return redirect('/not-found');
+    }
 
     const { story, config_footer, config_header } = data;
 
