@@ -29,7 +29,7 @@ async function fetchData(slug, lang, searchParams) {
     const sbParams = {
         resolve_links: 'url',
         version: getVersion(searchParams),
-        cv: isDev || isDraft ? Date.now() : undefined,
+        // cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
             'success-story-grid.success_stories',
@@ -85,27 +85,55 @@ async function fetchData(slug, lang, searchParams) {
     }
 }
 
-export async function generateStaticParams({ params, searchParams }) {
-    console.log(params);
-    const storyblokApi = getStoryblokApi();
-    const { data } = await storyblokApi.get('cdn/links/', {
-        version: getVersion(searchParams),
-    });
+// export async function generateStaticParams({ params, searchParams }) {
+//     console.log(params);
+//     const storyblokApi = getStoryblokApi();
+//     const { data } = await storyblokApi.get('cdn/links/', {
+//         resolve_links: 'url',
+//         version: getVersion(searchParams),
+//         resolve_relations: [
+//             'global_contact_reference.reference',
+//             'success-story-grid.success_stories',
+//             'news.categories',
+//             'medienmitteilungen.categories',
+//             'alle-medienmitteilungen.filter_years',
+//             'alle-medienmitteilungen.filter_country',
+//             'alle-medienmitteilungen.filter_medienmitteilungencategories',
+//             'alle-medienmitteilungen.filter_products',
+//             'all-news.filter_years',
+//             'all-news.filter_country',
+//             'all-news.filter_newscategories',
+//             'all-news.filter_products',
+//             'reference-grid.highlight_reference',
+//             'reference-grid.reference',
+//             'reference-page.categories',
+//             'medienmitteilungen_teaser.categories',
+//             'all-locations.filter_business_area',
+//             'all-locations.filter_country',
+//             'single-location-wrapper.tag_division',
+//             'single-location-wrapper.tag_country',
+//             'single-location-wrapper.tag_business_area',
+//         ],
+//     });
 
-    const paths = Object.keys(data.links)
-        .filter(
-            (linkKey) =>
-                !data.links[linkKey].is_folder &&
-                data.links[linkKey].slug !== 'home'
-        )
-        .flatMap((linkKey) => {
-            const slug = data.links[linkKey].slug.split('/');
+//     console.log(Object.keys(data.links));
 
-            return ['de', 'fr', 'it', 'en'].map((lang) => ({ slug, lang }));
-        });
+//     const paths = Object.keys(data.links)
+//         .filter(
+//             (linkKey) =>
+//                 !data.links[linkKey].is_folder &&
+//                 data.links[linkKey].slug !== 'home'
+//         )
+//         .flatMap((linkKey) => {
+//             const slug = data.links[linkKey].slug.split('/');
 
-    return paths;
-}
+//             return ['de', 'fr', 'it', 'en'].map((lang) => ({ slug, lang }));
+//         });
+
+//     console.log('paths', paths);
+
+//     return paths;
+// }
 
 export async function generateMetadata({ params, searchParams }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
