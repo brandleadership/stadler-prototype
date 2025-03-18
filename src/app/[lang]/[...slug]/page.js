@@ -12,7 +12,7 @@ storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
 });
-const isDev = 'development';
+const isDev = process.env.NODE_ENV === 'development';
 export const revalidate = isDev ? 0 : 3600;
 const getVersion = (searchParams) => {
     if (searchParams && searchParams['_storyblok_published']) {
