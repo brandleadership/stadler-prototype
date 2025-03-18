@@ -69,7 +69,7 @@ async function fetchData(slug, lang, searchParams) {
             sbParams
         );
 
-        if (!data.story) return redirect('/not-found');
+        // if (!data.story) return redirect('/not-found');
 
         return {
             story: data.story,
