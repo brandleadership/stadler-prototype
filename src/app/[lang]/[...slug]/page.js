@@ -6,7 +6,7 @@ import {
 } from '@storyblok/react/rsc';
 import Layout from '/src/components/sections/Layout';
 import { redirect } from 'next/navigation';
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -85,10 +85,11 @@ async function fetchData(slug, lang, searchParams) {
     }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams({ params, searchParams }) {
+    console.log(params);
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: getVersion(),
+        version: getVersion(searchParams),
     });
 
     const paths = [];
@@ -150,16 +151,16 @@ export async function generateMetadata({ params, searchParams }) {
 }
 
 export default async function Detailpage({ params, searchParams }) {
-    const headerList = headers();
+    // const headerList = headers();
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const data = await fetchData(slug, lang, searchParams);
-    console.log(
-        'params',
-        headerList.get('x-search-paramethers-url'),
-        params,
-        searchParams
-    );
+    // console.log(
+    //     'params',
+    //     headerList.get('x-search-paramethers-url'),
+    //     params,
+    //     searchParams
+    // );
 
     if (!data || !data.story) {
         return redirect('/not-found');
