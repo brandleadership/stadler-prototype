@@ -14,24 +14,15 @@ storyblokInit({
 
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
-const getVersion = (searchParams) => {
-    if (searchParams && searchParams['_storyblok_published']) {
-        return 'published';
-    } else if (searchParams && searchParams['_storyblok']) {
-        return 'draft';
-    } else {
-        return 'published';
-    }
-};
 
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'de' }];
 }
 
-async function fetchData(slug, lang, searchParams) {
+async function fetchData(slug, lang) {
     const sbParams = {
         resolve_links: 'url',
-        version: getVersion(searchParams),
+        version: 'published',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -84,7 +75,7 @@ async function fetchData(slug, lang, searchParams) {
 
 let metadataCache = {};
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata({ params }) {
     const slug = params?.slug ? params.slug.join('/') : 'home';
     const lang = params.lang || 'en';
     const cacheKey = `${lang}-${slug}`;
@@ -93,7 +84,7 @@ export async function generateMetadata({ params, searchParams }) {
         return metadataCache[cacheKey];
     }
 
-    const { story } = await fetchData(slug, lang, searchParams);
+    const { story } = await fetchData(slug, lang);
 
     if (!story) {
         return redirect('/not-found');
@@ -138,14 +129,10 @@ export async function generateMetadata({ params, searchParams }) {
     return metadata;
 }
 
-export default async function Homepage({ params, searchParams }) {
+export default async function Homepage({ params }) {
     const slug = 'home';
     const lang = params.lang || 'en';
-    const { story, config_footer, config_header } = await fetchData(
-        slug,
-        lang,
-        searchParams
-    );
+    const { story, config_footer, config_header } = await fetchData(slug, lang);
 
     if (!story) {
         return redirect('/not-found');
