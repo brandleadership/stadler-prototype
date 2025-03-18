@@ -29,7 +29,7 @@ async function fetchData(slug, lang, searchParams) {
     const sbParams = {
         resolve_links: 'url',
         version: getVersion(searchParams),
-        cv: isDev || isDraft ? Date.now() : undefined,
+        // cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
             'success-story-grid.success_stories',
@@ -88,25 +88,26 @@ async function fetchData(slug, lang, searchParams) {
 export async function generateStaticParams({ params, searchParams }) {
     console.log(params);
     const storyblokApi = getStoryblokApi();
-    const { data } = await storyblokApi.get('cdn/links/', {
+    const sbParams = {
+        resolve_links: 'url',
         version: getVersion(searchParams),
-    });
+    };
 
-    const paths = [];
+    const { data } = await storyblokApi.get('cdn/links/', sbParams);
 
-    Object.keys(data.links).forEach((linkKey) => {
-        if (
-            data.links[linkKey].is_folder ||
-            data.links[linkKey].slug === 'home'
-        ) {
-            return;
-        }
+    const paths = Object.keys(data.links)
+        .filter(
+            (linkKey) =>
+                !data.links[linkKey].is_folder &&
+                data.links[linkKey].slug !== 'home'
+        )
+        .flatMap((linkKey) => {
+            const slug = data.links[linkKey].slug.split('/');
 
-        const slug = data.links[linkKey].slug;
-        let splittedSlug = slug.split('/');
+            return ['en', 'de'].map((lang) => ({ slug, lang }));
+        });
+    console.log('paths', paths);
 
-        paths.push({ slug: splittedSlug });
-    });
     return paths;
 }
 
