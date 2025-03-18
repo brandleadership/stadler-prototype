@@ -14,19 +14,6 @@ const nextConfig = {
             '@react-email/tailwind',
         ],
     },
-    async headers() {
-        return [
-            {
-                source: '/(.*)',
-                headers: [
-                    {
-                        key: 'Cache-Control',
-                        value: 'no-store',
-                    },
-                ],
-            },
-        ];
-    },
     async rewrites() {
         return [
             {
