@@ -32,7 +32,7 @@ async function fetchData(slug, lang, searchParams) {
     const sbParams = {
         resolve_links: 'url',
         version: getVersion(searchParams),
-        cv: isDev || isDraft ? Date.now() : undefined,
+        // cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
             'success-story-grid.success_stories',

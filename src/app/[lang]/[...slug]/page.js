@@ -28,6 +28,7 @@ async function fetchData(slug, lang, searchParams) {
     const sbParams = {
         resolve_links: 'url',
         version: getVersion(searchParams),
+        // version: 'draft',
         // cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -86,11 +87,13 @@ async function fetchData(slug, lang, searchParams) {
 }
 
 export async function generateStaticParams({ params, searchParams }) {
-    console.log(params);
+    console.log(params, searchParams);
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
         resolve_links: 'url',
         version: getVersion(searchParams),
+
+        // version: 'draft',
     });
 
     // console.log(Object.keys(data.links));
