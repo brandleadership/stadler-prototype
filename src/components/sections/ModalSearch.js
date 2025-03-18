@@ -162,7 +162,7 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
     }, [isModalOpen, closeModal]);
 
     const handleArticleClick = (article) => {
-        window.location.href = `/${article.full_slug}`;
+        window.location.href = `/${article.full_slug}#:~:text=${search}`;
     };
 
     return (
