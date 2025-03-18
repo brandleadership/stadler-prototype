@@ -24,7 +24,7 @@ const getVersion = (searchParams) => {
 };
 
 async function fetchData(slug, lang, searchParams) {
-    // console.log('fetchData', slug, getVersion(searchParams));
+    console.log('fetchData', searchParams, getVersion(searchParams));
     const sbParams = {
         resolve_links: 'url',
         version: getVersion(searchParams),
@@ -72,7 +72,7 @@ async function fetchData(slug, lang, searchParams) {
         );
         console.log('data', data);
 
-        if (!data.story) return redirect('/not-found');
+        // if (!data.story) return redirect('/not-found');
 
         return {
             story: data.story,
@@ -91,29 +91,6 @@ export async function generateStaticParams({ params, searchParams }) {
     const { data } = await storyblokApi.get('cdn/links/', {
         resolve_links: 'url',
         version: getVersion(searchParams),
-        resolve_relations: [
-            'global_contact_reference.reference',
-            'success-story-grid.success_stories',
-            'news.categories',
-            'medienmitteilungen.categories',
-            'alle-medienmitteilungen.filter_years',
-            'alle-medienmitteilungen.filter_country',
-            'alle-medienmitteilungen.filter_medienmitteilungencategories',
-            'alle-medienmitteilungen.filter_products',
-            'all-news.filter_years',
-            'all-news.filter_country',
-            'all-news.filter_newscategories',
-            'all-news.filter_products',
-            'reference-grid.highlight_reference',
-            'reference-grid.reference',
-            'reference-page.categories',
-            'medienmitteilungen_teaser.categories',
-            'all-locations.filter_business_area',
-            'all-locations.filter_country',
-            'single-location-wrapper.tag_division',
-            'single-location-wrapper.tag_country',
-            'single-location-wrapper.tag_business_area',
-        ],
     });
 
     // console.log(Object.keys(data.links));
