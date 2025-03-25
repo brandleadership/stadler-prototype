@@ -101,6 +101,7 @@ const fontStadler = localFont({
     variable: '--font-stadler',
 });
 
+// comment to delete later
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
