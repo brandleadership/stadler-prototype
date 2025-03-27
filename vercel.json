@@ -1,4 +1,10 @@
 {
+    "rewrites": [
+        {
+            "source": "/api/docs/:path*",
+            "destination": "https://a.storyblok.com/f/269997/:path*"
+        }
+    ],
     "redirects": [
         {
             "source": "/api/docs/:path*",
