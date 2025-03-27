@@ -233,7 +233,7 @@ storyblokInit({
         social_wall: SocialWallComponent,
         complience_grid: ComplienceGrid,
         complience_item: ComplienceItem,
-        background_image_teaser: BackgroundImageTeaser,
+        teaser_background_image: BackgroundImageTeaser,
     },
 });
 

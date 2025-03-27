@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 async function fetchData(slug, lang) {
     const sbParams = {
         resolve_links: 'url',
-        version: 'published',
+        version: 'draft',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',

@@ -10,8 +10,6 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 export default function Career({ blok }) {
     const careerRef = useRef();
     const BackgroundMap = {
-        gradient_primary:
-            'linear-gradient(135deg, #000407 0%, #005994 50.61%, #0181C2 100%);',
         primary_50: '#F2F7FA',
         primary_100: '#E5EEF4',
         primary_200: '#CCDEE9',
