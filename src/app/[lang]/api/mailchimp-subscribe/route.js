@@ -1,28 +1,36 @@
 import { NextResponse } from 'next/server';
+import * as crypto from 'crypto';
 
-export async function POST(request, res) {
-    const email = request.nextUrl.searchParams.get('email');
-    const firma = request.nextUrl.searchParams.get('firma');
-    const firstName = request.nextUrl.searchParams.get('firstName');
-    const lastName = request.nextUrl.searchParams.get('lastName');
+export async function POST(request) {
+    const formData = await request.formData();
+    const email = formData.get('email');
+    const firma = formData.get('firma');
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
 
     const accessToken = process.env.MAILCHIMP_API_KEY;
-    const url = `https://${process.env.MAILCHIMP_API_SERVER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_AUDIENCE_ID}/members`;
+    let url = `https://${process.env.MAILCHIMP_API_SERVER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_AUDIENCE_ID}/members`;
 
     try {
+        const subscriberHash = crypto
+            .createHash('md5')
+            .update(email)
+            .digest('hex');
+        url += `/${subscriberHash}`;
+
         const initialResponse = await fetch(url, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             },
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({
                 email_address: email,
-                status: 'subscribed',
+                status: 'pending',
                 merge_fields: {
                     FNAME: firstName,
                     LNAME: lastName,
-                    FIRMA: firma,
+                    COMPANY: firma,
                 },
             }),
         });

@@ -1,7 +1,7 @@
 const DateFormatter = (textToFormat) => {
     // console.log("ButtonUrlRenderer", textToFormat)
     if (!textToFormat) {
-        return ''
+        return '';
     }
     const date = new Date(textToFormat);
     const yyyy = date.getFullYear();

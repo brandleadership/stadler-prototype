@@ -1,21 +1,20 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
-import { render } from 'storyblok-rich-text-react-renderer';
 import H2 from '../typography/H2';
 
 export default function Description({ blok }) {
     return (
         <section {...storyblokEditable(blok)} className="bg-white">
-            <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-24 lg:px-6">
+            <div className="mx-auto max-w-screen-xl items-center gap-8 px-4 py-8 sm:py-24 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
                 <img
                     src={blok?.image.filename}
                     className="w-full"
-                    alt="Full service image"
+                    alt={blok?.image?.filename?.alt ?? 'Full Service Image'}
                 />
                 <div className="mt-4 md:mt-0">
                     <H2>{blok?.title}</H2>
                     {blok?.text && (
-                        <p className="mb-6 font-normal text-black-500 md:text-lg richtext">
+                        <p className="text-black-500 richtext mb-6 font-normal md:text-lg">
                             {blok?.text}
                         </p>
                     )}

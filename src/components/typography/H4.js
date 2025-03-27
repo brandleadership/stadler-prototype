@@ -1,5 +1,5 @@
 const H4 = ({ children, styles, resetStyles }) => {
-    const defaultStyles = 'font-bold break-words text-base lg:text-xl ';
+    const defaultStyles = 'font-bold break-words text-base lg:text-xl';
     const H4Styles = resetStyles
         ? defaultStyles
         : `${defaultStyles} ${styles || ''}`;

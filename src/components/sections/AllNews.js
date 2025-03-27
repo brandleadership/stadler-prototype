@@ -8,7 +8,9 @@ import H2 from '../typography/H2';
 import Text from '../typography/Text';
 import H4 from '../typography/H4';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
+import { SearchIcon } from '../icons/SearchIcon';
+
 const filters = { country: '', category: '', product: '', year: '' };
 
 function AllNews({ blok }) {
@@ -50,7 +52,7 @@ function AllNews({ blok }) {
             ...filterSearchRequest,
         });
 
-        setArticles((prev) =>
+        setArticles(() =>
             data.stories.map((article) => {
                 article.content.slug = article.slug;
                 return article;
@@ -83,16 +85,16 @@ function AllNews({ blok }) {
     };
 
     return (
-        <section className="py-16 lg:py-24">
+        <section className="py-8 lg:py-24">
             <ContentWidth {...storyblokEditable(blok)}>
                 <div className="col-span-12 w-full">
                     <H2>{blok.title}</H2>
                 </div>
                 <div className="col-span-12 mb-8">
-                    <ul className="grid gap-4 text-sm font-medium text-center text-gray-500 dark:text-gray-400 md:grid-cols-2 lg:grid-cols-12">
+                    <ul className="grid gap-4 text-center text-sm font-medium text-greySolid-600 md:grid-cols-2 lg:grid-cols-12">
                         <li className="lg:col-span-2">
                             <select
-                                className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                                className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterArticles(e, 'country')}
                             >
                                 <option value="">
@@ -107,7 +109,7 @@ function AllNews({ blok }) {
                         </li>
                         <li className="lg:col-span-2">
                             <select
-                                className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                                className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterArticles(e, 'category')}
                             >
                                 <option value="">
@@ -127,7 +129,7 @@ function AllNews({ blok }) {
                         </li>
                         <li className="lg:col-span-2">
                             <select
-                                className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                                className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterArticles(e, 'product')}
                             >
                                 <option value="">
@@ -142,7 +144,7 @@ function AllNews({ blok }) {
                         </li>
                         <li className="lg:col-span-2">
                             <select
-                                className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                                className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterArticles(e, 'year')}
                             >
                                 <option value="">
@@ -157,25 +159,17 @@ function AllNews({ blok }) {
                         </li>
                         <li className="lg:col-span-4">
                             <div className="relative">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg
-                                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <span className="h-4 w-4">
+                                        <SearchIcon
+                                            className="h-2 w-2 fill-greySolid-600"
+                                            color="#00000080"
                                         />
-                                    </svg>
+                                    </span>
                                 </div>
                                 <input
-                                    className="w-full pl-8 pr-4 py-2 text-base border-primary block focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                    tabIndex="1"
+                                    className="block w-full border-primary py-2 pl-8 pr-4 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                     placeholder={blok.text_search}
                                     onChange={onSearchChange}
                                 />
@@ -188,15 +182,21 @@ function AllNews({ blok }) {
                         {articles[0] &&
                             articles.map((article) => (
                                 <a
+                                    tabIndex="1"
                                     href={`/${article.full_slug}`}
                                     className="group mb-6 transition-all"
                                     key={article.uuid}
                                 >
-                                    <div className="overflow-hidden h-52">
+                                    <div className="h-52 overflow-hidden">
                                         <img
-                                            src={article.content.image.filename}
-                                            className="object-cover w-full h-full group-hover:scale-110 transition-all"
-                                            alt="News Article image"
+                                            src={
+                                                article.content.image?.filename
+                                            }
+                                            className="h-full w-full object-cover transition-all group-hover:scale-110"
+                                            alt={
+                                                article.content.image?.filename
+                                                    .alt ?? 'News Article image'
+                                            }
                                         />
                                     </div>
                                     <div className="mb-1 mt-4 flex flex-wrap">
@@ -207,7 +207,7 @@ function AllNews({ blok }) {
                                                 ) && (
                                                     <span
                                                         key={index}
-                                                        className="whitespace-nowrap mb-2 inline text-gray-700 px-2 py-1 mr-4 border border-gray-400 text-xs last-of-type:mr-0"
+                                                        className="mb-2 mr-4 inline whitespace-nowrap border border-greySolid-400 px-2 py-1 text-xs text-greySolid-600 last-of-type:mr-0"
                                                     >
                                                         {
                                                             category.content
@@ -217,16 +217,16 @@ function AllNews({ blok }) {
                                                 )
                                         )}
                                     </div>
-                                    <div className="text-sm mb-1 text-gray-500">
+                                    <div className="mb-1 text-sm text-greySolid-600">
                                         <Text>
                                             {DateFormatter(
                                                 article.content.date
                                             )}
                                         </Text>
                                     </div>
-                                    <div className="group-hover:text-primary transition-all"></div>
+                                    <div className="transition-all group-hover:text-primary"></div>
                                     <H4>{article.content.title}</H4>
-                                    <div className="texl-lg mb-3 text-gray-500"></div>
+                                    <div className="texl-lg mb-3 text-greySolid-600"></div>
                                     <Text>
                                         {TrimText(article.content.lead)}
                                     </Text>

@@ -7,26 +7,26 @@ import Text from '../typography/Text';
 const TableGrid = ({ blok }) => {
     return (
         <section
-            className="bg-white py-16 lg:py-24"
+            className="bg-white py-8 lg:py-24"
             {...storyblokEditable(blok)}
         >
             <ContentWidth>
-                <div className="max-w-full col-span-12">
-                    <div className="text-start mb-8">
+                <div className="col-span-12 max-w-full">
+                    <div className="mb-8 text-start">
                         <H2>{blok?.title}</H2>
                     </div>
-                    <div className="text-start mb-8">
+                    <div className="mb-8 text-start">
                         <Text>{blok?.text}</Text>
                     </div>
                     <div className="overflow-x-auto">
-                        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-black uppercase bg-primarySolid-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table className="w-full text-left text-sm text-greySolid-600 rtl:text-right">
+                            <thead className="bg-primarySolid-50 text-xs uppercase text-black">
                                 <tr>
                                     {blok?.table.thead.map((th, index) => (
                                         <th
                                             key={index}
                                             scope="col"
-                                            className="px-6 py-3 w-1/5 whitespace-nowrap"
+                                            className="w-1/5 whitespace-nowrap px-6 py-3"
                                         >
                                             {th.value}
                                         </th>
@@ -37,12 +37,12 @@ const TableGrid = ({ blok }) => {
                                 {blok?.table.tbody.map((tr, rowIndex) => (
                                     <tr
                                         key={rowIndex}
-                                        className="bg-white border-b dark:bg-black dark:border-gray-700"
+                                        className="border-b bg-white"
                                     >
                                         {tr.body.map((td, colIndex) => (
                                             <td
                                                 key={colIndex}
-                                                className="px-6 py-4"
+                                                className="px-6 py-4 text-xs md:text-base text-black"
                                             >
                                                 {td.value}
                                             </td>

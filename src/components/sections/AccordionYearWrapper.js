@@ -1,11 +1,10 @@
 'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
 import { motion, AnimatePresence } from 'framer-motion';
-import H2 from '../typography/H2';
 
 const AccordionYearWrapper = ({ blok, isActive }) => {
     return (
-        <div className="max-w-full col-span-12" {...storyblokEditable(blok)}>
+        <div className="col-span-12 max-w-full" {...storyblokEditable(blok)}>
             {isActive && (
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -17,34 +16,39 @@ const AccordionYearWrapper = ({ blok, isActive }) => {
                         transition={{ duration: 0.2 }}
                     >
                         <div
-                            className={`mt-10 overflow-x-auto max-w-full col-span-12 ${isActive ? '' : 'hidden'} w-full text-sm text-left  rtl:text-right text-gray-500 dark:text-gray-400`}
+                            className={`col-span-12 mt-10 max-w-full overflow-x-auto ${isActive ? '' : 'hidden'} w-full text-left text-sm text-greySolid-600 rtl:text-right`}
                         >
-                            <table className="w-full">
-                                <thead className="text-xs whitespace-nowrap text-black uppercase bg-primarySolid-50 font-bold">
-                                    <tr>
-                                        <th className="px-6 py-3 ">
+                            <div className="w-full">
+                                <div className="whitespace-nowrap bg-primarySolid-50 text-xs font-bold uppercase text-black">
+                                    <div className="grid md:grid-cols-[1fr_3fr]">
+                                        <div className="px-2 md:px-6 py-3 text-center md:text-left">
                                             {blok?.headline_title}
-                                        </th>
-                                        <th className="px-6 py-3 ">
-                                            {blok?.headline_date}
-                                        </th>
-                                        <th className="px-6 py-3  text-center">
-                                            {blok?.headline_berichte}
-                                        </th>
-                                        <th className="px-6 py-3  text-center">
-                                            {blok?.headline_presentation}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                        </div>
+                                        <div className="grid grid-cols-2 md:grid-cols-[1fr_2fr]">
+                                            <div className="px-2 md:px-6 py-3">
+                                                {blok?.headline_date}
+                                            </div>
+                                            <div className="md:hidden px-2 md:px-6 py-3 text-end">Download</div>
+                                            <div className="hidden md:grid md:grid-cols-2">
+                                                <div className="px-6 py-3 text-center">
+                                                    {blok?.headline_berichte}
+                                                </div>
+                                                <div className="px-6 py-3 text-center">
+                                                    {blok?.headline_presentation}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
                                     {blok.year_wrapper.map((nestedBlok) => (
                                         <StoryblokComponent
                                             blok={nestedBlok}
                                             key={nestedBlok?._uid}
                                         />
                                     ))}
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </AnimatePresence>

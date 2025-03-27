@@ -8,13 +8,14 @@ import Text from '../typography/Text';
 const QualityFeatureGridExtended = ({ blok }) => {
     return (
         <section
-            className="py-16 lg:py-24 bg-stadlergradient"
+            className="bg-stadlergradient py-8 lg:py-24"
             {...storyblokEditable(blok)}
         >
             <ContentWidth>
                 <div className="col-span-12 max-w-full">
-                    <div className="text-white item-start"></div>
-                    <H2>{blok?.title}</H2>
+                    <div className="item-start text-white">
+                        <H2>{blok?.title}</H2>
+                    </div>
                     <div className="mt-8 lg:mt-16">
                         <div
                             className="grid grid-cols-1 gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-24"
@@ -27,9 +28,9 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                 />
                             ))}
                         </div>
-                        <div className="pt-24 grid grid-cols-1 gap-16 sm:gap-12 lg:grid-cols-2 lg:gap-24 ">
-                            <div className=" flex flex-col items-start gap-4 sm:gap-5 sm:flex-row">
-                                <div className="w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-start shrink-0"></div>
+                        <div className="grid grid-cols-1 gap-4 pt-12 lg:pt-24 md:grid-cols-2 md:gap-12 lg:gap-24">
+                            <div className="flex flex-col items-start gap-4 sm:flex-row sm:gap-5">
+                                {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                                 <div>
                                     <div className="text-white">
                                         <H4>
@@ -37,7 +38,7 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                                 'Flexibles Kastensystem'}
                                         </H4>
                                     </div>
-                                    <div className="mt-2 text-xl text-white sm:text-lg dark:text-gray-400">
+                                    <div className="mt-2 text-xl text-white sm:text-lg">
                                         <Text>
                                             {blok?.textOne ??
                                                 '  Es stehen zwei Wagenkastenlängen und -breiten zur Wahl, sowie verschiedene Lichtraumprofile. Der FLIRT hat einen hohen Niederfluranteil und ist barrierefrei über die Wagengänge begehbar.'}
@@ -45,22 +46,26 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className=" mt-8 sm:mt-0">
+                            <div className="mt-8 sm:mt-0">
                                 <img
                                     src={blok?.assetOne.filename}
-                                    alt="Quality Feature Train image"
+                                    alt={
+                                        blok?.assetOne.filename.alt ??
+                                        'Quality Feature Train image'
+                                    }
                                 />
                             </div>
                         </div>
-                        <div className="pt-24 flex flex-col items-start gap-4 sm:gap-5 sm:flex-row ">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-start shrink-0"></div>
+                        <div className="flex flex-col items-start gap-4 pt-12 lg:pt-24 sm:flex-row sm:gap-5">
+                            {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                             <div>
-                                <div className="text-white"></div>
-                                <H4>
-                                    {blok?.subtitleTwo ??
-                                        'Kapazität à la carte'}
-                                </H4>
-                                <div className="mt-2 text-xl font-normal text-white sm:text-lg dark:text-gray-400">
+                                <div className="text-white">
+                                    <H4>
+                                        {blok?.subtitleTwo ??
+                                            'Kapazität à la carte'}
+                                    </H4>
+                                </div>
+                                <div className="mt-2 text-xl font-normal text-white sm:text-lg">
                                     <Text>
                                         {blok?.textTwo ??
                                             '  Die Modularität der FLIRT-Typen ermöglicht flexible Passagierkapazitäten. Triebzüge von 2 bis 8 Teilen bieten Platz für 100 bis 500 Passagiere. Kleinere Formationen sind erweiterbar, um mehr Fahrgäste aufzunehmen, und bis zu vier Züge können in Vielfachtraktion verkehren.'}
@@ -68,8 +73,8 @@ const QualityFeatureGridExtended = ({ blok }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="pt-14 flex flex-col items-start gap-4 sm:gap-5 sm:flex-row">
-                            <div className="w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-start shrink-0"></div>
+                        <div className="flex flex-col items-start gap-4 pt-4 sm:flex-row sm:gap-5">
+                            {/* <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24"></div> */}
                             <div>
                                 <img
                                     src={blok?.imageGIF.filename}

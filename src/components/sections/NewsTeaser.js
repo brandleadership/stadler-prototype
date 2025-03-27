@@ -10,11 +10,17 @@ import DateFormatter from '../helpers/DateFormatter';
 import TrimText from '../helpers/TrimText';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 
 function NewsTeaser({ blok }) {
     const [articlesCategory, setArticlesCategory] = useState([]);
     const currentLocale = useCurrentLocale(i18nConfig) || 'en';
+    const apiURL =
+        currentLocale == 'en'
+            ? 'media/media-releases/'
+            : 'medien/medienmitteilungen/';
+    const categoryURL =
+        currentLocale == 'en' ? '/media-releases/' : '/medienmitteilungen/';
 
     useEffect(() => {
         const getArticles = async () => {
@@ -23,9 +29,9 @@ function NewsTeaser({ blok }) {
             const storyblokApi = getStoryblokApi();
             const { data } = await storyblokApi.get(`cdn/stories`, {
                 version: 'published',
-                starts_with: 'medien/news/',
+                starts_with: apiURL,
                 is_startpage: false,
-                resolve_relations: 'news.categories',
+                resolve_relations: 'medienmitteilungen.categories',
                 'filter_query[categories][any_in_array]': categories,
                 sort_by: 'content.date:desc',
                 per_page: 4,
@@ -43,7 +49,7 @@ function NewsTeaser({ blok }) {
     }, []);
 
     return (
-        <section {...storyblokEditable(blok)} className="py-16 lg:py-24">
+        <section {...storyblokEditable(blok)} className="py-8 lg:py-24">
             <ContentWidth>
                 <div className="col-span-12 w-full">
                     <H2>{blok.title}</H2>
@@ -53,26 +59,33 @@ function NewsTeaser({ blok }) {
                         {articlesCategory[0] &&
                             articlesCategory.map((article) => (
                                 <a
+                                    tabIndex="1"
                                     href={`/${article.full_slug}`}
                                     className="group mb-6 transition-all"
                                     key={article.uuid}
                                 >
-                                    <div className="overflow-hidden h-52">
+                                    <div className="flex h-52 items-center justify-center overflow-hidden">
                                         <img
-                                            src={article.content.image.filename}
-                                            className="object-cover w-full h-full group-hover:scale-110 transition-all"
-                                            alt="NewsTeaser image"
+                                            src={
+                                                article.content.image
+                                                    ?.filename ?? '/logo.svg'
+                                            }
+                                            className={`${article.content?.image?.filename ? 'h-full w-full' : 'h-auto w-[90%]'} object-cover transition-all group-hover:scale-110`}
+                                            alt={
+                                                article.content.image?.filename
+                                                    ?.alt ?? 'NewsTeaser image'
+                                            }
                                         />
                                     </div>
                                     <div className="mb-1 mt-4 flex flex-wrap">
-                                        {article.content.categories.map(
+                                        {article.content?.categories?.map(
                                             (category, index) =>
                                                 category.full_slug.includes(
-                                                    '/news/'
+                                                    categoryURL
                                                 ) && (
                                                     <span
                                                         key={index}
-                                                        className="whitespace-nowrap mb-2 inline text-gray-700 px-2 py-1 mr-4 border border-gray-400 text-xs last-of-type:mr-0"
+                                                        className="mb-2 mr-4 inline whitespace-nowrap border border-greySolid-400 px-2 py-1 text-xs text-greySolid-600 last-of-type:mr-0"
                                                     >
                                                         {
                                                             category.content
@@ -82,14 +95,14 @@ function NewsTeaser({ blok }) {
                                                 )
                                         )}
                                     </div>
-                                    <div className="text-sm mb-1">
+                                    <div className="mb-1 text-sm">
                                         <Text>
                                             {DateFormatter(
                                                 article.content.date
                                             )}
                                         </Text>
                                     </div>
-                                    <div className="text-sm mb-1 group-hover:text-primary transition-all">
+                                    <div className="mb-1 text-sm transition-all group-hover:text-primary">
                                         <H3>{article.content.title}</H3>
                                     </div>
                                     <div className="texl-lg mb-3">

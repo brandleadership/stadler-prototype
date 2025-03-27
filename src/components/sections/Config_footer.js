@@ -1,10 +1,10 @@
 'use client';
-import { storyblokEditable, StoryblokComponent } from '@storyblok/react';
+import { storyblokEditable } from '@storyblok/react';
 
 import Footer from './Footer';
 const ConfigFooter = ({ blok }) => {
     return (
-        <div className="bg-blueDark mt-auto" {...storyblokEditable(blok)}>
+        <div className="mt-auto bg-blueDark" {...storyblokEditable(blok)}>
             <div>
                 <div>
                     {blok.footer.map((nestedBlok) => (

@@ -1,30 +1,50 @@
-'use client';
-
 import { motion } from 'framer-motion';
-import { useRouter, usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
-import { ChevronDown } from '../icons/ChevronDown';
+import i18nConfig from '/i18nConfig';
 
 const variantsLang = {
     open: { scale: 1, zIndex: 2 },
     closed: { scale: 0, zIndex: 1 },
 };
 
-const LanguageSwitcher = () => {
-    const router = useRouter();
-    const [isOpen, setIsOpen] = useState(false);
+const initSlugs = {
+    en: { lang: 'en', slug: '' },
+    de: { lang: 'de', slug: '' }
+}
 
-    const currentPathname = usePathname();
+const LanguageSwitcher = ({ translatedSlugs }) => {
+    const [slugs, setSlugs] = useState(initSlugs);
+    const router = useRouter();
+
+    // const pathname = usePathname();
+    useEffect(() => {
+        if (!router.isReady) return;
+
+        // codes using router.query
+    }, [router.isReady]);
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        setSlugs(translatedSlugs ? translatedSlugs : initSlugs);
+    }, [translatedSlugs]);
+
+    // const currentPathname = usePathname();
     const currentLocale = useCurrentLocale(i18nConfig);
+    // console.log('router.asPath', pathname, translatedSlugs);
 
     const handleChange = () => {
         //static implementation of language switcher
         const newLocale = currentLocale == 'en' ? 'de' : 'en';
 
         router.push(
-            currentPathname.replace(`/${currentLocale}`, `/${newLocale}`)
+            `/${slugs[newLocale].lang}/${slugs[newLocale].slug !== '' ? slugs[newLocale].slug : ''}`,
+            {
+                locale: newLocale,
+            }
         );
         /* TODO: If folder level translations are added: use this logic */
         // redirect to the new locale path
@@ -35,19 +55,54 @@ const LanguageSwitcher = () => {
                 currentPathname.replace(`/${currentLocale}`, `/${newLocale}`)
             );
         } */
-        router.refresh();
+        // router.refresh();
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        const handleEscapeKey = (event) => {
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleEscapeKey);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscapeKey);
+        };
+    }, []);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setIsOpen((prev) => !prev);
+        }
     };
 
     return (
-        <div>
+        <div ref={dropdownRef}>
             <button
+                tabIndex="1"
+                aria-expanded={isOpen}
                 type="button"
                 onClick={() => setIsOpen((isOpen) => !isOpen)}
-                className="inline-flex items-center dark:text-gray-300 hover:bg-greySolid-30 hover:text-primary text-primarySolid-800 font-medium rounded-lg text-base lg:px-5 py-2.5 dark:hover:bg-gray-700 focus:outline-none "
+                onKeyDown={handleKeyDown}
+                className="inline-flex items-center rounded-lg py-2.5 text-base font-medium text-primarySolid-800 hover:bg-greySolid-30 hover:text-primary lg:px-5"
             >
-                {currentLocale == 'en' ? 'English' : 'Deutsch'}
+                {currentLocale === 'en' ? 'English' : 'Deutsch'}
                 <svg
-                    className="ml-1 w-4 h-4"
+                    className="ml-1 h-4 w-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -60,27 +115,32 @@ const LanguageSwitcher = () => {
                         d="M19 9l-7 7-7-7"
                     ></path>
                 </svg>
-                {/* <ChevronDown styles="w-6 h-6" color="#005893" /> */}
             </button>
+
             <motion.div
                 animate={isOpen ? 'open' : 'closed'}
                 variants={variantsLang}
                 initial="closed"
-                className="lg:absolute lg:top-14 lg:my-4 w-48 text-base list-none bg-white rounded divide-y divide-gray-100 shadow hover:cursor-pointer dark:bg-gray-700"
+                style={{ display: isOpen ? 'block' : 'none' }}
+                className="w-48 list-none divide-y divide-greySolid-100 rounded bg-white text-base shadow hover:cursor-pointer lg:absolute lg:top-14 lg:my-4"
                 id="language-dropdown"
             >
                 <ul className="py-1" role="menu">
-                    {/* TODO: With folder level translation, map over languages here to display options */}
                     <li role="none">
-                        <a
+                        <span
+                            tabIndex="1"
                             role="menuitem"
                             onClick={handleChange}
-                            className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ')
+                                    handleChange();
+                            }}
+                            className="block px-4 py-2 text-sm text-greySolid-600 hover:bg-greySolid-100 dark:text-greySolid-400 dark:hover:bg-greySolid-600 dark:hover:text-white"
                         >
                             <div className="inline-flex items-center">
-                                {currentLocale == 'en' ? 'German' : 'Englisch'}
+                                {currentLocale === 'en' ? 'German' : 'Englisch'}
                             </div>
-                        </a>
+                        </span>
                     </li>
                 </ul>
             </motion.div>

@@ -27,10 +27,11 @@ export default function Button({
         hover: { x: 2 },
     };
 
-    const secondaryButtonStyles = `${backgroundColorClass} border ${textColorClass} ${borderColorClass} ${styles} flex text-sm px-5 py-3 items-center hover:primary-800 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 rounded`;
+    const secondaryButtonStyles = `${backgroundColorClass} border ${textColorClass} ${borderColorClass} ${styles} flex text-sm px-5 py-3 items-center hover:primary-800 focus:outline-none focus:ring rounded`;
     return (
         <div style={containerStyles}>
             <motion.a
+                tabIndex="1"
                 className={secondaryButtonStyles}
                 href={href ?? '#'}
                 initial="rest"

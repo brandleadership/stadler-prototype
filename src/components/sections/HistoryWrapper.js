@@ -17,17 +17,18 @@ const HistoryWrapper = ({ blok, index }) => {
 
     return (
         <div className="mb-6 ms-8">
-            <div className="absolute w-3 h-3 bg-gray-200 mt-1.5 -start-1.5 border border-white rounded-full dark:border-gray-900 dark:bg-gray-700"></div>
+            <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-greySolid-100 "></div>
             <span
+                tabIndex="1"
                 onClick={toggleCards}
-                className="mb-4 bg-primarySolid-200 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 dark:bg-primary-900 dark:text-primary-300 cursor-pointer"
+                className="text-primary-800  mb-4 inline-flex cursor-pointer items-center bg-primarySolid-200 px-2.5 py-0.5 text-xs font-medium"
             >
                 {blok?.year}
             </span>
             {showCards && (
                 <div
                     {...storyblokEditable(blok)}
-                    className="col-span-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-12"
+                    className="col-span-12 grid grid-cols-1 gap-y-12 md:grid-cols-2 xl:grid-cols-3"
                 >
                     {blok?.history_section_wrapper.map((nestedBlok) => (
                         <StoryblokComponent

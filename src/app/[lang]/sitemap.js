@@ -9,7 +9,7 @@ storyblokInit({
     use: [apiPlugin],
 });
 
-let per_page = 100;
+let per_page = 1000;
 let currentPage = 1;
 let links = {};
 
@@ -35,16 +35,29 @@ export default async function sitemap() {
         const data = response.data;
         links = data.links;
 
-        const BaseUrl =
-            'https://stadler-prototyping-git-next-no-typescript-stadler-rail.vercel.app/';
+        const BaseUrl = `${process.env.BASE_URL}/`;
+
         const paths = [];
         const langToFilter = ['en', 'de'];
+
+        // Define an array of keywords to exclude
+        const excludedKeywords = ['test', 'config'];
 
         Object.keys(links).forEach((uuid) => {
             const link = links[uuid];
             const real_path = link.real_path;
 
+            // Exclude folders and links with excluded keywords in their slug or path
             if (link.is_folder) return;
+            if (
+                excludedKeywords.some(
+                    (keyword) =>
+                        link.slug.includes(keyword) ||
+                        real_path.includes(keyword)
+                )
+            ) {
+                return; // Skip this link if it matches the exclusion criteria
+            }
 
             langToFilter.forEach((lang) => {
                 let translated_item = null;

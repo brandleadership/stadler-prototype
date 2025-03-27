@@ -7,7 +7,7 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 export default function SpecificationsGrid({ blok }) {
     return (
         <section
-            className="bg-white py-16 lg:py-24"
+            className="bg-white py-8 lg:py-24"
             {...storyblokEditable(blok)}
         >
             <ContentWidth>
@@ -15,7 +15,7 @@ export default function SpecificationsGrid({ blok }) {
                     <div className="lg:mb-10">
                         <H4>{blok.title}</H4>
                     </div>
-                    <dl className="mx-auto mt-4 lg:mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <dl className="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:mt-16 lg:max-w-none lg:grid-cols-3">
                         {blok.specifications_grid.map((nestedBlok) => (
                             <StoryblokComponent
                                 blok={nestedBlok}
@@ -23,7 +23,7 @@ export default function SpecificationsGrid({ blok }) {
                             />
                         ))}
                     </dl>
-                    <div className="block text-center mx-auto mt-16 ">
+                    <div className="mx-auto mt-16 block text-center">
                         {blok.show_button && (
                             <Button
                                 backgroundColorClass="bg-white"

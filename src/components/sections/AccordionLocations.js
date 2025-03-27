@@ -1,12 +1,11 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { useState } from 'react';
-import H3 from '../typography/H3';
-import H4 from '../typography/H4';
 import { MailIcon } from '../icons/MailIcon';
 import { PhoneIcon } from '../icons/PhoneIcon';
 import { PinIcon } from '../icons/PinIcon';
 import RichTextRenderer from '../helpers/RichTextRenderer';
+import { ChevronDown } from '../icons/ChevronDown';
 
 const AccordionLocations = ({ blok }) => {
     const [isActive, setIsActive] = useState(false);
@@ -17,75 +16,94 @@ const AccordionLocations = ({ blok }) => {
     return (
         <div className="col-span-12" {...storyblokEditable(blok)}>
             <div
+                tabIndex="1"
                 onClick={handleAccordionClick}
-                className="text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                className="cursor-pointer border-b border-greySolid-100 bg-white text-greySolid-800"
             >
-                <div className="flex justify-between items-center w-full p-2 font-medium rtl:text-right text-gray-500">
-                    <div className="pt-4">
-                        <div className="flex">
-                            <p className="mb-3 mr-4 py-1 px-2 inline-flex items-center text-xs font-light bg-primaryTrans-100 tracking-tight text-gray-900">
-                                {blok.tag_division.map((country, index) => (
-                                    <span key={index}>{country.content.category}</span>
-                                ))}
-                            </p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                            <div className="mr-6 text-black font-medium">
-                                <H4>{blok.title}</H4>
-                            </div>
-                        </div>
-                        <div className="hidden w-full  items-start flex-wrap lg:flex-nowrap">
-                            {blok.tag_business_area.map((category, index) => (
+                <div className="flex w-full flex-col py-5 font-medium text-greySolid-600 rtl:text-right">
+                    <div className="flex">
+                        <p className="mb-3 mr-4 inline-flex items-center bg-primaryTrans-100 px-2 py-1 text-xs font-light tracking-tight text-greySolid-800">
+                            {blok.tag_division.map((country, index) => (
                                 <span key={index}>
-                                    {category.content.category}
+                                    {country?.content?.category}
                                 </span>
                             ))}
-                        </div>
+                        </p>
                     </div>
-                    <div>
-                        <button
-                            type="button"
-                            className={`flex justify-between items-center py-5 w-full font-medium text-left ${isActive
-                                ? 'text-gray-900 bg-white  dark:text-white'
-                                : 'text-gray-500   dark:text-gray-400'
+                    <div className="flex flex-row justify-between">
+                        <div className="">
+                            <div className="flex flex-row items-center">
+                                <div
+                                    className={`mr-6 flex w-full items-center justify-between text-left text-base font-medium lg:text-xl ${
+                                        isActive ? 'text-primary' : 'text-black'
+                                    }`}
+                                >
+                                    <span>{blok.title}</span>
+                                </div>
+                            </div>
+                            <div className="hidden w-full flex-wrap items-start lg:flex-nowrap">
+                                {blok.tag_business_area.map(
+                                    (category, index) => (
+                                        <span key={index}>
+                                            {category.content.category}
+                                        </span>
+                                    )
+                                )}
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                tabIndex="1"
+                                type="button"
+                                className={`flex w-full items-center justify-between text-left font-medium ${
+                                    isActive
+                                        ? 'bg-white text-greySolid-800'
+                                        : 'text-greySolid-600'
                                 }`}
-                            onClick={handleAccordionClick}
-                            aria-expanded={isActive}
-                        >
-                            <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                                onClick={handleAccordionClick}
+                                aria-expanded={isActive}
                             >
-                                <path
-                                    d="M5.55124 20L4 18.3171L13.0269 10L4 1.68288L5.55124 0L16.4099 10L5.55124 20Z"
-                                    fill="#6b7280"
-                                />
-                            </svg>
-                        </button>
+                                <div
+                                    className={`${
+                                        isActive ? 'rotate-180' : 'rotate-0'
+                                    } `}
+                                >
+                                    <ChevronDown
+                                        styles={
+                                            isActive
+                                                ? 'fill-primary'
+                                                : 'fill-black'
+                                        }
+                                    />{' '}
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {isActive && (
-                    <div className="px-2 py-5 lg:p-5 border-t border-gray-200 dark:border-gray-700">
-                        <div className="flex flex-col lg:flex-row justify-start items-start">
-                            <div className="w-9/12 mb-4 lg:mb-0">
-                                <div className="mb-4 flex justify-start items-center">
+                    <div className="border-t border-greySolid-100 px-2 py-5 lg:p-5">
+                        <div className="flex flex-col items-start justify-start lg:flex-row">
+                            <div className="mb-4 w-9/12 lg:mb-0">
+                                <div className="mb-4 flex items-center justify-start">
                                     <PhoneIcon color="#000" />
                                     <span className="ml-4">
                                         {blok?.phonenumber}
                                     </span>
                                 </div>
 
-                                <div className="flex mb-4 justify-start items-center">
+                                <div className="mb-4 flex items-center justify-start">
                                     <MailIcon className="fill-blueDark" />
-                                    <span className="ml-4">{blok?.email}</span>
+                                    <span className="max-w-[calc(100%-48px)] ml-4 text-xs sm:text-sm md:text-base">{blok?.email}</span>
                                 </div>
 
-                                <div className="mb-2 flex justify-start items-center text-primary">
+                                <div className="mb-2 flex items-center justify-start text-primary">
                                     <PinIcon />
                                     <a
+                                        target={
+                                            blok.link_google_maps?.target ??
+                                            '_blank'
+                                        }
+                                        tabIndex="1"
                                         className="cursor-pointer"
                                         href={blok?.link_google_maps?.url}
                                     >
@@ -95,16 +113,19 @@ const AccordionLocations = ({ blok }) => {
                                     </a>
                                 </div>
                             </div>
-                            <img
-                                src={blok?.image?.filename}
-                                className="flex md:w-3/12"
-                                alt="Stadler Office image"
-                            />
+                            {blok?.image?.filename && (
+                                <img
+                                    src={blok?.image?.filename}
+                                    className="flex md:w-3/12"
+                                    alt={
+                                        blok?.image?.alt ??
+                                        'Stadler Office image'
+                                    }
+                                />
+                            )}
                         </div>
-                        <div className="pt-8">
-                            <p className="mb-2 text-black dark:text-gray-400">
-                                <RichTextRenderer text={blok?.text} />
-                            </p>
+                        <div className="mb-2 pt-8 text-black">
+                            <RichTextRenderer text={blok?.text} />
                         </div>
                     </div>
                 )}

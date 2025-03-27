@@ -7,8 +7,9 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint",
-        "pretty": "prettier . --write"
+        "lint": "eslint . --fix",
+        "format": "prettier . --write",
+        "prepare": "husky"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.17",
@@ -22,9 +23,10 @@
         "local-ssl-proxy": "^2.0.5",
         "lodash": "^4.17.21",
         "mkcert": "^3.0.0",
-        "next": "13.4.19",
+        "next": "^13.5.9",
         "next-i18n-router": "^5.4.0",
         "popmotion": "^11.0.5",
+        "prettier-eslint": "^16.3.0",
         "react": "18.2.0",
         "react-countup": "^6.5.3",
         "react-dom": "18.2.0",
@@ -32,14 +34,36 @@
         "react-router-dom": "^6.15.0",
         "resend": "^3.2.0",
         "storyblok-rich-text-react-renderer": "^2.9.1",
+        "swiper": "^11.2.1",
         "vercel": "^34.0.0",
         "yarn": "^1.22.19"
     },
     "devDependencies": {
+        "@eslint/js": "^9.11.1",
         "@tailwindcss/forms": "^0.5.6",
         "autoprefixer": "^10.4.15",
+        "eslint": "^9.11.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-react": "^7.36.1",
+        "globals": "^15.9.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
         "postcss": "^8.4.28",
-        "prettier": "3.2.5",
+        "prettier": "^3.2.5",
+        "prettier-plugin-tailwindcss": "^0.6.8",
         "tailwindcss": "^3.3.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,css,md,html,json}": "prettier --cache --write",
+        "*.js": [
+            "eslint --fix",
+            "prettier --write"
+        ]
     }
 }

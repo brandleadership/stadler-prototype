@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getStoryblokApi } from '@storyblok/react/rsc';
-import ContentWidth from '../layouts/ContentWidth';
 import { SearchIcon } from '../icons/SearchIcon';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 
 const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
     const [articles, setArticles] = useState([]);
@@ -169,25 +168,26 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
     return (
         <div
             ref={modalRef}
-            className={`col-span-12 shadow-md absolute top-10 right-0 w-[100%] sm:w-[450px] md:w-[710px] transition-all duration-500 ${
+            className={`absolute right-0 top-0 col-span-12 w-[100%] transition-all duration-500 md:w-[768px] lg:top-10 lg:shadow-md ${
                 isModalOpen
-                    ? 'transform scale-100 opacity-100 z-20 max-h-[600px]'
-                    : 'transform scale-95 opacity-0 z-[-1] max-h-0 overflow-hidden'
+                    ? 'z-20 max-h-[600px] scale-100 transform opacity-100'
+                    : 'z-[-1] max-h-0 scale-95 transform overflow-hidden opacity-0'
             }`}
         >
             <div
                 ref={contentRef}
-                className="relative bg-white shadow dark:bg-gray-700 h-full"
+                className="relative h-full bg-transparent lg:bg-white lg:shadow"
             >
-                <div className="flex items-center justify-between p-4 md:p-5 border-b dark:border-gray-600">
-                    <div className="pr-2 w-7 h-5">
+                <div className="flex items-center justify-between border-b p-3 pt-2 md:p-3 lg:p-4 lg:pt-4">
+                    <div className="hidden h-5 w-7 pr-2 lg:block">
                         <SearchIcon
-                            className="w-5 h-5 fill-primary"
+                            className="h-5 w-5 fill-primary"
                             color="#005893"
                         />
                     </div>
-                    <label htmlFor="search" className="w-full">
+                    <label htmlFor="search" className="w-full pl-4 lg:pl-0">
                         <input
+                            tabIndex="1"
                             id="search"
                             ref={inputRef}
                             placeholder="Enter your search term..."
@@ -195,20 +195,21 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                             onChange={onSearchChange}
                             value={search}
                             type="search"
-                            className="p-2 w-full border-primary focus:border-primary appearance-none"
+                            className="w-full appearance-none border-primary p-2 focus:border-primary"
                         />
                     </label>
                 </div>
 
-                <div className="overflow-y-scroll h-[385px]">
+                <div className="h-[385px] overflow-y-scroll bg-white">
                     <div className="flex flex-col">
                         {articles.map((article) => (
                             <div
+                                tabIndex="1"
                                 key={article.uuid}
                                 onClick={() => handleArticleClick(article)}
-                                className="group transition-all cursor-pointer hover:bg-gray-100"
+                                className="group cursor-pointer transition-all hover:bg-greySolid-100"
                             >
-                                <h2 className="p-4 text-base font-normal leading-tight text-gray-900 group-hover:text-primary transition-all">
+                                <h2 className="p-4 text-base font-normal leading-tight text-greySolid-800 transition-all group-hover:text-primary">
                                     {article.displayTitle}
                                 </h2>
                             </div>

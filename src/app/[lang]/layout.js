@@ -1,6 +1,6 @@
 import { apiPlugin, storyblokInit } from '@storyblok/react/rsc';
-import StoryblokProvider from '@/src/components/StoryblokProvider';
-import Head from 'next/head';
+import StoryblokProvider from '/src/components/StoryblokProvider';
+// import Head from 'next/head';
 import Script from 'next/script';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -101,6 +101,7 @@ const fontStadler = localFont({
     variable: '--font-stadler',
 });
 
+// comment to delete later
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
@@ -110,9 +111,8 @@ export default function RootLayout({ children, params: { lang } }) {
     return (
         <StoryblokProvider>
             <html lang={lang}>
-                <Head>
-                    {/* <Script
-                    
+                <head>
+                    <Script
                         id="Cookiebot"
                         src="
 https://consent.cookiebot.com/uc.js"
@@ -120,23 +120,24 @@ https://consent.cookiebot.com/uc.js"
                         data-blockingmode="auto"
                         type="text/javascript"
                     ></Script>
-                    <Script
+                    {/* <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://www.juicer.io/" /> */}
+
+                    {/* <Script
                         id="CookieDeclaration"
                         src="
 https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
                         type="text/javascript"
                         async
                     ></Script> */}
-                </Head>
+                </head>
                 <body
                     className={
                         fontStadler.className +
-                        ' overflow-x-hidden flex flex-col min-h-screen'
+                        ' flex min-h-screen flex-col overflow-x-hidden'
                     }
                 >
                     <Script async>
                         {`
-                        console.log("Matomo test works")
                             var _mtm = window._mtm = window._mtm || [];
                             _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
                             (function() {
@@ -147,15 +148,15 @@ https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
                     </Script>
                     <Script async>
                         {`
-                            const curUrl = window.location.href
-                            const linksForMatomo = document.querySelectorAll("a")
+                            var curUrl = window.location.href
+                            var linksForMatomo = document.querySelectorAll("a")
                             if (curUrl.includes("/investor-relations")) {
                                 linksForMatomo.forEach(item => {
                                     item?.addEventListener('click', () => {
                                         var _paq = (window._paq = window._paq || []);
                                         _paq.push([
                                             'trackEvent',
-                                            'Investor Relations - Events on the Page',
+                                            '7. Investorenseite Klicks',
                                             item.getAttribute("href"),
                                         ]);
                                     })
@@ -164,7 +165,6 @@ https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
 
                             linksForMatomo.forEach(item => {
                                 item?.addEventListener('click', () => {
-                                    console.log(item.getAttribute("href"),item.getAttribute("href").includes(".pdf"))
                                     const fullHref = item.getAttribute("href")
                                     if (fullHref.includes(".pdf") ||
                                         fullHref.includes(".avi") ||
@@ -191,7 +191,7 @@ https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
                                         var _paq = (window._paq = window._paq || []);
                                         _paq.push([
                                             'trackEvent',
-                                            'Documents Download',
+                                            '6. Dokumentendownload',
                                             hrefArray[hrefArray.length - 1]
                                         ]);
                                     }
@@ -204,12 +204,4 @@ https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
             </html>
         </StoryblokProvider>
     );
-
-    // <Script
-    //   src="https://app.storyblok.com/f/storyblok-latest.js?t=OzCkp5jSdfLeMLs4g0rshAtt"
-    //   type="text/javascript"
-    // ></Script>;
-
-    // data - blok - c;
-    // data - blok - uid;
 }

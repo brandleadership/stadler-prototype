@@ -1,10 +1,25 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import DateFormatter from '../helpers/DateFormatter';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
+
+const MOBILE_WIDTH = 768;
 
 const AccordionTextDateDownloadItem = ({ blok }) => {
+    const [windowSize, setWindowSize] = useState(0);
     const investorsDE = useRef();
     const investorsEN = useRef();
+
+    const onResize = () => { 
+     setWindowSize(window.innerWidth);
+    }
+    useLayoutEffect(() => { 
+     onResize();
+   }, []);
+    useLayoutEffect(() => { 
+     window.addEventListener('resize', onResize) 
+     return () => window.removeEventListener('resize', onResize) 
+   }, []); 
 
     useEffect(() => {
         let investorsDEreference = investorsDE.current;
@@ -12,11 +27,11 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
 
         investorsDEreference?.addEventListener('click', () => {
             var _paq = (window._paq = window._paq || []);
-            const titleArray = blok?.download_presentation.url.split('/')
-            const title = titleArray[titleArray.length - 1]
+            const titleArray = blok?.download_presentation.url.split('/');
+            const title = titleArray[titleArray.length - 1];
             _paq.push([
                 'trackEvent',
-                'Investor Relations Publication',
+                '5. Investorenseite Publikationsdownload',
                 `${title}`,
             ]);
             // _paq.push([
@@ -28,71 +43,49 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
 
         investorsENreference?.addEventListener('click', () => {
             var _paq = (window._paq = window._paq || []);
-            const titleArray = blok?.download_presentation.url.split('/')
-            const title = titleArray[titleArray.length - 1]
+            const titleArray = blok?.download_presentation.url.split('/');
+            const title = titleArray[titleArray.length - 1];
             _paq.push([
                 'trackEvent',
-                'Investor Relations Publication',
+                '5. Investorenseite Publikationsdownload',
                 `${blok?.title} - ${title}`,
             ]);
         });
     });
     return (
-        <tr
+        <div
             {...storyblokEditable(blok)}
-            className="text-xs text-black whitespace-nowrap bg-white border-b last:mb-4 last:border-b-0 dark:bg-black dark:border-gray-700"
+            className="border-b md:border-0 grid md:grid-cols-[1fr_3fr] bg-white text-base text-black last:mb-4 last:border-b-0"
         >
-            <td className="px-6 py-4 font-bold">{blok?.title}</td>
-            <td className="px-6 py-4 ">{DateFormatter(blok?.text_date)}</td>
-            <td className="px-6 py-4  text-center">
-                <a
-                    target="_blank"
-                    ref={investorsDE}
-                    className="text-primary"
-                    href={blok?.download_bericht.url}
-                >
-                    {blok?.CTA_download_bericht}
-                </a>
-            </td>
-            <td className="px-6 py-4 text-center">
-                <a
-                    target="_blank"
-                    ref={investorsEN}
-                    className="text-primary"
-                    href={blok?.download_presentation.url}
-                >
-                    {blok?.CTA_download_presentation}
-                </a>
-            </td>
-        </tr>
-        // <div {...storyblokEditable(blok)}>
-        //     {/* <ul className="w-full">
-        //         <div className="w-full">
-        //             <li className=" text-xs flex white-space-nowrap justify-between items-center bg-white border-b dark:bg-black dark:border-gray-700px-6 py-4 font-medium text-black dark:text-white">
-        //                 <p className=" px-6 py-3 md:w-3/12 font-bold">
-        //                     {blok?.title}
-        //                 </p>
-        //                 <p className="px-6 py-3 w-full md:w-5/12">
-        //                     {blok?.text_date}
-        //                 </p>
-
-        //                 <a
-        //                     className="text-primary px-6 py-3 w-full md:w-2/12 text-center"
-        //                     href={blok?.download_bericht.url}
-        //                 >
-        //                     {blok?.CTA_download_bericht}
-        //                 </a>
-        //                 <a
-        //                     className="text-primary px-6 py-3 w-full md:w-2/12 text-center"
-        //                     href={blok?.download_presentation.url}
-        //                 >
-        //                     {blok?.CTA_download_presentation}
-        //                 </a>
-        //             </li>
-        //         </div>
-        //     </ul> */}
-
-        // </div>
+            <div className="px-2 md:px-6 py-4 font-medium text-center md:text-left">{blok?.title}</div>
+            <div className="grid grid-cols-[2fr_1fr_1fr] md:grid-cols-3 items-center">
+                <div className="px-2 md:px-6 py-4">{DateFormatter(blok?.text_date)}</div>
+                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+                    <a
+                        tabIndex="1"
+                        target="_blank"
+                        ref={investorsDE}
+                        className="font-medium text-primary"
+                        href={ButtonUrlRenderer(blok?.download_bericht)}
+                        rel="noreferrer"
+                    >
+                        {windowSize < MOBILE_WIDTH ? "DE" : blok?.CTA_download_bericht}
+                    </a>
+                </div>
+                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+                    <a
+                        tabIndex="1"
+                        target="_blank"
+                        ref={investorsEN}
+                        className="font-medium text-primary"
+                        href={ButtonUrlRenderer(blok?.download_presentation)}
+                        rel="noreferrer"
+                    >
+                        {windowSize < MOBILE_WIDTH ? "EN" : blok?.CTA_download_presentation}
+                    </a>
+                </div>
+            </div>
+        </div>
     );
 };
 

@@ -3,7 +3,8 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { motion } from 'framer-motion';
 
 export default function Submenu({
-    blok,
+    mainSubmenuText,
+    mainLinkUrl,
     mainLinkText,
     subLinkOne,
     subLinkTextOne,
@@ -11,6 +12,8 @@ export default function Submenu({
     subLinkTextTwo,
     subLinkThree,
     subLinkTextThree,
+    subLinkFour,
+    subLinkTextFour,
 }) {
     return (
         <motion.div
@@ -21,23 +24,29 @@ export default function Submenu({
                 ease: [0.17, 0.67, 0.83, 0.67],
             }}
             exit={{ opacity: 0 }}
-            className="flex flex-col lg:absolute lg:w-full lg:bg-greySolid-50 lg:z-10 lg:start-0 lg:top-40 lg:flex-row lg:justify-center lg:p-9 lg:gap-6"
+            className="flex flex-col lg:absolute lg:start-0 lg:top-40 lg:z-10 lg:w-full lg:flex-row lg:justify-center lg:gap-6 lg:bg-greySolid-50 lg:p-9"
         >
-            <div className="lg:bg-primaryTrans-100 lg:flex lg:flex-col lg:text-center lg:p-24">
+            <div className="lg:flex lg:flex-col lg:bg-primaryTrans-100 lg:p-24 lg:text-center">
                 <a
-                    href={ButtonUrlRenderer(blok.main_link_1_link)}
-                    className="lg:text-primary "
+                    tabIndex="1"
+                    href={ButtonUrlRenderer(mainLinkUrl)}
+                    target={mainLinkUrl?.target ?? '_self'}
+                    className="lg:text-primary"
                 >
-                    <p className="hidden lg:block font-normal">
-                        {blok.main_submenu_1_text}
+                    <p className="text-primarySolid py-1 pl-4 font-normal lg:py-0 lg:pl-0">
+                        {mainSubmenuText}
                     </p>
-                    <p className="lg:text-primary lg:text-lg">{mainLinkText}</p>
+                    <p className="hidden lg:block lg:text-lg lg:text-primary">
+                        {mainLinkText}
+                    </p>
                 </a>
             </div>
-            <motion.div className="flex flex-col lg:grid lg:content-center lg:w-2/12">
+            <motion.div className="flex flex-col pb-2 lg:grid lg:w-2/12 lg:content-center lg:pb-0">
                 <a
-                    className="lg:text-primarySolid-600 lg:hover:text-primary lg:flex lg:justify-between lg:py-4"
+                    tabIndex="1"
+                    className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                     href={ButtonUrlRenderer(subLinkOne)}
+                    target={subLinkOne?.target ?? '_self'}
                 >
                     <p>{subLinkTextOne}</p>
                     <img
@@ -46,8 +55,10 @@ export default function Submenu({
                     />
                 </a>
                 <a
-                    className="lg:text-primarySolid-600 lg:hover:text-primary lg:flex lg:justify-between lg:py-4"
+                    tabIndex="1"
+                    className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                     href={ButtonUrlRenderer(subLinkTwo)}
+                    target={subLinkTwo?.target ?? '_self'}
                 >
                     <p>{subLinkTextTwo}</p>
                     <img
@@ -57,10 +68,28 @@ export default function Submenu({
                 </a>
                 {subLinkThree ? (
                     <a
-                        className="lg:text-primarySolid-600 lg:hover:text-primary lg:flex lg:justify-between lg:py-4"
+                        tabIndex="1"
+                        className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
                         href={ButtonUrlRenderer(subLinkThree)}
+                        target={subLinkThree?.target ?? '_self'}
                     >
                         <p>{subLinkTextThree}</p>
+                        <img
+                            src="/icons/chevron-right-light.svg"
+                            className="hidden lg:block"
+                        />
+                    </a>
+                ) : (
+                    ''
+                )}
+                {subLinkFour ? (
+                    <a
+                        tabIndex="1"
+                        className="py-1 pl-4 font-normal lg:flex lg:justify-between lg:py-4 lg:pl-0 lg:font-semibold lg:text-primarySolid-600 lg:hover:text-primary"
+                        href={ButtonUrlRenderer(subLinkFour)}
+                        target={subLinkFour?.target ?? '_self'}
+                    >
+                        <p>{subLinkTextFour}</p>
                         <img
                             src="/icons/chevron-right-light.svg"
                             className="hidden lg:block"

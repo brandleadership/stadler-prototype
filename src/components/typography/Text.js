@@ -1,7 +1,7 @@
 export default function Text({ children, styles }) {
     return (
         <p
-            className={`font-normal text-base lg:text-xl my-2 lg:my-3 ${styles ? styles : ' '}`}
+            className={`my-2 text-base font-normal lg:my-3 lg:text-xl ${styles ? styles : ' '}`}
         >
             {children}
         </p>

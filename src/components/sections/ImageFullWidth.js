@@ -1,21 +1,21 @@
 'use client';
-import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react/rsc';
 import FullWidth from '../layouts/FullWidth';
 
 export default function ImageFullWidth({ blok }) {
     return (
         <section
             {...storyblokEditable(blok)}
-            className="py-0 lg:py-24 px-4 lg:px-0"
+            className="px-4 py-0 lg:px-0 lg:py-24"
         >
             <FullWidth>
                 <div className="col-span-12">
                     <img
-                        className="lg:aspect-[2/1] object-cover"
+                        className="object-cover lg:aspect-[2/1]"
                         width={'100%'}
                         loading="lazy"
                         src={blok?.image.filename}
-                        alt="Hero product image"
+                        alt={blok?.image.filename?.alt ?? 'Hero product image'}
                     />
                 </div>
             </FullWidth>

@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
 import AccordionYearWrapper from './AccordionYearWrapper';
 
 const AccordionTabsTableWrapper = ({ blok }) => {
@@ -21,13 +20,14 @@ const AccordionTabsTableWrapper = ({ blok }) => {
             >
                 {blok.year_wrapper.map((nestedBlok, index) => (
                     <button
+                        tabIndex="1"
                         key={nestedBlok._uid}
                         type="button"
                         id={`tab-${index}`}
                         onClick={() => handleTabClick(index)}
                         className={`${
-                            index === activeTab ? 'bg-gray-100' : ''
-                        } p-3 text-center md:p-6 md:text-left ${
+                            index === activeTab ? 'bg-greySolid-100' : ''
+                        } p-3 text-center md:p-6 ${
                             index === activeTab ? 'active' : ''
                         }`}
                     >

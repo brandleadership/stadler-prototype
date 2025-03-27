@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import ContentWidth from '../layouts/ContentWidth';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -19,15 +19,16 @@ const variants = {
     },
 };
 
-const HeaderNew = ({ blok }) => {
-    // State for modal search
+const HeaderNew = ({ blok, translatedSlugs }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const buttonRef = useRef(null);
-    // State for mobile menu
     const [isOpen, setIsOpen] = useState(false);
-    // State for desktop menu
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showBorderAndShadow, setShowBorderAndShadow] = useState(false);
     const tabs = ['company', 'solutions'];
-    const [selectedTab, setSelectedTab] = useState(false);
+    const [activeTab, setActiveTab] = useState(null);
+    const canToggleRef = useRef(true);
 
     const toggleModal = () => {
         setIsModalOpen((prevState) => !prevState);
@@ -37,124 +38,214 @@ const HeaderNew = ({ blok }) => {
         setIsModalOpen(false);
     };
 
+    const handleOutsideClick = useCallback(
+        (event) => {
+            if (activeTab !== null && !event.target.closest('ul')) {
+                setActiveTab(null);
+
+                canToggleRef.current = false;
+                setTimeout(() => {
+                    canToggleRef.current = true;
+                }, 300);
+            }
+        },
+        [activeTab]
+    );
+
+    const handleKeyPress = useCallback(
+        (event) => {
+            if (event.key === 'Enter' && activeTab !== null) {
+                setActiveTab(null);
+            } else if (event.key === 'Escape' && activeTab !== null) {
+                setActiveTab(null);
+            }
+        },
+        [activeTab]
+    );
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [handleOutsideClick, handleKeyPress]);
+
+    const handleTabClick = useCallback((item) => {
+        if (!canToggleRef.current) return;
+
+        setActiveTab((prevActiveTab) => {
+            if (prevActiveTab === item) {
+                return null;
+            } else {
+                return item;
+            }
+        });
+
+        canToggleRef.current = false;
+        setTimeout(() => {
+            canToggleRef.current = true;
+        }, 300);
+    }, []);
+
+    const handleScroll = useCallback(() => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            setShowHeader(false);
+        } else if (currentScrollY < lastScrollY) {
+            setShowHeader(true);
+        }
+
+        if (currentScrollY > 0) {
+            setShowBorderAndShadow(true);
+        } else {
+            setShowBorderAndShadow(false);
+        }
+
+        setLastScrollY(currentScrollY);
+    }, [lastScrollY]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
+
     return (
-        <motion.header
-            className="py-4 lg:h-40"
-            initial="closed"
-            animate={isOpen ? 'open' : 'closed'}
-        >
-            <ContentWidth>
-                <motion.div className="col-span-12 flex flex-col-reverse lg:flex-col">
-                    <motion.div
-                        initial="closed"
-                        animate={isOpen ? 'open' : 'closed'}
-                        variants={variants}
-                        className="[--responsive-opacity:0%] lg:[--responsive-opacity:100%] [--responsive-height:0px] lg:[--responsive-height:80px]"
-                    >
-                        <hr className="bg-grey h-1 lg:hidden" />
-                        <TopNav blok={blok} />
-                    </motion.div>
-                    <div className="py-2 lg:flex lg:justify-between">
-                        <div className="flex justify-between">
-                            <Logo blok={blok} />
-                            <motion.button
-                                className="lg:hidden"
-                                onClick={() => setIsOpen((isOpen) => !isOpen)}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="23"
-                                    height="23"
-                                    viewBox="0 0 23 23"
-                                    fill="#005893"
-                                >
-                                    <motion.path
-                                        fill="#005893"
-                                        strokeWidth="2"
-                                        stroke="#005893"
-                                        animate={isOpen ? 'open' : 'closed'}
-                                        variants={{
-                                            closed: { d: 'M 2 6 L 20 6' },
-                                            open: { d: 'M 3 16.5 L 17 2.5' },
-                                        }}
-                                    />
-                                    <motion.path
-                                        fill="#005893"
-                                        strokeWidth="2"
-                                        stroke="#005893"
-                                        animate={isOpen ? 'open' : 'closed'}
-                                        d="M 2 11 L 20 11"
-                                        variants={{
-                                            closed: { opacity: 1 },
-                                            open: { opacity: 0 },
-                                        }}
-                                        transition={{ duration: 0.1 }}
-                                    />
-                                    <motion.path
-                                        fill="#005893"
-                                        strokeWidth="2"
-                                        stroke="#005893"
-                                        animate={isOpen ? 'open' : 'closed'}
-                                        variants={{
-                                            closed: {
-                                                d: 'M 2 16 L 20 16',
-                                            },
-                                            open: { d: 'M 3 2.5 L 17 16.346' },
-                                        }}
-                                    />
-                                </svg>
-                            </motion.button>
-                        </div>
-                        <motion.nav
+        <>
+            <motion.header
+                className={`fixed z-50 w-full bg-white py-4 transition-all duration-500 ease-in-out lg:h-40 ${showHeader ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-full opacity-0'} ${showBorderAndShadow ? 'shadow-md' : 'shadow-none'}`}
+                initial="closed"
+                animate={isOpen ? 'open' : 'closed'}
+            >
+                <ContentWidth>
+                    <motion.div className="col-span-12 flex flex-col-reverse lg:flex-col">
+                        <motion.div
                             initial="closed"
                             animate={isOpen ? 'open' : 'closed'}
-                            variants={{
-                                open: {
-                                    opacity: 1,
-                                    minHeight: 'auto',
-                                    height: 'auto',
-                                    paddingTop: 10,
-                                },
-                                closed: {
-                                    opacity: 'var(--responsive-opacity)',
-                                    minHeight: 'var(--responsive-min-height)',
-                                    height: 'var(--responsive-height)',
-                                    paddingTop: 0,
-                                },
-                            }}
-                            className="[--responsive-opacity:0%] lg:[--responsive-opacity:100%] [--responsive-min-height:0px] lg:[--responsive-min-height:80px] [--responsive-height:0px] lg:[--responsive-height:80px] text-primarySolid-800 font-semibold lg:mt-0 flex flex-col lg:flex-row justify-start lg:space-y-0"
+                            variants={variants}
+                            className="overflow-hidden [--responsive-height:0px] [--responsive-opacity:0%] lg:[--responsive-height:80px] lg:[--responsive-opacity:100%]"
                         >
-                            <ul className="flex flex-col lg:flex-row">
-                                {tabs.map((item) => (
-                                    <li key={item}>
-                                        <div
-                                            onClick={() => {
-                                                if (selectedTab === item) {
-                                                    setSelectedTab(null); // Unset if clicked twice
-                                                } else {
-                                                    setSelectedTab(item);
-                                                }
+                            <hr className="bg-grey h-1 lg:hidden" />
+                            <TopNav
+                                translatedSlugs={translatedSlugs}
+                                blok={blok}
+                            />
+                        </motion.div>
+                        <div className="py-2 lg:flex lg:justify-between">
+                            <div className="flex justify-between">
+                                <Logo blok={blok} />
+                                <motion.button
+                                    tabIndex="1"
+                                    className="lg:hidden"
+                                    onClick={() =>
+                                        setIsOpen((isOpen) => !isOpen)
+                                    }
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="23"
+                                        height="23"
+                                        viewBox="0 0 23 23"
+                                        fill="#005893"
+                                    >
+                                        <motion.path
+                                            fill="#005893"
+                                            strokeWidth="2"
+                                            stroke="#005893"
+                                            initial="closed"
+                                            animate={isOpen ? 'open' : 'closed'}
+                                            variants={{
+                                                closed: { d: 'M 2 6 L 20 6' },
+                                                open: {
+                                                    d: 'M 3 16.5 L 17 2.5',
+                                                },
                                             }}
-                                            className="hover:cursor-pointer py-2 lg:py-0 lg:px-2"
-                                        >
-                                            {item == 'company'
-                                                ? blok.main_link_1_text
-                                                : blok.main_link_2_text}
-                                        </div>
-                                        <AnimatePresence mode="wait">
-                                            {item === selectedTab && (
-                                                <motion.div
-                                                    key={
-                                                        selectedTab
-                                                            ? selectedTab
-                                                            : ''
-                                                    }
-                                                >
-                                                    {selectedTab ? (
-                                                        selectedTab ==
-                                                        'company' ? (
+                                        />
+                                        <motion.path
+                                            fill="#005893"
+                                            strokeWidth="2"
+                                            stroke="#005893"
+                                            animate={isOpen ? 'open' : 'closed'}
+                                            d="M 2 11 L 20 11"
+                                            variants={{
+                                                closed: { opacity: 1 },
+                                                open: { opacity: 0 },
+                                            }}
+                                            transition={{ duration: 0.1 }}
+                                        />
+                                        <motion.path
+                                            fill="#005893"
+                                            strokeWidth="2"
+                                            stroke="#005893"
+                                            initial="closed"
+                                            animate={isOpen ? 'open' : 'closed'}
+                                            variants={{
+                                                closed: {
+                                                    d: 'M 2 16 L 20 16',
+                                                },
+                                                open: {
+                                                    d: 'M 3 2.5 L 17 16',
+                                                },
+                                            }}
+                                        />
+                                    </svg>
+                                </motion.button>
+                            </div>
+                            <motion.nav
+                                initial="closed"
+                                animate={isOpen ? 'open' : 'closed'}
+                                variants={{
+                                    open: {
+                                        opacity: 1,
+                                        minHeight: 'auto',
+                                        height: 'auto',
+                                        paddingTop: 10,
+                                    },
+                                    closed: {
+                                        opacity: 'var(--responsive-opacity)',
+                                        minHeight:
+                                            'var(--responsive-min-height)',
+                                        height: 'var(--responsive-height)',
+                                        paddingTop: 0,
+                                    },
+                                }}
+                                className={`${!isModalOpen ? 'overflow-hidden' : ''} flex flex-col justify-start font-semibold text-primarySolid-800 [--responsive-height:0px] [--responsive-min-height:0px] [--responsive-opacity:0%] lg:mt-0 lg:flex-row lg:space-y-0 lg:[--responsive-height:80px] lg:[--responsive-min-height:80px] lg:[--responsive-opacity:100%]`}
+                            >
+                                <ul className="flex flex-col pt-4 lg:flex-row lg:pb-0 lg:pt-0">
+                                    {tabs.map((item) => (
+                                        <li key={item}>
+                                            <div
+                                                tabIndex="1"
+                                                onClick={() =>
+                                                    handleTabClick(item)
+                                                }
+                                                className="lg:text-md flex justify-between py-3 text-lg hover:cursor-pointer lg:px-4 lg:py-0"
+                                            >
+                                                {item === 'company'
+                                                    ? blok.main_link_1_text
+                                                    : blok.main_link_2_text}
+                                                <img
+                                                    src="/icons/chevron-right.svg"
+                                                    className={`${activeTab === item ? 'rotate-90' : ''} block w-4 transition-all lg:hidden`}
+                                                />
+                                            </div>
+                                            <AnimatePresence mode="wait">
+                                                {activeTab === item && (
+                                                    <motion.div key={item}>
+                                                        {item === 'company' ? (
                                                             <Submenu
-                                                                blok={blok}
+                                                                mainSubmenuText={
+                                                                    blok.main_submenu_1_text
+                                                                }
+                                                                mainLinkUrl={
+                                                                    blok.main_link_1_link
+                                                                }
                                                                 mainLinkText={
                                                                     blok.main_link_1_text
                                                                 }
@@ -170,10 +261,27 @@ const HeaderNew = ({ blok }) => {
                                                                 subLinkTextTwo={
                                                                     blok.main_1_sublink_2_text
                                                                 }
+                                                                subLinkThree={
+                                                                    blok.main_1_sublink_3_link
+                                                                }
+                                                                subLinkTextThree={
+                                                                    blok.main_1_sublink_3_text
+                                                                }
+                                                                subLinkFour={
+                                                                    blok.main_1_sublink_4_link
+                                                                }
+                                                                subLinkTextFour={
+                                                                    blok.main_1_sublink_4_text
+                                                                }
                                                             />
                                                         ) : (
                                                             <Submenu
-                                                                blok={blok}
+                                                                mainSubmenuText={
+                                                                    blok.main_submenu_2_text
+                                                                }
+                                                                mainLinkUrl={
+                                                                    blok.main_link_2_link
+                                                                }
                                                                 mainLinkText={
                                                                     blok.main_link_2_text
                                                                 }
@@ -196,51 +304,57 @@ const HeaderNew = ({ blok }) => {
                                                                     blok.main_2_link_3_text
                                                                 }
                                                             />
-                                                        )
-                                                    ) : (
-                                                        ''
-                                                    )}
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link
-                                className="py-2 lg:py-0 lg:px-2"
-                                href={ButtonUrlRenderer(blok.main_link_3_link)}
-                            >
-                                {blok.main_link_3_text}
-                            </Link>
-                            <Link
-                                className="py-2 lg:py-0 lg:px-2"
-                                href={ButtonUrlRenderer(blok.main_link_4_link)}
-                            >
-                                {blok.main_link_4_text}
-                            </Link>
-                            <div className="relative">
-                                <button
-                                    ref={buttonRef}
-                                    onClick={toggleModal}
-                                    type="button"
-                                    className="w-5 h-5 py-2 lg:py-0 my-4 lg:my-0 lg:ml-8 z-100"
+                                                        )}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link
+                                    tabIndex="1"
+                                    className="lg:text-md py-3 text-lg lg:px-4 lg:py-0"
+                                    href={ButtonUrlRenderer(
+                                        blok.main_link_3_link
+                                    )}
                                 >
-                                    <SearchIcon
-                                        className="w-5 h-5 fill-primary"
-                                        color="#005893"
+                                    {blok.main_link_3_text}
+                                </Link>
+                                <Link
+                                    tabIndex="1"
+                                    className="lg:text-md py-3 text-lg lg:px-4 lg:py-0"
+                                    href={ButtonUrlRenderer(
+                                        blok.main_link_4_link
+                                    )}
+                                >
+                                    {blok.main_link_4_text}
+                                </Link>
+                                <div className="relative">
+                                    <button
+                                        tabIndex="1"
+                                        ref={buttonRef}
+                                        onClick={toggleModal}
+                                        type="button"
+                                        className="z-100 my-4 h-5 w-5 py-2 lg:my-0 lg:ml-8 lg:py-0"
+                                    >
+                                        <SearchIcon
+                                            className="h-5 w-5 fill-primary"
+                                            color="#005893"
+                                        />
+                                    </button>
+                                    <ModalSearch
+                                        isModalOpen={isModalOpen}
+                                        closeModal={closeModal}
+                                        buttonRef={buttonRef}
                                     />
-                                </button>
-                                <ModalSearch
-                                    isModalOpen={isModalOpen}
-                                    closeModal={closeModal}
-                                    buttonRef={buttonRef}
-                                />
-                            </div>
-                        </motion.nav>
-                    </div>
-                </motion.div>
-            </ContentWidth>
-        </motion.header>
+                                </div>
+                            </motion.nav>
+                        </div>
+                    </motion.div>
+                </ContentWidth>
+            </motion.header>
+            <div className="pt-0 lg:pt-40"></div>
+        </>
     );
 };
 

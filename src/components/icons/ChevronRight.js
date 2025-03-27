@@ -1,4 +1,4 @@
-export const ChevronRight = ({ styles, color }) => (
+export const ChevronRight = ({ styles }) => (
     <>
         <svg
             version="1.1"

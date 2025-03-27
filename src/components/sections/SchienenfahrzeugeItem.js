@@ -17,31 +17,32 @@ const SchienenfahrzeugeItem = ({ blok }) => {
     };
 
     return (
-        <div
+        <Link
+            tabIndex="1"
+            className="flex flex-col bg-white text-black"
+            href={ButtonUrlRenderer(blok.link)}
             {...storyblokEditable(blok)}
-            className="bg-white text-black flex flex-col"
         >
             <img
-                className="w-full aspect-[9/5]"
+                className="aspect-[9/5] w-full"
                 src={optimizeImage(blok?.image)}
-                alt={blok?.title}
+                alt={blok?.image.alt ?? 'Train Type Image'}
             />
             <div className="p-4 lg:p-6 lg:pb-6">
                 {blok.tag ? (
-                    <small className="text-greySolid-600 flex mb-2">
+                    <small className="mb-2 flex text-greySolid-600">
                         {blok?.tag}
                     </small>
                 ) : (
                     ''
                 )}
-                <div className="flex flex-row items-center justify-between">
-                    <H3 styles="max-lg:mb-0 lg:mb-0.5">{blok?.title}</H3>
-                    <Link className="" href={ButtonUrlRenderer(blok.link)}>
-                        <img src="/icons/arrow-blue.svg" alt="Arrow" />
-                    </Link>
+                <div className="flex flex-row items-center justify-between gap-2">
+                    <H3 resetStyles={true}>{blok?.title}</H3>
+
+                    <img src="/icons/arrow-blue.svg" alt="Arrow Icon" />
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

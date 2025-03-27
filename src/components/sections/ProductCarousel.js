@@ -26,7 +26,7 @@ const data = [
     },
 ];
 const variants = {
-    enter: (direction) => {
+    enter: () => {
         return {
             // x: direction > 0 ? 1000 : -1000,
             scale: 0.9,
@@ -39,7 +39,7 @@ const variants = {
         scale: 1,
         opacity: 1,
     },
-    exit: (direction) => {
+    exit: () => {
         return {
             zIndex: 0,
             scale: 0.9,
@@ -55,7 +55,7 @@ const swipePower = (offset, velocity) => {
 };
 
 const ProductCarousel = () => {
-    const [[page, direction], setPage] = useState([0, 0]);
+    const [[page], setPage] = useState([0, 0]);
 
     const imageIndex = wrap(0, data.length, page);
 
@@ -65,10 +65,10 @@ const ProductCarousel = () => {
 
     return (
         <>
-            <div className="w-full mx-auto min-h-[120vh] md:min-h-[130vh] lg:min-h-[690px]  overflow-hidden relative flex justify-center items-center">
+            <div className="relative mx-auto flex min-h-[120vh] w-full items-center justify-center overflow-hidden md:min-h-[130vh] lg:min-h-[690px]">
                 <AnimatePresence initial={false}>
                     <motion.div
-                        className="flex xl:flex-row flex-col items-center justify-center absolute top-0 max-w-full"
+                        className="absolute top-0 flex max-w-full flex-col items-center justify-center xl:flex-row"
                         key={imageIndex}
                         variants={variants}
                         initial="enter"
@@ -92,18 +92,19 @@ const ProductCarousel = () => {
                         }}
                     >
                         <img
-                            className="block max-w-full h-auto"
+                            className="block h-auto max-w-full"
                             src={data[imageIndex].image}
                             alt="Product Carousel Image"
                         />
 
-                        <div className="p-24 mx-w-full md:w-auto">
+                        <div className="mx-w-full p-24 md:w-auto">
                             <H3>{data[imageIndex].titleH3}</H3>
-                            <div className="mb-6 md:mb-6 mt-4 md:mt-8">
+                            <div className="mb-6 mt-4 md:mb-6 md:mt-8">
                                 <Text>{data[imageIndex].text}</Text>
                             </div>
                             <button
-                                className="w-10 h-10 md:w-10 md:h-10"
+                                tabIndex="1"
+                                className="h-10 w-10 md:h-10 md:w-10"
                                 onClick={() => paginate(-1)}
                             >
                                 <svg
@@ -120,7 +121,8 @@ const ProductCarousel = () => {
                                 </svg>
                             </button>
                             <button
-                                className="w-10 h-10 md:w-10 md:h-10"
+                                tabIndex="1"
+                                className="h-10 w-10 md:h-10 md:w-10"
                                 onClick={() => paginate(1)}
                             >
                                 <svg

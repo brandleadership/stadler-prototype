@@ -8,10 +8,11 @@ const Footer = ({ blok }) => {
     const legalLinks = (
         <ul
             role="list"
-            className="gap-6 gap-y-4 flex-wrap flex flex-row lg:gap-8"
+            className="flex flex-row flex-wrap gap-6 gap-y-4 lg:gap-8"
         >
             <li>
                 <a
+                    tabIndex="1"
                     href={`/${blok.link_1_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -20,6 +21,7 @@ const Footer = ({ blok }) => {
             </li>
             <li>
                 <a
+                    tabIndex="1"
                     href={`/${blok.link_2_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -28,6 +30,7 @@ const Footer = ({ blok }) => {
             </li>
             <li>
                 <a
+                    tabIndex="1"
                     href={`/${blok.link_3_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -36,6 +39,7 @@ const Footer = ({ blok }) => {
             </li>
             <li>
                 <a
+                    tabIndex="1"
                     href={`/${blok.link_4_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -44,6 +48,7 @@ const Footer = ({ blok }) => {
             </li>
             <li>
                 <a
+                    tabIndex="1"
                     href={`/${blok.link_5_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
@@ -56,8 +61,9 @@ const Footer = ({ blok }) => {
     const socialLinks = (
         <div className="flex space-x-4">
             <Link
-                href={blok.social_media_link_2.url}
-                className="text-gray-500 hover:text-gray-400"
+                tabIndex="1"
+                href={blok.social_media_link_2?.url}
+                className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">LinkedIn</span>
                 <img
@@ -67,8 +73,9 @@ const Footer = ({ blok }) => {
                 />
             </Link>
             <Link
-                href={blok.social_media_link_3.url}
-                className="text-gray-500 hover:text-gray-400"
+                tabIndex="1"
+                href={blok.social_media_link_3?.url}
+                className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">YouTube</span>
                 <img
@@ -78,8 +85,9 @@ const Footer = ({ blok }) => {
                 />
             </Link>
             <Link
-                href={blok.social_media_link_4.url}
-                className="text-gray-500 hover:text-gray-400"
+                tabIndex="1"
+                href={blok.social_media_link_4?.url}
+                className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">Facebook</span>
                 <img
@@ -89,14 +97,15 @@ const Footer = ({ blok }) => {
                 />
             </Link>
             <Link
-                href={blok.social_media_link_1.url}
-                className="text-gray-500 hover:text-gray-400"
+                tabIndex="1"
+                href={blok.social_media_link_1?.url}
+                className="text-greySolid-600 hover:text-greySolid-400"
             >
-                <span className="sr-only">Xing</span>
+                <span className="sr-only">Instagram</span>
                 <img
-                    src="/xing-icon.svg"
+                    src="/ohne-box/Instagram.svg"
                     className="h-6 w-6"
-                    alt="Connect with us on Xing"
+                    alt="Connect with us on Instagram"
                 />
             </Link>
         </div>
@@ -104,19 +113,19 @@ const Footer = ({ blok }) => {
 
     return (
         <footer
-            className="bg-blueDark mt-auto"
+            className="mt-auto bg-blueDark"
             aria-labelledby="footer-heading"
         >
             <ContentWidth>
-                <div className="col-span-12 py-8 mx-auto w-full  lg:py-10">
+                <div className="col-span-12 mx-auto w-full py-8 lg:py-10">
                     <div className="lg:flex lg:items-center lg:justify-between">
                         <img
                             className="h-6"
                             src={blok.Logo.filename}
-                            alt="Company name"
+                            alt={blok.Logo.filename?.alt ?? 'Logo Company name'}
                         />
                         <div className="sm:mt-0 lg:flex lg:items-center lg:justify-between">
-                            <div className=" mb-6 mt-12 lg:mt-0 lg:mb-0 lg:mr-14 ">
+                            <div className="mb-6 mt-12 lg:mb-0 lg:mr-14 lg:mt-0">
                                 <Button
                                     backgroundColorClass="bg-transparent"
                                     textColorClass="text-white"
@@ -131,10 +140,10 @@ const Footer = ({ blok }) => {
                         </div>
                     </div>
 
-                    <div className=" lg:pt-8 flex-wrap flex-row  lg:flex xl:flex-row md:flex-col md:justify-start md:items-start xl:items-center xl:justify-between">
+                    <div className="flex-row flex-wrap md:flex-col md:items-start md:justify-start lg:flex lg:pt-8 xl:flex-row xl:items-center xl:justify-between">
                         <div className="mt-16 lg:mt-0">{legalLinks}</div>
 
-                        <p className="mt-16 md:mt-16 lg:mt-16 xl:mt-0 sm:mt-12 text-base leading-5 text-primarySolid-400">
+                        <p className="mt-16 text-base leading-5 text-primarySolid-400 sm:mt-12 md:mt-16 lg:mt-16 xl:mt-0">
                             {blok.copyright_text}
                         </p>
                     </div>

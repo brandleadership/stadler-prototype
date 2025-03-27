@@ -8,7 +8,7 @@ export default function SimpleText({ blok }) {
     return (
         <section
             {...storyblokEditable(blok)}
-            className="bg-white dark:bg-gray-900 py-16 lg:py-24"
+            className="bg-white py-8 lg:py-24"
         >
             <SmallWidth>
                 <Text>{blok?.text}</Text>

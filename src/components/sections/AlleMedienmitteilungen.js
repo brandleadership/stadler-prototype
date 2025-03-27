@@ -1,33 +1,37 @@
 'use client';
 import ContentWidth from '../layouts/ContentWidth';
 import React from 'react';
-import {
-    getStoryblokApi,
-    storyblokEditable,
-    StoryblokComponent,
-} from '@storyblok/react/rsc';
+import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
+import { usePathname } from 'next/navigation';
 
 import { useState, useEffect } from 'react';
 import H1 from '../typography/H1';
 import DateFormatter from '../helpers/DateFormatter';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 const filters = { country: '', category: '', product: '', year: '' };
 
 function AlleMedienmitteilungen({ blok }) {
     const [medienmitteilungen, setMedienmitteilungen] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState(filters);
+    const [page, setPage] = useState(1);
     const [search, setSearch] = useState('');
+    let router = usePathname();
+    router = router.replace(/\s/g, '');
+    const splitURL = router.split('/');
+    const slicedURL = splitURL.slice(2);
+    const apiURL = slicedURL.join('/');
 
     const currentLocale = useCurrentLocale(i18nConfig) || 'en';
     const apiRequest = {
         version: 'published',
-        starts_with: 'medien/medienmitteilungen/',
+        starts_with: apiURL,
         is_startpage: false,
         resolve_relations: ['medienmitteilungen.categories'],
         sort_by: 'content.date:desc',
         language: currentLocale,
+        per_page: 25,
     };
 
     const onSearchChange = (e) => {
@@ -43,30 +47,54 @@ function AlleMedienmitteilungen({ blok }) {
         }
         if (e.target.value.length > 2) {
             filterSearchParameters['search_term'] = e.target.value;
-            getMedienmitteilungen(filterSearchParameters);
+            getMedienmitteilungen(1, [], filterSearchParameters);
         } else {
-            getMedienmitteilungen(filterSearchParameters);
+            getMedienmitteilungen(1, [], filterSearchParameters);
         }
     };
-    const getMedienmitteilungen = async (filterSearchRequest = {}) => {
+    const getMedienmitteilungen = async (
+        curPage = 1,
+        curMedienmitteilungen = [],
+        filterSearchRequest = {}
+    ) => {
         const storyblokApi = getStoryblokApi();
         const { data } = await storyblokApi.get(`cdn/stories`, {
             ...apiRequest,
+            page: curPage,
             ...filterSearchRequest,
         });
 
-        setMedienmitteilungen((prev) =>
-            data.stories.map((article) => {
-                article.content.slug = article.slug;
-                return article;
-            })
-        );
+        const newMedienmitteilungen = data.stories.map((article) => {
+            article.content.slug = article.slug;
+            return article;
+        });
+
+        setMedienmitteilungen([
+            ...curMedienmitteilungen,
+            ...newMedienmitteilungen,
+        ]);
     };
     useEffect(() => {
-        getMedienmitteilungen();
-    }, []);
+        const categories = [];
+        Object.values(selectedOptions).forEach((value) => {
+            value.length && categories.push(value);
+        });
+
+        const filterSearchParameters = {};
+        if (categories.length > 0) {
+            filterSearchParameters['filter_query[categories][all_in_array]'] =
+                categories.join(',');
+        }
+        if (search.length > 2) {
+            filterSearchParameters['search_term'] = search;
+        }
+
+        getMedienmitteilungen(page, medienmitteilungen, filterSearchParameters);
+    }, [page]);
 
     const filterArticles = (e, typeFilter) => {
+        setPage(1);
+        setMedienmitteilungen([]);
         const newSelectedOptions = { ...selectedOptions };
         newSelectedOptions[typeFilter] = e.target.value;
         setSelectedOptions(newSelectedOptions);
@@ -77,14 +105,14 @@ function AlleMedienmitteilungen({ blok }) {
 
         const filterSearchParameters = {};
         if (categories.length > 0) {
-            filterSearchParameters['filter_query[categories][any_in_array]'] =
+            filterSearchParameters['filter_query[categories][all_in_array]'] =
                 categories.join(',');
         }
         if (search.length > 2) {
             filterSearchParameters['search_term'] = search;
         }
 
-        getMedienmitteilungen(filterSearchParameters);
+        getMedienmitteilungen(1, [], filterSearchParameters);
     };
 
     return (
@@ -93,10 +121,10 @@ function AlleMedienmitteilungen({ blok }) {
                 <H1>{blok.title}</H1>
             </div>
             <div className="col-span-12 mb-8">
-                <ul className="grid gap-4 text-sm font-medium text-center text-gray-500 dark:text-gray-400 md:grid-cols-2 lg:grid-cols-12">
+                <ul className="grid gap-4 text-center text-sm font-medium text-greySolid-600 md:grid-cols-2 lg:grid-cols-12">
                     <li className="lg:col-span-2">
                         <select
-                            className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                            className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             onChange={(e) => filterArticles(e, 'country')}
                         >
                             <option value="">
@@ -111,7 +139,7 @@ function AlleMedienmitteilungen({ blok }) {
                     </li>
                     <li className="lg:col-span-2">
                         <select
-                            className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                            className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             onChange={(e) => filterArticles(e, 'category')}
                         >
                             <option value="">
@@ -128,7 +156,7 @@ function AlleMedienmitteilungen({ blok }) {
                     </li>
                     <li className="lg:col-span-2">
                         <select
-                            className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100  block"
+                            className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             onChange={(e) => filterArticles(e, 'product')}
                         >
                             <option value="">
@@ -143,7 +171,7 @@ function AlleMedienmitteilungen({ blok }) {
                     </li>
                     <li className="lg:col-span-2">
                         <select
-                            className="w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100 block"
+                            className="block w-full border-primary px-4 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             onChange={(e) => filterArticles(e, 'year')}
                         >
                             <option value="">{blok.filter_years_title}</option>
@@ -157,9 +185,9 @@ function AlleMedienmitteilungen({ blok }) {
 
                     <li className="lg:col-span-4">
                         <div className="relative">
-                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                                 <svg
-                                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                    className="h-4 w-4 text-greySolid-600"
                                     aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -175,7 +203,8 @@ function AlleMedienmitteilungen({ blok }) {
                                 </svg>
                             </div>
                             <input
-                                className="w-full inline-block px-8 py-2 text-base  border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                tabIndex="1"
+                                className="inline-block w-full border-primary px-8 py-2 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 placeholder={blok.text_search}
                                 onChange={(e) => onSearchChange(e)}
                             />
@@ -183,47 +212,49 @@ function AlleMedienmitteilungen({ blok }) {
                     </li>
                 </ul>
             </div>
-            <div className="col-span-12 w-full pb-24 ">
-                <ul className="hidden lg:grid grid-cols-12 gap-4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 bg-primarySolid-50 dark:bg-gray-700">
+            <div className="col-span-12 w-full pb-24">
+                <ul className="hidden w-full grid-cols-12 gap-4 bg-primarySolid-50 text-left text-sm text-greySolid-600 lg:grid rtl:text-right">
                     {/* Header */}
-                    <li className="col-span-1 px-6 py-3 text-xs font-bold text-black uppercase">
+                    <li className="col-span-2 px-6 py-3 text-xs font-bold uppercase text-black">
                         {blok.table_date_title}
                     </li>
-                    <li className="col-span-5 px-6 py-3 text-xs font-bold text-black uppercase">
+                    <li className="col-span-4 px-6 py-3 text-xs font-bold uppercase text-black">
                         {blok.table_medienmitteilung_title}
                     </li>
-                    <li className="col-span-3 px-6 py-3 text-xs font-bold text-black uppercase">
+                    <li className="col-span-3 px-6 py-3 text-xs font-bold uppercase text-black">
                         {blok.table_category_title}
                     </li>
-                    <li className="col-span-3 px-6 py-3 text-xs font-bold text-black uppercase flex justify-end">
+                    <li className="col-span-3 flex justify-end px-6 py-3 text-xs font-bold uppercase text-black">
                         {blok.table_documents_title}
                     </li>
                 </ul>
                 {/* Data Rows */}
-                <div className="w-full blok lg:hidden  mb-4 border-b dark:border-gray-700"></div>
-                <div className="grid grid-cols-12 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <div className="blok mb-4 w-full border-b lg:hidden"></div>
+                <div className="grid w-full grid-cols-12 text-left text-sm text-greySolid-600 rtl:text-right">
                     {medienmitteilungen[0] &&
                         medienmitteilungen.map((medienmitteilung, idx) => (
                             <div
                                 key={idx}
-                                className="col-span-12 bg-white dark:bg-black dark:border-gray-700 border-b mb-4 last:mb-0 lg:mb-0 lg:last:mb-0 "
+                                className="col-span-12 mb-4 border-b bg-white last:mb-0 lg:mb-0 lg:last:mb-0"
                             >
                                 <div className="grid grid-cols-1 items-center lg:grid-cols-12">
-                                    <div className=" bg-primarySolid-50 lg:bg-white col-span-1 lg:col-span-1 px-6 py-4 font-medium text-black whitespace-nowrap">
+                                    <div className="col-span-1 whitespace-nowrap bg-primarySolid-50 px-6 py-4 text-base text-black lg:col-span-2 lg:bg-white">
                                         {medienmitteilung.content?.date &&
                                             DateFormatter(
                                                 medienmitteilung.content.date
                                             )}
                                     </div>
-                                    <div className="col-span-1 lg:col-span-5 px-6 py-4 font-medium text-primary">
+                                    <div className="col-span-1 px-6 py-4 font-medium text-primary lg:col-span-4">
                                         <a
-                                            className="inline-block"
+                                            tabIndex="1"
+                                            className="inline-block text-base"
                                             href={`/${medienmitteilung.full_slug}`}
                                         >
                                             {medienmitteilung.content.title}
                                         </a>
                                         <a
-                                            className=" block mt-4 lg:hidden"
+                                            tabIndex="1"
+                                            className="mt-4 block lg:hidden"
                                             href={`/${medienmitteilung.full_slug}`}
                                         >
                                             <img
@@ -234,16 +265,15 @@ function AlleMedienmitteilungen({ blok }) {
                                             />
                                         </a>
                                     </div>
-                                    <div className="bg-primarySolid-50 lg:bg-white col-span-1 lg:col-span-3 px-6 pt-4 pb-3 font-medium text-black">
-                                        {/* {JSON.stringify(medienmitteilung.content.categories)} */}
-                                        {medienmitteilung.content.categories.map(
+                                    <div className="col-span-1 bg-primarySolid-50 px-6 pb-3 pt-4 font-medium text-black lg:col-span-3 lg:bg-white">
+                                        {medienmitteilung.content?.categories?.map(
                                             (category, index) =>
                                                 category.full_slug.includes(
                                                     'categories/medienmitteilungen'
                                                 ) && (
                                                     <span
                                                         key={index}
-                                                        className="mb-1 inline-flex flex-wrap text-gray-700 px-2 py-1  lg:whitespace-nowrap mr-4 border border-gray-400 text-xs last-of-type:mr-0"
+                                                        className="mb-1 mr-4 inline-flex flex-wrap border border-greySolid-400 px-2 py-1 text-xs text-greySolid-600 last-of-type:mr-0 lg:whitespace-nowrap"
                                                     >
                                                         {
                                                             category.content
@@ -253,19 +283,22 @@ function AlleMedienmitteilungen({ blok }) {
                                                 )
                                         )}
                                     </div>
-                                    <div className="col-span-1 lg:col-span-3 px-6 py-4 text-primary items-center flex justify-start lg:justify-end">
+                                    <div className="col-span-1 flex items-center justify-start px-6 py-4 text-primary lg:col-span-3 lg:justify-end">
                                         {medienmitteilung.content.downloads_block?.map(
-                                            (downloadBlock, index) =>
+                                            (downloadBlock) =>
                                                 downloadBlock.download_grid?.map(
-                                                    (downloadGrid, idx) =>
+                                                    (downloadGrid) =>
                                                         downloadGrid.download_list?.map(
                                                             (item, index) => (
                                                                 <a
+                                                                    tabIndex="1"
                                                                     href={ButtonUrlRenderer(
                                                                         item?.cta_asset
                                                                     )}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
                                                                     key={index}
-                                                                    className="first-of-type:ml-0 ml-3 inline-flex"
+                                                                    className="ml-3 inline-flex font-medium first-of-type:ml-0"
                                                                 >
                                                                     {
                                                                         item?.cta_text
@@ -279,6 +312,16 @@ function AlleMedienmitteilungen({ blok }) {
                                 </div>
                             </div>
                         ))}
+                </div>
+            </div>
+            <div className="col-span-12 flex w-full items-center justify-center pb-24">
+                <div
+                    onClick={() => {
+                        setPage(page + 1);
+                    }}
+                    className="flex cursor-pointer items-center gap-2 rounded bg-stadlergradient px-5 py-2.5 text-sm font-medium leading-6 text-white"
+                >
+                    {blok.load_more_button ?? 'Load More'}
                 </div>
             </div>
         </ContentWidth>

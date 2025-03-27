@@ -1,7 +1,6 @@
 'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import ContentWidth from '../layouts/ContentWidth';
 
 const variants = {
@@ -16,7 +15,7 @@ const HomeSolutionsSchienenfahrzeugeItemBig = ({ blok, open }) => {
                 <motion.div
                     className={`${
                         open ? 'grid' : 'hidden'
-                    } col-span-12 lg:grid-cols-4 lg:grid-rows-2 gap-2`}
+                    } col-span-12 gap-2 lg:grid-cols-4 lg:grid-rows-2`}
                     animate={open ? 'open' : 'closed'}
                     variants={variants}
                 >

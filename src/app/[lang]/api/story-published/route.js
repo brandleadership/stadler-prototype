@@ -2,8 +2,6 @@ import { revalidatePath } from 'next/cache';
 import StoryblokClient from 'storyblok-js-client';
 
 export async function POST(req) {
-    const url = new URL(req.url);
-    //const secret = url.searchParams.get('secret')
     const body = await req.json();
     // This secret should only be known to this API route and the CMS
     // if (secret !== process.env.SECRET) {

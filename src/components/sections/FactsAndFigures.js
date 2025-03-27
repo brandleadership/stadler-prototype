@@ -4,14 +4,7 @@ import H2 from '../typography/H2';
 import CountUp from 'react-countup';
 import ContentWidth from '../layouts/ContentWidth';
 
-const FactsAndFigures = ({
-    data1,
-    data2,
-    title,
-    showTwoRows = true,
-    backgroundColor,
-    blok,
-}) => {
+const FactsAndFigures = ({ data1, data2, showTwoRows = true, blok }) => {
     const dataArray1 = Array.isArray(data1) ? data1 : [];
     const dataArray2 = Array.isArray(data2) ? data2 : [];
     const renderData = showTwoRows
@@ -20,26 +13,26 @@ const FactsAndFigures = ({
     return (
         <section
             {...storyblokEditable(blok)}
-            className="bg-primarySolid-50 dark:bg-gray-900 py-16 lg:py-24"
+            className="bg-primarySolid-50 py-8 lg:py-24"
         >
             <ContentWidth>
                 <div className="col-span-12 my-auto">
-                    <div className="text-center mb-4">
+                    <div className="mb-4 text-center">
                         <H2>{blok?.title}</H2>
                     </div>
                     <div className="first-level">
                         <div className="bg-secondaryBgcGray pt-8 sm:pt-10">
                             <div className="mx-auto max-w-full">
-                                <dl className="grid grid-cols-1 gap-x-8 gap-y-10 lg:gap-y-16 text-center lg:grid-cols-3">
+                                <dl className="grid grid-cols-1 gap-x-8 gap-y-10 text-center lg:grid-cols-3 lg:gap-y-16">
                                     {renderData.map((stat, index) => (
                                         <div
-                                            className="flex flex-col gap-y-2 col-span-1 max-w-[400px]"
+                                            className="col-span-1 flex max-w-[400px] flex-col gap-y-2"
                                             key={index}
                                         >
-                                            <dt className="text-base lg:text-xl leading-7 text-black">
+                                            <dt className="text-base leading-7 text-black lg:text-xl">
                                                 {stat?.text}
                                             </dt>
-                                            <dd className="order-first text-3xl lg:text-6xl font-bold tracking-tight text-primary sm:text-5xl">
+                                            <dd className="order-first text-3xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
                                                 <CountUp
                                                     start={stat?.start ?? 0}
                                                     end={stat?.end ?? ''}

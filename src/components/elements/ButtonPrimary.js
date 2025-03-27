@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { storyblokEditable } from '@storyblok/react/rsc';
 import { ArrowForward } from '../icons/ArrowForward';
 import { motion } from 'framer-motion';
 
@@ -16,12 +14,14 @@ export default function ButtonPrimary(props) {
     return (
         <div style={containerStyles}>
             <motion.a
+                tabIndex="1"
                 initial="rest"
                 whileTap="hover"
                 whileHover="hover"
                 animate="rest"
-                className="cursor-pointer bg-stadlergradient text-white text-sm px-5 py-2.5 leading-6 font-medium rounded flex items-center gap-2"
+                className="flex cursor-pointer items-center gap-2 rounded bg-stadlergradient px-5 py-2.5 text-sm font-medium leading-6 text-white"
                 href={props.href}
+                target={props?.target ?? '_self'}
             >
                 <p>{props.buttonText}</p>
                 <motion.span

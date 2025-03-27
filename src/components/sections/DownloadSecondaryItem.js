@@ -6,28 +6,35 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 const DownloadSecondaryItem = ({ blok }) => {
     return (
         <>
-            <li
+            <div
                 {...storyblokEditable(blok)}
-                className="mb-4 text-xl flex-col md:flex-row flex align-middle md:justify-between"
+                className="mb-4 grid grid-cols-[4fr_1fr] align-middle text-xl"
             >
-                <Text className="w-8/12 md:w-auto mr-0 md:mr-10 text-wrap" styles="w-9/12">
+                <Text
+                    className="text-wrap mr-0 md:mr-10 md:w-auto"
+                    styles="inline-block align-middle h-fit my-auto"
+                >
                     {blok.title}
                 </Text>
-                <div className="w-3/12 flex justify-end items-center">
+                <div className="flex flex-wrap items-center justify-end">
                     {blok?.download_list?.map(
-                        (item) =>
+                        (item, i) =>
                             item?.cta_text && (
                                 <a
-                                    className="ml-4 pt-2 pb-2 text-base text-primary inline-flex"
+                                    tabIndex="1"
+                                    key={i}
+                                    className="ml-4 inline-flex pb-2 pt-2 text-base text-primary"
                                     href={ButtonUrlRenderer(item?.cta_asset)}
+                                    target="_blank"
+                                    rel="noreferrer"
                                 >
                                     {item?.cta_text}
                                 </a>
                             )
                     )}
                 </div>
-            </li>
-            <div className="border-b mb-4"></div>
+            </div>
+            <div className="mb-4 border-b"></div>
         </>
     );
 };

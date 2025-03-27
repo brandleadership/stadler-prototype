@@ -1,6 +1,5 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
-import { render } from 'storyblok-rich-text-react-renderer';
 import ButtonPrimary from '../../components/elements/ButtonPrimary';
 import SmallWidth from '../../components/layouts/SmallWidth';
 import H1 from '../../components/typography/H1';
@@ -13,7 +12,7 @@ const HeroText = ({ blok }) => {
     return (
         <section
             {...storyblokEditable(blok)}
-            className="bg-white dark:bg-gray-900 py-16 lg:py-24"
+            className="bg-white pb-8 pt-24 lg:py-24 lg:pt-0"
         >
             <SmallWidth>
                 <Breadcrumbs />

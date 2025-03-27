@@ -1,5 +1,6 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
+import { useEffect, useRef } from 'react';
 import H2 from '../typography/H2';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import Text from '../typography/Text';
@@ -7,27 +8,37 @@ import FullWidth from '../layouts/FullWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function Video({ blok }) {
+    const videoRef = useRef();
+
+    useEffect(() => {
+        videoRef.current.play();
+    }, [videoRef]);
     return (
         <div
             {...storyblokEditable(blok)}
-            className="bg-white py-16 lg:py-24 2xl:max-w-[1760px] 2xl:mx-auto"
+            className="bg-white py-8 lg:py-24 2xl:mx-auto 2xl:max-w-[1760px]"
         >
             <FullWidth>
-                <div className="col-span-12 flex flex-col lg:flex-row justify-between items-center">
-                    <div className="overflow-hidden w-full lg:w-2/3 ">
+                <div className="col-span-12 flex flex-col items-center justify-between lg:flex-row">
+                    <div className="w-full overflow-hidden lg:w-2/3">
                         <video
+                            ref={videoRef}
                             loading="lazy"
-                            className="-mt-[1%] -mb-[1%]"
-                            controls={false}
-                            autoPlay={true}
-                            muted={true}
+                            className="-mb-[1%] -mt-[1%]"
+                            autoplay
+                            playsinline
+
+                            muted
+                            controls
                             src={blok.video.filename}
                             loop={true}
+                            webkit-playsinline
+                            preload
                         />
                     </div>
-                    <div className="w-[90%] m-auto lg:px-4 xl:px-20 lg:w-1/3">
+                    <div className="m-auto w-[90%] lg:w-1/3 lg:px-4 xl:px-20">
                         <div className="mt-10 lg:mt-0">
-                            <div className="text-4xl font-bold mb-6">
+                            <div className="mb-6 text-4xl font-bold">
                                 <H2>{blok?.title}</H2>
                             </div>
                             <div className="text-xl">

@@ -1,9 +1,9 @@
 'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
-import { color, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ContentWidth from '../layouts/ContentWidth';
-import H2 from '../typography/H2';
+import H3 from '../typography/H3';
 import Text from '../typography/Text';
 import TrainSequence from './TrainSequence';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
@@ -20,11 +20,12 @@ const HomeSolutionsSchienenfahrzeugeWrapper = ({ blok }) => {
     return (
         <>
             <ContentWidth {...storyblokEditable(blok)}>
-                <div className="col-span-12 lg:col-span-6 lg:ml-8 text-white">
-                    <H2>{blok.title}</H2>
+                <div className="col-span-12 text-white lg:col-span-6 lg:ml-8">
+                    <H3>{blok.title}</H3>
                     <Text>{blok.lead}</Text>
                     <motion.a
-                        className="flex mt-4"
+                        tabIndex="1"
+                        className="mt-4 flex"
                         href={ButtonUrlRenderer(blok?.cta_link)}
                         whileHover={{
                             x: 2,
@@ -43,28 +44,28 @@ const HomeSolutionsSchienenfahrzeugeWrapper = ({ blok }) => {
                     selectedCategory={selectedCategory}
                 ></TrainSequence>
                 <ContentWidth>
-                    <div className="col-span-12 lg:col-span-8 lg:col-start-4 lg:col-end-10 grid lg:grid-cols-1 my-6">
-                        <div className="flex flex-row items-start  justify-between lg:justify-center">
+                    <div className="col-span-12 my-6 grid lg:col-span-8 lg:col-start-4 lg:col-end-10 lg:grid-cols-1">
+                        <div className="flex flex-row items-start justify-between lg:justify-center">
                             {blok.wrapper.map((item, key) => (
                                 <div
+                                    tabIndex="1"
                                     key={key}
                                     className={`${
                                         selectedCategory === key
                                             ? 'text-white'
                                             : 'text-greyBrighten-600'
-                                    } font-semibold text-center lg:px-4 flex flex-col items-center cursor-pointer`}
+                                    } flex cursor-pointer flex-col items-center text-center font-semibold lg:px-4`}
                                     onClick={() => (
                                         setIsOpen(
-                                            selectedCategory === key &&
-                                                isOpen === false
+                                            isOpen === true &&
+                                                selectedCategory !== key
                                                 ? true
-                                                : false
+                                                : selectedCategory === key &&
+                                                    isOpen === false
+                                                  ? true
+                                                  : false
                                         ),
-                                        setSelectedCategory(key),
-                                        console.log(
-                                            'selectedCategory',
-                                            selectedCategory
-                                        )
+                                        setSelectedCategory(key)
                                     )}
                                 >
                                     <p className="text-sm lg:text-base">

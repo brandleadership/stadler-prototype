@@ -1,26 +1,25 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
-import { render } from 'storyblok-rich-text-react-renderer';
 import ContentWidth from '../layouts/ContentWidth';
 import H2 from '../typography/H2';
 
 export default function Intro({ blok }) {
     return (
-        <section
-            {...storyblokEditable(blok)}
-            className="bg-white dark:bg-gray-900"
-        >
+        <section {...storyblokEditable(blok)} className="bg-white">
             <ContentWidth>
                 <div className="col-span-12">
-                    <div className="gap-16 items-center py-8 max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16">
+                    <div className="max-w-screen-xl items-center py-8 grid gap-2 md:gap-16 md:grid-cols-2 md:py-16">
                         <div className="font-normal sm:text-lg">
                             <H2>{blok?.title}</H2>
-                            <p className="mb-4 mt-6 richtext">{blok?.text}</p>
+                            <p className="richtext mb-4 mt-6">{blok?.text}</p>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 mt-8">
+                        <div className="mt-8 -order-1 md:order-1">
                             <img
-                                className="object-cover object-left h-96 scale-100"
-                                src={blok?.image.filename}
-                                alt={`Office content for ${blok?.title}`}
+                                className="w-full scale-100 object-cover object-left mx-auto"
+                                src={blok?.image?.filename}
+                                alt={
+                                    blok?.image?.filename?.alt ??
+                                    `Office content for ${blok?.title}`
+                                }
                             />
                         </div>
                     </div>

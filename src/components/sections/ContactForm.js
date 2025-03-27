@@ -3,9 +3,9 @@
 import SmallWidth from '../layouts/SmallWidth';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H2 from '../typography/H2';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import H3 from '../typography/H3';
 import debounce from '../helpers/Debounce';
@@ -224,7 +224,7 @@ export default function ContactForm({ blok }) {
 
     return (
         <section
-            className="pb-5 lg:pb-24 bg-white"
+            className="bg-white pb-5 lg:pb-24"
             {...storyblokEditable(blok)}
         >
             <SmallWidth>
@@ -235,16 +235,17 @@ export default function ContactForm({ blok }) {
                         onSubmit={(e) => handleSubmit(e)}
                     >
                         <H2>{blok?.title}</H2>
-                        <div className="relative z-0 w-full mb-5 group">
+                        <div className="group relative z-0 mb-5 w-full">
                             <label
                                 htmlFor="subject"
-                                className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                className="mb-2 block text-sm font-medium text-greySolid-800"
                             >
                                 {blok?.label_subject}{' '}
                                 {blok?.required_subject ? '*' : ''}
                             </label>
                             <input
-                                className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                tabIndex="1"
+                                className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary"
                                 name="subject"
                                 id="subject"
                                 autoComplete="subject"
@@ -256,45 +257,49 @@ export default function ContactForm({ blok }) {
                                     setSubject(e.target.value);
                                     debouncedValidateSubject(e.target.value);
                                 }}
-                                onBlur={(e) => debouncedValidateSubject(e.target.value)}
+                                onBlur={(e) =>
+                                    debouncedValidateSubject(e.target.value)
+                                }
                             />
                             <div
-                                className={`${errors.subject ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                className={`${errors.subject ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                             >
                                 {blok.subject_error}
                             </div>
                         </div>
-                        <div className="flex flex-wrap mb-5">
-                            <div className="flex items-center me-4">
+                        <div className="mb-5 flex flex-wrap">
+                            <div className="me-4 flex items-center">
                                 <input
+                                    tabIndex="1"
                                     id="male"
                                     type="radio"
                                     value="male"
                                     name="gender"
-                                    className="w-4 h-4 text-primary bg-gray-100 border-greySolid-400 focus:ring-primary focus:ring-2"
+                                    className="h-4 w-4 border-greySolid-400 bg-greySolid-100 text-primary focus:ring-2 focus:ring-primary"
                                     onChange={(e) => setGender(e.target.value)}
                                     onBlur={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     htmlFor="male"
-                                    className="ms-2 text-sm font-medium text-greySolid-800 dark:text-gray-300"
+                                    className="ms-2 text-sm font-medium text-greySolid-800"
                                 >
                                     {blok?.gender_male}
                                 </label>
                             </div>
-                            <div className="flex items-center me-4">
+                            <div className="me-4 flex items-center">
                                 <input
+                                    tabIndex="1"
                                     id="female"
                                     type="radio"
                                     value="female"
                                     name="gender"
-                                    className="w-4 h-4 text-primary bg-gray-100 border-greySolid-400 focus:ring-primary focus:ring-2"
+                                    className="h-4 w-4 border-greySolid-400 bg-greySolid-100 text-primary focus:ring-2 focus:ring-primary"
                                     onChange={(e) => setGender(e.target.value)}
                                     onBlur={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     htmlFor="female"
-                                    className="ms-2 text-sm font-medium text-greySolid-800 dark:text-gray-300"
+                                    className="ms-2 text-sm font-medium text-greySolid-800"
                                 >
                                     {blok?.gender_female}
                                 </label>
@@ -302,78 +307,93 @@ export default function ContactForm({ blok }) {
                         </div>
 
                         <div className="grid md:grid-cols-2 md:gap-6">
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="first_name"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800"
                                 >
                                     {blok?.label_first_name}{' '}
                                     {blok?.required_first_name ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     type="text"
                                     name="first_name"
                                     id="first_name"
                                     autoComplete="first_name"
                                     value={first_name}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                     placeholder=""
                                     required={
                                         blok?.required_first_name ? true : false
                                     }
                                     onChange={(e) => {
                                         setName(e.target.value);
-                                        debouncedValidateFirstName(e.target.value);
+                                        debouncedValidateFirstName(
+                                            e.target.value
+                                        );
                                     }}
-                                    onBlur={(e) => debouncedValidateFirstName(e.target.value)}
+                                    onBlur={(e) =>
+                                        debouncedValidateFirstName(
+                                            e.target.value
+                                        )
+                                    }
                                 />
                                 <div
-                                    className={`${errors.first_name ? 'block' : 'hidden'} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.first_name ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.first_name_error}
                                 </div>
                             </div>
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="last_name"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_last_name}{' '}
                                     {blok?.required_last_name ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     type="text"
                                     name="last_name"
                                     id="last_name"
                                     value={last_name}
-                                    className="block p-3 w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                     placeholder=""
                                     required={
                                         blok?.required_last_name ? true : false
                                     }
                                     onChange={(e) => {
                                         setLastName(e.target.value);
-                                        debouncedValidateLastName(e.target.value);
+                                        debouncedValidateLastName(
+                                            e.target.value
+                                        );
                                     }}
-                                    onBlur={(e) => debouncedValidateLastName(e.target.value)}
+                                    onBlur={(e) =>
+                                        debouncedValidateLastName(
+                                            e.target.value
+                                        )
+                                    }
                                 />
                                 <div
-                                    className={`${errors.last_name ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.last_name ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.last_name_error}
                                 </div>
                             </div>
                         </div>
                         <div className="grid md:grid-cols-2 md:gap-6">
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="street"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_street}{' '}
                                     {blok?.required_street ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     name="street"
                                     id="street"
                                     autoComplete="street"
@@ -387,24 +407,27 @@ export default function ContactForm({ blok }) {
                                         setStreet(e.target.value);
                                         debouncedValidateStreet(e.target.value);
                                     }}
-                                    onBlur={(e) => debouncedValidateStreet(e.target.value)}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    onBlur={(e) =>
+                                        debouncedValidateStreet(e.target.value)
+                                    }
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary"
                                 />
                                 <div
-                                    className={`${errors.street && blok?.required_street ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.street && blok?.required_street ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.street_error}
                                 </div>
                             </div>
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="number"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_nr}{' '}
                                     {blok?.required_number ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     name="number"
                                     id="number"
                                     autoComplete="number"
@@ -421,25 +444,26 @@ export default function ContactForm({ blok }) {
                                     onBlur={(e) =>
                                         debouncedValidateNumber(e.target.value)
                                     }
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                 />
                                 <div
-                                    className={`${errors.number && blok?.required_number ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.number && blok?.required_number ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.number_error}
                                 </div>
                             </div>
                         </div>
                         <div className="grid md:grid-cols-2 md:gap-6">
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="zip"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_zip}{' '}
                                     {blok?.required_zip ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     name="zip"
                                     id="zip"
                                     autoComplete="zip"
@@ -451,24 +475,27 @@ export default function ContactForm({ blok }) {
                                         setZIP(e.target.value);
                                         debouncedValidateZip(e.target.value);
                                     }}
-                                    onBlur={(e) => debouncedValidateZip(e.target.value)}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    onBlur={(e) =>
+                                        debouncedValidateZip(e.target.value)
+                                    }
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                 />
                                 <div
-                                    className={`${errors.zip && blok?.required_zip ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.zip && blok?.required_zip ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.zip_error}
                                 </div>
                             </div>
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="city"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_city}{' '}
                                     {blok?.required_city ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     name="city"
                                     id="city"
                                     autoComplete="city"
@@ -482,11 +509,13 @@ export default function ContactForm({ blok }) {
                                         setCity(e.target.value);
                                         debouncedValidateCity(e.target.value);
                                     }}
-                                    onBlur={(e) => debouncedValidateCity(e.target.value)}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    onBlur={(e) =>
+                                        debouncedValidateCity(e.target.value)
+                                    }
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                 />
                                 <div
-                                    className={`${errors.city && blok?.required_city ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.city && blok?.required_city ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.city_error}
                                 </div>
@@ -494,15 +523,16 @@ export default function ContactForm({ blok }) {
                         </div>
 
                         <div className="grid md:grid-cols-2 md:gap-6">
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="email"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_email}{' '}
                                     {blok?.required_email ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     name="email"
                                     id="email"
                                     autoComplete="email"
@@ -515,24 +545,27 @@ export default function ContactForm({ blok }) {
                                     onChange={(e) => {
                                         setEmail(e.target.value);
                                     }}
-                                    onBlur={(e) => debouncedValidateEmail(e.target.value)}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    onBlur={(e) =>
+                                        debouncedValidateEmail(e.target.value)
+                                    }
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary"
                                 />
                                 <div
-                                    className={`${errors.email && blok?.required_email ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.email && blok?.required_email ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.email_error}
                                 </div>
                             </div>
-                            <div className="relative z-0 w-full mb-5 group">
+                            <div className="group relative z-0 mb-5 w-full">
                                 <label
                                     htmlFor="phone"
-                                    className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                    className="mb-2 block text-sm font-medium text-greySolid-800 "
                                 >
                                     {blok?.label_phone}{' '}
                                     {blok?.required_phone ? '*' : ''}
                                 </label>
                                 <input
+                                    tabIndex="1"
                                     type="tel"
                                     name="phone"
                                     id="phone"
@@ -545,11 +578,13 @@ export default function ContactForm({ blok }) {
                                     onChange={(e) => {
                                         setPhone(e.target.value);
                                     }}
-                                    onBlur={(e) => debouncedValidatePhone(e.target.value)}
-                                    className="block p-3  w-full text-sm text-greySolid-800 bg-white  border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                    onBlur={(e) =>
+                                        debouncedValidatePhone(e.target.value)
+                                    }
+                                    className="block w-full border border-greySolid-400 bg-white p-3 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                                 />
                                 <div
-                                    className={`${errors.phone && blok?.required_phone ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                    className={`${errors.phone && blok?.required_phone ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                                 >
                                     {blok.phone_error}
                                 </div>
@@ -558,7 +593,7 @@ export default function ContactForm({ blok }) {
                         <div className="mb-5">
                             <label
                                 htmlFor="message"
-                                className="peer-focus:font-medium  mb-2 text-sm font-medium text-greySolid-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary peer-focus:dark:text-primary peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                className="mb-2 block text-sm font-medium text-greySolid-800 "
                             >
                                 {blok?.label_message}{' '}
                                 {blok?.required_message ? '*' : ''}
@@ -575,19 +610,22 @@ export default function ContactForm({ blok }) {
                                     setMessage(e.target.value);
                                     debouncedValidateMessage(e.target.value);
                                 }}
-                                onBlur={(e) => debouncedValidateMessage(e.target.value)}
-                                className="block p-2.5 w-full text-sm text-greySolid-800 bg-white border border-greySolid-400 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+                                onBlur={(e) =>
+                                    debouncedValidateMessage(e.target.value)
+                                }
+                                className="block w-full border border-greySolid-400 bg-white p-2.5 text-sm text-greySolid-800 focus:border-primary focus:ring-primary "
                             ></textarea>
                             <div
-                                className={`${errors.message && blok?.required_message ? 'block ' : 'hidden '} mt-2 mb-2 text-sm text-red-700 font-medium`}
+                                className={`${errors.message && blok?.required_message ? 'block' : 'hidden'} mb-2 mt-2 text-sm font-medium text-red-700`}
                             >
                                 {blok.message_error}
                             </div>
                         </div>
-                        <div className="flex flex-col mb-8">
+                        <div className="mb-8 flex flex-col">
                             <div className="flex items-center">
                                 <input
-                                    className="relative shrink-0 w-6 h-6 border-2 border-primary checked:bg-primary hover:checked:bg-primary checked:border-primary focus:checked:bg-primary hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary"
+                                    tabIndex="1"
+                                    className="border-1 relative h-6 w-6 shrink-0 border-greySolid-400 checked:border-primary checked:bg-primary hover:border-primary hover:checked:bg-primary focus:border-primary focus:ring-2 focus:ring-primary focus:checked:bg-primary"
                                     type="checkbox"
                                     name="data_protection"
                                     id="data_protection"
@@ -599,7 +637,7 @@ export default function ContactForm({ blok }) {
                                 />
                                 <label
                                     htmlFor="data_protection"
-                                    className="ml-2 text-sm font-medium text-black dark:text-gray-300"
+                                    className="ml-2 text-sm font-medium text-black "
                                 >
                                     <RichTextRenderer
                                         text={blok.disclaimer_text}
@@ -608,36 +646,37 @@ export default function ContactForm({ blok }) {
                                 </label>
                             </div>
                             <div
-                                className={`${errors.data_protection ? 'block' : 'hidden'} mt-2 text-sm text-red-700 font-medium`}
+                                className={`${errors.data_protection ? 'block' : 'hidden'} mt-2 text-sm font-medium text-red-700`}
                             >
                                 {blok.checkbox_error}
                             </div>
                         </div>
 
                         <button
+                            tabIndex="1"
                             type="submit"
-                            className="cursor-pointer bg-stadlergradient text-white text-sm px-5 py-2.5 leading-6 font-medium rounded flex items-center gap-2"
+                            className="flex cursor-pointer items-center gap-2 rounded bg-stadlergradient px-5 py-2.5 text-sm font-medium leading-6 text-white"
                         >
                             {loading ? (
                                 <div
                                     style={{
                                         borderTopColor: 'transparent',
                                     }}
-                                    className="w-6 h-6 border-4 border-white border-solid rounded-full animate-spin"
+                                    className="h-6 w-6 animate-spin rounded-full border-4 border-solid border-white"
                                 ></div>
                             ) : (
                                 blok?.submit_button_text
                             )}
                         </button>
                         <div
-                            className={`${validationError ? 'block ' : 'hidden '} mt-4 mb-2 text-sm text-red-700 font-medium`}
+                            className={`${validationError ? 'block' : 'hidden'} mb-2 mt-4 text-sm font-medium text-red-700`}
                         >
                             {validationSubscribedError
                                 ? blok.error_email_exists
                                 : blok.global_validation_error}
                         </div>
                         {validationSuccess && (
-                            <div className="top-0 left-0 absolute bg-white w-full h-full items-center flex flex-wrap content-center align-center justify-center text-md">
+                            <div className="align-center text-md absolute left-0 top-0 flex h-full w-full flex-wrap content-center items-center justify-center bg-white">
                                 <div className="w-full text-center">
                                     <H3>{blok.global_validation_success}</H3>
                                 </div>

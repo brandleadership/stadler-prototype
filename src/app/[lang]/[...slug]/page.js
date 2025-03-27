@@ -4,14 +4,13 @@ import {
     apiPlugin,
     storyblokInit,
 } from '@storyblok/react/rsc';
-import Layout from '@/src/components/sections/Layout';
+import Layout from '/src/components/sections/Layout';
 import { redirect } from 'next/navigation';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
 });
-
 const isDev = 'development';
 export const revalidate = isDev ? 0 : 3600;
 
@@ -47,6 +46,7 @@ async function fetchData(slug, lang) {
     };
 
     const storyblokApi = getStoryblokApi();
+
     try {
         const { data } = await storyblokApi.get(
             `cdn/stories/${slug}`,
@@ -79,7 +79,9 @@ export async function generateStaticParams() {
     const { data } = await storyblokApi.get('cdn/links/', {
         version: 'published',
     });
+
     const paths = [];
+
     Object.keys(data.links).forEach((linkKey) => {
         if (
             data.links[linkKey].is_folder ||
@@ -93,7 +95,6 @@ export async function generateStaticParams() {
 
         paths.push({ slug: splittedSlug });
     });
-
     return paths;
 }
 
@@ -109,30 +110,33 @@ export async function generateMetadata({ params }) {
     const metatags = story.content.metatags || {};
     const title = metatags.title || 'Default Title';
     const description = metatags.description || 'Default Description';
+    const og_description = metatags.og_description || 'Default OG Description';
+    const og_title = metatags.og_title || 'Default OG Title';
+    const og_image = metatags.og_image || 'Default OG Image url';
+    const twitter_image = metatags.twitter_image || 'Default Image url';
+    const twitter_title = metatags.twitter_title || 'Default Twitter Title';
+    const twitter_description =
+        metatags.twitter_description || 'Default Twitter Description';
 
     return {
-        title: `${title} · Stadler`,
+        title: title,
         description: description,
         robots: {
             index: true,
             follow: true,
         },
         openGraph: {
-            og_title: title,
-            og_description: description,
-            url: `/${story.slug}`,
+            og_title: og_title,
+            og_description: og_description,
+            og_image: og_image,
         },
         twitter: {
-            card: 'summary',
-            twitter_title: title,
-            twitter_description: description,
+            twitter_image: twitter_image,
+            twitter_title: twitter_title,
+            twitter_description: twitter_description,
         },
     };
 }
-
-generateMetadata({ params: { slug: 'home', lang: 'en' } })
-    .then((metadata) => console.log(metadata))
-    .catch((error) => console.error(error));
 
 export default async function Detailpage({ params }) {
     const slug = Array.isArray(params?.slug) ? params.slug.join('/') : 'home';
@@ -145,8 +149,16 @@ export default async function Detailpage({ params }) {
 
     const { story, config_footer, config_header } = data;
 
+    const translatedSlugs = {};
+
+    translatedSlugs['en'] = { lang: 'en', slug: story.default_full_slug };
+    story.translated_slugs.forEach((item) => {
+        translatedSlugs[item.lang] = { lang: item.lang, slug: item.path };
+    });
+
     return (
         <Layout
+            translatedSlugs={translatedSlugs}
             lang={lang}
             config_footer={config_footer}
             config_header={config_header}

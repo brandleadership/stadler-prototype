@@ -9,23 +9,24 @@ import { PinIcon } from '../icons/PinIcon';
 import { CalenderIcon } from '../icons/CalenderIcon';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 
 const HeroCareer = ({ blok }) => {
     const careerButton = useRef();
 
-    const [matomoObject, setMatomoObject] = useState({ 'field': '', 'location': '' });
+    const [matomoObject, setMatomoObject] = useState({
+        field: '',
+        location: '',
+    });
     const [values, setValues] = useState({ 10: '', 25: '' });
     const [urlQuery, setUrlQuery] = useState('');
     const [attributes, setAttributes] = useState([]);
     const currentLocale = useCurrentLocale(i18nConfig);
 
-    const changeChosenFilter = (value, property, operator, name, e) => {
-        console.log("eventCur", operator, name, e.target.selectedOptions[0].label)
-
+    const changeChosenFilter = (value, property, operator, name) => {
         const newMatomoValues = { ...matomoObject };
         newMatomoValues[operator] = name;
-        setMatomoObject(newMatomoValues)
+        setMatomoObject(newMatomoValues);
 
         const newValues = { ...values };
         newValues[property] = value;
@@ -36,7 +37,6 @@ const HeroCareer = ({ blok }) => {
                 query += `${key}=${newValues[key]}&`;
             }
         });
-        // console.log("newValues", newValues)
 
         setUrlQuery(query);
     };
@@ -188,26 +188,19 @@ const HeroCareer = ({ blok }) => {
     };
 
     useEffect(() => {
-
         let career = careerButton.current;
 
         career?.addEventListener('click', () => {
             var _paq = (window._paq = window._paq || []);
-            let searchAttributes = ""
+            let searchAttributes = '';
             Object.keys(matomoObject).forEach((key) => {
                 if (matomoObject[key]) {
                     searchAttributes += `${key}: ${matomoObject[key]}; `;
                 }
             });
-            console.log("searchAttributes", searchAttributes)
-            _paq.push([
-                'trackEvent',
-                'Career Search',
-                `${searchAttributes}`,
-            ]);
+            _paq.push(['trackEvent', 'Career Search', `${searchAttributes}`]);
         });
     }, [values]);
-
 
     useEffect(() => {
         if (blok.default_language !== 'unset') {
@@ -351,11 +344,11 @@ const HeroCareer = ({ blok }) => {
             style={{
                 backgroundImage: `url(${blok?.background_image.filename})`,
             }}
-            className="bg-no-repeat bg-cover bg-center bg-gray-400 bg-blend-multiply"
+            className="h-[70vh] min-h-min bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply lg:h-auto"
         >
             <SmallWidth>
-                <div className="py-16 lg:py-24 col-span-12 relative mx-auto max-w-screen-xl text-white lg:pt-80 lg:pb-12 xl:px-0 z-1">
-                    <div className="mb-6 max-w-screen-md lg:mb-0 text-white">
+                <div className="z-1 relative col-span-12 mx-auto max-w-screen-xl py-8 text-white lg:py-24 lg:pb-12 lg:pt-80 xl:px-0">
+                    <div className="mb-6 mt-[25vh] max-w-screen-md text-white lg:mb-0 lg:mt-0">
                         <H1>{blok?.title}</H1>
                         <div className="my-8 lg:mb-8">
                             <Text>{blok?.subheading}</Text>
@@ -363,20 +356,26 @@ const HeroCareer = ({ blok }) => {
                     </div>
                     <form
                         action="#"
-                        className="flex justify-between flex-col gap-4 lg:flex-row p-4 mt-16 mb-5 w-full bg-white lg:gap-x-4 lg:grid-cols-5 lg:mt-9 dark:bg-gray-800"
+                        className="mb-5 flex w-full flex-col items-center justify-between gap-4 bg-white p-4 md:flex-row lg:mt-9 lg:grid-cols-5 lg:gap-x-4"
                     >
-                        <div className="flex-grow gap-x-4 ">
+                        <div className="w-full flex-grow gap-x-4 md:w-fit">
                             <div className="relative">
-                                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <CalenderIcon
                                         color="#00000095"
                                         styles="w-5 h-5"
                                     />
                                 </div>
                                 <select
-                                    className="bg-greySolid-30 text-gray-900 block pl-10 p-2.5  w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                    className="block w-full border-primary p-2.5 px-4 py-2 pl-10 text-base text-greySolid-800 hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                     onChange={(e) =>
-                                        changeChosenFilter(e.target.value, '10', 'field', e.target.selectedOptions[0].label, e)
+                                        changeChosenFilter(
+                                            e.target.value,
+                                            '10',
+                                            'field',
+                                            e.target.selectedOptions[0].label,
+                                            e
+                                        )
                                     }
                                 >
                                     <option value="">
@@ -398,19 +397,25 @@ const HeroCareer = ({ blok }) => {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex-grow">
+                        <div className="w-full flex-grow md:w-fit">
                             <label className="sr-only">Location</label>
                             <div className="relative">
-                                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <PinIcon
                                         color="#00000095"
                                         styles="w-5 h-5"
                                     />
                                 </div>
                                 <select
-                                    className="bg-greySolid-30 text-gray-900 block pl-10 p-2.5  w-full px-4 py-2 text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                    className="border-primar block w-full p-2.5 px-4 py-2 pl-10 text-base text-greySolid-800 hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                     onChange={(e) =>
-                                        changeChosenFilter(e.target.value, '25', 'location', e.target.selectedOptions[0].label, e)
+                                        changeChosenFilter(
+                                            e.target.value,
+                                            '25',
+                                            'location',
+                                            e.target.selectedOptions[0].label,
+                                            e
+                                        )
                                     }
                                 >
                                     <option value="">
@@ -432,8 +437,7 @@ const HeroCareer = ({ blok }) => {
                                 </select>
                             </div>
                         </div>
-                        <div
-                            ref={careerButton} className="">
+                        <div ref={careerButton} className="">
                             <ButtonPrimary
                                 href={`${ButtonUrlRenderer(blok?.search_button_link)}?${urlQuery}`}
                                 buttonText={blok.search_button_text}

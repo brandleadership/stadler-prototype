@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stadler-prototyping-git-fix-train-carousel-images-stadler-rail.vercel.app/api/sitemap.xml

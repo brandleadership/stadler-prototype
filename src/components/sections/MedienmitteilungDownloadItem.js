@@ -6,7 +6,7 @@ const MedienmitteilungDownloadItem = ({ blok }) => {
         <div {...storyblokEditable(blok)}>
             <ul className="col-span-12">
                 <div>
-                    <li className=" my-4 text-xl flex justify-between items-center">
+                    <li className="my-4 flex items-center justify-between text-xl">
                         <p className="w-10/12">{blok?.title}</p>
                         {blok.downloads.map((nestedBlok) => (
                             <StoryblokComponent
@@ -15,7 +15,7 @@ const MedienmitteilungDownloadItem = ({ blok }) => {
                             />
                         ))}
                     </li>
-                    <div className="border-b mb-6"></div>
+                    <div className="mb-6 border-b"></div>
                 </div>
             </ul>
         </div>

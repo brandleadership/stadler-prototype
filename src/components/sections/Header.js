@@ -27,11 +27,6 @@ const submenuVariants = {
     },
 };
 
-const variantsSub = {
-    open: { opacity: 1, y: 0, height: '100%' },
-    closed: { opacity: 0, y: 50, height: 0 },
-};
-
 const Header = ({ blok }) => {
     const navigationMain = {
         topNav: [
@@ -92,6 +87,7 @@ const Header = ({ blok }) => {
     const [openSubmenu, setOpenSubmenu] = useState(null);
     const menuRef = useRef(null);
     const [isNarrowScreen, setIsNarrowScreen] = useState(false);
+    console.log(isOpen);
 
     const toggleSubmenu = (submenuId) => {
         if (openSubmenu === submenuId) {
@@ -100,11 +96,6 @@ const Header = ({ blok }) => {
             setOpenSubmenu(submenuId);
             setIsOpen(true);
         }
-    };
-
-    const toggleMainMenu = () => {
-        setIsOpen((prev) => !prev);
-        setOpenSubmenu(null);
     };
 
     const toggleMobileNav = () => {
@@ -173,11 +164,12 @@ const Header = ({ blok }) => {
             case 2:
                 return (
                     <Link
+                        tabIndex="1"
                         href={ButtonUrlRenderer(href)}
-                        className="cursor-pointer text-primarySolid-800 lg:bg-primaryTrans-100 lg:text-primary px-0 py-4 pt-8 lg:px-8 lg:py-24 lg:text-center"
+                        className="cursor-pointer px-0 py-4 pt-8 text-primarySolid-800 lg:bg-primaryTrans-100 lg:px-8 lg:py-24 lg:text-center lg:text-primary"
                         onClick={onClickHandler}
                     >
-                        <p className="hidden lg:block lg:font-semibold lg:text-xl">
+                        <p className="hidden lg:block lg:text-xl lg:font-semibold">
                             {blok.main_submenu_2_text}
                         </p>
                         <p>{title}</p>
@@ -190,26 +182,30 @@ const Header = ({ blok }) => {
 
     return (
         <header
-            className={`bg-white z-10 ${isMobileNavOpen ? 'mobile-nav-open' : ''} ${
+            className={`z-10 bg-white ${isMobileNavOpen ? 'mobile-nav-open' : ''} ${
                 isMobileNavOpen && isNarrowScreen
-                    ? 'fixed w-screen h-screen'
+                    ? 'fixed h-screen w-screen'
                     : ''
             }`}
         >
             <ContentWidth>
-                <div className="lg:hidden col-span-12">
-                    <div className="flex justify-between items-center col-span-12 w-full py-5">
-                        <Link href={ButtonUrlRenderer(blok.LinkLogo)}>
+                <div className="col-span-12 lg:hidden">
+                    <div className="col-span-12 flex w-full items-center justify-between py-5">
+                        <Link
+                            tabIndex="1"
+                            href={ButtonUrlRenderer(blok.LinkLogo)}
+                        >
                             <img
                                 src={blok.Logo.filename}
                                 className="h-4 sm:h-6"
-                                alt="Stadler Logo"
+                                alt={blok.Logo?.filename?.alt ?? 'Stadler Logo'}
                             />
                         </Link>
 
                         <div className="lg:hidden">
                             {isMobileNavOpen ? (
                                 <img
+                                    tabIndex="1"
                                     src="/icons/times.svg"
                                     alt="close icon"
                                     onClick={toggleMobileNav}
@@ -217,6 +213,7 @@ const Header = ({ blok }) => {
                                 />
                             ) : (
                                 <img
+                                    tabIndex="1"
                                     src="/icons/equal.svg"
                                     alt="burger menu icon"
                                     onClick={toggleMobileNav}
@@ -230,17 +227,18 @@ const Header = ({ blok }) => {
             <div
                 className={`${
                     isMobileNavOpen && isNarrowScreen ? 'visible' : 'hidden'
-                } lg:visible flex lg:flex flex-col-reverse w-full lg:flex-col`}
+                } flex w-full flex-col-reverse lg:visible lg:flex lg:flex-col`}
             >
                 <>
                     <TopNav blok={blok} />
-                    <nav className="border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 relative">
+                    <nav className="relative border-greySolid-100 bg-white">
                         <ContentWidth>
-                            <div className="bg-white col-span-12 w-full flex flex-col items-start justify-center lg:justify-between lg:flex-row py-5 px-4 lg:px-0 lg:min-h-fit lg:w-auto left-0 top-[10%] absolute lg:static">
+                            <div className="absolute left-0 top-[10%] col-span-12 flex w-full flex-col items-start justify-center bg-white px-4 py-5 lg:static lg:min-h-fit lg:w-auto lg:flex-row lg:justify-between lg:px-0">
                                 <div className="hidden lg:block">
                                     <Link
+                                        tabIndex="1"
                                         href={ButtonUrlRenderer(blok.LinkLogo)}
-                                        className="flex justify-start items-start lg:justify-center lg:items-center mb-10 lg:mb-0 "
+                                        className="mb-10 flex items-start justify-start lg:mb-0 lg:items-center lg:justify-center"
                                     >
                                         <img
                                             src={blok.Logo.filename}
@@ -254,17 +252,17 @@ const Header = ({ blok }) => {
                                     className="w-full lg:w-auto"
                                     id="navbar-solid-bg"
                                 >
-                                    <ul className="mb-10 lg:mb-0 flex flex-col gap-8 lg:gap-0 items-start justify-center lg:flex-row font-medium mt-4 rounded-lg bg-white lg:items-center lg:mt-0 md:border-0 lg:bg-transparent">
+                                    <ul className="mb-10 mt-4 flex flex-col items-start justify-center gap-8 rounded-lg bg-white font-medium md:border-0 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-0 lg:bg-transparent">
                                         {navigationMain.topNav.map(
                                             (item, index) => (
                                                 <li
                                                     key={index}
-                                                    className="cursor-pointer lg:px-3 xl:px-5 flex gap-2 justify-center items-start pr-4 text-primarySolid-800 font-semibold rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                                    className="flex cursor-pointer items-start justify-center gap-2 rounded pr-4 font-semibold text-primarySolid-800 hover:bg-greySolid-100 md:border-0 md:p-0 md:hover:bg-transparent lg:px-3 xl:px-5"
                                                 >
                                                     {item.submenu ? (
                                                         <motion.div
-                                                            tabIndex="0"
-                                                            className="md:border-0 flex gap-2 justify-center items-start pr-4 text-primarySolid-800 font-semibold rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                                            tabIndex="1"
+                                                            className="flex items-start justify-center gap-2 rounded pr-4 font-semibold text-primarySolid-800 hover:bg-greySolid-100 md:border-0 md:p-0 md:hover:bg-transparent"
                                                             onClick={() =>
                                                                 toggleSubmenu(
                                                                     item.id
@@ -301,7 +299,8 @@ const Header = ({ blok }) => {
                                                         </motion.div>
                                                     ) : (
                                                         <Link
-                                                            className="flex gap-2 justify-center items-start pr-4 text-primarySolid-800 font-semibold rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                                            tabIndex="1"
+                                                            className="flex items-start justify-center gap-2 rounded pr-4 font-semibold text-primarySolid-800 hover:bg-greySolid-100 md:border-0 md:p-0 md:hover:bg-transparent"
                                                             href={ButtonUrlRenderer(
                                                                 item.href
                                                             )}
@@ -328,12 +327,13 @@ const Header = ({ blok }) => {
                                                                     overflow:
                                                                         'hidden',
                                                                 }}
-                                                                className="fixed lg:absolute bg-white h-screen lg:h-auto lg:bg-greySolid-50"
+                                                                className="fixed h-screen bg-white lg:absolute lg:h-auto lg:bg-greySolid-50"
                                                             >
                                                                 <ContentWidth>
-                                                                    <div className="w-full grid col-span-12 lg:col-span-6 lg:col-start-5 grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:p-8 px-4 lg:px-0 mt-6 lg:mt-0">
-                                                                        <div className="border-b lg:border-none lg:hidden">
+                                                                    <div className="col-span-12 mt-6 grid w-full grid-cols-1 px-4 lg:col-span-6 lg:col-start-5 lg:mt-0 lg:grid-cols-2 lg:gap-6 lg:p-8 lg:px-0">
+                                                                        <div className="border-b lg:hidden lg:border-none">
                                                                             <Link
+                                                                                tabIndex="1"
                                                                                 href="#"
                                                                                 onClick={(
                                                                                     e
@@ -349,7 +349,7 @@ const Header = ({ blok }) => {
                                                                                         true
                                                                                     );
                                                                                 }}
-                                                                                className="text-primarySolid-800 lg:text-primarySolid-600 mb-6 ml-[-20px] flex flex-row gap-2 items-center justify-start content-center whitespace-nowrap"
+                                                                                className="mb-6 ml-[-20px] flex flex-row content-center items-center justify-start gap-2 whitespace-nowrap text-primarySolid-800 lg:text-primarySolid-600"
                                                                             >
                                                                                 <svg
                                                                                     width="10"
@@ -385,10 +385,11 @@ const Header = ({ blok }) => {
                                                                                         }
                                                                                     >
                                                                                         <Link
+                                                                                            tabIndex="1"
                                                                                             href={ButtonUrlRenderer(
                                                                                                 subItem.href
                                                                                             )}
-                                                                                            className="flex justify-between px-0 py-4 text-base text-primarySolid-800 lg:text-primarySolid-600 hover:text-primary"
+                                                                                            className="flex justify-between px-0 py-4 text-base text-primarySolid-800 hover:text-primary lg:text-primarySolid-600"
                                                                                             onClick={() => {
                                                                                                 closeMobileNav();
                                                                                                 setIsOpen(
@@ -422,18 +423,19 @@ const Header = ({ blok }) => {
                                                 </li>
                                             )
                                         )}
-                                        <li className="lg:relative lg:block z-20">
-                                            <div className="relative block pt-6 pl-0 md:pl-12 md:pt-0">
+                                        <li className="z-20 lg:relative lg:block">
+                                            <div className="relative block pl-0 pt-6 md:pl-12 md:pt-0">
                                                 <button
+                                                    tabIndex="1"
                                                     aria-label="Open Modal"
                                                     onClick={openModal}
                                                     data-modal-target="default-modal"
                                                     data-modal-toggle="default-modal"
                                                     type="button"
-                                                    className="w-5 h-5"
+                                                    className="h-5 w-5"
                                                 >
                                                     <SearchIcon
-                                                        className="w-5 h-5 fill-primary"
+                                                        className="h-5 w-5 fill-primary"
                                                         color="#005893"
                                                     />
                                                 </button>

@@ -9,7 +9,7 @@ import Text from '../typography/Text';
 import { ArrowForward } from '../icons/ArrowForward';
 import { Loader } from '../elements/Loader';
 import { useCurrentLocale } from 'next-i18n-router/client';
-import i18nConfig from '@/i18nConfig';
+import i18nConfig from '/i18nConfig';
 
 // 20 - Level
 // 25 - Arbeitsort
@@ -30,14 +30,11 @@ const ProspectiveCareer = ({ blok }) => {
 
     const jobClick = useRef();
 
-
     useEffect(() => {
         let jobClickReference = jobClick.current;
-        console.log("jobClickReference", jobClickReference)
+
         jobClickReference?.addEventListener('click', (e) => {
-            console.log("still outside if", e.target)
             if (e.target.closest('a')) {
-                console.log("we are inside if", e.target)
                 const careerLink = e.target.closest('a')?.getAttribute('href');
                 const careerTitle = e.target
                     .closest('a')
@@ -45,7 +42,7 @@ const ProspectiveCareer = ({ blok }) => {
                 var _paq = (window._paq = window._paq || []);
                 _paq.push([
                     'trackEvent',
-                    'Job Overview Engagement',
+                    '3. Klicks auf individuelle Jobprofile',
                     `${careerTitle} - ${careerLink}`,
                 ]);
             }
@@ -568,7 +565,7 @@ const ProspectiveCareer = ({ blok }) => {
 
         Object.keys(selectedOptions).map((key) => {
             if (selectedOptions[key]) {
-                if (selectedOptions[key] != "none") {
+                if (selectedOptions[key] != 'none') {
                     if (filtersString.length) {
                         filtersString += `,`;
                     }
@@ -658,39 +655,43 @@ const ProspectiveCareer = ({ blok }) => {
     return (
         <section className="mt-12" {...storyblokEditable(blok)}>
             <SmallWidth>
-                <div className="grid col-span-12">
+                <div className="col-span-12 grid">
                     <div
-                        className="grid grid-cols-4 justify-stretch hover:cursor-pointer gap-x-2"
+                        className="grid grid-cols-4 justify-stretch gap-x-2 hover:cursor-pointer mt-20 lg:mt-0"
                         role="group"
                     >
                         <a
+                            tabIndex="1"
                             href={blok.button_1.url}
                             type="button"
-                            className="md:col-span-1 col-span-4 mb-4 flex items-center justify-between px-4 py-2 text-sm font-medium text-primary bg-primarySolid-50  hover:bg-gray-100 hover:cursor-pointer hover:text-primary"
+                            className="col-span-4 mb-4 flex items-center justify-between bg-primarySolid-50 px-4 py-2 text-sm font-medium text-primary hover:cursor-pointer hover:bg-greySolid-100 hover:text-primary md:col-span-1"
                         >
                             {blok.button_1_text}
                             <ArrowForward styles="w-3 h-3 fill-primary" />
                         </a>
                         <a
+                            tabIndex="1"
                             href={blok.button_2.url}
                             type="button"
-                            className="md:col-span-1 col-span-4 mb-4 flex items-center justify-between px-4 py-2 text-sm font-medium text-primary bg-primarySolid-50 hover:bg-gray-100 hover:cursor-pointer hover:text-primary"
+                            className="col-span-4 mb-4 flex items-center justify-between bg-primarySolid-50 px-4 py-2 text-sm font-medium text-primary hover:cursor-pointer hover:bg-greySolid-100 hover:text-primary md:col-span-1"
                         >
                             {blok.button_2_text}
                             <ArrowForward styles="w-3 h-3 fill-primary" />
                         </a>
                         <a
+                            tabIndex="1"
                             href={blok.button_3.url}
                             type="button"
-                            className="md:col-span-1 col-span-4 mb-4 flex items-center justify-between px-4 py-2 text-sm font-medium text-primary bg-primarySolid-50 hover:bg-gray-100 hover:cursor-pointer hover:text-primary"
+                            className="col-span-4 mb-4 flex items-center justify-between bg-primarySolid-50 px-4 py-2 text-sm font-medium text-primary hover:cursor-pointer hover:bg-greySolid-100 hover:text-primary md:col-span-1"
                         >
                             {blok.button_3_text}
                             <ArrowForward styles="w-3 h-3 fill-primary" />
                         </a>
                         <a
+                            tabIndex="1"
                             href={blok.button_4.url}
                             type="button"
-                            className="md:col-span-1 col-span-4 mb-4 flex items-center justify-between px-4 py-2 text-sm font-medium text-primary bg-primarySolid-50  hover:bg-gray-100 hover:cursor-pointer hover:text-primary"
+                            className="col-span-4 mb-4 flex items-center justify-between bg-primarySolid-50 px-4 py-2 text-sm font-medium text-primary hover:cursor-pointer hover:bg-greySolid-100 hover:text-primary md:col-span-1"
                         >
                             {blok.button_4_text}
                             <ArrowForward styles="w-3 h-3 fill-primary" />
@@ -702,33 +703,34 @@ const ProspectiveCareer = ({ blok }) => {
                     <Text>{blok.description_text}</Text>
                 </div>
 
-                <div className="grid col-span-12 grid-cols-12 my-8 mb-12">
-                    <div className="grid col-span-12">
+                <div className="col-span-12 my-8 mb-12 grid grid-cols-12">
+                    <div className="col-span-12 grid">
                         <label
                             htmlFor="search"
-                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            className="mb-2 block text-sm font-medium text-greySolid-800"
                         >
                             {blok.search_input_label}
                         </label>
                         <input
+                            tabIndex="1"
                             type="text"
                             id="search"
-                            className="border text-sm block w-full p-2.5  text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                            className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             placeholder=""
                             onChange={(e) => onSearchChange(e)}
                         />
                     </div>
-                    <div className="grid col-span-12 grid-cols-12 gap-6 mt-4">
-                        <div className="grid col-span-6">
+                    <div className="col-span-12 mt-4 grid grid-cols-12 gap-6">
+                        <div className="col-span-6 grid">
                             <label
                                 htmlFor="countries"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                className="mb-2 block text-sm font-medium text-greySolid-800"
                             >
                                 {blok.select_1_label}
                             </label>
 
                             <select
-                                className="border text-sm block w-full p-2.5  text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterJobs(e, '10')}
                                 value={
                                     selectedOptions['10']
@@ -754,15 +756,15 @@ const ProspectiveCareer = ({ blok }) => {
                                     )}
                             </select>
                         </div>
-                        <div className="grid col-span-6">
+                        <div className="col-span-6 grid">
                             <label
                                 htmlFor="countries"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                className="mb-2 block text-sm font-medium text-greySolid-800"
                             >
                                 {blok.select_2_label}
                             </label>
                             <select
-                                className="border text-sm block w-full p-2.5  text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterJobs(e, '20')}
                                 value={
                                     selectedOptions['20']
@@ -789,16 +791,16 @@ const ProspectiveCareer = ({ blok }) => {
                             </select>
                         </div>
                     </div>
-                    <div className="grid col-span-12 grid-cols-12 gap-6 mt-4">
-                        <div className="grid col-span-6">
+                    <div className="col-span-12 mt-4 grid grid-cols-12 gap-6">
+                        <div className="col-span-6 grid">
                             <label
                                 htmlFor="countries"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                className="mb-2 block text-sm font-medium text-greySolid-800"
                             >
                                 {blok.select_3_label}
                             </label>
                             <select
-                                className="border text-sm block w-full p-2.5  text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => {
                                     filterJobs(e, '25', false);
                                     setLocation(e, '25');
@@ -827,10 +829,10 @@ const ProspectiveCareer = ({ blok }) => {
                                     )}
                             </select>
                         </div>
-                        <div className="grid col-span-6">
+                        <div className="col-span-6 grid">
                             <label
                                 htmlFor="countries_disabled"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                className="mb-2 block text-sm font-medium text-greySolid-800"
                             >
                                 {blok.select_4_label}
                             </label>
@@ -840,18 +842,18 @@ const ProspectiveCareer = ({ blok }) => {
                                 }}
                                 disabled={!dependentField}
                                 id="countries_disabled"
-                                className="border text-sm block w-full p-2.5  text-base border-primary focus:ring-1 focus:ring-primary hover:text-gray-900 hover:bg-gray-100"
+                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             >
                                 <option value="none">
                                     {blok.select_4_placeholder}
                                 </option>
                                 {dependentField &&
                                     attributes[
-                                    Object.keys(dependentFilter)[0]
+                                        Object.keys(dependentFilter)[0]
                                     ] &&
                                     Object.values(
                                         attributes[
-                                        Object.keys(dependentFilter)[0]
+                                            Object.keys(dependentFilter)[0]
                                         ]
                                     ).map((value) => {
                                         return (
@@ -867,7 +869,7 @@ const ProspectiveCareer = ({ blok }) => {
                         </div>
                     </div>
                 </div>
-                <div className="grid mb-24 col-span-12">
+                <div className="col-span-12 mb-24 grid">
                     <H3>{blok.subtitle}</H3>
                     <div className="divide-y" ref={jobClick}>
                         {isDataLoading ? (
@@ -875,17 +877,19 @@ const ProspectiveCareer = ({ blok }) => {
                         ) : (
                             jobs?.map((item, key) => (
                                 <a
+                                    tabIndex="1"
                                     key={key}
                                     href={item.links.directlink}
                                     target="_blank"
                                     className="block py-4 hover:cursor-pointer hover:text-primary"
+                                    rel="noreferrer"
                                 >
                                     <H4>{item.title}</H4>
                                     <div className="flex">
                                         <div className="mr-4 flex items-center">
                                             <span>
                                                 <img
-                                                    className="w-3 h-3 mr-1"
+                                                    className="mr-1 h-3 w-3"
                                                     src="/ohne-box/location.svg"
                                                     alt="Location image"
                                                 />
@@ -895,7 +899,7 @@ const ProspectiveCareer = ({ blok }) => {
                                                 ,{' '}
                                                 {
                                                     item.szas[
-                                                    'sza_location.country'
+                                                        'sza_location.country'
                                                     ]
                                                 }
                                             </p>

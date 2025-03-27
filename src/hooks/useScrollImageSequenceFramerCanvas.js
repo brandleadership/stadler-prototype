@@ -12,11 +12,6 @@ const useScrollImageSequenceFramerCanvas = ({ onDraw, keyframes }) => {
             window.innerHeight - window.innerHeight / 4
                 ? window.innerWidth / 2.35
                 : window.innerHeight - window.innerHeight / 4;
-        console.log(
-            'window',
-            window.innerHeight - window.innerHeight / 4,
-            window.innerWidth / 2.3
-        );
     }, []);
 
     const renderImage = useCallback(

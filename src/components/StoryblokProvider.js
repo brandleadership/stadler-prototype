@@ -6,7 +6,6 @@ import Page from './sections/Page';
 import Footer from './sections/Footer';
 import HeroText from './sections/HeroText';
 import HeroCareer from './sections/HeroCareer';
-import FactsAndFigures from './sections/FactsAndFigures';
 import Video from './sections/Video';
 import HomePageHero from './sections/HomePageHero';
 import TeaserImageLeft from './sections/TeaserImageLeft';
@@ -35,7 +34,6 @@ import Contact from './sections/Contact';
 import SolutionsGrid from './sections/SolutionsGrid';
 import SolutionsGridItem from './sections/SolutionsGridItem';
 import DownloadItem from './sections/DownloadItem';
-import ButtonPrimary from './elements/ButtonPrimary';
 import ReportsGrid from './sections/ReportsGrid';
 import ReportsItem from './sections/ReportsItem.js.js';
 import ImageTrippleBanner from './sections/ImageTrippleBanner';
@@ -103,7 +101,6 @@ import EmployeeContent from './sections/EmployeeContent';
 import ContactForm from './sections/ContactForm';
 import AllStandorte from './sections/AllStandorte';
 import AccordionLocations from './sections/AccordionLocations';
-import JobOverview from './sections/JobOverview';
 import MailchimpEmbed from './sections/MailchimpEmbed';
 import ProspectiveCareer from './sections/ProspectiveCareer';
 import SimpleContainerWrapper from './sections/SimpleContainerWrapper';
@@ -111,6 +108,10 @@ import ConfigFooter from './sections/Config_footer';
 import ConfigHeader from './sections/Config_header';
 import NotFoundError from './sections/NotFoundError';
 import CertificateItem from './sections/CertificateItem';
+import CookiebotDeclaration from './sections/CookiebotDeclaration';
+import SocialWallComponent from './sections/SocialWallComponent';
+import ComplienceGrid from './sections/ComplienceGrid';
+import ComplienceItem from './sections/ComplienceItem';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -141,7 +142,7 @@ storyblokInit({
         'according-table-item': AccordionTableItem,
         'accordion-download-wrapper-blueline': AccordionWrapperBlueLine,
         'accordion-text-download-item': AccordionTextDownloadItem,
-        'certificate_item': CertificateItem,
+        certificate_item: CertificateItem,
         'highlights-grid': AdvantagesGrid,
         'highlights-item': AdvantageItem,
         'portrait-grid': PortraitGrid,
@@ -221,13 +222,16 @@ storyblokInit({
         employee_story: EmployeeContent,
         'form-wrapper': ContactForm,
         'single-location-wrapper': AccordionLocations,
-        'job-overview': JobOverview,
         'signup-mailchimp': MailchimpEmbed,
         'career-prospective': ProspectiveCareer,
         simple_container_wrapper: SimpleContainerWrapper,
         config_footer: ConfigFooter,
         config_header: ConfigHeader,
         error_404: NotFoundError,
+        cookiebot_declaration: CookiebotDeclaration,
+        social_wall: SocialWallComponent,
+        complience_grid: ComplienceGrid,
+        complience_item: ComplienceItem,
     },
 });
 

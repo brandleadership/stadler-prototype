@@ -1,8 +1,7 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react';
-import Header from './Header';
 import HeaderNew from './HeaderNew';
-const ConfigHeader = ({ blok }) => {
+const ConfigHeader = ({ blok, translatedSlugs }) => {
     return (
         <>
             <div {...storyblokEditable(blok)}>
@@ -10,6 +9,7 @@ const ConfigHeader = ({ blok }) => {
                     <HeaderNew
                         className=""
                         blok={nestedBlok}
+                        translatedSlugs={translatedSlugs}
                         key={nestedBlok._uid}
                     />
                 ))}

@@ -1,5 +1,4 @@
 const ButtonUrlRenderer = (data) => {
-    console.log("ButtonUrlRenderer", data)
     if (!data) {
         return '/';
     }
@@ -11,18 +10,28 @@ const ButtonUrlRenderer = (data) => {
     }
     if (data.linktype && data.linktype == 'asset') {
         if (data.url) {
-            return data?.url || '/';
+            return (
+                data?.url.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                ) || '/'
+            );
         }
         if (data.fieldtype) {
             return data?.filename || '/';
         }
-        return '/'
+        return '/';
     }
     if (data.fieldtype && data.fieldtype == 'asset') {
         if (data.filename) {
-            return data?.filename || '/';
+            return (
+                data?.filename.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                ) || '/'
+            );
         }
-        return '/'
+        return '/';
     }
     if (data.linktype && data.linktype == 'url') {
         return data?.url || '/';

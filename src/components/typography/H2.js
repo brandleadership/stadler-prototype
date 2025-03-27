@@ -3,7 +3,7 @@ const H2 = ({ children, styles, resetStyles }) => {
     const H2Styles = ` ${
         resetStyles
             ? defaultStyles
-            : 'font-semibold text-2xl lg:text-4xl mb-6 lg:mb-8'
+            : 'font-bold text-2xl lg:text-4xl mb-6 lg:mb-8'
     } ${styles || ''}`;
     return <h2 className={H2Styles}>{children}</h2>;
 };

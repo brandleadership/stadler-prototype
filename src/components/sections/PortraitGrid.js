@@ -7,7 +7,7 @@ const PortraitGrid = ({ blok }) => (
     <section>
         <SmallWidth>
             <div
-                className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8"
+                className="mb-8 grid grid-cols-1 gap-3 md:grid-cols-2"
                 {...storyblokEditable(blok)}
             >
                 {blok.Portrait.map((nestedBlok) => (

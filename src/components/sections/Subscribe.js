@@ -3,9 +3,9 @@ import H2 from '../typography/H2';
 
 export default function Subscribe() {
     return (
-        <section className="bg-white my-20 ">
-            <div className="px-4 mx-auto max-w-screen-xl lg:px-6">
-                <div className="gap-16 justify-between items-center p-6 text-white bg-primary lg:flex lg:gap-24 md:p-12">
+        <section className="my-20 bg-white">
+            <div className="mx-auto max-w-screen-xl px-4 lg:px-6">
+                <div className="items-center justify-between gap-16 bg-primary p-6 text-white md:p-12 lg:flex lg:gap-24">
                     <div className="w-full">
                         <H2>Sign up for our newsletter</H2>
                         <p className="font-light text-white sm:text-xl">
@@ -16,67 +16,70 @@ export default function Subscribe() {
                     </div>
                     <div className="mt-6 w-full lg:mt-0">
                         <form action="#">
-                            <div className="items-center mb-8 space-y-4 flex-col">
+                            <div className="mb-8 flex-col items-center space-y-4">
                                 <div className="relative w-full">
-                                    <label className=" mb-2 text-sm font-medium text-white">
+                                    <label className="mb-2 text-sm font-medium text-white">
                                         Vorname
                                     </label>
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
                                     <input
-                                        className="block p-3  w-full text-sm text-gray-900 bg-greySolid-30  border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        tabIndex="1"
+                                        className="focus:ring-primary-500 focus:border-primary-500 block w-full border border-greySolid-300 bg-greySolid-30 p-3 text-sm text-greySolid-800"
                                         placeholder="Enter your Vorname"
                                         type="text"
                                     />
                                 </div>
                                 <div className="relative w-full">
-                                    <label className=" mb-2 text-sm font-medium text-white">
+                                    <label className="mb-2 text-sm font-medium text-white">
                                         Nachname
                                     </label>
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
                                     <input
-                                        className="block p-3  w-full text-sm text-gray-900 bg-greySolid-30  border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        tabIndex="1"
+                                        className="focus:ring-primary-500 focus:border-primary-500 block w-full border border-greySolid-300 bg-greySolid-30 p-3 text-sm text-greySolid-800"
                                         placeholder="Enter your Nachname"
                                         type="text"
                                     />
                                 </div>
                                 <div className="relative w-full">
-                                    <label className=" mb-2 text-sm font-medium text-white">
+                                    <label className="mb-2 text-sm font-medium text-white">
                                         Firma
                                     </label>
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
                                     <input
-                                        className="block p-3  w-full text-sm text-gray-900 bg-greySolid-30  border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        tabIndex="1"
+                                        className="focus:ring-primary-500 focus:border-primary-500 block w-full border border-greySolid-300 bg-greySolid-30 p-3 text-sm text-greySolid-800"
                                         placeholder="Enter your Firma"
                                         type="text"
                                     />
                                 </div>
                                 <div className="relative w-full">
-                                    <label className=" mb-2 text-sm font-medium text-white">
+                                    <label className="mb-2 text-sm font-medium text-white">
                                         Email address
                                     </label>
-                                    <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
                                     <input
-                                        className="block p-3 w-full text-sm text-gray-900 bg-greySolid-30  border border-white "
+                                        tabIndex="1"
+                                        className="block w-full border border-white bg-greySolid-30 p-3 text-sm text-greySolid-800"
                                         placeholder="Enter your E-mail"
                                         type="email"
                                     />
                                 </div>
                                 <div className="flex items-center">
                                     <input
-                                        className="
-        peer relative appearance-none shrink-0 w-6 h-6 border-2  bg-white
-        border-primary checked:bg-primary hover:checked:bg-primary checked:border-primary focus:checked:bg-primary hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary
-      "
+                                        tabIndex="1"
+                                        className="peer relative h-6 w-6 shrink-0 appearance-none border-2 border-primary bg-white checked:border-primary checked:bg-primary hover:border-primary hover:checked:bg-primary focus:border-primary focus:ring-2 focus:ring-primary focus:checked:bg-primary"
                                         type="checkbox"
                                     />
                                     <label
                                         htmlFor="checkbox-1"
-                                        className="ms-2 text-sm font-medium text-white dark:text-gray-300"
+                                        className="ms-2 text-sm font-medium text-white"
                                     >
                                         I agree to the{' '}
                                         <a
+                                            tabIndex="1"
                                             href="#"
-                                            className="text-white hover:underline "
+                                            className="text-white hover:underline"
                                         >
                                             terms and conditions
                                         </a>

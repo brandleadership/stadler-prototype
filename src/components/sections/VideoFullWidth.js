@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import SmallWidth from '../layouts/SmallWidth';
+import H3 from '../typography/H3';
 
 export default function VideoFullWidth({ blok }) {
     const [playing, setPlaying] = useState(false);
@@ -42,11 +43,13 @@ export default function VideoFullWidth({ blok }) {
             {...storyblokEditable(blok)}
         >
             <SmallWidth>
+                {blok?.title ? <H3>{blok?.title}</H3> : <></>}
                 <video
                     loading="lazy"
                     ref={videoRef}
-                    controls={true}
-                    autoPlay={false}
+                    controls
+                    autoPlay={true}
+                    playsInline={true}
                     muted={true}
                     src={blok?.video.filename}
                     loop={true}

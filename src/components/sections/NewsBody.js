@@ -8,7 +8,7 @@ function NewsBody({ blok }) {
         <section {...storyblokEditable(blok)} className="mb-32">
             <ArticleHero block={blok} />
             <SuperSmallWidth>
-                <div className="col-span-12 w-full mb-32">
+                <div className="col-span-12 mb-32 w-full">
                     <RichTextRenderer text={blok.text} />
                 </div>
             </SuperSmallWidth>

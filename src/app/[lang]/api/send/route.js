@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { EmailTemplate } from '@/src/components/email-template/EmailTemplate';
+import { EmailTemplate } from '/src/components/email-template/EmailTemplate';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -22,7 +22,7 @@ export async function POST(request) {
     try {
         const data = await resend.emails.send({
             from: 'info@stadlerrail.com <info@stadlerrail.com>',
-            to: ['tim.bornhauser@stadlerrail.com'], //stadler.rail@stadlerrail.com //cecile.hefti@outlook.com
+            to: ['stadler.rail@stadlerrail.com'],
             subject: '[EXTERNAL] New Message from Contact Page',
             react: EmailTemplate({
                 language: language,

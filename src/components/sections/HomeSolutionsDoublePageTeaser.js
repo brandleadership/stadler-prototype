@@ -1,7 +1,7 @@
 'use client';
-import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
+import { storyblokEditable } from '@storyblok/react/rsc';
 import ContentWidth from '../layouts/ContentWidth';
-import H2 from '../typography/H2';
+import H3 from '../typography/H3';
 import Text from '../typography/Text';
 import { ArrowForward } from '../icons/ArrowForward';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
@@ -15,28 +15,32 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
     return (
         <section {...storyblokEditable(blok)} className="pb-16 lg:pb-24">
             <ContentWidth>
-                <div className="col-span-12 max-w-full mx-auto">
-                    <div className="mb-12 tracking-tight dark:text-white border border-solid border-greyBrighten-300"></div>
-                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 md:gap-20 lg:gap-y-40">
+                <div className="col-span-12 mx-auto max-w-full">
+                    <div className="mb-12 border border-solid border-greyBrighten-300 tracking-tight"></div>
+                    <ul className="grid grid-cols-1 gap-4 sm:gap-12 md:gap-20 lg:grid-cols-2 lg:gap-y-40">
                         <li>
                             <img
                                 src={blok?.image_1.filename}
-                                alt={`Image for ${blok?.title_1}`}
+                                alt={
+                                    blok?.image_1?.filename?.alt ??
+                                    `Image for ${blok?.title_1}`
+                                }
                             />
 
                             <div className="pr-0">
                                 <motion.a
+                                    tabIndex="1"
                                     href={ButtonUrlRenderer(blok?.link_1)}
-                                    className="flex flex-col items-start text-xl font-bold text-white mt-5 mb-4 lg:mb-0"
+                                    className="mb-4 mt-5 flex flex-col items-start text-xl font-bold text-white lg:mb-0"
                                     initial="rest"
                                     whileTap="hover"
                                     whileHover="hover"
                                     animate="rest"
                                 >
                                     <div className="text-4xl">
-                                        <H2 styles="!mb-0 lg:!mb-2">
+                                        <H3 styles="!mb-0 lg:!mb-2">
                                             {blok?.title_1}
-                                        </H2>
+                                        </H3>
                                     </div>
                                     <div className="">
                                         <Text>{blok?.text_1}</Text>
@@ -56,21 +60,25 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                         <li>
                             <img
                                 src={blok?.image_2.filename}
-                                alt={`Image for ${blok?.title_2}`}
+                                alt={
+                                    blok?.image_2.filename?.alt ??
+                                    `Image for ${blok?.title_2}`
+                                }
                             />
                             <div className="pr-0">
                                 <motion.a
+                                    tabIndex="1"
                                     href={ButtonUrlRenderer(blok?.link_2)}
-                                    className="flex flex-col items-start text-xl font-bold text-white mt-5 mb-0"
+                                    className="mb-0 mt-5 flex flex-col items-start text-xl font-bold text-white"
                                     initial="rest"
                                     whileTap="hover"
                                     whileHover="hover"
                                     animate="rest"
                                 >
                                     <div className="">
-                                        <H2 styles="!mb-0 lg:!mb-2">
+                                        <H3 styles="!mb-0 lg:!mb-2">
                                             {blok?.title_2}
-                                        </H2>
+                                        </H3>
                                     </div>
                                     <Text>{blok?.text_2}</Text>
                                     <motion.span

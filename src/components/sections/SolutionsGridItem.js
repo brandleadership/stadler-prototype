@@ -9,13 +9,13 @@ const SolutionsGridItem = ({ blok }) => {
     return (
         <div
             {...storyblokEditable(blok)}
-            className="  bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700 max-w-fit"
+            className="w-full border border-greySolid-100 bg-white shadow"
         >
-            <Link href={ButtonUrlRenderer(blok?.link)}>
+            <Link tabIndex="1" href={ButtonUrlRenderer(blok?.link)}>
                 <img
                     className="w-full"
                     src={blok?.image.filename}
-                    alt={`Image for ${blok?.title}`}
+                    alt={blok?.image.filename.alt ?? `Image for ${blok?.title}`}
                 />
 
                 <div className="p-4 lg:p-5">

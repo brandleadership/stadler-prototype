@@ -20,7 +20,7 @@ export async function GET(req) {
         const attributes = await initialResponse.json();
 
         return NextResponse.json(attributes);
-    } catch (err) {
+    } catch {
         return NextResponse.json({});
     }
 }
