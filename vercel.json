@@ -1,19 +1,26 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/docs/:path*",
-      "destination": "https://a.storyblok.com/f/269997/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
+    "rewrites": [
         {
-          "key": "x-vercel-enable-rewrite-caching",
-          "value": "1"
+            "source": "/api/docs/:path*",
+            "destination": "https://a.storyblok.com/f/269997/:path*"
         }
-      ]
-    }
-  ]
+    ],
+    "redirects": [
+        {
+            "source": "/api/docs/:path*",
+            "destination": "https://a.storyblok.com/f/269997/:path*",
+            "permanent": true
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "x-vercel-enable-rewrite-caching",
+                    "value": "1"
+                }
+            ]
+        }
+    ]
 }
