@@ -5,17 +5,56 @@ import H3 from '../typography/H3';
 import { useState, useEffect, useRef } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import Modal from 'react-modal';
 import ContentWidth from '../layouts/ContentWidth';
 import { ChevronRight } from '../icons/ChevronRight';
 import { ChevronLeft } from '../icons/ChevronLeft';
+import { CloseIcon } from '../icons/CloseIcon';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/swiper-bundle.css';
 
 const EventSlider = ({ blok }) => {
     const [isMobile, setIsMobile] = useState(1024);
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isModalOpen]);
+
+    const openModal = (index) => {
+        setCurrentImageIndex(index);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const showNext = () => {
+        setCurrentImageIndex((prevIndex) => {
+            if (prevIndex >= blok.images.length - 1) {
+                return 0;
+            }
+            return prevIndex + 1;
+        });
+    };
+
+    const showPrev = () => {
+        setCurrentImageIndex((prevIndex) => {
+            if (prevIndex <= 0) {
+                return blok.images.length - 1;
+            }
+            return prevIndex - 1;
+        });
+    };
 
     const swiperRef = useRef();
 
@@ -73,7 +112,7 @@ const EventSlider = ({ blok }) => {
                                     },
                                 }}
                             >
-                                {blok.images.map((image) => {
+                                {blok.images.map((image, index) => {
                                     return (
                                         <SwiperSlide
                                             key={image.id}
@@ -82,11 +121,14 @@ const EventSlider = ({ blok }) => {
                                             <div className="relative aspect-[16/9]">
                                                 <img
                                                     key={image.slug + ' image'}
-                                                    className="aspect-[4/3] w-full object-cover"
+                                                    className="aspect-[4/3] w-full cursor-pointer object-cover"
                                                     src={image.filename}
                                                     alt={
                                                         image?.alt ??
                                                         'Event Image'
+                                                    }
+                                                    onClick={() =>
+                                                        openModal(index)
                                                     }
                                                 />
                                             </div>
@@ -95,6 +137,54 @@ const EventSlider = ({ blok }) => {
                                 })}
                             </Swiper>
                         </div>
+                        {isModalOpen && (
+                            <Modal
+                                ariaHideApp={false}
+                                isOpen={isModalOpen}
+                                onRequestClose={closeModal}
+                                overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+                                className="relative flex h-[90vh] w-full items-center justify-center bg-transparent focus:outline-none"
+                                contentLabel="Image Modal"
+                            >
+                                <button
+                                    onClick={closeModal}
+                                    className="absolute right-4 top-4 z-50 text-3xl text-white hover:text-gray-300"
+                                >
+                                    <CloseIcon styles="fill-primary" />
+                                </button>
+                                <button
+                                    onClick={showPrev}
+                                    disabled={currentImageIndex === 0}
+                                    aria-label="Previous Image"
+                                    className="absolute left-4 top-1/2 z-50 -translate-y-1/2 transform"
+                                >
+                                    <ChevronLeft styles="w-8 h-8 fill-primary" />
+                                </button>
+
+                                <button
+                                    onClick={showNext}
+                                    disabled={
+                                        currentImageIndex ===
+                                        blok.images.length - 1
+                                    }
+                                    aria-label="Next Image"
+                                    className="absolute right-4 top-1/2 z-50 -translate-y-1/2 transform"
+                                >
+                                    <ChevronRight styles="w-8 h-8 fill-primary" />
+                                </button>
+
+                                <img
+                                    src={
+                                        blok.images[currentImageIndex].filename
+                                    }
+                                    alt={
+                                        blok.images[currentImageIndex].alt ??
+                                        'Event Image'
+                                    }
+                                    className="h-full w-full max-w-[80%] object-contain"
+                                />
+                            </Modal>
+                        )}
                     </div>
                     <div className="relative mt-8 flex w-full flex-row items-center justify-center gap-4">
                         <button

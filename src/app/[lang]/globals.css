@@ -201,3 +201,7 @@ h4 {
 .pagination-bullet-active-event {
     background: #2b2d29;
 }
+
+.ReactModal__Content:focus {
+    outline: none;
+}
