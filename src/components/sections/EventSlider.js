@@ -16,10 +16,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/swiper-bundle.css';
 
+Modal.setAppElement('body');
+
 const EventSlider = ({ blok }) => {
     const [isMobile, setIsMobile] = useState(1024);
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        if (!isModalOpen) {
+            document.body.removeAttribute('aria-hidden');
+        }
+    }, [isModalOpen]);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -139,7 +147,7 @@ const EventSlider = ({ blok }) => {
                         </div>
                         {isModalOpen && (
                             <Modal
-                                ariaHideApp={false}
+                                // ariaHideApp={false}
                                 isOpen={isModalOpen}
                                 onRequestClose={closeModal}
                                 overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
