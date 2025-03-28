@@ -129,9 +129,7 @@ const SuccessStoryGrid = ({ blok }) => {
                             </Swiper>
                         </div>
                     </div>
-                    <div
-                        className={`${images.length < 2 ? 'hidden' : 'flex flex-row'} relative mt-8 w-full items-center justify-center gap-4 lg:pl-20`}
-                    >
+                    <div className="relative mt-8 flex w-full flex-row items-center justify-center gap-4 lg:pl-20">
                         <button
                             onClick={() => swiperRef.current?.slidePrev()}
                             aria-label="button-prev"
