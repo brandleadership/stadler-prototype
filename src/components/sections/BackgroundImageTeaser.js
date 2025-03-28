@@ -9,7 +9,10 @@ function BackgroundImageTeaser({ blok }) {
                 {...storyblokEditable(blok)}
                 className={`relative bg-cover bg-center bg-no-repeat ${backgroundImage ? '' : 'bg-primarySolid-50'}`}
             >
-                <img src={backgroundImage} />
+                <img
+                    src={backgroundImage}
+                    alt={blok?.title || 'Image Upcomming events'}
+                />
 
                 <div className="absolute inset-0 mb-4 flex items-center justify-center text-center tracking-tight text-primary">
                     <H2>{blok?.title}</H2>

@@ -14,17 +14,24 @@ const TeaserImageRight = ({ blok }) => {
                     <div>
                         <div className="">
                             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+                                {blok?.logo_link && blok?.logo_icon && (
+                                    <a href={blok?.logo_link} aria-label="logo">
+                                        <img src={blok.logo_icon} alt="Logo" />
+                                    </a>
+                                )}
                                 <H2>{blok?.title}</H2>
                                 <div className="mt-4 text-xl">
                                     <Text>{blok?.text}</Text>
                                 </div>
-                                <ButtonPrimary
-                                    position="left"
-                                    buttonText={blok?.cta_button_text}
-                                    href={ButtonUrlRenderer(
-                                        blok?.cta_button_link
-                                    )}
-                                />
+                                {blok?.cta_button_text && (
+                                    <ButtonPrimary
+                                        position="left"
+                                        buttonText={blok?.cta_button_text}
+                                        href={ButtonUrlRenderer(
+                                            blok?.cta_button_link
+                                        )}
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>
