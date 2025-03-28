@@ -162,11 +162,6 @@ h4 {
     }
 }
 
-/* .swiper-slide-next,
-.swiper-slide-prev {
-    opacity: 0.3 !important;
-} */
-
 .swiper-pagination {
     display: flex;
     justify-content: center;
@@ -175,7 +170,6 @@ h4 {
 
 .pagination-bullet {
     background: #0000001a;
-    /* opacity: 1; */
     width: 32px;
     height: 4px;
     display: block;
@@ -184,4 +178,26 @@ h4 {
 
 .pagination-bullet-active {
     background: rgb(0 88 147);
+}
+
+.slider-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.pagination-bullet-event {
+    background: transparent;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    border: 1px solid #2b2d29;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.pagination-bullet-active-event {
+    background: #2b2d29;
 }
