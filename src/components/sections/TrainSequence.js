@@ -209,11 +209,6 @@ const imagesMobile = [
 
 const onDraw = (img, ctx) => {
     const canvas = ctx.canvas;
-    const widthRatio = canvas.width / img.width;
-    const heightRatio = canvas.height / img.height;
-    const ratio = Math.max(widthRatio, heightRatio);
-    const centerX = (canvas.width - img.width * ratio) / 2;
-    const centerY = (canvas.height - img.height * ratio) / 2;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(
@@ -222,10 +217,10 @@ const onDraw = (img, ctx) => {
         0,
         img.width,
         img.height,
-        centerX,
-        centerY,
-        img.width * ratio,
-        img.height * ratio
+        0,
+        0,
+        canvas.width,
+        canvas.height
     );
 };
 
@@ -254,12 +249,18 @@ const ImageSequence = ({ category }) => {
 
     const resizeCanvas = useCallback(() => {
         const canvas = canvasRef.current;
-        canvas.width = window.innerWidth;
-        canvas.height =
-            window.innerWidth / 2.35 <
-            window.innerHeight - window.innerHeight / 4
-                ? window.innerWidth / 2.35
-                : window.innerHeight - window.innerHeight / 4;
+        console.log(
+            'imagesMobile[0].widthdd',
+            imagesMobile[0].naturalHeight,
+            imagesMobile[0].naturalHeight
+        );
+        if (typeof window !== 'undefined' && window?.innerWidth < 786) {
+            canvas.width = 600;
+            canvas.height = 250;
+        } else {
+            canvas.width = 1728;
+            canvas.height = 720;
+        }
     }, []);
 
     const renderImage = useCallback(
@@ -382,7 +383,10 @@ const ImageSequence = ({ category }) => {
     return (
         <section>
             <div>
-                <canvas ref={canvasRef} className="block" />
+                <canvas
+                    ref={canvasRef}
+                    className="block min-w-full max-w-full"
+                />
             </div>
         </section>
     );
