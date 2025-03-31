@@ -126,6 +126,7 @@ https://consent.cookiebot.com/uc.js"
                         fontStadler.className +
                         ' flex min-h-screen flex-col overflow-x-hidden'
                     }
+                    id="__next"
                 >
                     <Script async>
                         {`

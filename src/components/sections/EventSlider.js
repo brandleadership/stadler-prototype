@@ -16,7 +16,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/swiper-bundle.css';
 
-Modal.setAppElement('body');
+Modal.setAppElement('#__next');
 
 const EventSlider = ({ blok }) => {
     const [isMobile, setIsMobile] = useState(1024);
@@ -147,7 +147,6 @@ const EventSlider = ({ blok }) => {
                         </div>
                         {isModalOpen && (
                             <Modal
-                                // ariaHideApp={false}
                                 isOpen={isModalOpen}
                                 onRequestClose={closeModal}
                                 overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
@@ -156,15 +155,16 @@ const EventSlider = ({ blok }) => {
                             >
                                 <button
                                     onClick={closeModal}
-                                    className="absolute right-4 top-4 z-50 text-3xl text-white hover:text-gray-300"
+                                    className="absolute right-4 top-4 z-50 rounded-full p-2 text-3xl text-white hover:bg-greySolid-300 hover:bg-opacity-50"
                                 >
                                     <CloseIcon styles="fill-primary" />
                                 </button>
+
                                 <button
                                     onClick={showPrev}
                                     disabled={currentImageIndex === 0}
                                     aria-label="Previous Image"
-                                    className="absolute left-4 top-1/2 z-50 -translate-y-1/2 transform"
+                                    className="absolute left-4 top-1/2 z-50 -translate-y-1/2 transform rounded-full p-2 hover:bg-greySolid-300 hover:bg-opacity-50"
                                 >
                                     <ChevronLeft styles="w-8 h-8 fill-primary" />
                                 </button>
@@ -176,7 +176,7 @@ const EventSlider = ({ blok }) => {
                                         blok.images.length - 1
                                     }
                                     aria-label="Next Image"
-                                    className="absolute right-4 top-1/2 z-50 -translate-y-1/2 transform"
+                                    className="absolute right-4 top-1/2 z-50 -translate-y-1/2 transform rounded-full p-2 hover:bg-greySolid-300 hover:bg-opacity-50"
                                 >
                                     <ChevronRight styles="w-8 h-8 fill-primary" />
                                 </button>
