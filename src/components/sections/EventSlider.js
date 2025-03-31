@@ -85,14 +85,14 @@ const EventSlider = ({ blok }) => {
             <ContentWidth>
                 <div className="col-span-12">
                     <div className="relative mb-4">
-                        <div className="flex items-center justify-center lg:pl-20 2xl:pl-0">
+                        <div className="flex items-center justify-center">
                             <H2>{blok?.title}</H2>
                         </div>
-                        <div className="flex items-center justify-center lg:pl-20 2xl:pl-0">
+                        <div className="flex items-center justify-center">
                             <H3>{blok?.subtitle}</H3>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center justify-between lg:pl-20 2xl:pl-0">
+                    <div className="flex flex-col items-center justify-between">
                         {isMobile && (
                             <div className="slider-event relative -top-4 flex w-full justify-center gap-2"></div>
                         )}

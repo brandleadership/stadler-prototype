@@ -3,6 +3,7 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import H2 from '../typography/H2';
 import SmallWidth from '../layouts/SmallWidth';
+import Image from 'next/image';
 import Text from '../typography/Text';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
@@ -20,12 +21,17 @@ const TeaserImageLeft = ({ blok }) => {
                     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                         {blok?.logo_link && blok?.logo_icon && (
                             <a
-                                href={blok?.logo_link}
+                                href={blok?.logo_link.url}
                                 aria-label="logo"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <img src={blok.logo_icon} alt="Logo" />
+                                <Image
+                                    width={150}
+                                    height={117}
+                                    src={blok.logo_icon.filename}
+                                    alt="Logo"
+                                />
                             </a>
                         )}
 
