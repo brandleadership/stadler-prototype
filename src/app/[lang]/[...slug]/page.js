@@ -17,7 +17,7 @@ export const revalidate = isDev ? 0 : 3600;
 async function fetchData(slug, lang) {
     const sbParams = {
         resolve_links: 'url',
-        version: 'draft',
+        version: 'published',
         cv: isDev || isDraft ? Date.now() : undefined,
         resolve_relations: [
             'global_contact_reference.reference',
@@ -77,7 +77,7 @@ async function fetchData(slug, lang) {
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'draft',
+        version: 'published',
     });
 
     const paths = [];
