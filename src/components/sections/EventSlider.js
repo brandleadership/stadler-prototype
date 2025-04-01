@@ -16,7 +16,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/swiper-bundle.css';
 
-Modal.setAppElement('#__next');
+// Modal.setAppElement('modals');
 
 const EventSlider = ({ blok }) => {
     const [isMobile, setIsMobile] = useState(1024);

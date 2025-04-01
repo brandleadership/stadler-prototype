@@ -1,13 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'a.storyblok.com',
-                pathname: '/**',
-            },
-        ],
+        domains: ['a.storyblok.com', 'stadlerrail.com'],
     },
     typescript: {
         // !! WARN !!
