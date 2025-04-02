@@ -716,7 +716,7 @@ const ProspectiveCareer = ({ blok }) => {
                             tabIndex="1"
                             type="text"
                             id="search"
-                            className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
+                            className="block w-full border border-primary p-2.5 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             placeholder=""
                             onChange={(e) => onSearchChange(e)}
                         />
@@ -731,7 +731,7 @@ const ProspectiveCareer = ({ blok }) => {
                             </label>
 
                             <select
-                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
+                                className="block w-full border border-primary p-2.5 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterJobs(e, '10')}
                                 value={
                                     selectedOptions['10']
@@ -765,7 +765,7 @@ const ProspectiveCareer = ({ blok }) => {
                                 {blok.select_2_label}
                             </label>
                             <select
-                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
+                                className="block w-full border border-primary p-2.5 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => filterJobs(e, '20')}
                                 value={
                                     selectedOptions['20']
@@ -801,7 +801,7 @@ const ProspectiveCareer = ({ blok }) => {
                                 {blok.select_3_label}
                             </label>
                             <select
-                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
+                                className="block w-full border border-primary p-2.5 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                                 onChange={(e) => {
                                     filterJobs(e, '25', false);
                                     setLocation(e, '25');
@@ -843,7 +843,7 @@ const ProspectiveCareer = ({ blok }) => {
                                 }}
                                 disabled={!dependentField}
                                 id="countries_disabled"
-                                className="block w-full border border-primary p-2.5 text-base text-sm hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
+                                className="block w-full border border-primary p-2.5 text-base hover:bg-greySolid-100 hover:text-greySolid-800 focus:ring-1 focus:ring-primary"
                             >
                                 <option value="none">
                                     {blok.select_4_placeholder}
