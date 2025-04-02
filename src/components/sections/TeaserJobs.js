@@ -3,6 +3,7 @@ import H2 from '../typography/H2';
 import Text from '../typography/Text';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Jobs = ({ blok }) => {
     // function optimizeImage(image) {
@@ -66,7 +67,7 @@ const Jobs = ({ blok }) => {
 
                     <div className="grid w-full shrink-0 grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:max-w-3xl">
                         {blok?.career_open_positions_items.map((item) => (
-                            <a
+                            <Link
                                 tabIndex="1"
                                 key={item.title}
                                 href={`${ButtonUrlRenderer(item.link)}?20=${item.entry_level}`}
@@ -95,7 +96,7 @@ const Jobs = ({ blok }) => {
                                         </p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>

@@ -14,49 +14,49 @@ const Footer = ({ blok }) => {
             className="flex flex-row flex-wrap gap-6 gap-y-4 lg:gap-8"
         >
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     href={`/${blok.link_1_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_1_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     href={`/${blok.link_2_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_2_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     href={`/${blok.link_3_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_3_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     href={`/${blok.link_4_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_4_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     href={`/${blok.link_5_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_5_text}
-                </a>
+                </Link>
             </li>
         </ul>
     );

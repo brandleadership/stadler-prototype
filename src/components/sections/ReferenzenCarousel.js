@@ -95,7 +95,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                         className="reference-slider my-1 h-auto cursor-pointer bg-white shadow lg:grid lg:grid-cols-2"
                                     >
                                         <div className="relative aspect-[16/9] w-full">
-                                            <a
+                                            <Link
                                                 tabIndex="1"
                                                 href={`/${article.full_slug}`}
                                                 className="inline-block"
@@ -113,7 +113,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                                     }
                                                     className="object-cover"
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="p-10 pt-4 leading-normal lg:pt-10">
                                             <Text styles="mb-6 lg:mb-10">
@@ -244,7 +244,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                         className="max-full relative mb-8 flex flex-col items-stretch justify-between border border-greySolid-100 bg-white shadow md:mb-0 md:max-w-md"
                                     >
                                         <div className="relative aspect-[2/1] h-[300px] w-full">
-                                            <a
+                                            <Link
                                                 tabIndex="1"
                                                 href={`/${train.full_slug}`}
                                             >
@@ -261,7 +261,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                                         `Image for ${train.content.title}`
                                                     }
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="flex h-full flex-col justify-between p-8">
                                             <H4 styles="mb-4">

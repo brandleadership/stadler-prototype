@@ -5,6 +5,7 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import Image from 'next/image';
 import H3 from '../typography/H3';
 import { ArrowForward } from '../icons/ArrowForward';
+import Link from 'next/link';
 
 const ReportsItem = ({ blok }) => {
     const investorsReference = useRef();
@@ -43,7 +44,7 @@ const ReportsItem = ({ blok }) => {
             </div>
             <div className="p-5">
                 <H3>{blok?.title}</H3>
-                <a
+                <Link
                     tabIndex="1"
                     ref={investorsReference}
                     href={ButtonUrlRenderer(blok?.cta_link)}
@@ -52,7 +53,7 @@ const ReportsItem = ({ blok }) => {
                     rel="noreferrer"
                 >
                     <ArrowForward styles="h-5 w-5 fill-primary" />
-                </a>
+                </Link>
             </div>
         </div>
     );

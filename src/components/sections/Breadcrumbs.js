@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const convertBreadcrumb = (string) => {
     const newString = string
@@ -47,17 +48,17 @@ const Breadcrumbs = () => {
                         <li key={i}>
                             {i !== breadcrumbs.length - 1 ? (
                                 <>
-                                    <a tabIndex="1" href={breadcrumb.href}>
+                                    <Link tabIndex="1" href={breadcrumb.href}>
                                         {convertBreadcrumb(
                                             breadcrumb.breadcrumb
                                         )}
-                                    </a>
+                                    </Link>
                                     <span className="px-3">|</span>
                                 </>
                             ) : (
-                                <a tabIndex="1" href={breadcrumb.href}>
+                                <Link tabIndex="1" href={breadcrumb.href}>
                                     {convertBreadcrumb(breadcrumb.breadcrumb)}
-                                </a>
+                                </Link>
                             )}
                         </li>
                     );

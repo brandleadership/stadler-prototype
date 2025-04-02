@@ -58,14 +58,14 @@ const Contact = ({ blok }) => {
                                     color="#fff"
                                     className="h-4 w-4 fill-white"
                                 />
-                                <a
+                                <Link
                                     tabIndex="1"
                                     type="email"
                                     className="border-none bg-transparent"
                                     href={'mailto:' + blok?.email_link?.email}
                                 >
                                     {blok?.email}
-                                </a>
+                                </Link>
                             </div>
                             <div className="flex space-x-4 py-2">
                                 <Link

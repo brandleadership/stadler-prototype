@@ -4,6 +4,7 @@ import H4 from '../typography/H4';
 import Text from '../typography/Text';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const TeaserSuccessStories = ({ blok }) => {
     // function optimizeImage(image) {
@@ -58,7 +59,7 @@ const TeaserSuccessStories = ({ blok }) => {
                     </div>
                     <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:mt-16 xl:grid-cols-3">
                         {blok?.employee_items.map((item) => (
-                            <a
+                            <Link
                                 tabIndex="1"
                                 key={ButtonUrlRenderer(item?.link)}
                                 href={ButtonUrlRenderer(item?.link)}
@@ -84,7 +85,7 @@ const TeaserSuccessStories = ({ blok }) => {
                                         </p>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>

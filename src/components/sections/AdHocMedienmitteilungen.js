@@ -11,6 +11,7 @@ import TrimText from '../helpers/TrimText';
 import H4 from '../typography/H4';
 import { useCurrentLocale } from 'next-i18n-router/client';
 import i18nConfig from '/i18nConfig';
+import Link from 'next/link';
 
 function AdHocMedienmitteilungen({ blok }) {
     const [articles, setArticles] = useState([]);
@@ -52,7 +53,7 @@ function AdHocMedienmitteilungen({ blok }) {
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {articles[0] &&
                         articles.map((article) => (
-                            <a
+                            <Link
                                 tabIndex="1"
                                 href={`/${article.full_slug}`}
                                 className="group mb-6 transition-all"
@@ -113,7 +114,7 @@ function AdHocMedienmitteilungen({ blok }) {
                                         {TrimText(article.content.lead)}
                                     </Text>
                                 </div>
-                            </a>
+                            </Link>
                         ))}
                 </div>
             </div>

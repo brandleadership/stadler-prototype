@@ -6,6 +6,7 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Features = ({ blok }) => {
     const pathname = usePathname();
@@ -63,7 +64,7 @@ const Features = ({ blok }) => {
                                     className="object-cover"
                                 />
                             </div>
-                            <a
+                            <Link
                                 tabIndex="1"
                                 href={ButtonUrlRenderer(blok?.link_1)}
                                 className="matomo-tracking-link mt-4 flex items-center gap-2 text-2xl font-bold"
@@ -81,7 +82,7 @@ const Features = ({ blok }) => {
                                         fill="#005893"
                                     />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                         <div className="flex flex-col items-center justify-center md:items-start">
                             <div className="relative aspect-[16/9] w-full">
@@ -96,7 +97,7 @@ const Features = ({ blok }) => {
                                     className="object-cover"
                                 />
                             </div>
-                            <a
+                            <Link
                                 tabIndex="1"
                                 href={ButtonUrlRenderer(blok?.link_2)}
                                 className="matomo-tracking-link mt-4 flex items-center gap-2 text-2xl font-bold"
@@ -114,7 +115,7 @@ const Features = ({ blok }) => {
                                         fill="#005893"
                                     />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

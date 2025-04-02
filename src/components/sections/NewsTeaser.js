@@ -11,6 +11,7 @@ import TrimText from '../helpers/TrimText';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
 import i18nConfig from '/i18nConfig';
+import Link from 'next/link';
 
 function NewsTeaser({ blok }) {
     const [articlesCategory, setArticlesCategory] = useState([]);
@@ -58,7 +59,7 @@ function NewsTeaser({ blok }) {
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                         {articlesCategory[0] &&
                             articlesCategory.map((article) => (
-                                <a
+                                <Link
                                     tabIndex="1"
                                     href={`/${article.full_slug}`}
                                     className="group mb-6 transition-all"
@@ -123,7 +124,7 @@ function NewsTeaser({ blok }) {
                                             {TrimText(article.content.lead)}
                                         </Text>
                                     </div>
-                                </a>
+                                </Link>
                             ))}
                     </div>
                 </div>
