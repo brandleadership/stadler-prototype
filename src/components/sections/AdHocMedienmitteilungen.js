@@ -1,7 +1,8 @@
 'use client';
 import ContentWidth from '../layouts/ContentWidth';
 import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
-
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useState, useEffect } from 'react';
 import H1 from '../typography/H1';
 import Text from '../typography/Text';
@@ -58,18 +59,31 @@ function AdHocMedienmitteilungen({ blok }) {
                                 key={article.uuid}
                             >
                                 <div className="flex h-52 items-center justify-center overflow-hidden">
-                                    <img
-                                        src={
-                                            article.content?.image?.filename ??
-                                            '/logo.svg'
-                                        }
-                                        className={`${article.content?.image?.filename ? 'h-full w-full' : 'h-auto w-[90%]'} object-cover transition-all group-hover:scale-110`}
-                                        alt={
-                                            article.content.image?.filename
-                                                ?.alt ??
-                                            'Article Medienmitteilungen image'
-                                        }
-                                    />
+                                    <div className="group relative aspect-[16/9] w-full overflow-hidden">
+                                        {article.content?.image ? (
+                                            <Image
+                                                src={ButtonUrlRenderer(
+                                                    article.content?.image
+                                                )}
+                                                fill={true}
+                                                sizes="100vw"
+                                                className="object-cover transition-all group-hover:scale-110"
+                                                alt={
+                                                    article.content.image
+                                                        ?.filename?.alt ??
+                                                    'Article Medienmitteilungen image'
+                                                }
+                                            />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center">
+                                                <img
+                                                    className="h-auto w-[90%] object-cover object-center transition-all group-hover:scale-110"
+                                                    src="/logo.svg"
+                                                    alt="Logo"
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <div className="mb-1 mt-4 flex flex-wrap">
                                     {article.content.categories.map(

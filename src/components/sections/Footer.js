@@ -1,8 +1,11 @@
-'use client';
 import Button from '../elements/ButtonSecondary';
 import Link from 'next/link';
 import ContentWidth from '../layouts/ContentWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
+import { Facebook } from '../icons/Facebook';
+import { YouTube } from '../icons/Youtube';
+import { Instagram } from '../icons/Instagram';
+import { LinkedIn } from '../icons/LinkedIn';
 
 const Footer = ({ blok }) => {
     const legalLinks = (
@@ -66,11 +69,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">LinkedIn</span>
-                <img
-                    src="/LinkedIn.svg"
-                    className="h-6 w-6"
-                    alt="Follow us on LinkedIn"
-                />
+                <LinkedIn styles="h-6 w-6"></LinkedIn>
             </Link>
             <Link
                 tabIndex="1"
@@ -78,11 +77,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">YouTube</span>
-                <img
-                    src="/youtube.svg"
-                    className="h-6 w-6"
-                    alt="Watch our videos on YouTube"
-                />
+                <YouTube styles="h-6 w-6"></YouTube>
             </Link>
             <Link
                 tabIndex="1"
@@ -90,11 +85,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">Facebook</span>
-                <img
-                    src="/facebook.svg"
-                    className="h-6 w-6"
-                    alt="Like us on Facebook"
-                />
+                <Facebook styles="h-6 w-6"></Facebook>
             </Link>
             <Link
                 tabIndex="1"
@@ -102,11 +93,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">Instagram</span>
-                <img
-                    src="/ohne-box/Instagram.svg"
-                    className="h-6 w-6"
-                    alt="Connect with us on Instagram"
-                />
+                <Instagram styles="h-6 w-6"></Instagram>
             </Link>
         </div>
     );

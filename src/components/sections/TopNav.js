@@ -1,4 +1,3 @@
-'use client';
 import LanguageSwitcher from '../elements/LanguageSwitcher';
 import React from 'react';
 import Link from 'next/link';
@@ -23,12 +22,7 @@ export default function TopNav({ blok, translatedSlugs }) {
                         <li key={item.name}>
                             <Link
                                 tabIndex="1"
-                                onClick={() => {
-                                    // closeUnternehmenSubmenu();
-                                    // closeSolutionsSubmenu();
-                                    /* closeMainMenu(); */
-                                    /* closeMobileNav(); */
-                                }}
+                                onClick={() => {}}
                                 href={ButtonUrlRenderer(item.href)}
                                 className="text-base font-medium leading-6 text-primarySolid-800 hover:text-primary"
                             >

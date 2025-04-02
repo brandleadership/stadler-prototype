@@ -10,6 +10,8 @@ import H4 from '../typography/H4';
 import { useCurrentLocale } from 'next-i18n-router/client';
 import i18nConfig from '/i18nConfig';
 import { SearchIcon } from '../icons/SearchIcon';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const filters = { country: '', category: '', product: '', year: '' };
 
@@ -187,12 +189,14 @@ function AllNews({ blok }) {
                                     className="group mb-6 transition-all"
                                     key={article.uuid}
                                 >
-                                    <div className="h-52 overflow-hidden">
-                                        <img
-                                            src={
-                                                article.content.image?.filename
-                                            }
-                                            className="h-full w-full object-cover transition-all group-hover:scale-110"
+                                    <div className="relative h-52 overflow-hidden">
+                                        <Image
+                                            src={ButtonUrlRenderer(
+                                                article.content?.image
+                                            )}
+                                            fill={true}
+                                            sizes="100vw"
+                                            className="object-cover transition-all group-hover:scale-110"
                                             alt={
                                                 article.content.image?.filename
                                                     .alt ?? 'News Article image'

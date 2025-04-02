@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+'use client';
+import { useState, useRef } from 'react';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import SmallWidth from '../layouts/SmallWidth';
 import H3 from '../typography/H3';
@@ -7,35 +8,14 @@ export default function VideoFullWidth({ blok }) {
     const [playing, setPlaying] = useState(false);
     const videoRef = useRef(null);
 
-    useEffect(() => {
-        const onScroll = () => {
-            if (
-                videoRef.current &&
-                isScrolledIntoView(videoRef.current) &&
-                !playing
-            ) {
-                setPlaying(true);
-                videoRef.current.play();
-            }
-        };
-
-        window.addEventListener('scroll', onScroll);
-
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        };
-    }, [playing]);
-
-    function isScrolledIntoView(elem) {
-        if (!elem) return false;
-        var rect = elem.getBoundingClientRect();
-        var elemTop = rect.top;
-        var elemBottom = rect.bottom;
-
-        var isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
-
-        return isVisible;
-    }
+    const handlePlay = () => {
+        setPlaying(true);
+        // Dynamically assign the video source on play
+        if (videoRef.current && !videoRef.current.src) {
+            videoRef.current.src = blok?.video.filename;
+        }
+        videoRef.current.play();
+    };
 
     return (
         <section
@@ -44,20 +24,50 @@ export default function VideoFullWidth({ blok }) {
         >
             <SmallWidth>
                 {blok?.title ? <H3>{blok?.title}</H3> : <></>}
-                <video
-                    loading="lazy"
-                    ref={videoRef}
-                    controls
-                    autoPlay={true}
-                    playsInline={true}
-                    muted={true}
-                    src={blok?.video.filename}
-                    loop={true}
-                    poster={blok?.videoPoster?.filename || ''}
-                >
-                    <source src={blok?.video.filename} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                <div className="relative aspect-video w-full">
+                    <video
+                        loading="lazy"
+                        ref={videoRef}
+                        className="h-full w-full object-cover"
+                        controls={playing}
+                        playsInline
+                        loop
+                        preload="none"
+                    >
+                        <source src={blok?.video.filename} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+
+                    {!playing && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <img
+                                src={blok?.videoPoster?.filename || '/logo.svg'}
+                                alt="Video placeholder"
+                                className="h-full w-full object-contain"
+                            />
+
+                            <button
+                                onClick={handlePlay}
+                                className="absolute flex items-center justify-center rounded-full bg-white p-4 shadow-lg"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-8 w-8 text-black"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    )}
+                </div>
             </SmallWidth>
         </section>
     );

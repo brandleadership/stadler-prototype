@@ -1,15 +1,20 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H4 from '../typography/H4';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const PortraitItem = ({ blok }) => (
     <div {...storyblokEditable(blok)}>
         <div className="mb-4">
-            <img
-                className="h-64 w-full object-cover object-top lg:h-96"
-                src={blok?.image.filename}
-                alt={blok?.image.filename?.alt ?? 'Portrait image'}
-            />
+            <div className="relative h-64 w-full lg:h-96">
+                <Image
+                    sizes="100vw"
+                    fill={true}
+                    className="object-cover object-top"
+                    src={ButtonUrlRenderer(blok?.image)}
+                    alt={blok?.image.filename?.alt ?? 'Portrait image'}
+                />
+            </div>
             <div className="mt-4 space-y-2">
                 <div>
                     <H4>{blok?.name}</H4>

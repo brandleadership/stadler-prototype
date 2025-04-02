@@ -1,4 +1,3 @@
-'use client';
 import H3 from '../../components/typography/H3';
 import Text from '../../components/typography/Text';
 import ContentWidth from '../layouts/ContentWidth';

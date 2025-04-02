@@ -3,6 +3,8 @@ import H1 from '../typography/H1';
 import SmallWidth from '../layouts/SmallWidth';
 import Lead from '../typography/Lead';
 import TextSection from './TextSection';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const EmployeeContent = ({ blok }) => {
     return (
@@ -17,10 +19,11 @@ const EmployeeContent = ({ blok }) => {
             <TextSection blok={blok} className="lg:py-8" />
 
             <SmallWidth>
-                <div className="flex items-center justify-center justify-items-center">
-                    <img
-                        className="h-auto max-w-full object-cover lg:max-w-[400px]"
-                        src={blok?.image.filename}
+                <div className="relative flex items-center justify-center justify-items-center">
+                    <Image
+                        className="object-cover"
+                        src={ButtonUrlRenderer(blok?.image)}
+                        sizes="(min-width: 1280px) 400px, 100vw"
                         alt={
                             blok?.image?.filename?.alt ??
                             `Image for ${blok?.title}`

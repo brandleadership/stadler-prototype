@@ -234,6 +234,7 @@ storyblokInit({
         complience_item: ComplienceItem,
     },
 });
+console.log('🚀 ~ Jobs:', Jobs);
 
 export default function StoryblokProvider({ children }) {
     return children;

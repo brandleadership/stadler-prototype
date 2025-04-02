@@ -1,3 +1,4 @@
+'use client';
 import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
 import H3 from '../typography/H3';
 import Text from '../typography/Text';
@@ -17,6 +18,8 @@ import { useCurrentLocale } from 'next-i18n-router/client';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const TestimonialsCarousel = ({ blok }) => {
     const currentLocale = useCurrentLocale(i18nConfig) || 'en';
@@ -71,11 +74,11 @@ const TestimonialsCarousel = ({ blok }) => {
                                 swiperRef.current = swiper;
                             }}
                             pagination={{
-                                el: ".slider-pagination", // Use a valid DOM element here
+                                el: '.slider-pagination', // Use a valid DOM element here
                                 type: 'fraction',
                             }}
                             spaceBetween={20}
-                            autoHeight={true}
+                            autoHeight={false}
                             breakpoints={{
                                 320: {
                                     slidesPerView: 1,
@@ -89,40 +92,40 @@ const TestimonialsCarousel = ({ blok }) => {
                                 return (
                                     <SwiperSlide
                                         key={article.uuid}
-                                        className="cursor-pointer bg-white shadow lg:grid lg:grid-cols-2 h-fit my-1"
+                                        className="reference-slider my-1 h-auto cursor-pointer bg-white shadow lg:grid lg:grid-cols-2"
                                     >
-                                        <a
-                                            tabIndex="1"
-                                            href={`/${article.full_slug}`}
-                                            className="inline-block"
-                                        >
-                                            <img
-                                                src={
-                                                    article.content?.image?.filename
-                                                }
-                                                alt={
-                                                    article.content?.image
-                                                        ?.filename?.alt ??
-                                                    `Image for ${blok?.title}`
-                                                }
-                                                className="w-full h-auto object-cover"
-                                            />
-                                        </a>
-                                        <div className="pt-4 p-10 lg:pt-10 leading-normal">
+                                        <div className="relative aspect-[16/9] w-full">
+                                            <a
+                                                tabIndex="1"
+                                                href={`/${article.full_slug}`}
+                                                className="inline-block"
+                                            >
+                                                <Image
+                                                    src={ButtonUrlRenderer(
+                                                        article.content?.image
+                                                    )}
+                                                    fill="true"
+                                                    sizes="100vw"
+                                                    alt={
+                                                        article.content?.image
+                                                            ?.filename?.alt ??
+                                                        `Image for ${blok?.title}`
+                                                    }
+                                                    className="object-cover"
+                                                />
+                                            </a>
+                                        </div>
+                                        <div className="p-10 pt-4 leading-normal lg:pt-10">
                                             <Text styles="mb-6 lg:mb-10">
                                                 {article.name}
                                             </Text>
                                             <div className="">
                                                 <H3>
-                                                    {
-                                                        article?.content
-                                                            ?.title
-                                                    }
+                                                    {article?.content?.title}
                                                 </H3>
                                                 <RichTextRenderer
                                                     text={
-                                                        article?.content
-                                                            ?.lead
+                                                        article?.content?.lead
                                                     }
                                                     styles="mb-6 mt-8 md:mb-10 mt-4 md:mt-8"
                                                 ></RichTextRenderer>
@@ -158,9 +161,8 @@ const TestimonialsCarousel = ({ blok }) => {
                                             </Link>
                                         </div>
                                     </SwiperSlide>
-                                    )
-                                }
-                            )}
+                                );
+                            })}
                         </Swiper>
                     </div>
                     <div className="justify-beetween relative col-span-12 mt-8 flex w-full flex-row items-center">
@@ -213,16 +215,20 @@ const TestimonialsCarousel = ({ blok }) => {
 
                         <div className="flex w-full items-center justify-end gap-4 py-4">
                             <div className="slider-pagination w-fit text-sm font-medium text-greySolid-400"></div>
-                            <div className="md:flex relative justify-end gap-4">
+                            <div className="relative flex justify-end gap-4">
                                 <button
-                                    onClick={() => swiperRef.current?.slidePrev()}
-                                    aria-label='button-prev'
+                                    onClick={() =>
+                                        swiperRef.current?.slidePrev()
+                                    }
+                                    aria-label="button-prev"
                                 >
                                     <ChevronLeft styles="w-5 h-5 fill-primary" />
                                 </button>
                                 <button
-                                    onClick={() => swiperRef.current?.slideNext()}
-                                    aria-label='button-next'
+                                    onClick={() =>
+                                        swiperRef.current?.slideNext()
+                                    }
+                                    aria-label="button-next"
                                 >
                                     <ChevronRight styles="w-5 h-5 fill-primary" />
                                 </button>
@@ -231,29 +237,32 @@ const TestimonialsCarousel = ({ blok }) => {
                     </div>
                     <div className="col-span-12 max-w-full">
                         {showTrains && (
-                            <div className="mt-2 w-full grid-cols-1 gap-6 md:grid md:gap-10 lg:grid-cols-3 xl:gap-6">
+                            <div className="mt-2 w-full grid-cols-1 gap-6 md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:gap-6">
                                 {remainingReferences.map((train) => (
                                     <div
                                         key={train.uuid}
-                                        className="max-full relative mx-auto mb-8 flex flex-col items-stretch justify-between border border-greySolid-100 bg-white shadow md:mb-0 md:max-w-md"
+                                        className="max-full relative mb-8 flex flex-col items-stretch justify-between border border-greySolid-100 bg-white shadow md:mb-0 md:max-w-md"
                                     >
-                                        <a
-                                            tabIndex="1"
-                                            href={`/${train.full_slug}`}
-                                        >
-                                            <img
-                                                className="h-[200px] w-full object-cover lg:h-[300px]"
-                                                src={
-                                                    train?.content?.image
-                                                        ?.filename
-                                                }
-                                                alt={
-                                                    train?.content?.image
-                                                        ?.alt ??
-                                                    `Image for ${train.content.title}`
-                                                }
-                                            />
-                                        </a>
+                                        <div className="relative aspect-[2/1] h-[300px] w-full">
+                                            <a
+                                                tabIndex="1"
+                                                href={`/${train.full_slug}`}
+                                            >
+                                                <Image
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    className="object-cover object-center"
+                                                    src={ButtonUrlRenderer(
+                                                        train?.content?.image
+                                                    )}
+                                                    alt={
+                                                        train?.content?.image
+                                                            ?.alt ??
+                                                        `Image for ${train.content.title}`
+                                                    }
+                                                />
+                                            </a>
+                                        </div>
                                         <div className="flex h-full flex-col justify-between p-8">
                                             <H4 styles="mb-4">
                                                 {train.content.title}

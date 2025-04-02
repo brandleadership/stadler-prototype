@@ -3,17 +3,51 @@ import H2 from '../typography/H2';
 import H4 from '../typography/H4';
 import Text from '../typography/Text';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
+import Image from 'next/image';
 
 const TeaserSuccessStories = ({ blok }) => {
-    function optimizeImage(image) {
-        if (!image.filename) return null;
+    // function optimizeImage(image) {
+    //     if (!image.filename) return null;
 
-        let imageSource = image.filename + `/m/372x320`;
+    //     let imageSource = image.filename + `/m/372x320`;
 
-        if (image.focus) imageSource += `/filters:focal(${image.focus})`;
+    //     if (image.focus) imageSource += `/filters:focal(${image.focus})`;
 
-        return imageSource;
-    }
+    //     return imageSource;
+    // }
+
+    const combinedImageRenderer = (data) => {
+        if (!data) return '/';
+
+        let url = '/';
+
+        if (data.linktype && data.linktype === 'asset') {
+            if (data.url) {
+                url = data.url.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            } else if (data.fieldtype) {
+                url = data.filename || '/';
+            }
+        } else if (data.fieldtype && data.fieldtype === 'asset') {
+            if (data.filename) {
+                url = data.filename.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            }
+        }
+
+        if (url !== '/' && data.filename) {
+            url = url + '/m/372x320';
+            if (data.focus) {
+                url += `/filters:focal(${data.focus})`;
+            }
+        }
+
+        return url;
+    };
     return (
         <section className="bg-white antialiased">
             <SmallWidth>
@@ -30,13 +64,18 @@ const TeaserSuccessStories = ({ blok }) => {
                                 href={ButtonUrlRenderer(item?.link)}
                                 className="group relative h-80 overflow-hidden"
                             >
-                                <img
-                                    className="min-h-full min-w-full scale-100 object-cover duration-300 ease-in group-hover:scale-125"
-                                    src={optimizeImage(item?.image)}
-                                    alt={
-                                        item?.image?.filename?.alt ?? item?.name
-                                    }
-                                />
+                                <div className="relative h-full w-full">
+                                    <Image
+                                        width={372}
+                                        height={320}
+                                        className="scale-100 object-cover duration-300 ease-in group-hover:scale-125"
+                                        src={combinedImageRenderer(item?.image)}
+                                        alt={
+                                            item?.image?.filename?.alt ??
+                                            item?.name
+                                        }
+                                    />
+                                </div>
                                 <div className="absolute inset-0 grid items-end justify-center bg-gradient-to-b from-transparent to-black/60 p-4">
                                     <div className="text-center text-white">
                                         <H4>{item?.name}</H4>

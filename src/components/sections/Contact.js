@@ -3,9 +3,15 @@ import SmallWidth from '../layouts/SmallWidth';
 import H2 from '../typography/H2';
 import Text from '../typography/Text';
 import { MailIcon } from '../icons/MailIcon';
+import { Facebook } from '../icons/Facebook';
+import { YouTube } from '../icons/Youtube';
+import { Instagram } from '../icons/Instagram';
+import { LinkedIn } from '../icons/LinkedIn';
 import { PhoneIcon } from '../icons/PhoneIcon';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import Link from 'next/link';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const Contact = ({ blok }) => {
     return (
@@ -15,10 +21,13 @@ const Contact = ({ blok }) => {
         >
             <SmallWidth>
                 <div className="grid grid-cols-1 items-center gap-8 sm:gap-12 xl:grid-cols-12 xl:gap-20">
-                    <div className="w-full xl:col-span-4">
-                        <img
-                            className="h-auto w-full max-w-full object-cover object-right xl:h-[369px] xl:w-[320px] xl:max-w-[320px]"
-                            src={blok?.image?.filename}
+                    <div className="relative w-full xl:col-span-4 xl:h-[369px] xl:w-[320px]">
+                        <Image
+                            priority
+                            fill
+                            sizes="(min-width: 1280px) 320px, 100vw"
+                            className="object-cover object-right"
+                            src={ButtonUrlRenderer(blok?.image)}
                             alt={blok?.image?.filename.alt ?? 'Contact image'}
                         />
                     </div>
@@ -65,11 +74,7 @@ const Contact = ({ blok }) => {
                                     className="text-greySolid-600 hover:text-greySolid-400"
                                 >
                                     <span className="sr-only">LinkedIn</span>
-                                    <img
-                                        src="/LinkedIn.svg"
-                                        className="h-6 w-6"
-                                        alt="Follow us on LinkedIn"
-                                    />
+                                    <LinkedIn styles="h-6 w-6"></LinkedIn>
                                 </Link>
                                 <Link
                                     tabIndex="1"
@@ -77,11 +82,7 @@ const Contact = ({ blok }) => {
                                     className="text-greySolid-600 hover:text-greySolid-400"
                                 >
                                     <span className="sr-only">YouTube</span>
-                                    <img
-                                        src="/youtube.svg"
-                                        className="h-6 w-6"
-                                        alt="Watch our videos on YouTube"
-                                    />
+                                    <YouTube styles="h-6 w-6"></YouTube>
                                 </Link>
                                 <Link
                                     tabIndex="1"
@@ -89,11 +90,7 @@ const Contact = ({ blok }) => {
                                     className="text-greySolid-600 hover:text-greySolid-400"
                                 >
                                     <span className="sr-only">Facebook</span>
-                                    <img
-                                        src="/facebook.svg"
-                                        className="h-6 w-6"
-                                        alt="Like us on Facebook"
-                                    />
+                                    <Facebook styles="h-6 w-6"></Facebook>
                                 </Link>
                                 <Link
                                     tabIndex="1"
@@ -101,11 +98,7 @@ const Contact = ({ blok }) => {
                                     className="text-greySolid-600 hover:text-greySolid-400"
                                 >
                                     <span className="sr-only">Instagram</span>
-                                    <img
-                                        src="/ohne-box/Instagram.svg"
-                                        className="h-6 w-6"
-                                        alt="Connect with us on Instagram"
-                                    />
+                                    <Instagram styles="h-6 w-6"></Instagram>
                                 </Link>
                             </div>
                         </div>

@@ -1,3 +1,4 @@
+'use client';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { storyblokEditable } from '@storyblok/react/rsc';
@@ -657,7 +658,7 @@ const ProspectiveCareer = ({ blok }) => {
             <SmallWidth>
                 <div className="col-span-12 grid">
                     <div
-                        className="grid grid-cols-4 justify-stretch gap-x-2 hover:cursor-pointer mt-20 lg:mt-0"
+                        className="mt-20 grid grid-cols-4 justify-stretch gap-x-2 hover:cursor-pointer lg:mt-0"
                         role="group"
                     >
                         <a
