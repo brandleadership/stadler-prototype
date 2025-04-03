@@ -5,7 +5,6 @@ import H2 from '../typography/H2';
 import Text from '../typography/Text';
 import SmallWidth from '../layouts/SmallWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
-import Image from 'next/image';
 import { DownloadIcon } from '../icons/DownloadIcon';
 
 const TeaserImageRight = ({ blok }) => {
@@ -20,18 +19,19 @@ const TeaserImageRight = ({ blok }) => {
                     <div>
                         <div className="">
                             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
-                                {blok?.logo_link && blok?.logo_icon && (
+                                {blok?.logo_icon?.filename && (
                                     <a
-                                        href={blok?.logo_link.url}
+                                        href={blok.logo_link.url}
                                         aria-label="logo"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        <Image
-                                            width={150}
-                                            height={117}
-                                            src={blok.logo_icon.filename}
-                                            alt="Logo"
+                                        <img
+                                            className="mb-4 h-auto w-auto max-w-[150px]"
+                                            src={ButtonUrlRenderer(
+                                                blok.logo_icon
+                                            )}
+                                            alt={blok.logo_icon.alt || 'Logo'}
                                         />
                                     </a>
                                 )}

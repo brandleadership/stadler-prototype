@@ -3,7 +3,6 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import H2 from '../typography/H2';
 import SmallWidth from '../layouts/SmallWidth';
-import Image from 'next/image';
 import Text from '../typography/Text';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { DownloadIcon } from '../icons/DownloadIcon';
@@ -16,26 +15,25 @@ const TeaserImageLeft = ({ blok }) => {
     return (
         <section {...storyblokEditable(blok)} className="py-8 lg:py-24">
             <SmallWidth>
-                <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
+                <div className="grid items-center grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
                     <img
                         src={blok?.image.filename}
-                        className="w-full object-cover object-center"
+                        className="object-cover object-center w-full"
                         alt={blok?.image.filename.alt ?? blok?.title}
                     />
 
                     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
-                        {blok?.logo_link && blok?.logo_icon && (
+                        { blok?.logo_icon?.filename && (
                             <a
-                                href={blok?.logo_link.url}
+                                href={blok.logo_link.url}
                                 aria-label="logo"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <Image
-                                    width={150}
-                                    height={117}
-                                    src={blok.logo_icon.filename}
-                                    alt="Logo"
+                                <img
+                                    className="mb-4 h-auto w-auto max-w-[150px]"
+                                    src={ButtonUrlRenderer(blok.logo_icon)}
+                                    alt={blok.logo_icon.alt || 'Logo'}
                                 />
                             </a>
                         )}
