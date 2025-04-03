@@ -23,7 +23,7 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                             <div className="relative aspect-[16/9] w-full">
                                 <Image
                                     fill={true}
-                                    sizes="100vw"
+                                    sizes="(max-width: 800px) 100vw, 800px"
                                     className="h-full w-full object-cover"
                                     src={ButtonUrlRenderer(blok?.image_1)}
                                     alt={
@@ -70,7 +70,7 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                                         blok?.image_2.filename?.alt ??
                                         `Image for ${blok?.title_2}`
                                     }
-                                    sizes="100vw"
+                                    sizes="(max-width: 800px) 100vw, 800px"
                                     fill={true}
                                     className="w-full object-cover"
                                 />
