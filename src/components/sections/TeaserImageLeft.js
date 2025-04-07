@@ -66,7 +66,7 @@ const TeaserImageLeft = ({ blok }) => {
                                     </div>
                                     <div className="flex items-center">
                                         <span className="mr-4 rounded-xl px-2 leading-[20px]">
-                                            <Text styles="text-base">
+                                            <Text className="text-base">
                                                 {blok?.download_link_item
                                                     ?.linktype === 'asset' &&
                                                 blok?.download_link_item?.url
