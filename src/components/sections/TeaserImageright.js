@@ -60,24 +60,21 @@ const TeaserImageRight = ({ blok }) => {
                                             href={ButtonUrlRenderer(
                                                 blok?.download_link_item
                                             )}
-                                            className={`relative col-span-2 mb-2 flex items-center justify-between rounded-[4px] border-2 border-primary px-5 hover:bg-gray-100 md:col-span-1`}
+                                            className={`relative col-span-2 mb-2 flex items-center justify-between rounded-[4px] border-2 border-primary px-5 py-2 hover:bg-gray-100 md:col-span-1`}
                                             {...storyblokEditable(blok)}
                                         >
                                             <div className="flex text-base">
                                                 {blok?.download_item_title}
                                             </div>
                                             <div className="flex items-center">
-                                                <span className="mr-4 rounded-xl px-2 leading-[20px]">
-                                                    <span className="text-base">
-                                                        {blok
-                                                            ?.download_link_item
-                                                            ?.linktype ===
-                                                            'asset' &&
-                                                        blok?.download_link_item
-                                                            ?.url
-                                                            ? assetType()
-                                                            : 'PDF'}
-                                                    </span>
+                                                <span className="mr-4 rounded-xl px-2 text-base leading-[20px]">
+                                                    {blok?.download_link_item
+                                                        ?.linktype ===
+                                                        'asset' &&
+                                                    blok?.download_link_item
+                                                        ?.url
+                                                        ? assetType()
+                                                        : 'PDF'}
                                                 </span>
                                                 <DownloadIcon
                                                     styles="w-4 h-4 mr-4"
