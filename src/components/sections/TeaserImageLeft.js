@@ -15,15 +15,15 @@ const TeaserImageLeft = ({ blok }) => {
     return (
         <section {...storyblokEditable(blok)} className="py-8 lg:py-24">
             <SmallWidth>
-                <div className="grid items-center grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+                <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
                     <img
                         src={blok?.image.filename}
-                        className="object-cover object-center w-full"
+                        className="w-full object-cover object-center"
                         alt={blok?.image.filename.alt ?? blok?.title}
                     />
 
                     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
-                        { blok?.logo_icon?.filename && (
+                        {blok?.logo_icon?.filename && (
                             <a
                                 href={blok.logo_link.url}
                                 aria-label="logo"
@@ -66,7 +66,7 @@ const TeaserImageLeft = ({ blok }) => {
                                     </div>
                                     <div className="flex items-center">
                                         <span className="mr-4 rounded-xl px-2 leading-[20px]">
-                                            <Text>
+                                            <Text styles="text-base">
                                                 {blok?.download_link_item
                                                     ?.linktype === 'asset' &&
                                                 blok?.download_link_item?.url
