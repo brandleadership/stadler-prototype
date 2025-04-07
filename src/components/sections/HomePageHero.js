@@ -61,7 +61,7 @@ export default function HomePageHero({ blok }) {
                         className="w-full object-cover object-center lg:h-[90vh]"
                         width={1920}
                         height={1080}
-                        unoptimized
+                        priority
                         alt={
                             blok?.image?.filename?.alt ??
                             'Hero image with train for Home page'
