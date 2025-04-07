@@ -68,7 +68,7 @@ const TeaserImageRight = ({ blok }) => {
                                             </div>
                                             <div className="flex items-center">
                                                 <span className="mr-4 rounded-xl px-2 leading-[20px]">
-                                                    <Text className="text-base">
+                                                    <span className="text-base">
                                                         {blok
                                                             ?.download_link_item
                                                             ?.linktype ===
@@ -77,7 +77,7 @@ const TeaserImageRight = ({ blok }) => {
                                                             ?.url
                                                             ? assetType()
                                                             : 'PDF'}
-                                                    </Text>
+                                                    </span>
                                                 </span>
                                                 <DownloadIcon
                                                     styles="w-4 h-4 mr-4"
