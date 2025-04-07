@@ -94,7 +94,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                         key={article.uuid}
                                         className="reference-slider my-1 h-auto cursor-pointer bg-white shadow lg:grid lg:grid-cols-2"
                                     >
-                                        <div className="relative aspect-[16/9] w-full">
+                                        <div className="relative aspect-[16/9] w-full lg:aspect-auto">
                                             <Link
                                                 tabIndex="1"
                                                 href={`/${article.full_slug}`}
@@ -243,7 +243,7 @@ const TestimonialsCarousel = ({ blok }) => {
                                         key={train.uuid}
                                         className="max-full relative mb-8 flex flex-col items-stretch justify-between border border-greySolid-100 bg-white shadow md:mb-0 md:max-w-md"
                                     >
-                                        <div className="relative aspect-[2/1] h-[300px] w-full">
+                                        <div className="relative aspect-[2/1] w-full">
                                             <Link
                                                 tabIndex="1"
                                                 href={`/${train.full_slug}`}
