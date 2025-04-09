@@ -52,17 +52,16 @@ export default function Video({ blok }) {
                                     className="absolute flex items-center justify-center rounded-full bg-white p-4 shadow-lg"
                                 >
                                     <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-8 w-8 text-black"
+                                        className="pl-1"
+                                        width="42"
+                                        height="42"
+                                        viewBox="0 0 42 42"
                                         fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth={2}
+                                        xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                            d="M9.00098 9.20337C9.00098 7.62104 10.7515 6.66536 12.0825 7.52101L30.384 19.2863C31.6086 20.0735 31.6086 21.8637 30.384 22.651L12.0825 34.4162C10.7515 35.2719 9.00098 34.3162 9.00098 32.7338V9.20337Z"
+                                            fill="#005893"
                                         />
                                     </svg>
                                 </button>
