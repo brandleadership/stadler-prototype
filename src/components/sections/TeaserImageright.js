@@ -2,7 +2,7 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import H2 from '../typography/H2';
-import Text from '../typography/Text';
+import RichTextRenderer from '../helpers/RichTextRenderer';
 import SmallWidth from '../layouts/SmallWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { DownloadIcon } from '../icons/DownloadIcon';
@@ -37,7 +37,7 @@ const TeaserImageRight = ({ blok }) => {
                                 )}
                                 <H2>{blok?.title}</H2>
                                 <div className="mt-4 text-xl">
-                                    <Text>{blok?.text}</Text>
+                                    <RichTextRenderer text={blok?.text} />
                                 </div>
                                 {blok?.cta_button_text && (
                                     <ButtonPrimary
