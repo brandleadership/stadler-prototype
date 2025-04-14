@@ -41,6 +41,7 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
             const heroSubpage = article.content.body.find(
                 (item) =>
                     item.component === 'hero-subpage' ||
+                    item.component === 'hero-home' ||
                     item.component === 'hero-careerpage'
             );
             if (
@@ -49,6 +50,12 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                 heroSubpage.title.trim() !== ''
             ) {
                 return heroSubpage.title;
+            } else if (
+                article.content.body?.length &&
+                article.content.body[0] &&
+                article.content.body[0].title
+            ) {
+                return article.content.body[0].title;
             }
         }
         return null;
@@ -72,7 +79,9 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                 'footer',
                 'not-found',
                 'datasheet',
+                'registration',
                 'download-section',
+                'contact-section',
                 'test-global-content',
                 'medienmitteilungen',
                 'news',
@@ -101,6 +110,8 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                     !article.full_slug.includes('news') &&
                     !article.full_slug.includes('download-section') &&
                     !article.full_slug.includes('datasheet') &&
+                    !article.full_slug.includes('registration') &&
+                    !article.full_slug.includes('unsubscribe') &&
                     !excludedKeywords.some((keyword) =>
                         article.name.includes(keyword)
                     )
