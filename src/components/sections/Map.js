@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import FullWidth from '../layouts/FullWidth';
@@ -30,7 +29,7 @@ export default function Map({ blok }) {
                         <div className="relative w-full pl-6">
                             <img
                                 className="h-auto w-full"
-                                src={blok.map.filename}
+                                src={ButtonUrlRenderer(blok.map)}
                                 alt={blok.map.filename?.alt ?? 'Map image'}
                             />
                         </div>
@@ -42,7 +41,7 @@ export default function Map({ blok }) {
                                 </div>
                             </div>
 
-                            <div className="flex w-full items-center justify-center md:w-1/3 mt-5 md:mt-0">
+                            <div className="mt-5 flex w-full items-center justify-center md:mt-0 md:w-1/3">
                                 <ButtonPrimary
                                     position="center"
                                     buttonText={blok.cta_title}

@@ -7,7 +7,8 @@ import Text from '../typography/Text';
 import { useState, useEffect, useRef } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import ContentWidth from '../layouts/ContentWidth';
 import { ChevronRight } from '../icons/ChevronRight';
 import { ChevronLeft } from '../icons/ChevronLeft';
@@ -47,7 +48,7 @@ const SuccessStoryGrid = ({ blok }) => {
                     </div>
                     <div className="flex flex-col items-center justify-between lg:pl-20 2xl:pl-0">
                         {isMobile && (
-                            <div className="slider-pagination relative -top-4 w-full flex gap-2 justify-center"></div>
+                            <div className="slider-pagination relative -top-4 flex w-full justify-center gap-2"></div>
                         )}
                         <div className="relative flex w-full max-w-[100%] items-center">
                             <Swiper
@@ -56,13 +57,15 @@ const SuccessStoryGrid = ({ blok }) => {
                                     swiperRef.current = swiper;
                                 }}
                                 pagination={{
-                                    el: ".slider-pagination", // Use a valid DOM element here
-                                    type: "bullets",
+                                    el: '.slider-pagination',
+                                    type: 'bullets',
                                     clickable: true,
-                                    bulletClass: "pagination-bullet",
-                                    bulletActiveClass: "pagination-bullet-active"
+                                    bulletClass: 'pagination-bullet',
+                                    bulletActiveClass:
+                                        'pagination-bullet-active',
                                 }}
                                 spaceBetween={20}
+                                autoHeight={false}
                                 breakpoints={{
                                     320: {
                                         slidesPerView: 1,
@@ -76,36 +79,48 @@ const SuccessStoryGrid = ({ blok }) => {
                                     return (
                                         <SwiperSlide
                                             key={nestedBlok.uuid}
-                                            className="h-auto cursor-pointer bg-white shadow my-1"
+                                            className="my-1 h-auto cursor-pointer bg-white shadow"
                                         >
-                                            <img
-                                                key={
-                                                    nestedBlok.slug +
-                                                    ' image'
-                                                }
-                                                className="aspect-[4/3] w-full object-cover"
-                                                src={
-                                                    nestedBlok.content
-                                                        ?.image.filename
-                                                }
-                                                alt={
-                                                    nestedBlok.content
-                                                        ?.image.alt ??
-                                                    'Success Stories Image'
-                                                }
-                                            />
+                                            <div className="relative aspect-[4/3] w-full">
+                                                <Image
+                                                    priority
+                                                    fill
+                                                    sizes="(max-width: 800px) 100vw, 800px"
+                                                    key={
+                                                        nestedBlok.slug +
+                                                        ' image'
+                                                    }
+                                                    className="object-cover"
+                                                    src={ButtonUrlRenderer(
+                                                        nestedBlok.content
+                                                            ?.image
+                                                    )}
+                                                    alt={
+                                                        nestedBlok.content
+                                                            ?.image.filename
+                                                            .alt ??
+                                                        'Success Stories Image'
+                                                    }
+                                                />
+                                            </div>
                                             <div
                                                 className="p-5"
                                                 key={nestedBlok.slug}
                                             >
                                                 <div className="mb-4">
                                                     <H3>
-                                                        {nestedBlok.content?.title}
+                                                        {
+                                                            nestedBlok.content
+                                                                ?.title
+                                                        }
                                                     </H3>
                                                 </div>
                                                 <div className="mb-14">
                                                     <Text>
-                                                        {nestedBlok.content?.teaser}
+                                                        {
+                                                            nestedBlok.content
+                                                                ?.teaser
+                                                        }
                                                     </Text>
                                                 </div>
                                                 <Link
@@ -120,22 +135,21 @@ const SuccessStoryGrid = ({ blok }) => {
                                                 </Link>
                                             </div>
                                         </SwiperSlide>
-                                        )
-                                    }
-                                )}
+                                    );
+                                })}
                             </Swiper>
                         </div>
                     </div>
-                    <div className="relative mt-8 flex w-full flex-row items-center gap-4 justify-center lg:pl-20">
+                    <div className="relative mt-8 flex w-full flex-row items-center justify-center gap-4 lg:pl-20">
                         <button
                             onClick={() => swiperRef.current?.slidePrev()}
-                            aria-label='button-prev'
+                            aria-label="button-prev"
                         >
                             <ChevronLeft styles="w-5 h-5 fill-primary" />
                         </button>
                         <button
                             onClick={() => swiperRef.current?.slideNext()}
-                            aria-label='button-next'
+                            aria-label="button-next"
                         >
                             <ChevronRight styles="w-5 h-5 fill-primary" />
                         </button>

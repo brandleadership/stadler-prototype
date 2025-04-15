@@ -21,20 +21,24 @@ const AccordionYearWrapper = ({ blok, isActive }) => {
                             <div className="w-full">
                                 <div className="whitespace-nowrap bg-primarySolid-50 text-xs font-bold uppercase text-black">
                                     <div className="grid md:grid-cols-[1fr_3fr]">
-                                        <div className="px-2 md:px-6 py-3 text-center md:text-left">
+                                        <div className="px-2 py-3 text-center md:px-6 md:text-left">
                                             {blok?.headline_title}
                                         </div>
                                         <div className="grid grid-cols-2 md:grid-cols-[1fr_2fr]">
-                                            <div className="px-2 md:px-6 py-3">
+                                            <div className="px-2 py-3 md:px-6">
                                                 {blok?.headline_date}
                                             </div>
-                                            <div className="md:hidden px-2 md:px-6 py-3 text-end">Download</div>
+                                            <div className="px-2 py-3 text-end md:hidden md:px-6">
+                                                Download
+                                            </div>
                                             <div className="hidden md:grid md:grid-cols-2">
                                                 <div className="px-6 py-3 text-center">
                                                     {blok?.headline_berichte}
                                                 </div>
                                                 <div className="px-6 py-3 text-center">
-                                                    {blok?.headline_presentation}
+                                                    {
+                                                        blok?.headline_presentation
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

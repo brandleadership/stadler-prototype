@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react';
 import HeaderNew from './HeaderNew';
 const ConfigHeader = ({ blok, translatedSlugs }) => {

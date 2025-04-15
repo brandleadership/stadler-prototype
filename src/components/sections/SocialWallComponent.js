@@ -1,3 +1,4 @@
+'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ContentWidth from '../layouts/ContentWidth';
 import H2 from '../typography/H2';
@@ -6,16 +7,17 @@ import { useEffect, useRef } from 'react';
 const SocialWallComponent = ({ blok }) => {
     const wallRef = useRef();
     useEffect(() => {
-    const script = document.createElement('script');
+        const script = document.createElement('script');
 
-    script.src = "https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3";
-    script.async = true;
+        script.src =
+            'https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3';
+        script.async = true;
 
-    wallRef.current?.appendChild(script);
+        wallRef.current?.appendChild(script);
 
-    return () => {
-        wallRef.current?.removeChild(script);
-    }
+        return () => {
+            wallRef.current?.removeChild(script);
+        };
     }, []);
     return (
         <section

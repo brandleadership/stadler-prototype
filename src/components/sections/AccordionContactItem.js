@@ -1,7 +1,7 @@
-'use client';
 import { PhoneIcon } from '../icons/PhoneIcon';
 import { MailIcon } from '../icons/MailIcon';
 import { storyblokEditable } from '@storyblok/react/rsc';
+import Link from 'next/link';
 
 const AccordionContactItem = ({ blok }) => {
     return (
@@ -13,7 +13,7 @@ const AccordionContactItem = ({ blok }) => {
             </li>
             <li className="mb-2">
                 <div className="group-hover:text-primary">
-                    <a
+                    <Link
                         tabIndex="1"
                         href={`tel:${blok?.contact_phone}`}
                         className="flex cursor-pointer items-center text-black transition-all hover:text-primary"
@@ -25,12 +25,12 @@ const AccordionContactItem = ({ blok }) => {
                             />
                         </span>
                         {blok?.contact_phone}
-                    </a>
+                    </Link>
                 </div>
             </li>
             <li className="mb-2">
                 <div className="group-hover:text-primary">
-                    <a
+                    <Link
                         tabIndex="1"
                         href={`mailto:${blok?.contact_email}`}
                         className="flex cursor-pointer items-center text-black transition-all hover:text-primary"
@@ -42,7 +42,7 @@ const AccordionContactItem = ({ blok }) => {
                             />
                         </span>
                         {blok?.contact_email}
-                    </a>
+                    </Link>
                 </div>
             </li>
         </ul>

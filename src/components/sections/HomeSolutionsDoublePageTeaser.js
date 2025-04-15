@@ -6,6 +6,7 @@ import Text from '../typography/Text';
 import { ArrowForward } from '../icons/ArrowForward';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const HomeSolutionsDoublePageTeaser = ({ blok }) => {
     const iconVariants = {
@@ -19,14 +20,18 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                     <div className="mb-12 border border-solid border-greyBrighten-300 tracking-tight"></div>
                     <ul className="grid grid-cols-1 gap-4 sm:gap-12 md:gap-20 lg:grid-cols-2 lg:gap-y-40">
                         <li>
-                            <img
-                                src={blok?.image_1.filename}
-                                alt={
-                                    blok?.image_1?.filename?.alt ??
-                                    `Image for ${blok?.title_1}`
-                                }
-                            />
-
+                            <div className="relative aspect-[16/9] w-full">
+                                <Image
+                                    fill={true}
+                                    sizes="(max-width: 800px) 100vw, 800px"
+                                    className="h-full w-full object-cover"
+                                    src={ButtonUrlRenderer(blok?.image_1)}
+                                    alt={
+                                        blok?.image_1?.filename?.alt ??
+                                        `Image for ${blok?.title_1}`
+                                    }
+                                />
+                            </div>
                             <div className="pr-0">
                                 <motion.a
                                     tabIndex="1"
@@ -58,13 +63,19 @@ const HomeSolutionsDoublePageTeaser = ({ blok }) => {
                             </div>
                         </li>
                         <li>
-                            <img
-                                src={blok?.image_2.filename}
-                                alt={
-                                    blok?.image_2.filename?.alt ??
-                                    `Image for ${blok?.title_2}`
-                                }
-                            />
+                            <div className="relative aspect-[16/9] w-full">
+                                <Image
+                                    src={ButtonUrlRenderer(blok?.image_2)}
+                                    alt={
+                                        blok?.image_2.filename?.alt ??
+                                        `Image for ${blok?.title_2}`
+                                    }
+                                    sizes="(max-width: 800px) 100vw, 800px"
+                                    fill={true}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+
                             <div className="pr-0">
                                 <motion.a
                                     tabIndex="1"
