@@ -61,7 +61,7 @@ function AdHocMedienmitteilungen({ blok }) {
                             >
                                 <div className="flex h-52 items-center justify-center overflow-hidden">
                                     <div className="group relative aspect-[16/9] w-full overflow-hidden">
-                                        {article.content?.image ? (
+                                        {article.content?.image.filename ? (
                                             <Image
                                                 src={ButtonUrlRenderer(
                                                     article.content?.image
