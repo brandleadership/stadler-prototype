@@ -62,7 +62,6 @@ const TeaserImageLeft = ({ blok }) => {
                                         blok?.download_link_item
                                     )}
                                     className={`relative col-span-2 mb-2 flex items-center justify-between rounded-[4px] border-2 border-primary px-5 py-2 hover:bg-gray-100 md:col-span-1`}
-                                    {...storyblokEditable(blok)}
                                 >
                                     <div className="flex text-base">
                                         {blok?.download_link_title}
