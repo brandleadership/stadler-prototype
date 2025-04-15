@@ -44,7 +44,7 @@ function ArticleHero({ block }) {
             {block?.image_optional && (
                 <div className="relative my-8 w-full">
                     <Image
-                        src={ButtonUrlRenderer(block?.image.filename)}
+                        src={ButtonUrlRenderer(block?.image)}
                         fill={true}
                         sizes="100vw"
                         className="object-cover"
