@@ -3,13 +3,14 @@ import ContentWidth from '../layouts/ContentWidth';
 import React from 'react';
 import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
 import { usePathname } from 'next/navigation';
-
+import { ArrowForwardBlue } from '../icons/ArrowForwardBlue';
 import { useState, useEffect } from 'react';
 import H1 from '../typography/H1';
 import DateFormatter from '../helpers/DateFormatter';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
 import i18nConfig from '/i18nConfig';
+import Link from 'next/link';
 const filters = { country: '', category: '', product: '', year: '' };
 
 function AlleMedienmitteilungen({ blok }) {
@@ -245,25 +246,26 @@ function AlleMedienmitteilungen({ blok }) {
                                             )}
                                     </div>
                                     <div className="col-span-1 px-6 py-4 font-medium text-primary lg:col-span-4">
-                                        <a
+                                        <Link
                                             tabIndex="1"
                                             className="inline-block text-base"
                                             href={`/${medienmitteilung.full_slug}`}
                                         >
                                             {medienmitteilung.content.title}
-                                        </a>
-                                        <a
+                                        </Link>
+                                        <Link
                                             tabIndex="1"
                                             className="mt-4 block lg:hidden"
                                             href={`/${medienmitteilung.full_slug}`}
                                         >
+                                            <ArrowForwardBlue styles="w-5 h-5 "></ArrowForwardBlue>
                                             <img
                                                 alt="Arrow button forward"
                                                 width="20"
                                                 height="20"
                                                 src="/ohne-box/arrow_forward_FILL0_wght400_GRAD0_opsz24_blue.svg"
                                             />
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className="col-span-1 bg-primarySolid-50 px-6 pb-3 pt-4 font-medium text-black lg:col-span-3 lg:bg-white">
                                         {medienmitteilung.content?.categories?.map(

@@ -162,6 +162,22 @@ h4 {
     }
 }
 
+/* .swiper-slide-next,
+.swiper-slide-prev {
+    opacity: 0.3 !important;
+} */
+
+@media screen and (min-width: 1024px) {
+    .reference-slider.swiper-slide {
+        display: grid;
+        height: auto;
+    }
+
+    .success-slider.swiper-slide {
+        height: auto;
+    }
+}
+
 .swiper-pagination {
     display: flex;
     justify-content: center;

@@ -3,6 +3,8 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 import H3 from '../typography/H3';
 import Link from 'next/link';
 import Text from '../typography/Text';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 import { motion } from 'framer-motion';
 
@@ -17,11 +19,15 @@ const SuccessStory = ({ current, idx, blok }) => {
                 opacity: idx === current || idx === current + 1 ? 1 : 0.3,
             }}
         >
-            <img
-                className="aspect-[4/3] w-full object-cover"
-                src={card.img}
-                alt={card.img.alt ?? `Image for ${card.title}`}
-            />
+            <div className="relative aspect-[4/3] w-full">
+                <Image
+                    sizes="100vw"
+                    className="object-cover"
+                    fill={true}
+                    src={ButtonUrlRenderer(card.img)}
+                    alt={card.img.alt ?? `Image for ${card.title}`}
+                />
+            </div>
             <div className="p-5">
                 <div className="mb-4">
                     <H3>{card.title}</H3>

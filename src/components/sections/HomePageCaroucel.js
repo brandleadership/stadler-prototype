@@ -3,6 +3,7 @@ import H3 from '../typography/H3';
 import Link from 'next/link';
 import Text from '../typography/Text';
 import H2 from '../typography/H2';
+import Image from 'next/image';
 import { MotionConfig, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import ContentWidth from '../layouts/ContentWidth';
@@ -92,14 +93,18 @@ const HomePageCaroucel = ({ items, carouselTitle }) => {
                                                         : 0.3,
                                             }}
                                         >
-                                            <img
-                                                className="aspect-[4/3] w-full object-cover"
-                                                src={card.img}
-                                                alt={
-                                                    card?.img?.alt ??
-                                                    'Train image'
-                                                }
-                                            />
+                                            <div className="relative aspect-[4/3] w-full">
+                                                <Image
+                                                    fill={true}
+                                                    sizes="100vw"
+                                                    className="object-cover"
+                                                    src={card.img}
+                                                    alt={
+                                                        card?.img?.alt ??
+                                                        'Train image'
+                                                    }
+                                                />
+                                            </div>
                                             <div className="p-5">
                                                 <div className="mb-4">
                                                     <H3>{card.title}</H3>

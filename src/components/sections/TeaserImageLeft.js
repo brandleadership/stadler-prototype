@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ButtonPrimary from '../elements/ButtonPrimary';
 import H2 from '../typography/H2';
@@ -6,6 +5,7 @@ import SmallWidth from '../layouts/SmallWidth';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { DownloadIcon } from '../icons/DownloadIcon';
+import Image from 'next/image';
 
 const TeaserImageLeft = ({ blok }) => {
     const assetType = () => {
@@ -16,12 +16,15 @@ const TeaserImageLeft = ({ blok }) => {
         <section {...storyblokEditable(blok)} className="py-8 lg:py-24">
             <SmallWidth>
                 <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
-                    <img
-                        src={blok?.image.filename}
-                        className="w-full object-cover object-center"
-                        alt={blok?.image.filename.alt ?? blok?.title}
-                    />
-
+                    <div className="relative aspect-[16/9] w-full">
+                        <Image
+                            fill={true}
+                            sizes="(max-width: 768px) 100vw,  50vw"
+                            src={ButtonUrlRenderer(blok?.image)}
+                            className="object-cover object-center"
+                            alt={blok?.image.filename.alt ?? blok?.title}
+                        />
+                    </div>
                     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
                         {blok?.logo_icon?.filename && (
                             <a

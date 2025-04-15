@@ -7,7 +7,8 @@ import Text from '../typography/Text';
 import { useState, useEffect, useRef } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import ContentWidth from '../layouts/ContentWidth';
 import { ChevronRight } from '../icons/ChevronRight';
 import { ChevronLeft } from '../icons/ChevronLeft';
@@ -64,6 +65,7 @@ const SuccessStoryGrid = ({ blok }) => {
                                         'pagination-bullet-active',
                                 }}
                                 spaceBetween={20}
+                                autoHeight={false}
                                 breakpoints={{
                                     320: {
                                         slidesPerView: 1,
@@ -79,19 +81,28 @@ const SuccessStoryGrid = ({ blok }) => {
                                             key={nestedBlok.uuid}
                                             className="my-1 h-auto cursor-pointer bg-white shadow"
                                         >
-                                            <img
-                                                key={nestedBlok.slug + ' image'}
-                                                className="aspect-[4/3] w-full object-cover"
-                                                src={
-                                                    nestedBlok.content?.image
-                                                        .filename
-                                                }
-                                                alt={
-                                                    nestedBlok.content?.image
-                                                        .alt ??
-                                                    'Success Stories Image'
-                                                }
-                                            />
+                                            <div className="relative aspect-[4/3] w-full">
+                                                <Image
+                                                    priority
+                                                    fill
+                                                    sizes="(max-width: 800px) 100vw, 800px"
+                                                    key={
+                                                        nestedBlok.slug +
+                                                        ' image'
+                                                    }
+                                                    className="object-cover"
+                                                    src={ButtonUrlRenderer(
+                                                        nestedBlok.content
+                                                            ?.image
+                                                    )}
+                                                    alt={
+                                                        nestedBlok.content
+                                                            ?.image.filename
+                                                            .alt ??
+                                                        'Success Stories Image'
+                                                    }
+                                                />
+                                            </div>
                                             <div
                                                 className="p-5"
                                                 key={nestedBlok.slug}

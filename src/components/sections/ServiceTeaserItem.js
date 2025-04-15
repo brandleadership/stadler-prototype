@@ -1,8 +1,7 @@
-'use client';
-
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H3 from '../typography/H3';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
+import Link from 'next/link';
 
 const ServiceTeaserItem = ({ blok }) => {
     return (
@@ -10,13 +9,15 @@ const ServiceTeaserItem = ({ blok }) => {
             {...storyblokEditable(blok)}
             className="mx-auto border border-greySolid-100 bg-white shadow"
         >
-            <a tabIndex="1" href={ButtonUrlRenderer(blok?.link)}>
+            <Link tabIndex="1" href={ButtonUrlRenderer(blok?.link)}>
                 {blok?.Icon.filename ? (
-                    <img
-                        className="w-24 pl-5 pt-5"
-                        src={blok?.Icon.filename}
-                        alt={blok?.Icon.filename.alt ?? blok?.title}
-                    />
+                    <div className="relative aspect-[1/1] w-24">
+                        <img
+                            className="pl-5 pt-5"
+                            src={ButtonUrlRenderer(blok?.Icon)}
+                            alt={blok?.Icon.filename.alt ?? blok?.title}
+                        />
+                    </div>
                 ) : (
                     ''
                 )}
@@ -24,7 +25,7 @@ const ServiceTeaserItem = ({ blok }) => {
                     <H3>{blok?.title}</H3>
                     <p>{blok?.text}</p>
                 </div>
-            </a>
+            </Link>
         </div>
     );
 };

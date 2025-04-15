@@ -1,5 +1,4 @@
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
-
 import SmallWidth from '../layouts/SmallWidth';
 
 const ComplienceGrid = ({ blok }) => (

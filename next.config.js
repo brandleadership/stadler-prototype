@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['a.storyblok.com', 'stadlerrail.com'],
+        domains: [
+            'a.storyblok.com',
+            'stadlerrail.com',
+            'stadler-prototyping-git-next-no-typescript-stadler-rail.vercel.app',
+        ],
     },
     typescript: {
         // !! WARN !!

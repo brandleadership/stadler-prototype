@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
 
 import ContentWidth from '../layouts/ContentWidth';

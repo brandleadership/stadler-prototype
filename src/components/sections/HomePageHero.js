@@ -3,6 +3,8 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 import H1 from '../typography/H1';
 import Text from '../typography/Text';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function HomePageHero({ blok }) {
     return (
@@ -54,9 +56,12 @@ export default function HomePageHero({ blok }) {
                     </motion.div>
                 </motion.div>
                 <motion.div className="w-full bg-cover bg-center bg-no-repeat object-center">
-                    <img
-                        src={blok?.image.filename ?? '/hero-home-big-min.jpg'}
+                    <Image
+                        src={ButtonUrlRenderer(blok?.image)}
                         className="w-full object-cover object-center lg:h-[90vh]"
+                        width={1920}
+                        height={1080}
+                        priority
                         alt={
                             blok?.image?.filename?.alt ??
                             'Hero image with train for Home page'

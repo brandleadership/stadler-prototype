@@ -1,19 +1,51 @@
-'use client';
-
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H3 from '../typography/H3';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const SchienenfahrzeugeItem = ({ blok }) => {
-    const optimizeImage = (image) => {
-        if (!image || !image.filename) return null;
+    // const optimizeImage = (image) => {
+    //     if (!image || !image.filename) return null;
 
-        let imageSource = image.filename + `/m/1800x1000`;
+    //     let imageSource = image.filename + `/m/1800x1000`;
 
-        if (image.focus) imageSource += `/filters:focal(${image.focus})`;
+    //     if (image.focus) imageSource += `/filters:focal(${image.focus})`;
 
-        return imageSource;
+    //     return imageSource;
+    // };
+
+    const combinedImageRenderer = (data) => {
+        if (!data) return '/';
+
+        let url = '/';
+
+        if (data.linktype && data.linktype === 'asset') {
+            if (data.url) {
+                url = data.url.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            } else if (data.fieldtype) {
+                url = data.filename || '/';
+            }
+        } else if (data.fieldtype && data.fieldtype === 'asset') {
+            if (data.filename) {
+                url = data.filename.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            }
+        }
+
+        if (url !== '/' && data.filename) {
+            url = url + '/m/1800x1000';
+            if (data.focus) {
+                url += `/filters:focal(${data.focus})`;
+            }
+        }
+
+        return url;
     };
 
     return (
@@ -23,11 +55,15 @@ const SchienenfahrzeugeItem = ({ blok }) => {
             href={ButtonUrlRenderer(blok.link)}
             {...storyblokEditable(blok)}
         >
-            <img
-                className="aspect-[9/5] w-full"
-                src={optimizeImage(blok?.image)}
-                alt={blok?.image.alt ?? 'Train Type Image'}
-            />
+            <div className="relative aspect-[9/5] w-full">
+                <Image
+                    width={1800}
+                    height={1000}
+                    className="object-cover"
+                    src={combinedImageRenderer(blok?.image)}
+                    alt={blok?.image.filename.alt ?? 'Train Type Image'}
+                />
+            </div>
             <div className="p-4 lg:p-6 lg:pb-6">
                 {blok.tag ? (
                     <small className="mb-2 flex text-greySolid-600">
