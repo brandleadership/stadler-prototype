@@ -120,21 +120,13 @@ https://consent.cookiebot.com/uc.js"
                         data-blockingmode="auto"
                         type="text/javascript"
                     ></Script>
-                    {/* <meta httpEquiv="Content-Security-Policy" content="frame-src 'self' https://www.juicer.io/" /> */}
-
-                    {/* <Script
-                        id="CookieDeclaration"
-                        src="
-https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
-                        type="text/javascript"
-                        async
-                    ></Script> */}
                 </head>
                 <body
                     className={
                         fontStadler.className +
                         ' flex min-h-screen flex-col overflow-x-hidden'
                     }
+                 
                 >
                     <Script async>
                         {`
@@ -200,6 +192,8 @@ https://consent.cookiebot.com/cedf775e-624e-499c-a386-4629e677f18e/cd.js"
                         `}
                     </Script>
                     <main>{children}</main>
+
+                    <div id="modals" />
                 </body>
             </html>
         </StoryblokProvider>

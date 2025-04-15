@@ -57,7 +57,7 @@ const SuccessStoryGrid = ({ blok }) => {
                                     swiperRef.current = swiper;
                                 }}
                                 pagination={{
-                                    el: '.slider-pagination', // Use a valid DOM element here
+                                    el: '.slider-pagination',
                                     type: 'bullets',
                                     clickable: true,
                                     bulletClass: 'pagination-bullet',
@@ -79,7 +79,7 @@ const SuccessStoryGrid = ({ blok }) => {
                                     return (
                                         <SwiperSlide
                                             key={nestedBlok.uuid}
-                                            className="success-slider my-1 h-auto cursor-pointer bg-white shadow"
+                                            className="my-1 h-auto cursor-pointer bg-white shadow"
                                         >
                                             <div className="relative aspect-[4/3] w-full">
                                                 <Image

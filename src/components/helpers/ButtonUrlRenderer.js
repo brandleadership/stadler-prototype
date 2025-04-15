@@ -36,12 +36,6 @@ const ButtonUrlRenderer = (data) => {
     if (data.linktype && data.linktype == 'url') {
         return data?.url || '/';
     }
-    // if (data.linktype && data.fieldtype == 'asset') {
-    //     return data?.filename;
-    // }
-    // if (data.fieldtype && data.fieldtype == 'asset') {
-    //     return data?.filename;
-    // }
     if (data.linktype && data.linktype == 'email') {
         return data?.url || '/';
     }
