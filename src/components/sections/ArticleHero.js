@@ -42,7 +42,7 @@ function ArticleHero({ block }) {
                 <Lead>{block?.lead}</Lead>
             </div>
             {block?.image_optional && (
-                <div className="relative my-8 w-full">
+                <div className="relative my-8 aspect-[2/1] w-full">
                     <Image
                         src={ButtonUrlRenderer(block?.image)}
                         fill={true}
