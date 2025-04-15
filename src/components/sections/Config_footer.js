@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react';
 
 import Footer from './Footer';

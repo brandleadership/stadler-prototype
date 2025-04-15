@@ -6,6 +6,8 @@ import { PhoneIcon } from '../icons/PhoneIcon';
 import { PinIcon } from '../icons/PinIcon';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import { ChevronDown } from '../icons/ChevronDown';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const AccordionLocations = ({ blok }) => {
     const [isActive, setIsActive] = useState(false);
@@ -93,7 +95,9 @@ const AccordionLocations = ({ blok }) => {
 
                                 <div className="mb-4 flex items-center justify-start">
                                     <MailIcon className="fill-blueDark" />
-                                    <span className="max-w-[calc(100%-48px)] ml-4 text-xs sm:text-sm md:text-base">{blok?.email}</span>
+                                    <span className="ml-4 max-w-[calc(100%-48px)] text-xs sm:text-sm md:text-base">
+                                        {blok?.email}
+                                    </span>
                                 </div>
 
                                 <div className="mb-2 flex items-center justify-start text-primary">
@@ -114,14 +118,18 @@ const AccordionLocations = ({ blok }) => {
                                 </div>
                             </div>
                             {blok?.image?.filename && (
-                                <img
-                                    src={blok?.image?.filename}
-                                    className="flex md:w-3/12"
-                                    alt={
-                                        blok?.image?.alt ??
-                                        'Stadler Office image'
-                                    }
-                                />
+                                <div className="relative aspect-[2/1.3] w-full md:w-3/12">
+                                    <Image
+                                        src={ButtonUrlRenderer(blok?.image)}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="object-cover"
+                                        fill={true}
+                                        alt={
+                                            blok?.image?.alt ??
+                                            'Stadler Office image'
+                                        }
+                                    />
+                                </div>
                             )}
                         </div>
                         <div className="mb-2 pt-8 text-black">

@@ -1,9 +1,9 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ContentWidth from '../layouts/ContentWidth';
 import H2 from '../typography/H2';
 import RichTextRenderer from '../helpers/RichTextRenderer';
 import H4 from '../typography/H4';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const GraphicTextWrapper = ({ blok }) => {
     return (
@@ -20,7 +20,7 @@ const GraphicTextWrapper = ({ blok }) => {
                         <div className="flex justify-center">
                             <img
                                 className="mr-3 mt-0.5 h-6 w-6"
-                                src={blok?.step_one_icon.filename}
+                                src={ButtonUrlRenderer(blok?.step_one_icon)}
                                 alt={
                                     blok.step_one_icon.filename?.alt ??
                                     `Icon for ${blok?.title}`
@@ -38,7 +38,7 @@ const GraphicTextWrapper = ({ blok }) => {
                         <div className="flex justify-center">
                             <img
                                 className="mr-3 mt-0.5 h-6 w-6"
-                                src={blok?.step_two_icon.filename}
+                                src={ButtonUrlRenderer(blok?.step_two_icon)}
                                 alt={
                                     blok.step_two_icon?.filename?.alt ??
                                     `Icon for ${blok?.title}`
@@ -56,7 +56,7 @@ const GraphicTextWrapper = ({ blok }) => {
                         <div className="flex justify-center">
                             <img
                                 className="mr-3 mt-0.5 h-6 w-6"
-                                src={blok?.step_three_icon.filename}
+                                src={ButtonUrlRenderer(blok?.step_three_icon)}
                                 alt={
                                     blok.step_three_icon?.filename?.alt ??
                                     `Icon for ${blok?.title}`

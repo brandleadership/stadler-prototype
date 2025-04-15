@@ -79,14 +79,22 @@ const RichTextRenderer = (props) => {
                     ),
                 },
                 nodeResolvers: {
-                    [NODE_IMAGE]: (children, props) => (
-                        <img
-                            src={props?.src}
-                            title={props.title}
-                            alt={props.alt}
-                            className="my-6"
-                        />
-                    ),
+                    [NODE_IMAGE]: (children, props) => {
+                        const replaceUrl =
+                            props?.src.replace(
+                                'https://a.storyblok.com/f/269997/',
+                                `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                            ) || '/';
+
+                        return (
+                            <img
+                                src={replaceUrl}
+                                title={props.title}
+                                alt={props.alt}
+                                className="my-6"
+                            />
+                        );
+                    },
                     [NODE_QUOTE]: (children) => (
                         <Blockquote>{children}</Blockquote>
                     ),
