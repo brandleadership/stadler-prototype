@@ -8,7 +8,7 @@ import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 const ProductCard = ({ blok }) => (
     <li className="" {...storyblokEditable(blok)}>
         <H4 styles="mb-4">{blok.title}</H4>
-        <div className="relative h-auto w-full">
+        <div className="relative aspect-[2/1] w-full">
             <Image
                 fill={true}
                 sizes="100vw"
