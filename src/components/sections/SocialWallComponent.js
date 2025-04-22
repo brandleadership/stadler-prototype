@@ -3,9 +3,16 @@ import { storyblokEditable } from '@storyblok/react/rsc';
 import ContentWidth from '../layouts/ContentWidth';
 import H2 from '../typography/H2';
 import { useEffect, useRef } from 'react';
+import { useCurrentLocale } from 'next-i18n-router/client';
+import i18nConfig from '/i18nConfig';
 
 const SocialWallComponent = ({ blok }) => {
     const wallRef = useRef();
+    const READ_MORE_BUTTON = {
+        en: '...Read more',
+        de: '...Mehr lesen',
+    }
+    const currentLocale = useCurrentLocale(i18nConfig);
     useEffect(() => {
         const script = document.createElement('script');
 
@@ -19,6 +26,17 @@ const SocialWallComponent = ({ blok }) => {
             wallRef.current?.removeChild(script);
         };
     }, []);
+
+    useEffect(() => {
+        document.addEventListener('juicer:feedLoaded', () => {
+            const readMoreButttons = document.querySelectorAll('.j-read-more');
+            if (readMoreButttons.length) {
+                readMoreButttons.forEach((button) => {
+                    button.innerText = `${READ_MORE_BUTTON[`${currentLocale}`]}`;
+                });
+            }
+        });
+    }, [currentLocale]);
     return (
         <section
             {...storyblokEditable(blok)}
