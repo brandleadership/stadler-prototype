@@ -56,6 +56,8 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                 article.content.body[0].title
             ) {
                 return article.content.body[0].title;
+            } else if (article.name) {
+                return article.name;
             }
         }
         return null;
