@@ -28,13 +28,14 @@ const SocialWallComponent = ({ blok }) => {
     }, []);
 
     useEffect(() => {
-        const readMoreButtton = document.querySelectorAll('.j-read-more');
-        if (readMoreButtton.length) {
-            readMoreButtton.forEach((button) => {
-                button.innerText = `...${READ_MORE_BUTTON[`${currentLocale}`]}`;
-            });
-        }
-        console.log('readMoreButtton', readMoreButtton);
+        document.addEventListener('juicer:feedLoaded', () => {
+            const readMoreButttons = document.querySelectorAll('.j-read-more');
+            if (readMoreButttons.length) {
+                readMoreButttons.forEach((button) => {
+                    button.innerText = `...${READ_MORE_BUTTON[`${currentLocale}`]}`;
+                });
+            }
+        });
     }, [currentLocale]);
     return (
         <section
