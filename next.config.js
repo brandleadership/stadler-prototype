@@ -4527,6 +4527,1191 @@ const nextConfig = {
                 destination: '/de/kontakt',
                 permanent: true,
             },
+            // SIGNALLING REDIRECTS START
+
+            {
+                source: '/de/returns/',
+                destination:
+                    '/de/loesungen/signaltechnik/ersatzteil-und-reparaturservice',
+
+                permanent: true,
+            },
+            {
+                source: '/de/returns/',
+                destination:
+                    '/en/solutions/signalling/spare-parts-and-repair-services',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/ersatzteil-und-reparaturservice',
+                destination:
+                    '/de/loesungen/signaltechnik/ersatzteil-und-reparaturservice',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services/spare-parts-and-repair-services',
+                destination:
+                    '/en/solutions/signalling/spare-parts-and-repair-services',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/',
+                destination: '/de/loesungen/signaltechnik',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/branchline/',
+                destination:
+                    '/de/loesungen/signaltechnik/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/depot/',
+                destination: '/de/loesungen/signaltechnik/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/digital-solutions/',
+                destination: '/de/loesungen/signaltechnik/digitale-loesungen',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/lrv/',
+                destination:
+                    '/de/loesungen/signaltechnik/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/mainline/',
+                destination: '/de/loesungen/signaltechnik/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/metro/',
+                destination: '/de/loesungen/signaltechnik/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/de/signalling/services/',
+                destination: '/de/loesungen/signaltechnik/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/es/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/fr/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/hu/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/it/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/nl/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/pl/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/',
+                destination: '/en/solutions/signalling',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/branchline/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/depot/',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/digital-solutions/',
+                destination: '/en/solutions/signalling/digital-solution',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/lrv/',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/mainline/',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/metro/',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/ru/signalling/services/',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv',
+                destination:
+                    '/de/loesungen/signaltechnik/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot',
+                destination: '/de/loesungen/signaltechnik/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv',
+                destination:
+                    '/de/loesungen/signaltechnik/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline',
+                destination: '/de/loesungen/signaltechnik/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/metro',
+                destination: '/de/loesungen/signaltechnik/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services',
+                destination: '/de/loesungen/signaltechnik/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/depot',
+                destination: '/en/solutions/signalling/solutions-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/branchline-and-lrv',
+                destination:
+                    '/en/solutions/signalling/solutions-branchline-and-lrv',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/mainline',
+                destination: '/en/solutions/signalling/solutions-mainline',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/metro',
+                destination: '/en/solutions/signalling/solutions-metro',
+
+                permanent: true,
+            },
+            {
+                source: '/en/solutions/signalling/after-sales-and-services',
+                destination: '/en/solutions/signalling/after-sales-services',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline/zugbeeinflussung-etcs',
+                destination:
+                    '/de/loesungen/signaltechnik/zugbeeinflussung-etcs',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline/stellwerke',
+                destination: '/de/loesungen/signaltechnik/stellwerke',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline/signalgeber',
+                destination: '/de/loesungen/signaltechnik/signalgeber',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline/fahrgastinformationssystem',
+                destination:
+                    '/de/loesungen/signaltechnik/fahrgastinformationssystem',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/mainline/ato-und-fas',
+                destination: '/de/loesungen/signaltechnik/ato-und-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/mainline/train-control-etcs',
+                destination: '/solutions/signalling/train-control-etcs',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/mainline/interlockings',
+                destination: '/solutions/signalling/interlockings',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/mainline/signalling-devices',
+                destination: '/solutions/signalling/signalling-devices',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/mainline/passenger-information-system',
+                destination:
+                    '/solutions/signalling/passenger-information-system',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/mainline/ato-and-fas',
+                destination: '/solutions/signalling/ato-and-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/zugbeeinflussungssystem',
+                destination:
+                    '/de/loesungen/signaltechnik/zugbeeinflussungssystem',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/stellwerke',
+                destination: '/de/loesungen/signaltechnik/stellwerke',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/weichensteuerung',
+                destination: '/de/loesungen/signaltechnik/weichensteuerung',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/fahrsignalanlagen',
+                destination: '/de/loesungen/signaltechnik/fahrsignalanlagen',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/signalgeber',
+                destination: '/de/loesungen/signaltechnik/signalgeber',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/fahrgastinformationssystem',
+                destination:
+                    '/de/loesungen/signaltechnik/fahrgastinformationssystem',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/ato-und-fas',
+                destination: '/de/loesungen/signaltechnik/ato-und-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/branchline-und-lrv/kollisionswarnsystem',
+                destination: '/de/loesungen/signaltechnik/kollisionswarnsystem',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/train-control-systems',
+                destination: '/solutions/signalling/train-control-systems',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/interlockings',
+                destination: '/solutions/signalling/interlockings',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/point-control',
+                destination: '/solutions/signalling/point-control',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/traffic-signal-system',
+                destination: '/solutions/signalling/traffic-signal-system',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/signalling-devices',
+                destination: '/solutions/signalling/signalling-devices',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/passenger-information-system',
+                destination:
+                    '/solutions/signalling/passenger-information-system',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/ato-and-fas',
+                destination: '/solutions/signalling/ato-and-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/branchline-and-lrv/collision-warning-system',
+                destination: '/solutions/signalling/collision-warning-system',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/metro/stadler-nova-pro',
+                destination: '/de/loesungen/signaltechnik/stadler-nova-pro',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/metro/ato-und-fas',
+                destination: '/de/loesungen/signaltechnik/ato-und-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/metro/signalgeber',
+                destination: '/de/loesungen/signaltechnik/signalgeber',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/metro/fahrgastinformationssystem',
+                destination:
+                    '/de/loesungen/signaltechnik/fahrgastinformationssystem',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/metro/stadler-nova-pro',
+                destination: '/solutions/signalling/stadler-nova-pro',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/metro/ato-and-fas',
+                destination: '/solutions/signalling/ato-and-fas',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/metro/signalling-devices',
+                destination: '/solutions/signalling/signalling-devices',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/metro/passenger-information-system',
+                destination:
+                    '/solutions/signalling/passenger-information-system',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot/stadler-nova-depot',
+                destination: '/de/loesungen/signaltechnik/stadler-nova-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot/betriebshofsteuerung',
+                destination: '/de/loesungen/signaltechnik/betriebshofsteuerung',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot/rangierstellwerk',
+                destination: '/de/loesungen/signaltechnik/rangierstellwerk',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot/weichensteuerung',
+                destination: '/de/loesungen/signaltechnik/weichensteuerung',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/depot/signalgeber',
+                destination: '/de/loesungen/signaltechnik/signalgeber',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/depot/stadler-nova-depot',
+                destination: '/solutions/signalling/stadler-nova-depot',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/depot/depot-control',
+                destination: '/solutions/signalling/depot-control',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/depot/shunting-interlockings',
+                destination: '/solutions/signalling/shunting-interlockings',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/depot/point-control',
+                destination: '/solutions/signalling/point-control',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/depot/signalling-devices',
+                destination: '/solutions/signalling/signalling-devices',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/services-zur-betriebssicherung',
+                destination:
+                    '/de/loesungen/signaltechnik/services-zur-betriebssicherung',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/daten-und-diagnosedienste',
+                destination:
+                    '/de/loesungen/signaltechnik/daten-und-diagnosedienste',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/konfigurationsmanagement',
+                destination:
+                    '/de/loesungen/signaltechnik/konfigurationsmanagement',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/ersatzteil-und-reparaturservice',
+                destination:
+                    '/de/loesungen/signaltechnik/ersatzteil-und-reparaturservice',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/unterstuetzung-bei-change-requests-und-upgrade-dienste',
+                destination:
+                    '/de/loesungen/signaltechnik/unterstuetzung-bei-change-requests-und-upgrade-dienste',
+
+                permanent: true,
+            },
+            {
+                source: '/de/loesungen/signaltechnik/after-sales-and-services/schulungen-expertenbewertung-und-tool-services',
+                destination:
+                    '/de/loesungen/signaltechnik/schulungen-expertenbewertung-und-tool-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/operation-services',
+                destination: '/solutions/signalling/operation-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/data-diagnostic-services',
+                destination: '/solutions/signalling/data-diagnostic-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/configuration-management-services',
+                destination:
+                    '/solutions/signalling/configuration-management-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/spare-parts-and-repair-services',
+                destination:
+                    '/solutions/signalling/spare-parts-and-repair-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/change-requests-and-upgrade-services',
+                destination:
+                    '/solutions/signalling/change-requests-and-upgrade-services',
+
+                permanent: true,
+            },
+            {
+                source: '/solutions/signalling/after-sales-and-services/training-expert-assessment-and-tooling-services',
+                destination:
+                    '/solutions/signalling/training-expert-assessment-and-tooling-services',
+
+                permanent: true,
+            },
+            {
+                source: '/de/returns/',
+                destination:
+                    '/de/loesungen/signaltechnik/ersatzteil-und-reparaturservice',
+
+                permanent: true,
+            },
+
+            // SIGNALLING REDIRECTS END
         ];
     },
 };
