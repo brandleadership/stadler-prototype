@@ -103,12 +103,12 @@ const RichTextRenderer = (props) => {
                         <Text styles={props.customStyles}>{children}</Text>
                     ),
                     [NODE_UL]: (children) => (
-                        <ul className="my-6 list-inside list-disc">
+                        <ul className="my-6 list-outside list-disc pl-6">
                             {children}
                         </ul>
                     ),
                     [NODE_OL]: (children) => (
-                        <ol className="my-6 list-inside list-decimal">
+                        <ol className="my-6 list-outside list-decimal pl-6">
                             {children}
                         </ol>
                     ),
