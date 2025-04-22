@@ -22,17 +22,20 @@ const SocialWallComponent = ({ blok }) => {
 
         wallRef.current?.appendChild(script);
 
-        const readMoreButtton = document.querySelectorAll('.j-read-more');
-        if (readMoreButtton) {
-            readMoreButtton.forEach((button) => {
-                button.innerText = `...${READ_MORE_BUTTON[`${currentLocale}`]}`;
-            });
-        }
-
         return () => {
             wallRef.current?.removeChild(script);
         };
     }, []);
+
+    useEffect(() => {
+        const readMoreButtton = document.querySelectorAll('.j-read-more');
+        if (readMoreButtton.length) {
+            readMoreButtton.forEach((button) => {
+                button.innerText = `...${READ_MORE_BUTTON[`${currentLocale}`]}`;
+            });
+        }
+        console.log('readMoreButtton', readMoreButtton);
+    }, [currentLocale]);
     return (
         <section
             {...storyblokEditable(blok)}
