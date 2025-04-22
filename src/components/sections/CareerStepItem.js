@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H4 from '../typography/H4';
 import Text from '../typography/Text';

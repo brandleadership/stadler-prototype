@@ -1,6 +1,6 @@
 import ContentWidth from '../layouts/ContentWidth';
 import { getStoryblokApi, storyblokEditable } from '@storyblok/react/rsc';
-
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import H2 from '../typography/H2';
 import H3 from '../typography/H3';
@@ -11,6 +11,7 @@ import TrimText from '../helpers/TrimText';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useCurrentLocale } from 'next-i18n-router/client';
 import i18nConfig from '/i18nConfig';
+import Link from 'next/link';
 
 function NewsTeaser({ blok }) {
     const [articlesCategory, setArticlesCategory] = useState([]);
@@ -58,25 +59,38 @@ function NewsTeaser({ blok }) {
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                         {articlesCategory[0] &&
                             articlesCategory.map((article) => (
-                                <a
+                                <Link
                                     tabIndex="1"
                                     href={`/${article.full_slug}`}
                                     className="group mb-6 transition-all"
                                     key={article.uuid}
                                 >
-                                    <div className="flex h-52 items-center justify-center overflow-hidden">
-                                        <img
-                                            src={
-                                                article.content.image
-                                                    ?.filename ?? '/logo.svg'
-                                            }
-                                            className={`${article.content?.image?.filename ? 'h-full w-full' : 'h-auto w-[90%]'} object-cover transition-all group-hover:scale-110`}
-                                            alt={
-                                                article.content.image?.filename
-                                                    ?.alt ?? 'NewsTeaser image'
-                                            }
-                                        />
+                                    <div className="relative h-52 overflow-hidden">
+                                        {article.content?.image.filename ? (
+                                            <Image
+                                                src={ButtonUrlRenderer(
+                                                    article.content?.image
+                                                )}
+                                                sizes="100vw"
+                                                fill={true}
+                                                className="h-full w-full object-cover transition-all group-hover:scale-110"
+                                                alt={
+                                                    article.content.image
+                                                        ?.filename?.alt ??
+                                                    'NewsTeaser image'
+                                                }
+                                            />
+                                        ) : (
+                                            <div className="flex h-full w-full items-center justify-center">
+                                                <img
+                                                    className="h-auto w-[90%] object-cover object-center transition-all group-hover:scale-110"
+                                                    src="/logo.svg"
+                                                    alt="Logo"
+                                                />
+                                            </div>
+                                        )}
                                     </div>
+
                                     <div className="mb-1 mt-4 flex flex-wrap">
                                         {article.content?.categories?.map(
                                             (category, index) =>
@@ -110,7 +124,7 @@ function NewsTeaser({ blok }) {
                                             {TrimText(article.content.lead)}
                                         </Text>
                                     </div>
-                                </a>
+                                </Link>
                             ))}
                     </div>
                 </div>

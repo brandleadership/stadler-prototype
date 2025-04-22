@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import FullWidth from '../layouts/FullWidth';
 import { storyblokEditable } from '@storyblok/react/rsc';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const SubHero = ({ blok }) => {
     return (
@@ -23,10 +25,12 @@ const SubHero = ({ blok }) => {
                                 />
                             </div>
                         </motion.div>
-                        <div className="w-full bg-cover bg-center bg-no-repeat">
-                            <img
-                                src={blok?.image.filename}
-                                className="h-96 w-full object-cover object-right md:h-full"
+                        <div className="relative h-96 w-full bg-cover bg-center bg-no-repeat md:h-full">
+                            <Image
+                                fill={true}
+                                sizes="100vw"
+                                src={ButtonUrlRenderer(blok?.image)}
+                                className="object-cover object-right"
                                 alt={
                                     blok?.image.filename.alt ?? 'Sub Hero image'
                                 }

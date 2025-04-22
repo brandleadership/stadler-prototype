@@ -1,7 +1,7 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H4 from '../typography/H4';
 import Text from '../typography/Text';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const QualityFeatureItem = ({ blok }) => (
     <div {...storyblokEditable(blok)}>
@@ -9,7 +9,7 @@ const QualityFeatureItem = ({ blok }) => (
             <div className="flex h-16 w-16 shrink-0 items-center justify-start lg:h-24 lg:w-24">
                 <img
                     alt={blok?.image.filename.alt ?? `Image for ${blok?.title}`}
-                    src={blok?.image.filename}
+                    src={ButtonUrlRenderer(blok?.image)}
                 />
             </div>
             <div className="text-white">

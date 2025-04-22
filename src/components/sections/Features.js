@@ -5,6 +5,8 @@ import ContentWidth from '../layouts/ContentWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Features = ({ blok }) => {
     const pathname = usePathname();
@@ -44,21 +46,25 @@ const Features = ({ blok }) => {
             className="bg-white py-8 lg:py-24"
         >
             <ContentWidth>
-                <div className="col-span-12 mx-auto max-w-full bg-white">
+                <div className="col-span-12 max-w-full bg-white">
                     <div className="mb-10 tracking-tight">
                         <H2>{blok?.title}</H2>
                     </div>
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
                         <div className="flex flex-col items-center justify-center md:items-start">
-                            <img
-                                src={blok?.image_1.filename}
-                                alt={
-                                    blok?.image_1.filename?.alt ??
-                                    'Feature Image'
-                                }
-                                className="aspect-[16/9] w-full object-cover md:w-auto"
-                            />
-                            <a
+                            <div className="relative aspect-[16/9] h-full w-full">
+                                <Image
+                                    fill={true}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    src={ButtonUrlRenderer(blok?.image_1)}
+                                    alt={
+                                        blok?.image_1.filename?.alt ??
+                                        'Feature Image'
+                                    }
+                                    className="object-cover"
+                                />
+                            </div>
+                            <Link
                                 tabIndex="1"
                                 href={ButtonUrlRenderer(blok?.link_1)}
                                 className="matomo-tracking-link mt-4 flex items-center gap-2 text-2xl font-bold"
@@ -76,20 +82,22 @@ const Features = ({ blok }) => {
                                         fill="#005893"
                                     />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                         <div className="flex flex-col items-center justify-center md:items-start">
-                            <img
-                                width="100%"
-                                height="auto"
-                                src={blok?.image_2.filename}
-                                alt={
-                                    blok?.image_2?.filename?.alt ??
-                                    'Feature Image'
-                                }
-                                className="aspect-[16/9] w-full object-cover md:w-auto"
-                            />
-                            <a
+                            <div className="relative aspect-[16/9] w-full">
+                                <Image
+                                    fill={true}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    src={ButtonUrlRenderer(blok?.image_2)}
+                                    alt={
+                                        blok?.image_2?.filename?.alt ??
+                                        'Feature Image'
+                                    }
+                                    className="object-cover"
+                                />
+                            </div>
+                            <Link
                                 tabIndex="1"
                                 href={ButtonUrlRenderer(blok?.link_2)}
                                 className="matomo-tracking-link mt-4 flex items-center gap-2 text-2xl font-bold"
@@ -107,7 +115,7 @@ const Features = ({ blok }) => {
                                         fill="#005893"
                                     />
                                 </svg>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

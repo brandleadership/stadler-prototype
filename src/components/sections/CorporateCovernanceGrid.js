@@ -1,6 +1,4 @@
-'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc';
-
 import SuperSmallWidth from '../layouts/SuperSmallWidth';
 import H2 from '../typography/H2';
 import Text from '../typography/Text';

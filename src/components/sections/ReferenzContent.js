@@ -4,6 +4,7 @@ import H1 from '../typography/H1';
 import Text from '../typography/Text';
 import Breadcrumbs from './Breadcrumbs';
 import RichTextRenderer from '../helpers/RichTextRenderer';
+import Image from 'next/image';
 
 function ReferenzContent({ blok }) {
     return (
@@ -14,7 +15,7 @@ function ReferenzContent({ blok }) {
                 </div>
                 <H1 styles="mb-8">{blok?.title}</H1>
                 <div className="mb-6">
-                    <div className="flex flex-wrap w-full">
+                    <div className="flex w-full flex-wrap">
                         {blok?.categories?.map((category, index) => (
                             <div
                                 key={index}
@@ -38,11 +39,15 @@ function ReferenzContent({ blok }) {
             </SuperSmallWidth>
             <SuperSmallWidth>
                 <Text styles="text-lg mt-12">{blok?.lead}</Text>
-                <img
-                    src={blok?.image.filename}
-                    className="my-8 w-full"
-                    alt={blok?.image.filename.alt ?? 'Full service image'}
-                />
+                <div className="relative my-8 aspect-video w-full">
+                    <Image
+                        fill
+                        sizes="100vw"
+                        src={blok?.image.filename}
+                        className="object-cover object-center"
+                        alt={blok?.image.filename.alt ?? 'Full service image'}
+                    />
+                </div>
             </SuperSmallWidth>
             <SuperSmallWidth>
                 <div>
