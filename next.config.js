@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
+const securityHeaders = [
+    {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN',
+    },
+];
 const nextConfig = {
+    reactStrictMode: true,
     images: {
         domains: [
             'a.storyblok.com',
@@ -20,6 +27,16 @@ const nextConfig = {
             '@react-email/render',
             '@react-email/tailwind',
         ],
+    },
+    async headers() {
+        return [
+            {
+                // Apply these headers to all routes in your application.
+
+                source: '/(.*)',
+                headers: securityHeaders,
+            },
+        ];
     },
     async rewrites() {
         return [
