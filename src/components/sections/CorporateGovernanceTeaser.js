@@ -1,6 +1,7 @@
 'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import H3 from '../typography/H3';
+import { ArrowForwardBlue } from '../icons/ArrowForwardBlue';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 const CorporateGovernanceTeaser = ({ blok }) => {
@@ -15,11 +16,7 @@ const CorporateGovernanceTeaser = ({ blok }) => {
                     <H3>{blok?.title}</H3>
                     <p className="mb-4 font-normal text-black">{blok?.text}</p>
                 </div>
-                <img
-                    className="w-5"
-                    src="/icons/arrow-blue.svg"
-                    alt="arrow icon"
-                />
+                <ArrowForwardBlue styles="w-5"></ArrowForwardBlue>
             </article>
         </a>
     );

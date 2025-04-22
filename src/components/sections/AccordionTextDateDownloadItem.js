@@ -1,3 +1,4 @@
+'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import DateFormatter from '../helpers/DateFormatter';
@@ -10,16 +11,16 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
     const investorsDE = useRef();
     const investorsEN = useRef();
 
-    const onResize = () => { 
-     setWindowSize(window.innerWidth);
-    }
-    useLayoutEffect(() => { 
-     onResize();
-   }, []);
-    useLayoutEffect(() => { 
-     window.addEventListener('resize', onResize) 
-     return () => window.removeEventListener('resize', onResize) 
-   }, []); 
+    const onResize = () => {
+        setWindowSize(window.innerWidth);
+    };
+    useLayoutEffect(() => {
+        onResize();
+    }, []);
+    useLayoutEffect(() => {
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
 
     useEffect(() => {
         let investorsDEreference = investorsDE.current;
@@ -55,12 +56,16 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
     return (
         <div
             {...storyblokEditable(blok)}
-            className="border-b md:border-0 grid md:grid-cols-[1fr_3fr] bg-white text-base text-black last:mb-4 last:border-b-0"
+            className="grid border-b bg-white text-base text-black last:mb-4 last:border-b-0 md:grid-cols-[1fr_3fr] md:border-0"
         >
-            <div className="px-2 md:px-6 py-4 font-medium text-center md:text-left">{blok?.title}</div>
-            <div className="grid grid-cols-[2fr_1fr_1fr] md:grid-cols-3 items-center">
-                <div className="px-2 md:px-6 py-4">{DateFormatter(blok?.text_date)}</div>
-                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+            <div className="px-2 py-4 text-center font-medium md:px-6 md:text-left">
+                {blok?.title}
+            </div>
+            <div className="grid grid-cols-[2fr_1fr_1fr] items-center md:grid-cols-3">
+                <div className="px-2 py-4 md:px-6">
+                    {DateFormatter(blok?.text_date)}
+                </div>
+                <div className="px-2 py-4 text-end md:px-6 md:text-center">
                     <a
                         tabIndex="1"
                         target="_blank"
@@ -69,10 +74,12 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
                         href={ButtonUrlRenderer(blok?.download_bericht)}
                         rel="noreferrer"
                     >
-                        {windowSize < MOBILE_WIDTH ? "DE" : blok?.CTA_download_bericht}
+                        {windowSize < MOBILE_WIDTH
+                            ? 'DE'
+                            : blok?.CTA_download_bericht}
                     </a>
                 </div>
-                <div className="px-2 md:px-6 py-4 text-end md:text-center">
+                <div className="px-2 py-4 text-end md:px-6 md:text-center">
                     <a
                         tabIndex="1"
                         target="_blank"
@@ -81,7 +88,9 @@ const AccordionTextDateDownloadItem = ({ blok }) => {
                         href={ButtonUrlRenderer(blok?.download_presentation)}
                         rel="noreferrer"
                     >
-                        {windowSize < MOBILE_WIDTH ? "EN" : blok?.CTA_download_presentation}
+                        {windowSize < MOBILE_WIDTH
+                            ? 'EN'
+                            : blok?.CTA_download_presentation}
                     </a>
                 </div>
             </div>

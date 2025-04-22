@@ -2,9 +2,10 @@
 import { storyblokEditable } from '@storyblok/react/rsc';
 import { useEffect, useRef } from 'react';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
-
+import Image from 'next/image';
 import H3 from '../typography/H3';
 import { ArrowForward } from '../icons/ArrowForward';
+import Link from 'next/link';
 
 const ReportsItem = ({ blok }) => {
     const investorsReference = useRef();
@@ -28,16 +29,22 @@ const ReportsItem = ({ blok }) => {
             {...storyblokEditable(blok)}
             className="max-w-full border border-greySolid-100 bg-white shadow lg:max-w-sm"
         >
-            <img
-                className="max-h-auto aspect-[2/1.2] w-full object-cover"
-                src={blok?.image.filename}
-                alt={
-                    blok?.image.filename.alt ?? 'Investor Relations Publication'
-                }
-            />
+            <div className="max-h-auto relative aspect-[2/1.2] w-full">
+                <Image
+                    priority
+                    fill
+                    sizes="(max-width: 800px) 100vw, 382px"
+                    className="object-cover"
+                    src={ButtonUrlRenderer(blok?.image)}
+                    alt={
+                        blok?.image.filename.alt ??
+                        'Investor Relations Publication'
+                    }
+                />
+            </div>
             <div className="p-5">
                 <H3>{blok?.title}</H3>
-                <a
+                <Link
                     tabIndex="1"
                     ref={investorsReference}
                     href={ButtonUrlRenderer(blok?.cta_link)}
@@ -46,7 +53,7 @@ const ReportsItem = ({ blok }) => {
                     rel="noreferrer"
                 >
                     <ArrowForward styles="h-5 w-5 fill-primary" />
-                </a>
+                </Link>
             </div>
         </div>
     );

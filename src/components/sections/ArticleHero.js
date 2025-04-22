@@ -1,10 +1,11 @@
-'use client';
 import SuperSmallWidth from '../layouts/SuperSmallWidth';
 import H1 from '../typography/H1';
 import Text from '../typography/Text';
 import Lead from '../typography/Lead';
 import Breadcrumbs from './Breadcrumbs';
 import DateFormatter from '../helpers/DateFormatter';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 function ArticleHero({ block }) {
     return (
@@ -25,7 +26,7 @@ function ArticleHero({ block }) {
                             return (
                                 <div
                                     key={index}
-                                    className="mb-2 w-full md:w-auto md:mr-2 h-fit text-center md:text-left whitespace-nowrap border border-greySolid-400 px-4 py-2 text-xs text-greySolid-600 last-of-type:mr-0"
+                                    className="mb-2 h-fit w-full whitespace-nowrap border border-greySolid-400 px-4 py-2 text-center text-xs text-greySolid-600 last-of-type:mr-0 md:mr-2 md:w-auto md:text-left"
                                 >
                                     {category.content.category}
                                 </div>
@@ -41,11 +42,15 @@ function ArticleHero({ block }) {
                 <Lead>{block?.lead}</Lead>
             </div>
             {block?.image_optional && (
-                <img
-                    src={block?.image.filename}
-                    className="my-8 w-full"
-                    alt={block?.image?.filename?.alt ?? 'Full Service'}
-                />
+                <div className="relative my-8 aspect-[2/1] w-full">
+                    <Image
+                        src={ButtonUrlRenderer(block?.image)}
+                        fill={true}
+                        sizes="100vw"
+                        className="object-cover"
+                        alt={block?.image?.filename?.alt ?? 'Full Service'}
+                    />
+                </div>
             )}
         </SuperSmallWidth>
     );

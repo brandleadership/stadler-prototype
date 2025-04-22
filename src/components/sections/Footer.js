@@ -1,8 +1,11 @@
-'use client';
 import Button from '../elements/ButtonSecondary';
 import Link from 'next/link';
 import ContentWidth from '../layouts/ContentWidth';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
+import { Facebook } from '../icons/Facebook';
+import { YouTube } from '../icons/Youtube';
+import { Instagram } from '../icons/Instagram';
+import { LinkedIn } from '../icons/LinkedIn';
 
 const Footer = ({ blok }) => {
     const legalLinks = (
@@ -11,54 +14,54 @@ const Footer = ({ blok }) => {
             className="flex flex-row flex-wrap gap-6 gap-y-4 lg:gap-8"
         >
             <li>
-                <a
+                <Link
                     target={blok.link_1_url.story?.target ?? '_self'}
                     tabIndex="1"
                     href={`/${blok.link_1_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_1_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     target={blok.link_2_url.story?.target ?? '_self'}
                     href={`/${blok.link_2_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_2_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     target={blok.link_3_url.story?.target ?? '_self'}
                     href={`/${blok.link_3_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_3_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     target={blok.link_4_url.story?.target ?? '_self'}
                     href={`/${blok.link_4_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_4_text}
-                </a>
+                </Link>
             </li>
             <li>
-                <a
+                <Link
                     tabIndex="1"
                     target={blok.link_5_url.story?.target ?? '_self'}
                     href={`/${blok.link_5_url.story.url}`}
                     className="inline-block text-base leading-6 text-primarySolid-400 hover:text-primarySolid-400"
                 >
                     {blok.link_5_text}
-                </a>
+                </Link>
             </li>
         </ul>
     );
@@ -72,11 +75,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">LinkedIn</span>
-                <img
-                    src="/LinkedIn.svg"
-                    className="h-6 w-6"
-                    alt="Follow us on LinkedIn"
-                />
+                <LinkedIn styles="h-6 w-6"></LinkedIn>
             </Link>
             <Link
                 tabIndex="1"
@@ -85,11 +84,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">YouTube</span>
-                <img
-                    src="/youtube.svg"
-                    className="h-6 w-6"
-                    alt="Watch our videos on YouTube"
-                />
+                <YouTube styles="h-6 w-6"></YouTube>
             </Link>
             <Link
                 tabIndex="1"
@@ -98,11 +93,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">Facebook</span>
-                <img
-                    src="/facebook.svg"
-                    className="h-6 w-6"
-                    alt="Like us on Facebook"
-                />
+                <Facebook styles="h-6 w-6"></Facebook>
             </Link>
             <Link
                 tabIndex="1"
@@ -111,11 +102,7 @@ const Footer = ({ blok }) => {
                 className="text-greySolid-600 hover:text-greySolid-400"
             >
                 <span className="sr-only">Instagram</span>
-                <img
-                    src="/ohne-box/Instagram.svg"
-                    className="h-6 w-6"
-                    alt="Connect with us on Instagram"
-                />
+                <Instagram styles="h-6 w-6"></Instagram>
             </Link>
         </div>
     );

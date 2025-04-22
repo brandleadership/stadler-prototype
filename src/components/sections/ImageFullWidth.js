@@ -1,6 +1,7 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import FullWidth from '../layouts/FullWidth';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function ImageFullWidth({ blok }) {
     return (
@@ -10,13 +11,18 @@ export default function ImageFullWidth({ blok }) {
         >
             <FullWidth>
                 <div className="col-span-12">
-                    <img
-                        className="object-cover lg:aspect-[2/1]"
-                        width={'100%'}
-                        loading="lazy"
-                        src={blok?.image.filename}
-                        alt={blok?.image.filename?.alt ?? 'Hero product image'}
-                    />
+                    <div className="relative lg:aspect-[2/1]">
+                        <Image
+                            className="object-cover"
+                            fill={true}
+                            sizes="100vw"
+                            src={ButtonUrlRenderer(blok?.image)}
+                            alt={
+                                blok?.image.filename?.alt ??
+                                'Hero product image'
+                            }
+                        />
+                    </div>
                 </div>
             </FullWidth>
         </section>

@@ -1,7 +1,7 @@
-'use client';
-
 import SmallWidth from '../layouts/SmallWidth';
 import { storyblokEditable } from '@storyblok/react/rsc';
+import Image from 'next/image';
+import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
 export default function Quote({ blok }) {
     return (
@@ -28,9 +28,11 @@ export default function Quote({ blok }) {
                         </p>
                     </blockquote>
                     <figcaption className="mt-8 flex items-center justify-center space-x-3">
-                        <img
+                        <Image
+                            width={80}
+                            height={80}
                             className="h-20 w-20 rounded-full object-cover"
-                            src={blok?.image?.filename}
+                            src={ButtonUrlRenderer(blok?.image)}
                             alt={
                                 blok?.image?.filename?.alt ?? 'Profile picture'
                             }

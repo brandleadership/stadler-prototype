@@ -342,7 +342,7 @@ const HeroCareer = ({ blok }) => {
         <section
             {...storyblokEditable(blok)}
             style={{
-                backgroundImage: `url(${blok?.background_image.filename})`,
+                backgroundImage: `url(${ButtonUrlRenderer(blok?.background_image)})`,
             }}
             className="h-[70vh] min-h-min bg-greySolid-400 bg-cover bg-center bg-no-repeat bg-blend-multiply lg:h-auto"
         >

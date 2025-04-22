@@ -112,6 +112,8 @@ import CookiebotDeclaration from './sections/CookiebotDeclaration';
 import SocialWallComponent from './sections/SocialWallComponent';
 import ComplienceGrid from './sections/ComplienceGrid';
 import ComplienceItem from './sections/ComplienceItem';
+import BackgroundImageTeaser from './sections/BackgroundImageTeaser.js';
+import EventSlider from './sections/EventSlider.js';
 
 storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
@@ -232,6 +234,8 @@ storyblokInit({
         social_wall: SocialWallComponent,
         complience_grid: ComplienceGrid,
         complience_item: ComplienceItem,
+        teaser_background_image: BackgroundImageTeaser,
+        event_slider: EventSlider,
     },
 });
 

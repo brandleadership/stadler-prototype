@@ -3,18 +3,52 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SmallWidth from '../layouts/SmallWidth';
+import Image from 'next/image';
 
 const Testimonials = ({ blok }) => {
     const [selectedTab, setSelectedTab] = useState(blok.testimonial[0]);
-    function optimizeImage(image) {
-        if (!image.filename) return null;
+    // function optimizeImage(image) {
+    //     if (!image.filename) return null;
 
-        let imageSource = image.filename + `/m/332x250`;
+    //     let imageSource = image.filename + `/m/332x250`;
 
-        if (image.focus) imageSource += `/filters:focal(${image.focus})`;
+    //     if (image.focus) imageSource += `/filters:focal(${image.focus})`;
 
-        return imageSource;
-    }
+    //     return imageSource;
+    // }
+
+    const combinedImageRenderer = (data) => {
+        if (!data) return '/';
+
+        let url = '/';
+
+        if (data.linktype && data.linktype === 'asset') {
+            if (data.url) {
+                url = data.url.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            } else if (data.fieldtype) {
+                url = data.filename || '/';
+            }
+        } else if (data.fieldtype && data.fieldtype === 'asset') {
+            if (data.filename) {
+                url = data.filename.replace(
+                    'https://a.storyblok.com/f/269997/',
+                    `${process.env.BASE_URL ? process.env.BASE_URL : 'https://stadlerrail.com'}/api/docs/`
+                );
+            }
+        }
+
+        if (url !== '/' && data.filename) {
+            url = url + '/m/332x250';
+            if (data.focus) {
+                url += `/filters:focal(${data.focus})`;
+            }
+        }
+
+        return url;
+    };
 
     return (
         <section>
@@ -46,14 +80,20 @@ const Testimonials = ({ blok }) => {
                                 data-tabs-target="#europe"
                             >
                                 <span className="flex items-center justify-around lg:flex-col">
-                                    <img
-                                        className="aspect-[4/3] w-1/3 object-cover lg:w-full"
-                                        src={optimizeImage(item?.image)}
-                                        alt={
-                                            item?.image?.filename?.alt ??
-                                            'profile picture'
-                                        }
-                                    />
+                                    <span className="relative inline-block aspect-[331/248] w-1/3 md:w-1/4 lg:w-full">
+                                        <Image
+                                            fill
+                                            sizes="(max-width: 800px) 100vw, 800px"
+                                            className="object-cover"
+                                            src={combinedImageRenderer(
+                                                item?.image
+                                            )}
+                                            alt={
+                                                item?.image?.filename?.alt ??
+                                                'profile picture'
+                                            }
+                                        />
+                                    </span>
                                     <span className="ml-4 flex grow flex-col justify-start lg:ml-0 lg:mt-4">
                                         <span className="hs-tab-active:text-blue-600 flex font-semibold text-greySolid-800 md:max-w-60 lg:justify-center">
                                             {item.name}

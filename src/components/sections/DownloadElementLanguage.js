@@ -1,4 +1,3 @@
-'use client';
 import { storyblokEditable } from '@storyblok/react/rsc';
 import ButtonUrlRenderer from '../helpers/ButtonUrlRenderer';
 
@@ -7,7 +6,7 @@ function DownloadElementLanguage({ blok }) {
         <a
             tabIndex="1"
             {...storyblokEditable(blok)}
-            className="mr-4 font-medium text-primary min-w-7"
+            className="mr-4 min-w-7 font-medium text-primary"
             target={blok.buttonLink?.target}
             href={ButtonUrlRenderer(blok?.buttonLink)}
         >
