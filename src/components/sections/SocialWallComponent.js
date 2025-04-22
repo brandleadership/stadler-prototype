@@ -32,7 +32,7 @@ const SocialWallComponent = ({ blok }) => {
             const readMoreButttons = document.querySelectorAll('.j-read-more');
             if (readMoreButttons.length) {
                 readMoreButttons.forEach((button) => {
-                    button.innerText = `...${READ_MORE_BUTTON[`${currentLocale}`]}`;
+                    button.innerText = `${READ_MORE_BUTTON[`${currentLocale}`]}`;
                 });
             }
         });
