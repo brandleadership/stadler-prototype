@@ -17,7 +17,7 @@ const SocialWallComponent = ({ blok }) => {
         const script = document.createElement('script');
 
         script.src =
-            'https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3&truncate=300';
+            'https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3&truncate=300&gutter=10';
         script.async = true;
 
         wallRef.current?.appendChild(script);
