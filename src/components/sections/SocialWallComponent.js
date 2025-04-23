@@ -30,9 +30,15 @@ const SocialWallComponent = ({ blok }) => {
     useEffect(() => {
         document.addEventListener('juicer:feedLoaded', () => {
             const readMoreButttons = document.querySelectorAll('.j-read-more');
+            const metaBlocks = document.querySelectorAll('.j-meta');
             if (readMoreButttons.length) {
                 readMoreButttons.forEach((button) => {
                     button.innerText = `${READ_MORE_BUTTON[`${currentLocale}`]}`;
+                });
+            }
+            if (metaBlocks.length) {
+                metaBlocks.forEach((block) => {
+                    block.style.marginTop = '8px';
                 });
             }
         });
