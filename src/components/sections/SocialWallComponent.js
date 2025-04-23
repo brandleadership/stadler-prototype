@@ -17,7 +17,7 @@ const SocialWallComponent = ({ blok }) => {
         const script = document.createElement('script');
 
         script.src =
-            'https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3&truncate=300';
+            'https://www.juicer.io/embed/stadler_rail/embed-code.js?per=3&truncate=300&gutter=2';
         script.async = true;
 
         wallRef.current?.appendChild(script);
@@ -30,9 +30,15 @@ const SocialWallComponent = ({ blok }) => {
     useEffect(() => {
         document.addEventListener('juicer:feedLoaded', () => {
             const readMoreButttons = document.querySelectorAll('.j-read-more');
+            const metaBlocks = document.querySelectorAll('.j-meta');
             if (readMoreButttons.length) {
                 readMoreButttons.forEach((button) => {
                     button.innerText = `${READ_MORE_BUTTON[`${currentLocale}`]}`;
+                });
+            }
+            if (metaBlocks.length) {
+                metaBlocks.forEach((block) => {
+                    block.style.marginTop = '0px';
                 });
             }
         });
