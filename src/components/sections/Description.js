@@ -7,12 +7,13 @@ export default function Description({ blok }) {
     return (
         <section {...storyblokEditable(blok)} className="bg-white">
             <div className="mx-auto max-w-screen-xl items-center gap-8 px-4 py-8 sm:py-24 md:grid md:grid-cols-2 lg:px-6 xl:gap-16">
-                <div className="relative w-full">
+                <div className="relative aspect-[16/9] w-full">
                     <Image
                         fill={true}
-                        sizes="100vw"
+                        sizes="(max-width: 768px) 100vw,  50vw"
                         src={ButtonUrlRenderer(blok?.image)}
-                        alt={blok?.image?.filename?.alt ?? 'Full Service Image'}
+                        className="object-contain object-center"
+                        alt={blok?.image.filename.alt ?? blok?.title}
                     />
                 </div>
                 <div className="mt-4 md:mt-0">
