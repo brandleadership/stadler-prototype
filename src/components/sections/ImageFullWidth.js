@@ -11,7 +11,7 @@ export default function ImageFullWidth({ blok }) {
         >
             <FullWidth>
                 <div className="col-span-12">
-                    <div className="relative lg:aspect-[2/1]">
+                    <div className="relative aspect-[16/9] lg:aspect-[2/1]">
                         <Image
                             className="object-cover"
                             fill={true}

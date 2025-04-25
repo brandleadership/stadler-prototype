@@ -14,16 +14,13 @@ export default function Intro({ blok }) {
                             <H2>{blok?.title}</H2>
                             <p className="richtext mb-4 mt-6">{blok?.text}</p>
                         </div>
-                        <div className="relative -order-1 mt-8 md:order-1">
+                        <div className="relative -order-1 mt-8 aspect-[16/9] w-full md:order-1">
                             <Image
                                 fill={true}
-                                sizes="100vw"
-                                className="mx-auto scale-100 object-cover object-left"
+                                sizes="(max-width: 768px) 100vw,  50vw"
                                 src={ButtonUrlRenderer(blok?.image)}
-                                alt={
-                                    blok?.image?.filename?.alt ??
-                                    `Office content for ${blok?.title}`
-                                }
+                                className="object-contain object-center"
+                                alt={blok?.image.filename.alt ?? blok?.title}
                             />
                         </div>
                     </div>
