@@ -4,12 +4,9 @@ const securityHeaders = [
         key: 'X-Frame-Options',
         value: 'SAMEORIGIN',
     },
-];
-
-const sameOriginHeaders = [
     {
         key: 'Content-Security-Policy',
-        value: "default-src 'self' https://*.storyblok.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.storyblok.com; style-src 'self' 'unsafe-inline' https://*.storyblok.com; img-src 'self' data: https://*.storyblok.com; connect-src 'self' https://*.storyblok.com; font-src 'self' https://*.storyblok.com; frame-src 'self' https://*.storyblok.com;",
+        value: "frame-ancestors 'self' https://*.storyblok.com",
     },
 ];
 
@@ -42,10 +39,6 @@ const nextConfig = {
                 // Apply these headers to all routes in your application.
                 source: '/(.*)',
                 headers: securityHeaders,
-            },
-            {
-                source: '/(.*)',
-                headers: sameOriginHeaders,
             },
         ];
     },
