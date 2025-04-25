@@ -223,6 +223,6 @@ h4 {
 }
 #CookieDeclarationChangeConsentChange,
 #CookieDeclarationChangeConsentWithdraw {
-    color: blue !important;
+    color: rgb(0 88 147) !important;
     font-weight: 700 !important;
 }
