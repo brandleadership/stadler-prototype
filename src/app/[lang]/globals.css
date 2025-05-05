@@ -240,3 +240,8 @@ h4 {
 .ReactModal__Content:focus {
     outline: none;
 }
+#CookieDeclarationChangeConsentChange,
+#CookieDeclarationChangeConsentWithdraw {
+    color: rgb(0 88 147) !important;
+    font-weight: 700 !important;
+}
