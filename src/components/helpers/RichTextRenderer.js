@@ -69,6 +69,7 @@ const RichTextRenderer = (props) => {
                         );
                     },
                 },
+
                 blokResolvers: {
                     ['cta-small']: (props) => (
                         <ButtonPrimary
@@ -79,6 +80,33 @@ const RichTextRenderer = (props) => {
                     ),
                 },
                 nodeResolvers: {
+                    // table wrapper
+                    table: (children) => (
+                        <div className="overflow-x-auto bg-white py-4 lg:py-8">
+                            <table className="w-full table-auto border border-gray-300 text-left text-sm text-greySolid-600 rtl:text-right">
+                                <tbody>{children}</tbody>
+                            </table>
+                        </div>
+                    ),
+                    // each row
+                    tableRow: (children) => (
+                        <tr className="border border-gray-300 bg-white">
+                            {children}
+                        </tr>
+                    ),
+                    // each cell (use attrs for colspan/rowspan)
+                    tableCell: (children, props) => {
+                        const { colspan = 1, rowspan = 1 } = props.attrs || {};
+                        return (
+                            <td
+                                className="text-black"
+                                colSpan={colspan}
+                                rowSpan={rowspan}
+                            >
+                                {children}
+                            </td>
+                        );
+                    },
                     [NODE_IMAGE]: (children, props) => {
                         const replaceUrl =
                             props?.src.replace(
@@ -103,12 +131,12 @@ const RichTextRenderer = (props) => {
                         <Text styles={props.customStyles}>{children}</Text>
                     ),
                     [NODE_UL]: (children) => (
-                        <ul className="my-6 list-inside list-disc">
+                        <ul className="my-6 list-outside list-disc pl-6">
                             {children}
                         </ul>
                     ),
                     [NODE_OL]: (children) => (
-                        <ol className="my-6 list-inside list-decimal">
+                        <ol className="my-6 list-outside list-decimal pl-6">
                             {children}
                         </ol>
                     ),

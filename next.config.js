@@ -4,7 +4,12 @@ const securityHeaders = [
         key: 'X-Frame-Options',
         value: 'SAMEORIGIN',
     },
+    {
+        key: 'Content-Security-Policy',
+        value: "frame-ancestors 'self' https://*.storyblok.com",
+    },
 ];
+
 const nextConfig = {
     reactStrictMode: true,
     images: {

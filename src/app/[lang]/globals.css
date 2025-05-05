@@ -30,6 +30,25 @@ h4 {
     display: contents !important;
 }
 
+.richtext table tbody tr:first-child {
+    background-color: #f2f7fa;
+}
+
+.richtext table tbody tr:first-child td p {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.richtext table tbody tr:not(:first-child) td p {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
 #mc_embed_signup input.mce_inline_error {
     border-color: #c81e1e !important;
 }
@@ -220,4 +239,9 @@ h4 {
 
 .ReactModal__Content:focus {
     outline: none;
+}
+#CookieDeclarationChangeConsentChange,
+#CookieDeclarationChangeConsentWithdraw {
+    color: rgb(0 88 147) !important;
+    font-weight: 700 !important;
 }
