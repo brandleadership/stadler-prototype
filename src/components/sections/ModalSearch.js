@@ -41,6 +41,7 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
             const heroSubpage = article.content.body.find(
                 (item) =>
                     item.component === 'hero-subpage' ||
+                    item.component === 'hero-home' ||
                     item.component === 'hero-careerpage'
             );
             if (
@@ -49,6 +50,14 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                 heroSubpage.title.trim() !== ''
             ) {
                 return heroSubpage.title;
+            } else if (
+                article.content.body?.length &&
+                article.content.body[0] &&
+                article.content.body[0].title
+            ) {
+                return article.content.body[0].title;
+            } else if (article.name) {
+                return article.name;
             }
         }
         return null;
@@ -72,7 +81,9 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                 'footer',
                 'not-found',
                 'datasheet',
+                'registration',
                 'download-section',
+                'contact-section',
                 'test-global-content',
                 'medienmitteilungen',
                 'news',
@@ -101,6 +112,8 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
                     !article.full_slug.includes('news') &&
                     !article.full_slug.includes('download-section') &&
                     !article.full_slug.includes('datasheet') &&
+                    !article.full_slug.includes('registration') &&
+                    !article.full_slug.includes('unsubscribe') &&
                     !excludedKeywords.some((keyword) =>
                         article.name.includes(keyword)
                     )
@@ -162,7 +175,7 @@ const ModalSearch = ({ isModalOpen, closeModal, buttonRef }) => {
     }, [isModalOpen, closeModal]);
 
     const handleArticleClick = (article) => {
-        window.location.href = `/${article.full_slug}`;
+        window.location.href = `/${article.full_slug}#:~:text=${search}`;
     };
 
     return (
