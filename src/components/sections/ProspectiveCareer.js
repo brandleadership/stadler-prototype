@@ -53,11 +53,14 @@ const ProspectiveCareer = ({ blok }) => {
     // function to get all the jobs (with possible filters and search query) via server function in next
     const getJobs = async (filter = '', search = '') => {
         setIsDataLoading(true);
-
+        console.log(search, 'search');
         const url = `/${currentLocale}/api/prospective-jobs?filter=${filter}&search=${search}`;
 
-        const checkConnection = await fetch(url, filters);
+        console.log('🚀 ~ getJobs ~ url:', url);
+        const checkConnection = await fetch(url);
         const data = await checkConnection.json();
+        console.log(data, 'data');
+        console.log(data?.message?.jobs, 'data?.message?.jobs');
         setIsDataLoading(false);
 
         setJobs(data?.message?.jobs || []);
@@ -560,7 +563,9 @@ const ProspectiveCareer = ({ blok }) => {
     }, []);
 
     const onSearchChange = (e) => {
-        setSearch(e.target.value);
+        const searchValue = e.target.value;
+        console.log('🚀 ~ onSearchChange ~ searchValue:', searchValue);
+        setSearch(searchValue);
 
         let filtersString = '';
 
@@ -575,8 +580,8 @@ const ProspectiveCareer = ({ blok }) => {
             }
         });
 
-        if (e.target.value.length > 2) {
-            getJobs(filtersString, e.target.value);
+        if (searchValue.length > 3) {
+            getJobs(filtersString, searchValue);
         } else {
             getJobs(filtersString);
         }
@@ -646,7 +651,7 @@ const ProspectiveCareer = ({ blok }) => {
             }
         });
 
-        if (search.length > 2) {
+        if (search.length > 3) {
             getJobs(filtersString, search);
         } else {
             getJobs(filtersString);
