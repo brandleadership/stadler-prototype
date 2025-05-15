@@ -11,7 +11,7 @@ storyblokInit({
     accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
     use: [apiPlugin],
 });
-const isDev = 'development';
+const isDev = process.env.NODE_ENV === 'development';
 export const revalidate = isDev ? 0 : 3600;
 
 async function fetchData(slug, lang) {
@@ -76,8 +76,10 @@ async function fetchData(slug, lang) {
 
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
+    const version = isDev ? 'draft' : 'published';
+
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'draft',
+        version,
     });
 
     const paths = [];
