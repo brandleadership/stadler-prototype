@@ -77,7 +77,7 @@ async function fetchData(slug, lang) {
 export async function generateStaticParams() {
     const storyblokApi = getStoryblokApi();
     const { data } = await storyblokApi.get('cdn/links/', {
-        version: 'published',
+        version: 'draft',
     });
 
     const paths = [];
